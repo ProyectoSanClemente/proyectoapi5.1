@@ -1,3 +1,6 @@
+{!! HTML::style('css/file-input.css')!!}
+{!! HTML::script('js/file-input.js')!!}
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -9,7 +12,7 @@
                     	<!-- accountname Field -->
                     	<div class="form-group{{ $errors->has('accountname') ? ' has-error' : '' }}">
 	                        <div class="form-group">                            
-	                            {!! Form::label('accountname', 'Nombre Usuario:',array('class'=>"col-md-4 control-label")) !!}
+	                            {!! Form::label('accountname', 'Nombre Usuario:',['class'=>"col-md-4 control-label"]) !!}
 		                        <div class="col-md-6">
 		                        {!! Form::text('accountname', null, ['class' => 'form-control']) !!}
 	                            
@@ -22,10 +25,17 @@
 	                        </div>
 	                    </div>
 
+                        <div class="form-group">                           
+                            {!! Form::label('rol', 'Rol:',['class'=>"col-md-4 control-label"]) !!}
+                            <div class="col-md-6">
+                                {!!Form::select('rol', ['usuario' => 'Usuario', 'admin' => 'Administrador'],null,['class'=>'form-control']);!!}           
+                            </div>
+                        </div>
+
                         <!-- Rut Field -->
                         <div class="form-group{{ $errors->has('rut') ? ' has-error' : '' }}">
                             <div class="form-group">
-                                {!! Form::label('rut', 'Rut:',array('class'=>"col-md-4 control-label")) !!}
+                                {!! Form::label('rut', 'Rut:',['class'=>"col-md-4 control-label"]) !!}
                                 <div class="col-md-6">
                                 {!! Form::text('rut', null, ['class' => 'form-control']) !!}
                                  @if ($errors->has('rut'))
@@ -108,14 +118,22 @@
                                 @endif
                             </div>
                         </div>
-                        
 
-					{!! Form::label('imagen', 'Imagen:',['class'=>'col-md-4 control-label "btn btn-default btn-file"']) !!}
-							<div class="col-md-6">
-							{!! Form::file('imagen', null,['class' => 'form-control btn btn-default btn-file"','accept'=>"image/x-png, image/gif, image/jpeg"]) !!}
-
+                        <div class="form-group"> 
+					       {!! Form::label('imagen', 'Imagen:',['class'=>'col-md-4 control-label']) !!}
+							<div class="col-md-6">                            
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Subir Imagen&hellip; 
+                                            {!! Form::file('imagen',['accept'=>"image/x-png, image/gif, image/jpeg"]) !!}
+                                        </span>
+                                    </span>
+                                    <input type="text" class="form-control" readonly>
+                                </div>							
 							</div>
-                        </div>	                    
+                        </div>
+
                 	</div>
                    <!-- Submit Field -->	
                     <div class="panel-footer" >

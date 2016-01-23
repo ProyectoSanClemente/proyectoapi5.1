@@ -147,6 +147,7 @@ class UsuarioController extends Controller
 			unset($input['password']);
 		}
 
+		$input['displayname']=$input['nombre'].' '.$input['apellido'];
         $this->usuarioRepository->updateRich($input, $id);
 
 		Flash::success('Usuario '.$usuario->accountname.' actualizado satisfactoriamente.');

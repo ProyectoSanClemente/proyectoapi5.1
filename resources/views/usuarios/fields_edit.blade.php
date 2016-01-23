@@ -1,88 +1,97 @@
+{!! HTML::style('css/file-input.css')!!}
+{!! HTML::script('js/file-input.js')!!}
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-					<div class="panel-heading">Edicion datos de usuario</div>
-					
-					<div class="panel-body">                       
-                    	<!-- accountname Field -->
-                    	<div class="form-group{{ $errors->has('accountname') ? ' has-error' : '' }}">
-	                        <div class="form-group">                            
-	                            {!! Form::label('accountname', 'AccountName:',array('class'=>"col-md-4 control-label")) !!}
-		                        <div class="col-md-6">
-		                        {!! Form::text('accountname', null, ['class' => 'form-control','readonly'=>'readonly']) !!}
-	                            
-		                        @if ($errors->has('accountname'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('accountname') }}</strong>
+				<div class="panel-heading">Edicion datos de usuario</div>					
+				<div class="panel-body">                       
+                	<!-- accountname Field -->
+                	<div class="form-group{{ $errors->has('accountname') ? ' has-error' : '' }}">
+                        <div class="form-group">                            
+                            {!! Form::label('accountname', 'AccountName:',array('class'=>"col-md-4 control-label")) !!}
+	                        <div class="col-md-6">
+	                        {!! Form::text('accountname', null, ['class' => 'form-control','readonly'=>'readonly']) !!}
+                            
+	                        @if ($errors->has('accountname'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('accountname') }}</strong>
+                                </span>
+                            @endif	                            
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nombre Field -->
+                    <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
+                        <div class="form-group">
+                            {!! Form::label('nombre', 'Nombre:',array('class'=>"col-md-4 control-label")) !!}
+	                        <div class="col-md-6">
+							{!! Form::text('nombre', null, ['class' => 'form-control']) !!}
+                             @if ($errors->has('nombre'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('nombre') }}</strong>
+                                </span>
+                            @endif	
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Apellido Field -->
+                    <div class="form-group{{ $errors->has('apellido') ? ' has-error' : '' }}">
+                        <div class="form-group">
+                            {!! Form::label('apellido', 'Apellido:',array('class'=>"col-md-4 control-label")) !!}
+	                        <div class="col-md-6">
+							{!! Form::text('apellido', null, ['class' => 'form-control']) !!}
+                             @if ($errors->has('apellido'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('apellido') }}</strong>
+                                </span>
+                            @endif	
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email Field -->
+					<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="form-group">
+                            {!! Form::label('email', 'Email:',array('class'=>"col-md-4 control-label")) !!}
+	                        <div class="col-md-6">
+							{!! Form::text('email', null, ['class' => 'form-control']) !!}
+                             @if ($errors->has('email'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif	
+                            </div>
+                        </div>
+                    </div>		
+
+                    
+                    <div class="form-group"> 
+                       {!! Form::label('imagen', 'Imagen:',['class'=>'col-md-4 control-label']) !!}
+                        <div class="col-md-6">                            
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <span class="btn btn-primary btn-file">
+                                        Subir Imagen&hellip; 
+                                        {!! Form::file('imagen',['accept'=>"image/x-png, image/gif, image/jpeg"]) !!}
                                     </span>
-                                @endif	                            
-	                            </div>
-	                        </div>
-	                    </div>
+                                </span>
+                                <input type="text" class="form-control" readonly>
+                            </div>                          
+                        </div>
+                    </div>                       
 
-                        <!-- Nombre Field -->
-                        <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
-	                        <div class="form-group">
-	                            {!! Form::label('nombre', 'Nombre:',array('class'=>"col-md-4 control-label")) !!}
-		                        <div class="col-md-6">
-								{!! Form::text('nombre', null, ['class' => 'form-control']) !!}
-	                             @if ($errors->has('nombre'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('nombre') }}</strong>
-                                    </span>
-                                @endif	
-	                            </div>
-	                        </div>
-	                    </div>
-
-                        <!-- Apellido Field -->
-                        <div class="form-group{{ $errors->has('apellido') ? ' has-error' : '' }}">
-	                        <div class="form-group">
-	                            {!! Form::label('apellido', 'Apellido:',array('class'=>"col-md-4 control-label")) !!}
-		                        <div class="col-md-6">
-								{!! Form::text('apellido', null, ['class' => 'form-control']) !!}
-	                             @if ($errors->has('apellido'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('apellido') }}</strong>
-                                    </span>
-                                @endif	
-	                            </div>
-	                        </div>
-	                    </div>
-
-                        <!-- Email Field -->
-						<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-	                        <div class="form-group">
-	                            {!! Form::label('email', 'Email:',array('class'=>"col-md-4 control-label")) !!}
-		                        <div class="col-md-6">
-								{!! Form::text('email', null, ['class' => 'form-control']) !!}
-	                             @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif	
-	                            </div>
-	                        </div>
-	                    </div>     					
-
-                        
-
-					   {!! Form::label('imagen', 'Imagen:',['class'=>'col-md-4 control-label "btn btn-default btn-file"']) !!}
-							<div class="col-md-6">
-							{!! Form::file('imagen', null,['class' => 'form-control btn btn-default btn-file"','accept'=>"image/x-png, image/gif, image/jpeg"]) !!}
-
-							</div>
-                        
-
-                    </div>  <!-- End panel body -->
-                    <!-- Submit Field -->    
-                    <div class="panel-footer" >
-                        <center>        
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-btn fa-user">
-                            </i>Guardar</button>
-                        </center>
-                    </div>               
+                </div>  <!-- End panel body -->
+                <!-- Submit Field -->    
+                <div class="panel-footer" >
+                    <center>        
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-btn fa-user">
+                        </i>Guardar</button>
+                    </center>
+                </div>               
             </div>
 
             <div class="panel panel-default">
@@ -142,11 +151,6 @@
                     </center>
                 </div>    
             </div>
-
-
-            
-             
-
 		</div>
     </div>                
 </div>

@@ -55,6 +55,7 @@
 							<ul class="list-unstyled">
 								@foreach ($archivos as $archivo)
 									<li><a href="javascript:;">{!! $archivo->name !!} </a></li>
+									<?php $file=$archivo->name ?>
 								@endforeach
 							</ul>							 
 						</div>

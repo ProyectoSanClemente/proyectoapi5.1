@@ -17,20 +17,24 @@ class EmailController extends Controller
 {
 	function __construct()
 	{
-		//$this->middleware('auth');
+		$this->middleware('auth');
 	}
 
     private function conect(){
-    	$hostname="{sanclemente.cl:993/imap/ssl/novalidate-cert}INBOX";
+		$hostname="{sanclemente.cl:993/imap/ssl/novalidate-cert}INBOX";
 	   	$username="prueba";
      	$password="Prueba2015";
-    	$mailbox = new ImapMailbox($hostname, $username,$password);			
+     	$carpeta='attachments/'.$username;
+		if (!file_exists($carpeta)){
+		    mkdir($carpeta, 0777, true);
+		}
+     	$mailbox = new ImapMailbox($hostname, $username,$password,$carpeta);	
     	return $mailbox;
     }
 
 	public function index()
     {
-		$mailbox = $this->conect();
+    	$mailbox = $this->conect();
 		$mailboxmsginfo = $mailbox->getMailboxInfo();
 		$mailsIds = $mailbox->searchMailbox('ALL');
 

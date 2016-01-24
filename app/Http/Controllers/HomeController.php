@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Feeds;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $feed = Feeds::make('http://www.sanclemente.cl/web/?feed=rss',5,true);
+
+        return view('home')
+            ->with('feed',$feed);
     }
 }

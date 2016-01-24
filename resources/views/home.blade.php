@@ -24,8 +24,13 @@
         <div class="col-md-8">
             <div class="panel panel-info">
                 <div class="panel-heading">RSS</div>
-                <div class="panel-body1">
-                        Aca noticias de la pag.                        <br><br><br><br><br><br><br><br><br><br>
+                <div class="panel-body1">                             
+                    @foreach ($feed->get_items() as $item)
+                        <div class="item">
+                          <h4><a href="{{ $item->get_permalink() }}">{{ $item->get_title() }}</a></h4>
+                          <p>{{ $item->get_description() }}</p>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -41,7 +46,7 @@
         <div class="col-md-8">
             <div class="panel panel-primary">
                 <div class="panel-heading">Muro</div>
-                    <div class="panel-body1">
+                    <div class="panel-body1"> 
                         Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}
                         Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}
                         Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}

@@ -54,7 +54,7 @@
 							<p><i class="fa fa-paperclip"></i> {!!count($archivos)!!} | <a href="javascript:;">Descargar</a></p>
 							<ul class="list-unstyled">
 								@foreach ($archivos as $archivo)
-									<li><a>{!! $archivo->name !!}</a></li>
+									<li><a href="javascript:;">{!! $archivo->name !!} </a></li>
 								@endforeach
 							</ul>							 
 						</div>

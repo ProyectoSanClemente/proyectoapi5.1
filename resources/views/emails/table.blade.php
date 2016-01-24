@@ -4,7 +4,7 @@
     } );
 </script>
 
-<table id="correos" class="table">
+<table id="correos" class="table table-responsive">
     <thead>
         <th>Remitente</th>
         <th>Asunto</th>
@@ -16,7 +16,7 @@
 	</thead>
 
 	@foreach ($mailsinfo as $mail)
-		@if($mail->seen == "0")
+		@if(!$mail->seen)
 			<tr style='font-weight:bold'>
 		@else
 			<tr>

@@ -4,7 +4,7 @@
     } );
 </script>
 
-<table id="usuarios" class="table">
+<table id="usuarios" class="table table-responsive">
     <thead>
         <th>AccountName</th>
         <th>DisplayName</th>

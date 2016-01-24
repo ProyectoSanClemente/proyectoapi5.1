@@ -51,10 +51,10 @@
 					{{--*/  $archivos=$mail->getAttachments() /*--}} {{-- Se asignan los attachments--}}
 					@if(!empty($archivos))
 						<div class="mail-attachments">
-							<p><i class="fa fa-paperclip"></i> {{count($archivos)}} | <a href="javascript:;">Descargar</a></p>
+							<p><i class="fa fa-paperclip"></i> {!!count($archivos)!!} | <a href="javascript:;">Descargar</a></p>
 							<ul class="list-unstyled">
-								@foreach ($archivoss as $archivo)
-									<li><a>{{ $archivo->name }}</a></li>
+								@foreach ($archivos as $archivo)
+									<li><a>{!! $archivo->name !!}</a></li>
 								@endforeach
 							</ul>							 
 						</div>

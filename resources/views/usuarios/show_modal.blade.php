@@ -12,7 +12,7 @@
 		            </div>
 		            <div class="col-md-6">
 		                
-		                {{HTML::image($usuario->imagen,null,array('class'=>'avatar img-circle img-thumbnail'))}}
+		                {!! HTML::image($usuario->imagen) !!}
 
 		            </div>
 	            </div>

@@ -12,7 +12,7 @@
         <hr>
         <div class="row">
             @if($impresoras->isEmpty())
-                <div class="well text-center">No Impresoras found.</div>
+                <div class="well text-center">Impresoras no encontradas.</div>
             @else
                 @include('impresoras.table')
             @endif

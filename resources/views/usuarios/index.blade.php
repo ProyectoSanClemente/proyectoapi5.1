@@ -14,7 +14,7 @@
         <hr>
         <div class="row">
             @if($usuarios->isEmpty())
-                <div class="well text-center">Usuarios No Encontrados.</div>
+                <div class="well text-center">Usuarios no encontrados.</div>
             @else
                 @include('usuarios.table')
             @endif

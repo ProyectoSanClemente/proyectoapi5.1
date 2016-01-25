@@ -6,16 +6,7 @@
 .panel-body {
    overflow: auto;
 }
-.container {
-   padding-right: 15px;
-   padding-left: 15px;
-   margin-right: auto;
-   margin-left: auto;
-   max-width: 1200px;
-   max-height: auto;
-   overflow:hidden;
-   min-height:0px !important;
-}
+
 
 .row {
  -moz-column-width: 25em;

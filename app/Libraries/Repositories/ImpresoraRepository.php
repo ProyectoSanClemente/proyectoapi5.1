@@ -46,7 +46,7 @@ class ImpresoraRepository extends Repository
 
         if(empty($model))
         {
-            throw new HttpException(1001, "Impresora not found");
+            throw new HttpException(1001, "Impresora no encontrada");
         }
 
         return $model;
@@ -58,7 +58,7 @@ class ImpresoraRepository extends Repository
 
         if(empty($model))
         {
-            throw new HttpException(1001, "Impresora not found");
+            throw new HttpException(1001, "Impresora no encontrada");
         }
 
         return $model->delete();

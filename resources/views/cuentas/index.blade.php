@@ -12,7 +12,7 @@
         <hr>
         <div class="row">
             @if($cuentas->isEmpty())
-                <div class="well text-center">No Cuentas found.</div>
+                <div class="well text-center">Cuentas no encontradas.</div>
             @else
                 @include('cuentas.table')
             @endif

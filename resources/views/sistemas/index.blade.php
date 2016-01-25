@@ -14,7 +14,7 @@
         <hr>
         <div class="row">
             @if($sistemas->isEmpty())
-                <div class="well text-center">No Sistemas found.</div>
+                <div class="well text-center">Sistemas no encontrados.</div>
             @else
                 @include('sistemas.table')
             @endif

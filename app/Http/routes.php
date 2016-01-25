@@ -89,6 +89,11 @@ Route::group(['middleware'], function () {
         'uses' => 'EmailController@markMailAsUnread',
     ]);
 
+    Route::get('emails/SendMail', [
+        'as' => 'emails.SendMail',
+        'uses' => 'EmailController@SendMail',
+    ]);
+
     Route::resource('sistemas', 'SistemaController');
 
     Route::get('sistemas/{id}/delete', [

@@ -6,8 +6,16 @@
 .panel-body {
    overflow: auto;
 }
-
-*, *:before, *:after {box-sizing:  border-box !important;}
+.container {
+   padding-right: 15px;
+   padding-left: 15px;
+   margin-right: auto;
+   margin-left: auto;
+   max-width: 1200px;
+   max-height: auto;
+   overflow:hidden;
+   min-height:0px !important;
+}
 
 .row {
  -moz-column-width: 25em;
@@ -27,27 +35,85 @@
 
 <div class="container">
     @include('flash::message')
-    <div class="row">            
+    <br>
+    <div class="row">   
+
         <div class="panel panel-success">
             <div class="panel-heading">Dashboard</div>
-            <div class="panel-body">
+            <div class="panel-body" style="height:75px">
                     Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}
             </div>
         </div>
         
 
         
-        <div class="panel panel-danger">
+        <div class="panel panel-danger" >
             <div class="panel-heading">Avisos</div>
-            <div class="panel-body1" style="height: 150px">
-                    Aca avisos!                        <br><br><br><br><br><br><br><br><br><br>
+            <div class="panel-body"  style="height:370px">
+                    Aca avisos!<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             </div>
         </div>
 
         
-        <div class="panel panel-info">
+        
+        <div class="panel panel-primary" style="height:auto">
+            <div class="panel-heading">Muro</div>
+                <div class="panel-body" style="height:500px"> 
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    <br>
+                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    <br>
+                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    <br>
+                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    <br>
+                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    <br>
+                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    <br>
+                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    <br>
+                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                                        <br>
+                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    <br>
+                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                                        <br>
+                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    <br>
+                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                                        <br>
+                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    <br>
+                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+
+        
+                    <br>
+                </div>
+        </div>
+        <div class="panel panel-info" style="height:auto">
             <div class="panel-heading">RSS</div>
-            <div class="panel-body" style="height: 350px">                             
+            <div class="panel-body" style="height:500px">                             
                 @foreach ($feed->get_items() as $item)
                     <div class="item">
                       <h4><a href="{{ $item->get_permalink() }}">{{ $item->get_title() }}</a></h4>
@@ -55,17 +121,6 @@
                     </div>
                 @endforeach
             </div>
-        </div>
-        
-        
-        <div class="panel panel-primary">
-            <div class="panel-heading">Muro</div>
-                <div class="panel-body1" style="height:300px"> 
-                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}
-                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}
-                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                </div>
         </div>
 
     </div>

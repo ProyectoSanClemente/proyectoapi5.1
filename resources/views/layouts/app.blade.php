@@ -23,6 +23,7 @@
 </head>
 <body id="app-layout">
     @include('layouts.navbar-top')
+     @include('layouts.navbar-bottom')   
     @yield('content')
 
 

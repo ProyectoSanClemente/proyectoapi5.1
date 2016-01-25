@@ -31,6 +31,7 @@ return array(
     'PhpImap\\' => array($vendorDir . '/php-imap/php-imap/src/PhpImap'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Mitul\\' => array($vendorDir . '/mitulgolakiya/laravel-api-generator/src/Mitul'),
+    'Malahierba\\ChileRut\\' => array($vendorDir . '/malahierba-lab/chile-rut/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'Intervention\\Image\\' => array($vendorDir . '/intervention/image/src/Intervention/Image'),
     'Illuminate\\Html\\' => array($vendorDir . '/illuminate/html'),

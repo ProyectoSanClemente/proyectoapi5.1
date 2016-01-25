@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3af956c1c2d9dc6f77215da040c065af",
-    "content-hash": "70855cfe2fb8a566f3d08a768f0d9412",
+    "hash": "eb6b0f0160feca86257bcc308ad91e85",
+    "content-hash": "a4ee95c7f4219cfb5f7ed76fd9296c53",
     "packages": [
         {
             "name": "adldap2/adldap2",
@@ -1380,6 +1380,49 @@
             "time": "2015-12-19 20:16:43"
         },
         {
+            "name": "malahierba-lab/chile-rut",
+            "version": "5.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/malahierba-lab/chile-rut.git",
+                "reference": "96a97d1c99a1f1ff9257e97697cd75856219863b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/malahierba-lab/chile-rut/zipball/96a97d1c99a1f1ff9257e97697cd75856219863b",
+                "reference": "96a97d1c99a1f1ff9257e97697cd75856219863b",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.1.*",
+                "php": ">=5.5.18"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Malahierba\\ChileRut\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "malahierba team",
+                    "email": "lab@malahierba.cl",
+                    "homepage": "http://malahierba.cl"
+                }
+            ],
+            "description": "Librería Laravel para el manejo y validación de RUT chileno",
+            "keywords": [
+                "chile",
+                "laravel",
+                "rut"
+            ],
+            "time": "2015-08-12 13:01:04"
+        },
+        {
             "name": "mitulgolakiya/laravel-api-generator",
             "version": "v1.3.3",
             "source": {
@@ -2478,16 +2521,16 @@
         },
         {
             "name": "symfony/polyfill-php56",
-            "version": "v1.0.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php56.git",
-                "reference": "e2e77609a9e2328eb370fbb0e0d8b2000ebb488f"
+                "reference": "4d891fff050101a53a4caabb03277284942d1ad9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php56/zipball/e2e77609a9e2328eb370fbb0e0d8b2000ebb488f",
-                "reference": "e2e77609a9e2328eb370fbb0e0d8b2000ebb488f",
+                "url": "https://api.github.com/repos/symfony/polyfill-php56/zipball/4d891fff050101a53a4caabb03277284942d1ad9",
+                "reference": "4d891fff050101a53a4caabb03277284942d1ad9",
                 "shasum": ""
             },
             "require": {
@@ -2497,7 +2540,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -2530,20 +2573,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2015-12-18 15:10:25"
+            "time": "2016-01-20 09:13:37"
         },
         {
             "name": "symfony/polyfill-util",
-            "version": "v1.0.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-util.git",
-                "reference": "4271c55cbc0a77b2641f861b978123e46b3da969"
+                "reference": "8de62801aa12bc4dfcf85eef5d21981ae7bb3cc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-util/zipball/4271c55cbc0a77b2641f861b978123e46b3da969",
-                "reference": "4271c55cbc0a77b2641f861b978123e46b3da969",
+                "url": "https://api.github.com/repos/symfony/polyfill-util/zipball/8de62801aa12bc4dfcf85eef5d21981ae7bb3cc4",
+                "reference": "8de62801aa12bc4dfcf85eef5d21981ae7bb3cc4",
                 "shasum": ""
             },
             "require": {
@@ -2552,7 +2595,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -2582,7 +2625,7 @@
                 "polyfill",
                 "shim"
             ],
-            "time": "2015-11-04 20:28:58"
+            "time": "2016-01-20 09:13:37"
         },
         {
             "name": "symfony/process",

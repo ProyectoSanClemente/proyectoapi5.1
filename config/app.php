@@ -142,7 +142,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Adldap\Laravel\AdldapServiceProvider::class,
         willvincent\Feeds\FeedsServiceProvider::class,
-
+        Malahierba\ChileRut\ChileRutServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -206,7 +206,7 @@ return [
         'Input'     => Illuminate\Support\Facades\Input::class,
         'Adldap'    => Adldap\Laravel\Facades\Adldap::class,
         'Feeds'     => willvincent\Feeds\Facades\FeedsFacade::class,
-
+        'RUT' => Malahierba\ChileRut\Facades\ChileRut::class,
     ],
 
 ];

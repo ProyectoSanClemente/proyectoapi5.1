@@ -66,6 +66,8 @@
                     Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
                     Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
                     <br>
+                    {{'Propietario script actual: ' . get_current_user()}}
+                    
                                         Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
                     Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
                     Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>

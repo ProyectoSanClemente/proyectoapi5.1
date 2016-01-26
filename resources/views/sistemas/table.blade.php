@@ -62,13 +62,8 @@
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                            <a class="thumbnail" target="_blank" href="{!!$sistemas[5]->redireccionar!!}">
+                            <a class="thumbnail" target="_blank" href="{{ URL::to('impresoras/' .Auth::user()->id.'/imprimir') }}">
                             <img class="img-responsive" src="{!!$sistemas[5]->imagen_sistema!!}" alt="">
-                        </a>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                            <a class="thumbnail" target="_blank" href="{{ URL::to('impresoras/' .Auth::id().'/imprimir') }}">
-                            <img class="img-responsive" src="{!!$sistemas[0]->imagen_sistema!!}" alt="">
                             </a>
                         </div>
                     </div>

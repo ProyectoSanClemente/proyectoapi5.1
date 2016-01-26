@@ -27,7 +27,6 @@ class Sistema extends Model
 
 	public static $rules = [
 	    "nombre_sistema" => "required",
-		"imagen_sistema" => "required",
 		"redireccionar" => "required"
 	];
 

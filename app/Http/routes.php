@@ -63,6 +63,10 @@ Route::group(['middleware'], function () {
         'uses' => 'CuentaController@destroy',
     ]);
 
+    Route::get('cuentas/{id}/cuentaglpi', [
+    'as' => 'impresoras.glpi',
+    'uses' => 'ImpresoraController@glpi']);
+
     
    Route::get('emails/index', [
         'as' => 'emails.index',

@@ -8,6 +8,7 @@ use Flash;
 use Mitul\Controller\AppBaseController as AppBaseController;
 use Response;
 use App\Libraries\Repositories\UsuarioRepository;
+use Auth;
 
 class ImpresoraController extends AppBaseController
 {
@@ -72,7 +73,7 @@ class ImpresoraController extends AppBaseController
 		else{
 			$impresora = $this->impresoraRepository->create($input);	
 
-			Flash::success('Impresora agredada satisfactoriamente.');
+			Flash::success('Impresora agregada satisfactoriamente.');
 
 			return redirect(route('impresoras.index'));
 		}
@@ -174,6 +175,9 @@ class ImpresoraController extends AppBaseController
 	}
 	public function imprimir($id)
 	{
-		# code...
+
+		$impresoras = $this->impresoraRepository->findAllBy('accountname',Auth::user()->accountname);
+		return view('impresoras.imprimir')
+			->with('impresoras',$impresoras);
 	}
 }

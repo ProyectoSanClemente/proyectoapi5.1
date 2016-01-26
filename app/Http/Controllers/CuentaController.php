@@ -164,4 +164,14 @@ class CuentaController extends AppBaseController
 
 		return redirect(route('cuentas.index'));
 	}
+
+	public function glpi($id)
+	{
+
+		$informacion = $this->cuentaRepository->findAllBy('accountname',Auth::user()->accountname);
+		return view('cuentas.glpi')
+			->with('info',$informacion);
+	}
+
+
 }

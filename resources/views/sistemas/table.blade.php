@@ -57,7 +57,7 @@
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                            <a class="thumbnail" target="_blank" href="{!!$sistemas[4]->redireccionar!!}">
+                            <a class="thumbnail" target="_blank" href="{{ URL::to('cuentas/' .Auth::user()->id.'/glpi') }}">
                             <img class="img-responsive" src="{!!$sistemas[4]->imagen_sistema!!}" alt="">
                             </a>
                         </div>

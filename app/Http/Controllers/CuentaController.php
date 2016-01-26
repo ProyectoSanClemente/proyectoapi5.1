@@ -9,6 +9,7 @@ use Mitul\Controller\AppBaseController as AppBaseController;
 use Response;
 use App\Libraries\Repositories\UsuarioRepository;
 use App\Models\Usuario;
+use Auth;
 
 class CuentaController extends AppBaseController
 {
@@ -168,7 +169,7 @@ class CuentaController extends AppBaseController
 	public function glpi($id)
 	{
 
-		$informacion = $this->cuentaRepository->findAllBy('accountname',Auth::user()->accountname);
+		$informacion = $this->cuentaRepository->find($id);
 		return view('cuentas.glpi')
 			->with('info',$informacion);
 	}

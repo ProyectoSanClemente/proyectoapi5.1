@@ -142,7 +142,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Adldap\Laravel\AdldapServiceProvider::class,
         willvincent\Feeds\FeedsServiceProvider::class,
-
+        Ronanflavio\Easychat\EasychatServiceProvider::class,
         /*
          * Application Service Providers...
          */

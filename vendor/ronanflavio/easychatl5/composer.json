@@ -1,0 +1,20 @@
+{
+    "name": "ronanflavio/easychatl5",
+    "description": "jQuery based chat for Laravel 5.1 with database storage and integration with your users table.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ronan Flavio",
+            "email": "contato@ronanflavio.com.br"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Ronanflavio\\Easychat\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "~5"
+    }
+}

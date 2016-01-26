@@ -4276,5 +4276,43 @@
             "model",
             "scaffold"
         ]
+    },
+    {
+        "name": "ronanflavio/easychatl5",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kikonuy/easychat_l5.git",
+            "reference": "2cb880a14e4baf3f0e34777d3d67e89a2fca1854"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/kikonuy/easychat_l5/zipball/2cb880a14e4baf3f0e34777d3d67e89a2fca1854",
+            "reference": "2cb880a14e4baf3f0e34777d3d67e89a2fca1854",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "~5"
+        },
+        "time": "2015-11-18 16:39:56",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Ronanflavio\\Easychat\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ronan Flavio",
+                "email": "contato@ronanflavio.com.br"
+            }
+        ],
+        "description": "jQuery based chat for Laravel 5.1 with database storage and integration with your users table."
     }
 ]

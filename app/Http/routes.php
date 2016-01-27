@@ -32,14 +32,12 @@ Route::group(['middleware'], function () {
 
 
 Route::group(['middleware'], function () {
-
-    Route::get('send', function () {
-    return view('message.send');
-    });
-    Route::post('send','SendController@postCreate');
-    Route::get('message','MessageController@index');
-    Route::post('message','MessageController@updateSeen');
-
+    Route::group(['prefix' => 'chat'], function () {
+        Route::get('/', 'ChatController@index');
+        Route::post('/','ChatController@update');
+        Route::get('create', 'ChatController@create');
+        Route::post('create','ChatController@store');
+    });    
 
 
     Route::get('login', 'Auth\AuthController@getLogin');

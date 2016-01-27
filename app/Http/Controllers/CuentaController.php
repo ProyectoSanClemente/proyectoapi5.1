@@ -174,5 +174,23 @@ class CuentaController extends AppBaseController
 			->with('info',$informacion);
 	}
 
+	public function sidam($id)
+	{
+
+		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
+		return view('cuentas.sidam')
+			->with('id',$informacion->id_sidam)
+			->with('pass',$informacion->pass_sidam);
+	}
+
+	public function crecic($id)
+	{
+
+		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
+		return view('cuentas.crecic')
+			->with('id',$informacion->id_crecic)
+			->with('pass',$informacion->pass_crecic);
+	}
+
 
 }

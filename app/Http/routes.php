@@ -74,8 +74,11 @@ Route::group(['middleware'], function () {
     'as' => 'cuentas.glpi',
     'uses' => 'CuentaController@glpi']);
 
+    Route::get('cuentas/{id}/sidam', [
+    'as' => 'cuentas.sidam',
+    'uses' => 'CuentaController@sidam']);
     
-   Route::get('emails/index', [
+    Route::get('emails/index', [
         'as' => 'emails.index',
         'uses' => 'EmailController@index'
     ]);

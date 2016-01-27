@@ -37,7 +37,7 @@
                 <div align ="center" class="panel-heading">Sistemas</div>
                     <div class="panel-body">
                         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                            <a class="thumbnail" target="_blank" href="{!!$sistemas[0]->redireccionar!!}">
+                            <a class="thumbnail" target="_blank" href="{{ URL::to('cuentas/' .Auth::user()->id.'/sidam') }}">
                             <img class="img-responsive" src="{!!$sistemas[0]->imagen_sistema!!}" alt="">
                             </a>
                         </div>
@@ -52,20 +52,16 @@
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                            <a class="thumbnail" target="_blank" href="{!!$sistemas[3]->redireccionar!!}">
+                            <a class="thumbnail" target="_blank" href="{{ URL::to('cuentas/' .Auth::user()->id.'/glpi') }}">
                             <img class="img-responsive" src="{!!$sistemas[3]->imagen_sistema!!}" alt="">
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                            <a class="thumbnail" target="_blank" href="{{ URL::to('cuentas/' .Auth::user()->id.'/glpi') }}">
+                            <a class="thumbnail" target="_blank" href="{{ URL::to('impresoras/' .Auth::user()->id.'/imprimir') }}">
                             <img class="img-responsive" src="{!!$sistemas[4]->imagen_sistema!!}" alt="">
                             </a>
                         </div>
-                        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                            <a class="thumbnail" target="_blank" href="{{ URL::to('impresoras/' .Auth::user()->id.'/imprimir') }}">
-                            <img class="img-responsive" src="{!!$sistemas[5]->imagen_sistema!!}" alt="">
-                            </a>
-                        </div>
+
                     </div>
                 </div>
             </div>

@@ -33,6 +33,15 @@ Route::group(['middleware'], function () {
 
 Route::group(['middleware'], function () {
 
+    Route::get('send', function () {
+    return view('message.send');
+    });
+    Route::post('send','SendController@postCreate');
+    Route::get('message','MessageController@index');
+    Route::post('message','MessageController@updateSeen');
+
+
+
     Route::get('login', 'Auth\AuthController@getLogin');
     Route::post('login', 'Auth\AuthController@postLogin');
     Route::get('logout', 'Auth\AuthController@getLogout');

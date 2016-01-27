@@ -32,6 +32,13 @@ Route::group(['middleware'], function () {
 
 
 Route::group(['middleware'], function () {
+    Route::group(['prefix' => 'chat'], function () {
+        Route::get('/', 'ChatController@index');
+        Route::post('/','ChatController@update');
+        Route::get('create', 'ChatController@create');
+        Route::post('create','ChatController@store');
+    });    
+
 
     Route::get('login', 'Auth\AuthController@getLogin');
     Route::post('login', 'Auth\AuthController@postLogin');

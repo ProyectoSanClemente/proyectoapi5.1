@@ -8,7 +8,7 @@
 <div class="container">
   <div id="new-message-notif"></div>
     <div class="row">
-      @include('chat.table')
+      @include('messages.table')
     </div>
 </div>
 

@@ -9,7 +9,7 @@
         <div class="col-md-6 col-md-offset-3">
           <div class="well well-sm">
             {!! Form::open(['class'=>'form-horizontal'])!!}           
-              @include('chat.fields')
+              @include('messages.fields')
             {!! Form::close()!!}
           </div>
         </div>
@@ -17,8 +17,6 @@
   </div>
 @endsection
 @push('scripts')
-
-{!! HTML::script('node_modules/socket.io/node_modules/socket.io-client/socket.io.js') !!}
 <script>
   $(document).ready(function(){
 

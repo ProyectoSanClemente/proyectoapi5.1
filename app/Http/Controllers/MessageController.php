@@ -21,9 +21,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $contents['ListMessage']      = Message::ListMessage();
-        $contents['CountNewMessage']  = count(Message::CountNewMessage());
-        return view('chat.index',$contents);
+        return view('messages.index');
     }
 
     /**
@@ -33,7 +31,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        return view('chat.create');
+        return view('messages.create');
     }
 
     /**
@@ -107,7 +105,6 @@ class MessageController extends Controller
       
         $id = Input::get('id');
         if($id){
-
             Message::UpdateSeen($id);
             $arr = Message::DetailMessage($id);
             $arr['update_count_message'] = count(Message::CountNewMessage());

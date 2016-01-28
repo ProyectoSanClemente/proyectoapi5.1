@@ -4,25 +4,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model {
 
-	protected $fillable = ['name','email','subject','message'];
+	protected $fillable = ['name','sender','email','conversation_id','subject','message'];
 
 	public static function rules ($merge=[]) {
 		return array_merge(
 			[
-				'name'      => 'required|max:100',
-				'email'     => 'required|email|max:100',
-				'subject'   => 'required|max:100',
-				'message'   => 'required',
+				'sender'			=> 'required',
+				'conversation_id'	=> 'required',
+				'message'   		=> 'required',
 			], 
         $merge);
 	}
 	
 	public static function niceNames () {
 		return [
-			'name'     => '<b>Name</b>',
-			'email'    => '<b>Email</b>',
-			'subject'  => '<b>Subject</b>',
-			'message'  => '<b>Message</b>',
+			'conversation_id' 	=> '<b>Conversation</b>',
+			'sender'			=> '<b>Envia</b>',
+			'message'  			=> '<b>Message</b>',
 		];
 	}
 	

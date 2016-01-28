@@ -19,11 +19,16 @@
     {!! HTML::script('js/jquery.min.js') !!}
     {!! HTML::script('js/bootstrap.min.js') !!}
     {!! HTML::script('js/jquery.dataTables.js') !!}
+    {!! HTML::script('node_modules/socket.io/node_modules/socket.io-client/socket.io.js') !!}
+    {!! HTML::script('js/nodesocket.js')!!}
+    
     @stack('scripts')
+
 </head>
 <body id="app-layout">
     @include('layouts.navbar-top')
-     @include('layouts.navbar-bottom')   
+    {{-- @include('layouts.navbar-bottom')   --}}
+    
     @yield('content')
 
 </body>

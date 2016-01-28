@@ -1,22 +1,10 @@
-<fieldset>
 	<div class="form-group">
-		<label class="col-md-3 control-label" for="name">Name</label>
+		<label class="col-md-3 control-label" for="conversation_id">Conversation_id</label>
 		<div class="col-md-9">
-	    	<input id="name" type="text" class="form-control" autofocus>
+	    	<input id="conversation_id" type="text" class="form-control" autofocus>
 	  	</div>
 	</div>
-	<div class="form-group">
-		<label class="col-md-3 control-label" for="email">E-mail</label>
-		<div class="col-md-9">
-			<input id="email" type="email" class="form-control">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-md-3 control-label" for="subject">Subject</label>
-		<div class="col-md-9">
-			<input id="subject" type="text" class="form-control">
-		</div>
-	</div>
+
 	<div class="form-group">
 		<label class="col-md-3 control-label" for="message">Your message</label>
 		<div class="col-md-9">
@@ -28,4 +16,3 @@
 			<button type="button" id="submit" class="btn btn-primary">Guardar</button>
 		</div>
 	</div>
-</fieldset>

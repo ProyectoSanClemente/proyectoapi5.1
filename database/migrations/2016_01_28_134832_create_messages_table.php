@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMessageTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,11 @@ class CreateMessageTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',100);
-            $table->string('email',100);
-            $table->string('subject',100);
+            $table->string('sender');
             $table->boolean('seen')->default(false);
             $table->text('message');
+            $table->integer('conversation_id')->unsigned();
+            $table->foreign('conversation_id')->references('id')->on('conversations');
             $table->timestamps();
         });
     }

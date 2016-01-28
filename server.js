@@ -11,7 +11,6 @@ server.listen(port, function () {
 
 
 io.on('connection', function (socket) {
-
   socket.on( 'new_count_message', function( data ) {
     io.sockets.emit( 'new_count_message', { 
     	new_count_message: data.new_count_message
@@ -25,11 +24,21 @@ io.on('connection', function (socket) {
     });
   });
 
+    socket.on( 'new_conversation', function( data ) {
+    io.sockets.emit( 'new_conversation', {
+      user_1: data.user_1,
+      user_2: data.user_2,
+      created_at: data.created_at,
+      id: data.id
+    });
+  });
+
+
   socket.on( 'new_message', function( data ) {
     io.sockets.emit( 'new_message', {
-    	name: data.name,
-    	email: data.email,
-    	subject: data.subject,
+    	sender: data.sender,
+    	message: data.message,
+      conversation_id: data.conversation_id,
     	created_at: data.created_at,
     	id: data.id
     });

@@ -1,10 +1,10 @@
 <div class="table-responsive">
   <table id="mytable" class="table table-bordred table-striped">
     <thead>
-      <th>Nombre</th>
-      <th>Correo</th>
-      <th>Asunto</th>
+      <th>Sender</th>
+      <th>Mensaje</th>
       <th>Fecha</th>
+      <th>Conversation_id</th>
     </thead>
 
     <tbody id="message-tbody">
@@ -12,10 +12,10 @@
     @if(count($ListMessage) > 0)            
       @foreach($ListMessage as $row)              
         <tr>
-          <td>{{ $row->name }}</td>
-          <td>{{ $row->email }}</td>
-          <td>{{ $row->subject }}</td>
+          <td>{{ $row->sender }}</td>
+          <td>{{ $row->message }}</td>
           <td>{{ $row->created_at }}</td>
+          <td>{{ $row->conversation_id}}</td>
         </tr>
 
       @endforeach

@@ -25,11 +25,14 @@
                         <li> {!! HTML::link('cuentas', 'Cuentas') !!}</li>
                         <li> {!! HTML::link('emails/index', 'Correo') !!}</li>
                         <li> {!! HTML::link('sistemas', 'Sistemas') !!}</li>
+                        <li role="presentation"><a href="chat">Chat <span class="badge" id="new_count_message">{{ $CountNewMessage }}</span></a></li>
+                    
                     @else
                         <li> {!! HTML::link('noticias', 'Noticias') !!}</li>
                         <li> {!! HTML::link('cuentas', 'Cuentas') !!}</li>
                         <li> {!! HTML::link('emails/index', 'Correo') !!}</li>
                         <li> {!! HTML::link('sistemas', 'Sistemas') !!}</li>
+                        <li role="presentation"><a href="chat">Chat <span class="badge" id="new_count_message">{{ $CountNewMessage }}</span></a></li>
                     @endif
                 @endif
             </ul>
@@ -40,7 +43,7 @@
                 @if (Auth::guest())
                     <li><a href="{!!  url('/login')  !!}">Iniciar Sesion</a></li>
                 @else
-                    <li class="dropdown">
+                    <li class="dropdown">                  
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{!! HTML::image(Auth::user()->imagen,null,array('class'=>'img-circle special-img','width'=>'25px')) !!}
 
                             {!!  Auth::user()->nombre.' '.Auth::user()->apellido  !!} <span class="caret"></span>

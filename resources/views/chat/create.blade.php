@@ -16,7 +16,6 @@
     </div>
   </div>
 @endsection
-
 @push('scripts')
 
 {!! HTML::script('node_modules/socket.io/node_modules/socket.io-client/socket.io.js') !!}
@@ -30,25 +29,21 @@
       $( "#load" ).show();
 
        var dataString = { 
-              name : $("#name").val(),
-              email : $("#email").val(),
-              subject : $("#subject").val(),
+              sender: '{{ Auth::user()->accountname }}',
+              conversation_id : $("#conversation_id").val(),
               message : $("#message").val(),
               _token : '{{ csrf_token() }}'
             };
 
         $.ajax({
             type: "POST",
-            url: "",
+            url: "store",
             data: dataString,
             dataType: "json",
             cache : false,
             success: function(data){
-
-              $( "#load" ).hide();
-              $("#name").val('');
-              $("#email").val('');
-              $("#subject").val('');
+              $("#load" ).hide();
+              $("#conversation_id").val(''),
               $("#message").val('');
 
               if(data.success == true){
@@ -62,18 +57,15 @@
                 });
 
                 socket.emit('new_message', { 
-                  name: data.name,
-                  email: data.email,
-                  subject: data.subject,
+                  sender: data.sender,
+                  conversation_id: data.conversation_id,
+                  message: data.message,
                   created_at: data.created_at,
                   id: data.id
                 });
 
               } else if(data.success == false){
-
-                $("#name").val(data.name);
-                $("#email").val(data.email);
-                $("#subject").val(data.subject);
+                $("#conversation_id").val(data.conversation_id);
                 $("#message").val(data.message);
                 $("#notif").html(data.notif);
               }

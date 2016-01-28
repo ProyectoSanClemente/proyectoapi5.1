@@ -6,8 +6,14 @@ use App\Models\Message;
 use App\Http\Controllers\Controller;
 use Validator, Input, Request, DB;
 
-class ChatController extends Controller
+class MessageController extends Controller
 {
+
+
+    function __construct()
+    {
+        $this->middleware('auth');
+    }    
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +23,6 @@ class ChatController extends Controller
     {
         $contents['ListMessage']      = Message::ListMessage();
         $contents['CountNewMessage']  = count(Message::CountNewMessage());
-
         return view('chat.index',$contents);
     }
 
@@ -41,9 +46,10 @@ class ChatController extends Controller
     {
 
         $validator = Validator::make(Input::all(), Message::rules(),[],Message::niceNames());
-         
+            
             $arr['name'] = Input::get('name');
             $arr['email'] = Input::get('email');
+            $arr['conversation_id'] = Input::get('conversation_id');
             $arr['subject'] = Input::get('subject');
             $arr['message'] = Input::get('message');
 

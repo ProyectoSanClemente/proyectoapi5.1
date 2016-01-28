@@ -33,10 +33,10 @@ Route::group(['middleware'], function () {
 
 Route::group(['middleware'], function () {
     Route::group(['prefix' => 'chat'], function () {
-        Route::get('/', 'ChatController@index');
-        Route::post('/','ChatController@update');
-        Route::get('create', 'ChatController@create');
-        Route::post('create','ChatController@store');
+        Route::get('/', 'MessageController@index');
+        Route::post('/','MessageController@update');
+        Route::get('create', 'MessageController@create');
+        Route::post('store','MessageController@store');
     });    
 
 

@@ -77,6 +77,18 @@ Route::group(['middleware'], function () {
     Route::get('cuentas/{id}/sidam', [
     'as' => 'cuentas.sidam',
     'uses' => 'CuentaController@sidam']);
+
+    Route::get('cuentas/{id}/crecic', [
+    'as' => 'cuentas.crecic',
+    'uses' => 'CuentaController@crecic']);
+
+    Route::get('cuentas/{id}/owncloud', [
+    'as' => 'cuentas.owncloud',
+    'uses' => 'CuentaController@owncloud']);
+
+    Route::get('cuentas/{id}/zimbra', [
+    'as' => 'cuentas.zimbra',
+    'uses' => 'CuentaController@zimbra']);   
     
     Route::get('emails/index', [
         'as' => 'emails.index',

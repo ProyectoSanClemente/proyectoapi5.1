@@ -11,7 +11,8 @@ class Sistema extends Model
 	public $fillable = [
 	    "nombre_sistema",
 		"imagen_sistema",
-		"redireccionar"
+		"controlador",
+		"funcion"
 	];
 
     /**
@@ -22,12 +23,10 @@ class Sistema extends Model
     protected $casts = [
         "nombre_sistema" => "string",
 		"imagen_sistema" => "string",
-		"redireccionar" => "string"
     ];
 
 	public static $rules = [
 	    "nombre_sistema" => "required",
-		"redireccionar" => "required"
 	];
 
 }

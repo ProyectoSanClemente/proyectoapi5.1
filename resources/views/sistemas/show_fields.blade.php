@@ -11,8 +11,12 @@
 </div>
 
 <!-- Redireccionar Field -->
-<div class="form-group">
-    {!! Form::label('redireccionar', 'Redireccionar:') !!}
-    <p>{!! $sistema->redireccionar !!}</p>
+<div class="form-group col-sm-6 col-lg-4">
+    {!! Form::label('controlador', 'Controlador:') !!}
+	{!!$sistema->controlador!!}
 </div>
 
+<div class="form-group col-sm-6 col-lg-4">
+    {!! Form::label('funcion', 'Funcion:') !!}
+	{!!$sistema->funcion !!}
+</div>

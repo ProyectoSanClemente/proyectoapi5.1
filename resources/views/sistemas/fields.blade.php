@@ -12,8 +12,13 @@
 
 <!-- Redireccionar Field -->
 <div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('redireccionar', 'Redireccionar:') !!}
-	{!! Form::text('redireccionar', null, ['class' => 'form-control']) !!}
+    {!! Form::label('controlador', 'Controlador:') !!}
+	{!! Form::text('controlador', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-6 col-lg-4">
+    {!! Form::label('funcion', 'Funcion:') !!}
+	{!! Form::text('funcion', null, ['class' => 'form-control']) !!}
 </div>
 
 

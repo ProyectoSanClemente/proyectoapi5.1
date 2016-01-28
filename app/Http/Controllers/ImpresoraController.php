@@ -173,9 +173,8 @@ class ImpresoraController extends AppBaseController
 
 		return redirect(route('impresoras.index'));
 	}
-	public function imprimir($id)
+	public function imprimir()
 	{
-
 		$impresoras = $this->impresoraRepository->findAllBy('accountname',Auth::user()->accountname);
 		return view('impresoras.imprimir')
 			->with('impresoras',$impresoras);

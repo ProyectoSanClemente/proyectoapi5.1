@@ -169,7 +169,7 @@ class CuentaController extends AppBaseController
 	public function glpi($id)
 	{
 
-		$informacion = $this->cuentaRepository->find($id);
+		$informacion = $this->cuentaRepository->find();
 		return view('cuentas.glpi')
 			->with('info',$informacion);
 	}
@@ -183,7 +183,7 @@ class CuentaController extends AppBaseController
 			->with('pass',$informacion->pass_sidam);
 	}
 
-	public function crecic($id)
+	public function crecic()
 	{
 
 		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
@@ -192,5 +192,17 @@ class CuentaController extends AppBaseController
 			->with('pass',$informacion->pass_crecic);
 	}
 
+	public function owncloud()
+	{
+		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
+		return view('cuentas.owncloud')
+			->with('nombre',$informacion->accountname);
+	}
 
+	public function zimbra()
+	{
+		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
+		return view('cuentas.zimbra')
+			->with('nombre',$informacion->accountname);
+	}
 }

@@ -3,4 +3,3 @@ Redireccionando, por favor espere...
 </div>
 {!!Form::hidden('nombre',$id)!!}
 {!!Form::hidden('pass',$pass)!!}
-	

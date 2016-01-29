@@ -60,7 +60,7 @@ jQuery(function($){
         user_selected = $(this);
         var base_url = $('.div_conversation').data('base-url'),
             user_id = user_selected.data('user-id');
-        $('.div_conversation').html('<div class="center" style="line-height:350px"><img src="'+img_loading+'"></div>');
+        $('.div_conversation').html('<div class="center" style="line-height:350px">Hablando con'+$('#accountname').html()+'<img src="'+img_loading+'"></div>');
         refresh_chat($(this), 'true');
         // $('form[name=form-user-list-'+user_id+']').closest('span.notification').remove();
         // $('form[name=form-user-list-'+user_id+']').closest('span.notification').remove();

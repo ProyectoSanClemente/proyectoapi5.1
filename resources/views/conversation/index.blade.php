@@ -42,7 +42,7 @@
                                                         <!-- User image here (use the "crop-chat" class into the "img" tag) -->
                                                         <img src="{{ $user->imagen}}" class="crop-chat"/>
                                                     </div>
-                                                    <div class="col-md-9">
+                                                    <div class="col-md-9" id="accountname">
                                                         <!-- Username here -->
                                                         {{ $user->accountname }}
                                                     </div>
@@ -77,7 +77,7 @@
                         <div class="scroller scroll-bottom" style="height:450px !important;">
 
                         <div class="div_conversation" data-base-url="{{ URL::to('/') }}"></div>
-                            <!-- Conversation here -->
+                            aaaa
                         </div>
                     </div>
                 </div>

@@ -12,6 +12,7 @@ class CreateMessagesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('messages');
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('sender');

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,8 +19,8 @@
     {!! HTML::script('js/jquery.min.js') !!}
     {!! HTML::script('js/bootstrap.min.js') !!}
     {!! HTML::script('js/jquery.dataTables.js') !!}
-    {!! HTML::script('node_modules/socket.io/node_modules/socket.io-client/socket.io.js') !!}
-    {!! HTML::script('js/nodesocket.js')!!}
+    {!! HTML::script('node_modules/socket.io/node_modules/socket.io-client/socket.io.js') !!} {{-- Modulo socket io--}}
+    {!! HTML::script('js/nodesocket.js')!!} {{-- Servidor escuchando :) --}}
     
     @stack('scripts')
 

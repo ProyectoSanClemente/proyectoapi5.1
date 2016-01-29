@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConversationsTable extends Migration
+class CreateNoticiasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateConversationsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('messages');
-        Schema::dropIfExists('conversations');
-        Schema::create('conversations', function (Blueprint $table) {
+        Schema::dropIfExists('noticias');
+        Schema::create('noticias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user1',25);
-            $table->string('user2',25);
+            $table->string('titulo');
+            $table->text('contenido');
+            $table->string('imagen');
             $table->timestamps();
         });
     }

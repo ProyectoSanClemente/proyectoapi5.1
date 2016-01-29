@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Message;
+use App\Models\Usuario;
 use App\Models\Conversation;
 use App\Http\Controllers\Controller;
 use Validator, Input, Request, DB;
@@ -15,9 +16,9 @@ class ConversationController extends Controller
      */
     public function index()
     {
-        $contents['ListConversation']      = Message::ListConversation();
-        $contents['CountNewMessage']  = count(Message::CountNewMessage());
-        return view('conversation.index',$contents);
+        $users=Usuario::all();
+        return view('conversation.index')
+            ->with('users',$users);
     }
 
     /**

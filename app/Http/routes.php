@@ -39,6 +39,9 @@ Route::group(['middleware'], function () {
         Route::post('store','MessageController@store');
     });    
 
+    Route::group(['prefix' => 'conversations'], function(){
+        Route::get('/','ConversationController@index');
+    });
 
     Route::get('login', 'Auth\AuthController@getLogin');
     Route::post('login', 'Auth\AuthController@postLogin');

@@ -34,6 +34,7 @@ jQuery(function($){
         var user_nombre=$('#nombre-'+user_id).text();
         $('.user_conversation_title').html('Conversando con '+user_nombre);
         $('.div_conversation').html('<div class="center" style="line-height:350px"><img src="'+img_loading+'"></div>');
+        
         refresh_chat($(this), 'true');
         // $('form[name=form-user-list-'+user_id+']').closest('span.notification').remove();
         // $('form[name=form-user-list-'+user_id+']').closest('span.notification').remove();

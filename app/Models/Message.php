@@ -18,9 +18,9 @@ class Message extends Model {
 	
 	public static function niceNames () {
 		return [
-			'conversation_id' 	=> '<b>Conversation</b>',
+			'conversation_id' 	=> '<b>Conversacion</b>',
 			'sender'			=> '<b>Envia</b>',
-			'message'  			=> '<b>Message</b>',
+			'message'  			=> '<b>Mensaje</b>',
 		];
 	}
 	

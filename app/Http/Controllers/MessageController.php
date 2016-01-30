@@ -21,6 +21,9 @@ class MessageController extends Controller
      */
     public function index()
     {
+        foreach (Message::all() as $Mensaje) {
+            Message::UpdateSeen($Mensaje->id);
+        }
         return view('messages.index');
     }
 
@@ -45,10 +48,7 @@ class MessageController extends Controller
 
         $validator = Validator::make(Input::all(), Message::rules(),[],Message::niceNames());
             
-            $arr['name'] = Input::get('name');
-            $arr['email'] = Input::get('email');
             $arr['conversation_id'] = Input::get('conversation_id');
-            $arr['subject'] = Input::get('subject');
             $arr['message'] = Input::get('message');
 
             if ($validator->fails()) {
@@ -102,16 +102,7 @@ class MessageController extends Controller
      */
     public function update(Request $request, $id)
     {
-      
-        $id = Input::get('id');
-        if($id){
-            Message::UpdateSeen($id);
-            $arr = Message::DetailMessage($id);
-            $arr['update_count_message'] = count(Message::CountNewMessage());
-            return json_encode($arr);
-
         
-        }
     }
 
     /**

@@ -42,7 +42,7 @@
                                                         <!-- User image here (use the "crop-chat" class into the "img" tag) -->
                                                         <img src="{{ $user->imagen}}" class="crop-chat"/>
                                                     </div>
-                                                    <div class="col-md-9" id="accountname">
+                                                    <div class="col-md-9" id="nombre-{{$user->id}}">
                                                         <!-- Username here -->
                                                         {{ $user->accountname }}
                                                     </div>

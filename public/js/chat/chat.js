@@ -15,35 +15,6 @@ jQuery(function($){
 
     $('.scroll-users').slimScroll();
 
-
-    window.setInterval(function get_news() {
-        if (user_selected != null) {
-            var url = $('.only-links').data('get-chat-news'),
-                user_id = user_selected.data('user-id');
-
-            $.post(url, {'user_id': user_id}, function(response){
-                if (response == true) {
-                    refresh_chat(user_selected, 'true');
-                    $('form[name=form-user-list-'+user_id+']').prependTo('.scroll-users');
-                }
-            });
-        }
-
-        var url_all = $('.only-links').data('get-all-chat-news');
-
-        $.post(url_all, {}, function(response){
-            if (response) {
-                $.each (response, function(key, value) {
-                    var form_user = $('form[name=form-user-list-'+value.sent_by+']'),
-                        notifications_user = $('.notifications-'+value.sent_by);
-                    form_user.prependTo('.scroll-users');
-                    notifications_user.html('<span class="notification">'+value.message_count+'</span>')
-                });
-            }
-        });
-
-    }, 5000);
-
     $('.text-message').keypress(function(e){
         if (e.which == 13) {
             send_message($('.send-button'));
@@ -60,7 +31,9 @@ jQuery(function($){
         user_selected = $(this);
         var base_url = $('.div_conversation').data('base-url'),
             user_id = user_selected.data('user-id');
-        $('.div_conversation').html('<div class="center" style="line-height:350px">Hablando con'+$('#accountname').html()+'<img src="'+img_loading+'"></div>');
+        var user_nombre=$('#nombre-'+user_id).text();
+        $('.user_conversation_title').html('Conversando con '+user_nombre);
+        $('.div_conversation').html('<div class="center" style="line-height:350px"><img src="'+img_loading+'"></div>');
         refresh_chat($(this), 'true');
         // $('form[name=form-user-list-'+user_id+']').closest('span.notification').remove();
         // $('form[name=form-user-list-'+user_id+']').closest('span.notification').remove();

@@ -5,10 +5,16 @@ use App\Models\Message;
 use App\Models\Usuario;
 use App\Models\Conversation;
 use App\Http\Controllers\Controller;
-use Validator, Input, Request, DB;
+use Validator, Input, Request, DB,Auth;
 
 class ConversationController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('auth');
+    } 
+    
     /**
      * Display a listing of the resource.
      *
@@ -26,9 +32,14 @@ class ConversationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('conversation.create');
+    public function create(Request $request)
+    {        
+            $input=Request::all();
+            $input['user1']=Auth::user()->accountname;
+            Conversation::create($input);
+            return var_dump($input);
+        
+        
     }
 
     /**

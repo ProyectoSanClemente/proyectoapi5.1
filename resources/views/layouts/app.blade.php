@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Intranet</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="{!!  asset('favicon.ico')  !!}" >
@@ -21,7 +20,6 @@
     {!! HTML::script('js/jquery.dataTables.js') !!}
     {!! HTML::script('node_modules/socket.io/node_modules/socket.io-client/socket.io.js') !!} {{-- Modulo socket io--}}
     {!! HTML::script('js/nodesocket.js')!!} {{-- Servidor escuchando :) --}}
-    
     @stack('scripts')
 
 </head>

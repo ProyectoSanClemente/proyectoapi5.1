@@ -183,15 +183,6 @@ class CuentaController extends AppBaseController
 			->with('pass',$informacion->pass_sidam);
 	}
 
-	public function crecic()
-	{
-
-		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
-		return view('cuentas.crecic')
-			->with('id',$informacion->id_crecic)
-			->with('pass',$informacion->pass_crecic);
-	}
-
 	public function owncloud()
 	{
 		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
@@ -200,6 +191,13 @@ class CuentaController extends AppBaseController
 	}
 
 	public function zimbra()
+	{
+		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
+		return view('cuentas.zimbra')
+			->with('nombre',$informacion->accountname);
+	}
+
+	public function crecic()
 	{
 		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
 		return view('cuentas.zimbra')

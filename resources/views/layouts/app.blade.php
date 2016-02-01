@@ -8,8 +8,8 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="{!!  asset('favicon.ico')  !!}" >
     <!-- Fonts -->
-    {!! HTML::style('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css')!!}
-    {!! HTML::style('https://fonts.googleapis.com/css?family=Lato:100,300,400,700') !!}
+    <!--{!! HTML::style('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css')!!}-->
+    <!--{!! HTML::style('https://fonts.googleapis.com/css?family=Lato:100,300,400,700') !!}-->
         <!-- Styles -->
     {!! HTML::style('css/bootstrap.min.css') !!}
     {!! HTML::style('css/jquery.dataTables.css') !!}

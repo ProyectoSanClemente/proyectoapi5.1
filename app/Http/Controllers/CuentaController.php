@@ -200,7 +200,7 @@ class CuentaController extends AppBaseController
 	public function crecic()
 	{
 		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
-		return view('cuentas.zimbra')
+		return view('cuentas.crecic')
 			->with('nombre',$informacion->accountname);
 	}
 }

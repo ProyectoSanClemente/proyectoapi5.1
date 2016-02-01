@@ -12,8 +12,7 @@ jQuery(function($){
         user_selected = $(this);
         var user2=$('#nombre-'+user_selected.data('user-id')).text();
         $('.user_conversation_title').html('Conversando con '+user2);
-        $('.div_conversation').html('<div class="center" style="line-height:350px">'+user_selected.data('user-url')+'</div>');
-
+        
         var dataString = {
               user2: user2.trim()              
             };
@@ -25,8 +24,35 @@ jQuery(function($){
             data: dataString,
             dataType: "json",
             cache : false,
+            success: function(data){
+                $('#conversation_id').val(data.id);
+                $('.div_conversation').html(data.messages);
+            } ,error: function(xhr, status, error) {
+              alert(error);
+            },
         });
+
     });
+
+    $('.send-button').click(function(){
+        var dataString = { 
+              sender: '{{ Auth::user()->accountname }}',
+              conversation_id : $("#conversation_id").val(),
+              message : $('.text-message').val(),
+              
+            };
+
+        $.ajax({
+            type: "POST",
+            headers: {'X-CSRF-TOKEN':user_selected.data('token')},
+            url: "chat/store",
+            data: dataString,
+            dataType: "json",
+            cache : false,
+
+        });        
+    });
+
 
     $('.scroll-bottom').slimScroll({
         scrollTo: $('.scroll-bottom')[0].scrollHeight

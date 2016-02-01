@@ -19,7 +19,7 @@ class CreateMessagesTable extends Migration
             $table->boolean('seen')->default(false);
             $table->text('message');
             $table->integer('conversation_id')->unsigned();
-            $table->foreign('conversation_id')->references('id')->on('conversations');
+            $table->foreign('conversation_id')->references('id')->on('conversations')->onDelete('cascade');
             $table->timestamps();
         });
     }

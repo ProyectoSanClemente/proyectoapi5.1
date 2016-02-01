@@ -44,7 +44,7 @@
             <!-- End of users list -->
 
             <!-- Begin conversation here -->
-            <div class="col-md-8 well well-grey" style="height:500px">
+            <div class="col-md-8 well well-grey" style="height:600px">
                 <div class="portlet gren">
                     <div class="portlet-title">
                         <div class="caption">
@@ -54,11 +54,12 @@
                             </p>
                         </div>
                     </div>
-                    <div class="portlet-body portlet-conversation" style="height:350px">
-                        <div class="scroller scroll-bottom" style="height:350px !important;">
+                    <div class="portlet-body portlet-conversation" style="height:450px">
+                        <div class="scroller scroll-bottom" style="height:450px !important;">
 
-                        <div class="div_conversation" data-base-url="{{ URL::to('/') }}"></div>
-                            aaaa
+                        <div class="div_conversation" id='' data-base-url="{{ URL::to('/') }}"></div>
+                           <input type="hidden" id="conversation_id" value="whatever" />
+                            
                         </div>
                     </div>
                 </div>

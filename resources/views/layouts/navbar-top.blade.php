@@ -20,18 +20,18 @@
                     @if(Auth::user()->rol=='admin')    
                         <li> {!! HTML::link('usuarios', 'Directorio Empleados') !!}</li>
                         <li> {!! HTML::link('impresoras', 'Impresoras') !!}</li>
-                        <li> {!! HTML::link('noticias', 'Noticias') !!}</li>
-                        <li> {!! HTML::link('usuarios', 'Contenido') !!}</li>
-                        <li> {!! HTML::link('cuentas', 'Cuentas') !!}</li>
-                        <li> {!! HTML::link('emails/index', 'Correo') !!}</li>
-                        <li> {!! HTML::link('sistemas', 'Sistemas') !!}</li>
+                        <li> {!! HTML::link('noticias', 'Noticias')     !!}</li>
+                        <li> {!! HTML::link('usuarios', 'Contenido')    !!}</li>
+                        <li> {!! HTML::link('cuentas', 'Cuentas')       !!}</li>
+                        <li> {!! HTML::link('emails/index', 'Correo')   !!}</li>
+                        <li> {!! HTML::link('sistemas', 'Sistemas')     !!}</li>
                         <li><a href="{!!  URL::to('chat')  !!}">Chat <span class="badge" id="new_count_message">{{ $CountNewMessage }}</span></a></li>
 
                     @else
-                        <li> {!! HTML::link('noticias', 'Noticias') !!}</li>
-                        <li> {!! HTML::link('cuentas', 'Cuentas') !!}</li>
+                        <li> {!! HTML::link('noticias', 'Noticias')   !!}</li>
+                        <li> {!! HTML::link('cuentas', 'Cuentas')     !!}</li>
                         <li> {!! HTML::link('emails/index', 'Correo') !!}</li>
-                        <li> {!! HTML::link('sistemas', 'Sistemas','<i class="fa fa-sign-out"></i> Log Out', array(), ['class' => 'small button']) !!}</li>
+                        <li> {!! HTML::link('sistemas', 'Sistemas')   !!}</li>
                         <li><a href="{!!  URL::to('chat')  !!}">Chat <span class="badge" id="new_count_message">{{ $CountNewMessage }}</span></a></li>
 
                     @endif

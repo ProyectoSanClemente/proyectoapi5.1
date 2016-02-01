@@ -1,4 +1,3 @@
-<input type="hidden" name="_token" value="{!! csrf_token() !!}" id="token">
 <span class="notifications-{{ $user->id}}"></span>
 <a href="javascript:void(0);" class="user-selected" data-user-id="{{ $user->id}}" data-token="{{csrf_token()}}" data-user-url="listamensajes">
     <div class="form-group">

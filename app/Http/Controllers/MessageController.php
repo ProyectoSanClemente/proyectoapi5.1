@@ -47,10 +47,9 @@ class MessageController extends Controller
     {
 
         $validator = Validator::make(Input::all(), Message::rules(),[],Message::niceNames());
-            
             $arr['conversation_id'] = Input::get('conversation_id');
-            $arr['message'] = Input::get('message');
-
+            //$arr['message'] = Input::get('message');
+            $arr['message']='<p class="bg-success">'.Input::get('sender').': '.Input::get('message').'</p>';
             if ($validator->fails()) {
                 
                 $error = $validator->errors();

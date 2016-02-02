@@ -1,17 +1,4 @@
 @extends('layouts.app')
-@push('scripts')
-    {!! HTML::style('css/chat.css')!!}
-    {!! HTML::script('js/chat/chat.js') !!}
-    {!! HTML::script('js/chat/jquery.slimscroll.min.js') !!}
-    {!! HTML::script('js/chat/jquery.formatDateTime.min.js') !!}
-
-    <style type="text/css">
-        .scroll-users { height: 450px !important; }
-        .scroll-bottom { height: 450px !important; }
-        .slimScrollDiv { height: 450px !important; }
-    </style>
-@endpush
-
 @section('content')
 
 <div class="container">
@@ -23,7 +10,8 @@
                 <div class="portlet">
                     <div class="portlet-title">
                         <div class="caption">
-                            Usuarios
+                            Usuarios {{Auth::user()->accountname}}
+                            {!! Form::hidden('accountname', Auth::user()->accountname, ['id'=>'accountname']) !!} 
                         </div>
                     </div>
                     <div class="portlet-body form">
@@ -38,6 +26,7 @@
 
                         </div>
                     </div>
+
                 </div>
                 <!-- End Portlet PORTLET-->
             </div>
@@ -57,9 +46,10 @@
                     <div class="portlet-body portlet-conversation" style="height:450px">
                         <div class="scroller scroll-bottom" style="height:450px !important;">
 
-                        <div class="div_conversation" id='' data-base-url="{{ URL::to('/') }}"></div>
-                           <input type="hidden" id="conversation_id" value="whatever" />
-                            
+                        <div class="div_conversation" data-base-url="{{ URL::to('/') }}"></div>
+                           
+                           {!! Form::hidden('conversation_id', '', ['id'=>'conversation_id']) !!}                            
+                        
                         </div>
                     </div>
                 </div>
@@ -81,3 +71,16 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    
+    {!! HTML::script('js/chat/chat.js') !!}
+    {!! HTML::script('js/chat/jquery.slimscroll.min.js') !!}
+    {!! HTML::script('js/chat/jquery.formatDateTime.min.js') !!}
+    {!! HTML::style('css/chat.css')!!}
+    <style type="text/css">
+        .scroll-users { height: 450px !important; }
+        .scroll-bottom { height: 450px !important; }
+        .slimScrollDiv { height: 450px !important; }
+    </style>
+@endpush

@@ -9,7 +9,6 @@ class Message extends Model {
 	public static function rules ($merge=[]) {
 		return array_merge(
 			[
-				'sender'			=> 'required',
 				'conversation_id'	=> 'required',
 				'message'   		=> 'required',
 			], 

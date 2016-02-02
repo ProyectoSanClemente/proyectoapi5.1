@@ -5,7 +5,7 @@ use App\Models\Message;
 use App\Models\Usuario;
 use App\Models\Conversation;
 use App\Http\Controllers\Controller;
-use Validator, Input, Request, DB,Auth;
+use Validator, Input, Request, DB;
 
 class ConversationController extends Controller
 {
@@ -36,8 +36,6 @@ class ConversationController extends Controller
     {     
 
         $input=Request::all();
-        $input['user1']=Auth::user()->accountname;
-
         $results = DB::select('select * from conversations where user1 = ? and user2 = ? or user1 = ? and user2 = ?', array($input['user1'],$input['user2'],$input['user2'],$input['user1']));
         $arr['user1'] = $input['user1'];
         $arr['user2'] = $input['user2'];
@@ -54,7 +52,7 @@ class ConversationController extends Controller
             $arr['messages']='';
             foreach ($mensajes as $mensaje){
                 if($mensaje->sender==$input['user1']){
-                    $arr['messages'].='<p class="bg-success">'.$mensaje->sender.': '.$mensaje->message.'</p>';                    
+                    $arr['messages'].='<p class="bg-success">'.$mensaje->sender.': '.$mensaje->message.'</p>';
                 }
                 else
                     $arr['messages'].='<p class="bg-warning">'.$mensaje->sender.': '.$mensaje->message.'</p>';

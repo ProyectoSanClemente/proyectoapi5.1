@@ -1,11 +1,6 @@
-jQuery(function($){
-    'use strict';
-
-    var user_selected = null,
-
-        users_list
-;
-
+$(document).ready(function(){
+    accountname=$('#accountname').val();
+    
     $('.scroll-users').slimScroll();
 
     $('.user-selected').click(function(e) {
@@ -14,7 +9,8 @@ jQuery(function($){
         $('.user_conversation_title').html('Conversando con '+user2);
         
         var dataString = {
-              user2: user2.trim()              
+                user1: accountname,
+                user2: user2.trim()              
             };
 
         $.ajax({
@@ -35,11 +31,10 @@ jQuery(function($){
     });
 
     $('.send-button').click(function(){
-        var dataString = { 
-              sender: '{{ Auth::user()->accountname }}',
+        var dataString = {
+              sender: accountname,
               conversation_id : $("#conversation_id").val(),
               message : $('.text-message').val(),
-              
             };
 
         $.ajax({
@@ -49,6 +44,9 @@ jQuery(function($){
             data: dataString,
             dataType: "json",
             cache : false,
+            success: function(data){
+
+            },
 
         });        
     });

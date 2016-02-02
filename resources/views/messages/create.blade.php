@@ -27,7 +27,7 @@
       $( "#load" ).show();
 
        var dataString = { 
-              sender: '{{ Auth::user()->accountname }}',
+              sender: '{!! Auth::user()->accountname !!}',
               conversation_id : $("#conversation_id").val(),
               message : $("#message").val(),
               _token : '{{ csrf_token() }}'

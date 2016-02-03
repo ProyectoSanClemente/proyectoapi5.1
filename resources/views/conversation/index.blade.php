@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<audio id="notif_audio"><source src="{!! asset('sounds/notify.ogg') !!}" type="audio/ogg"><source src="{!! asset('sounds/notify.mp3') !!}" type="audio/mpeg"><source src="{!! asset('sounds/notify.wav') !!}" type="audio/wav"></audio>
+<audio id="notif_audio"><source src="{!! asset('sounds/notify.mp3') !!}" type="audio/mpeg"></audio>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -33,9 +33,9 @@
                         <div class="scroller scroll-users" style="height:500px">
                             <!-- First iteration for active users, and the last for inactive users -->
                             @foreach ($conversations as $conversation)
-                            {!! Form::open(['class'=>'form-horizontal form-bordered conversation-list'])!!}
-                                @include('conversation.fields-conversation')
-                            {!! Form::close()!!}
+                                    {!! Form::open(['class'=>'form-horizontal form-bordered conversation-list'])!!}
+                                        @include('conversation.fields-conversation')
+                                    {!! Form::close()!!}
                             @endforeach
                             <!-- End of iteration here -->
                         </div>

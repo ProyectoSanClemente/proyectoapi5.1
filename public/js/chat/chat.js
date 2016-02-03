@@ -1,19 +1,13 @@
 $(document).ready(function(){
-    
-    
+
     $('.scroll-users').slimScroll();
 
     $('.user-selected').click(function(e){
         user_selected = $(this);
-        var user2=$('#nombre-'+user_selected.data('user-id')).text();
-        $('.user_conversation_title').html('Conversando con '+user2);
-        $('.div_conversation').html('');
-        var dataString = {
-                user1: $('#accountname').val(),
-                user2: user2.trim()        
-        };        
-        create(dataString);
-        location.reload();
+        var id=user_selected.data('user-id');
+        var user1=$('#accountname').val();
+        var user2=$('#nombre-'+id).text();
+        create_conversation(user1,user2);
 
     });
 
@@ -21,17 +15,9 @@ $(document).ready(function(){
         conversation_selected= $(this);
         var id=conversation_selected.data('conversation-id');
         var user1=$('#accountname').val();
-        var user2=$('#user2-'+id).text();
-        $('.user_conversation_title').html('Conversando con '+user2);
-        $('.div_conversation').html('');
-        var dataString = {
-            user1: user1,
-            user2: user2.trim()        
-        };
-        create(dataString);
+        var user2=$('#user2-'+id).text();        
+        create_conversation(user1,user2);
     });
-
-
 
     $('.text-message').keypress(function(e){ //Apretando enter
         if (e.which == 13) {
@@ -44,7 +30,13 @@ $(document).ready(function(){
     });
 
     
-    function create(dataString){
+    function create_conversation(user1,user2){
+        $('.user_conversation_title').html('Conversando con '+user2);
+        $('.div_conversation').html('');
+        var dataString = {
+            user1: user1,
+            user2: user2.trim()        
+        };
         $.ajax({
             type: "POST",
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -67,7 +59,7 @@ $(document).ready(function(){
     }
 
 
-    function send_message(input) {
+    function send_message(input){
         var dataString = {
               sender: $('#accountname').val(),
               conversation_id : $("#conversation_id").val(),
@@ -85,25 +77,24 @@ $(document).ready(function(){
                 if(data.success == true){
                     var socket = io.connect( 'http://'+window.location.hostname+':3000' );                
                     socket.emit('new_message', { 
-                      sender: data.sender,
-                      conversation_id: data.conversation_id,
-                      message: data.message,
-                      created_at: data.created_at,
-                      id: data.id
+                        sender: data.sender,
+                        conversation_id: data.conversation_id,
+                        message: data.message,
+                        created_at: data.created_at,
+                        id: data.id
                     });
-
-                  } else if(data.success == false){
+                }else if(data.success == false){
                     if($('.text-message').val()==''){
                         alert('Mensaje Vacio')
                     }
                     $("#conversation_id").val(data.conversation_id);
                     $("#message").val(data.message);
                     $("#notif").html(data.notif);
-                  }
+                }
               
-                } ,error: function(xhr, status, error) {
-                  alert(error);
-                },
+            } ,error: function(xhr, status, error) {
+                alert(error);
+            },
 
         });
     }

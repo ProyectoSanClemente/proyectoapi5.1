@@ -1,5 +1,6 @@
 $(document).ready(function(){
     
+    
     $('.scroll-users').slimScroll();
 
     $('.user-selected').click(function(e){
@@ -10,10 +11,43 @@ $(document).ready(function(){
         var dataString = {
                 user1: $('#accountname').val(),
                 user2: user2.trim()        
-            };
+        };        
+        create(dataString);
+        location.reload();
+
+    });
+
+    $('.conversation-selected').click(function(e){
+        conversation_selected= $(this);
+        var id=conversation_selected.data('conversation-id');
+        var user1=$('#accountname').val();
+        var user2=$('#user2-'+id).text();
+        $('.user_conversation_title').html('Conversando con '+user2);
+        $('.div_conversation').html('');
+        var dataString = {
+            user1: user1,
+            user2: user2.trim()        
+        };
+        create(dataString);
+    });
+
+
+
+    $('.text-message').keypress(function(e){ //Apretando enter
+        if (e.which == 13) {
+            send_message($('.send-button'));
+        }
+    });
+
+    $('.send-button').click(function(){//En el envento click
+        send_message($(this));
+    });
+
+    
+    function create(dataString){
         $.ajax({
             type: "POST",
-            headers: {'X-CSRF-TOKEN':user_selected.data('token')},
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             url: "chat/create",
             data: dataString,
             dataType: "json",
@@ -30,18 +64,8 @@ $(document).ready(function(){
               alert(error);
             },
         });
+    }
 
-    });
-
-    $('.text-message').keypress(function(e){ //Apretando enter
-        if (e.which == 13) {
-            send_message($('.send-button'));
-        }
-    });
-
-    $('.send-button').click(function(){//En el envento click
-        send_message($(this));
-    });
 
     function send_message(input) {
         var dataString = {
@@ -51,7 +75,7 @@ $(document).ready(function(){
             };
         $.ajax({
             type: "POST",
-            headers: {'X-CSRF-TOKEN':user_selected.data('token')},
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             url: "messages/store",
             data: dataString,
             dataType: "json",
@@ -59,7 +83,6 @@ $(document).ready(function(){
             success: function(data){
                 $('.text-message').val('');
                 if(data.success == true){
-
                     var socket = io.connect( 'http://'+window.location.hostname+':3000' );                
                     socket.emit('new_message', { 
                       sender: data.sender,

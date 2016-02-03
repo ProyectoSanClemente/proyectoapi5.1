@@ -10,7 +10,7 @@ class Conversation extends Model {
 	public static function rules ($merge=[]) {
 		return array_merge(
 			[
-				'user1'      		=> 'required|max:25',
+				'user1'      	=> 'required|max:25',
 				'user2'			=> 'required|max:25',
 			], 
         $merge);
@@ -22,5 +22,4 @@ class Conversation extends Model {
 			'user2' 	=> '<b>User 2</b>',			
 		];
 	}	
-
 }

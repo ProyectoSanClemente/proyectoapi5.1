@@ -23,8 +23,12 @@ class ConversationController extends Controller
     public function index()
     {
         $users=Usuario::all();
+        
+        $conversations=Conversation::all()->sortBy('updated_at');
         return view('conversation.index')
-            ->with('users',$users);
+            ->with('users',$users)
+            ->with('conversations',$conversations);
+
     }
 
     /**

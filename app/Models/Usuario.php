@@ -61,9 +61,14 @@ class Usuario extends Model
         return $this->hasOne('Cuenta','accountname');
     }
 
-        public function impresora()
+    public function impresora()
     {
         return $this->hasMany('Impresora','accountname');
+    }
+
+    public function conversation()
+    {
+    	 return $this->belongsToMany('App\Models\Conversation');
     }
 
 }

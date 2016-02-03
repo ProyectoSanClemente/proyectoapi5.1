@@ -231,3 +231,12 @@ img.crop-chat {
     color:#fff;
     text-align: center;
 }
+
+
+/*Scroll Dropdown*/
+.scrollable-menu {
+    height: auto;
+    width: 280px;
+    max-width: 500px;
+    max-height: 500px;
+    overflow-x: hidden;

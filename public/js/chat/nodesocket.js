@@ -19,12 +19,16 @@ socket.on( 'new_message', function( data ) {
 			$('.div_conversation').append('<p class="bg-warning">'+data.sender+': '+data.message+'</p>');    
 		}
         $('.scroll-bottom').slimScroll({
-        scrollTo: $('.scroll-bottom')[0].scrollHeight
+        	scrollTo: $('.scroll-bottom')[0].scrollHeight
         });
 
 	    //$( "#message-tbody" ).prepend('<tr><td>'+data.sender+'</td><td>'+data.message+'</td><td>'+data.created_at+'</td><td>'+data.conversation_id+'</td>');
 	    //$( "#no-message-notif" ).html('');
 	    //$( "#new-message-notif" ).html('<div class="alert alert-success" role="alert"> <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Nuevo ...</div>');
-	
 	}
+	if(data.sender!=$('#accountname').val()){
+		$('#notif_audio')[0].play();
+
+	}
+
 });

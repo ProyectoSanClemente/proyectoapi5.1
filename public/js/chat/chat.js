@@ -58,16 +58,29 @@ $(document).ready(function(){
             cache : false,
             success: function(data){
                 $('.text-message').val('');
-                
-                var socket = io.connect( 'http://'+window.location.hostname+':3000' );                
-                socket.emit('new_message', { 
-                  sender: data.sender,
-                  conversation_id: data.conversation_id,
-                  message: data.message,
-                  created_at: data.created_at,
-                  id: data.id
-                });
-            },
+                if(data.success == true){
+
+                    var socket = io.connect( 'http://'+window.location.hostname+':3000' );                
+                    socket.emit('new_message', { 
+                      sender: data.sender,
+                      conversation_id: data.conversation_id,
+                      message: data.message,
+                      created_at: data.created_at,
+                      id: data.id
+                    });
+
+                  } else if(data.success == false){
+                    if($('.text-message').val()==''){
+                        alert('Mensaje Vacio')
+                    }
+                    $("#conversation_id").val(data.conversation_id);
+                    $("#message").val(data.message);
+                    $("#notif").html(data.notif);
+                  }
+              
+                } ,error: function(xhr, status, error) {
+                  alert(error);
+                },
 
         });
     }

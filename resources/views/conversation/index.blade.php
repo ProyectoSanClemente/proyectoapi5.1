@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+<audio id="notif_audio"><source src="{!! asset('sounds/notify.ogg') !!}" type="audio/ogg"><source src="{!! asset('sounds/notify.mp3') !!}" type="audio/mpeg"><source src="{!! asset('sounds/notify.wav') !!}" type="audio/wav"></audio>
 <div class="container">
     <div class="row">
         <div class="col-md-12">

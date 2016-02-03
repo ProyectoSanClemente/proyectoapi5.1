@@ -6,7 +6,7 @@ $(document).ready(function(){
         user_selected = $(this);
         var user2=$('#nombre-'+user_selected.data('user-id')).text();
         $('.user_conversation_title').html('Conversando con '+user2);
-        
+        $('.div_conversation').html('');
         var dataString = {
                 user1: $('#accountname').val(),
                 user2: user2.trim()        
@@ -20,7 +20,7 @@ $(document).ready(function(){
             cache : false,
             success: function(data){
                 $('#conversation_id').val(data.id);
-                $('.div_conversation').html(data.messages);
+                $('.div_conversation').html(data.messages);//Obtener Historial Mensajes
                 
                 $('.scroll-bottom').slimScroll({
                     scrollTo: $('.scroll-bottom')[0].scrollHeight
@@ -33,7 +33,17 @@ $(document).ready(function(){
 
     });
 
-    $('.send-button').click(function(){
+    $('.text-message').keypress(function(e){ //Apretando enter
+        if (e.which == 13) {
+            send_message($('.send-button'));
+        }
+    });
+
+    $('.send-button').click(function(){//En el envento click
+        send_message($(this));
+    });
+
+    function send_message(input) {
         var dataString = {
               sender: $('#accountname').val(),
               conversation_id : $("#conversation_id").val(),
@@ -48,15 +58,19 @@ $(document).ready(function(){
             cache : false,
             success: function(data){
                 $('.text-message').val('');
-                var conversa=$('.div_conversation').html();
-                $('.div_conversation').html(conversa+data.message);
-                $('.scroll-bottom').slimScroll({
-                    scrollTo: $('.scroll-bottom')[0].scrollHeight
+                
+                var socket = io.connect( 'http://'+window.location.hostname+':3000' );                
+                socket.emit('new_message', { 
+                  sender: data.sender,
+                  conversation_id: data.conversation_id,
+                  message: data.message,
+                  created_at: data.created_at,
+                  id: data.id
                 });
             },
 
         });
-    });
+    }
     
 
 });

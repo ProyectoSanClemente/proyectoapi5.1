@@ -21,8 +21,6 @@ class Conversation extends Model {
 			'user1'   	=> '<b>User 1</b>',
 			'user2' 	=> '<b>User 2</b>',			
 		];
-	}
-
-	
+	}	
 
 }

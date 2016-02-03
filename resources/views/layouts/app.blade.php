@@ -19,7 +19,7 @@
     {!! HTML::script('js/bootstrap.min.js') !!}
     {!! HTML::script('js/jquery.dataTables.js') !!}
     {!! HTML::script('node_modules/socket.io/node_modules/socket.io-client/socket.io.js') !!} {{-- Modulo socket io--}}
-    {!! HTML::script('js/nodesocket.js')!!} {{-- Servidor escuchando :) --}}
+    {!! HTML::script('js/chat/nodesocket.js')!!} {{-- Servidor escuchando :) --}}
     @stack('scripts')
 
 </head>

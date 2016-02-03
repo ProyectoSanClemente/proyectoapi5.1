@@ -5,13 +5,37 @@
 
     @include('common.errors')
 
-		<!-- Modelo Impresora Field -->
-				<body onload="document.form1.submit()">
-    {!! Form::open(['url' => ['http://sanclemente.crecic.cl/login.php'],'method' => 'post','id'=>'form1','name'=>'form1']) !!}
-    <br><br><br><br><br><br>
-    <div align="center">{!!HTML::image("images/load/default.gif")!!}
-	Redireccionando, por favor espere...
-	</div>
-    {!! Form::close() !!}
 </div>
 @endsection
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+	$('.error').hide();
+
+
+		//Construimos la variable que se guardará en el data del Ajax para pasar al archivo php que procesará los datos
+		var dataString = 'TxtUser=' + 'hola' + 'TxtPass=' + 'paasdad';
+
+		$.ajax({
+			type: "POST",
+			url: "http://sanclemente.crecic.cl/login.php",
+			data: dataString,
+			success: function() {
+		    	$('#TxtUser').val("aasd");
+		        $('#message').html("<h2>Tus datos han sido guardados correctamente!</h2>")
+		        .hide()
+		        .fadeIn(1500, function() {
+					$('#message').append("<a href='index.php?action=see'>Ver usuarios registrados</a>");
+		        });
+		    }
+		});
+		return false;
+	});
+});
+
+runOnLoad(function(){
+	$("input#name").select().focus();
+});
+</script>

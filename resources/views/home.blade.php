@@ -41,7 +41,14 @@
         <div class="panel panel-danger" >
             <div class="panel-heading">Avisos</div>
             <div class="panel-body"  style="height:370px">
-                    Aca avisos!<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            @foreach($notices as $notice)
+                <h2>{{ $notice->titulo }}<br></h2>
+                {{($notice->contenido)}}
+                                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#myModal{{$notice->id}}">Leer más <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <hr>
+
+
+            @endforeach
             </div>
         </div>
 

@@ -18,7 +18,6 @@ class AppServiceProvider extends ServiceProvider
         $CountNewMessage  = count(Message::CountNewMessage());
         View::share('CountNewMessage',$CountNewMessage);
         View::share('ListMessage',$ListMessage);
-
     }
 
     /**

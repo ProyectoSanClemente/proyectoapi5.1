@@ -1,5 +1,4 @@
 <li>
-    <a href="#" class="user-selected" data-user-id="{{ $user->id}}">
         <div class="form-group">
             <div class="row">
                 <div class="col-md-12">
@@ -8,7 +7,7 @@
                             <!-- User image here (use the "crop-chat" class into the "img" tag) -->
                             <img src="{{ $user->imagen}}" class="crop-chat"/>
                         </div>
-                        <div class="col-md-9" id="nombre-{{$user->id}}">
+                        <div class="col-md-9">
                             <!-- Username here -->
                             {{ $user->accountname }}
                         </div>

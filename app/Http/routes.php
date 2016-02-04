@@ -41,7 +41,7 @@ Route::group(['middleware'], function () {
 
     Route::group(['prefix' => 'chat'], function(){
         Route::get('/','ConversationController@index');
-        Route::post('create','ConversationController@create');
+        Route::post('create','ConversationController@createorUpdate');
     });
 
     Route::get('login', 'Auth\AuthController@getLogin');

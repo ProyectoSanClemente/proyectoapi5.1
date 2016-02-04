@@ -35,7 +35,7 @@ class ConversationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function createOrupdate(Request $request)
     {     
 
         $input=Request::all();
@@ -62,8 +62,7 @@ class ConversationController extends Controller
             }
 
         }
-        return json_encode($arr);
-        
+        return json_encode($arr);        
         
     }
 

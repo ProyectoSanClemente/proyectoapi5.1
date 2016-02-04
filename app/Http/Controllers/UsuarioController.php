@@ -20,8 +20,8 @@ class UsuarioController extends Controller
 	function __construct(UsuarioRepository $usuarioRepo)
 	{
 		$this->usuarioRepository = $usuarioRepo;
-		$this->middleware('auth');
-		$this->middleware('admin',['only'=>['create','index','delete']]);
+		//$this->middleware('auth');
+		//$this->middleware('admin',['only'=>['create','index','delete']]);
 	}
 
 	/**

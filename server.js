@@ -11,6 +11,8 @@ server.listen(port, function () {
 
 
 io.on('connection', function (socket) {
+  console.log('Usuario conectado');
+
   socket.on( 'new_count_message', function( data ) {
     io.sockets.emit( 'new_count_message', { 
     	new_count_message: data.new_count_message
@@ -28,9 +30,11 @@ io.on('connection', function (socket) {
     io.sockets.emit( 'new_conversation', {
       user_1: data.user_1,
       user_2: data.user_2,
+      
       created_at: data.created_at,
       id: data.id
     });
+    console.log('Nueva Conversacion %d',id);
   });
 
 
@@ -43,6 +47,5 @@ io.on('connection', function (socket) {
     	id: data.id
     });
   });
-
   
 });

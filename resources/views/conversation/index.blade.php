@@ -12,7 +12,9 @@
                     <div class="col-lg-12">
                     <h3 class="bold">Lista usuarios</h3>
                         <div class="btn-group">
-                            {!! Form::hidden('accountname', Auth::user()->accountname, ['id'=>'accountname']) !!} 
+                            {!! Form::hidden('accountname', Auth::user()->accountname, ['id'=>'accountname']) !!}
+                            {!! Form::hidden('user1_id', Auth::user()->id, ['id'=>'user1_id']) !!}
+                            
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Crear Conversación<span class="caret"></span></button>
                             <ul class="dropdown-menu scrollable-menu" role="menu">
                                 @foreach ($users as $user)

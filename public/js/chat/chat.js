@@ -1,23 +1,26 @@
 $(document).ready(function(){
-
+    show_conversations();
     $('.scroll-users').slimScroll();
 
     $('.user-selected').click(function(e){
+        alert('hola');
         user_selected = $(this);
-        var id=user_selected.data('user-id');
-        var user1=$('#accountname').val();
-        var user2=$('#nombre-'+id).text();
-        create_conversation(user1,user2);
-
+        var user1_id=$('#user1_id').val();
+        var user1_accountname=$('#user1_accountname').val();
+        var user2_id=user_selected.data('user2_id');
+        var user2_accountname=user_selected.data('user2_accountname');  
+        create_conversation(user1_id,user1_accountname,user2_id,user2_accountname);
     });
 
-    $('.conversation-selected').click(function(e){
+    $(document).delegate('.conversation-selected', 'click', function(e){//para el form creado dinamico
         conversation_selected= $(this);
-        var id=conversation_selected.data('conversation-id');
-        var user1=$('#accountname').val();
-        var user2=$('#user2-'+id).text();        
-        create_conversation(user1,user2);
+        var user1_id=$('#user1_id').val();
+        var user1_accountname=$('#user1_accountname').val();
+        var user2_id=conversation_selected.data('user2_id');
+        var user2_accountname=conversation_selected.data('user2_accountname');
     });
+
+
 
     $('.text-message').keypress(function(e){ //Apretando enter
         if (e.which == 13) {
@@ -29,13 +32,77 @@ $(document).ready(function(){
         send_message($(this));
     });
 
+    function show_conversations(){
+        var user1_id=$('#user1_id').val();
+        var user1_accountname=$('#user1_accountname').val();
+        var dataString = {
+            user1_id: user1_id,
+            user1_accountname: user1_accountname
+        };
+        $.ajax({
+            type: "POST",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "chat/showconversations",
+            data: dataString,
+            dataType: "json",
+            cache : false,
+            success: function(data){
+                    $('.scroller scroll-users').html('');
+                for (i = 0; i < data.length; i++) {
+                    var id=data[i].id;
+                    var user2_id=data[i].user2_id;
+                    var user2_accountname=data[i].user2_accountname;
+                    $('.scroll-users').append(                        
+                        $("<form/>", {
+                            class: 'form-horizontal form-bordered conversation-list'
+                        }).append(
+                            $("<span/>",{
+                                class:'notifications-'+id
+                            }),                       
+                            $("<a/>",{
+                                href: "#",
+                                class: "conversation-selected",
+                                'data-user2_id': user2_id,
+                                'data-user2_accountname': user2_accountname
+                            }).append(
+                                $("<div/>",{
+                                    class: "form-group row col-md-12"
+                                }).append(
+                                   $("<div/>",{
+                                        class: "col-md-3"
+                                    }).append(
+                                        '<img src="images/avatar/default.png" class="crop-chat"/>'
+                                    ),
+                                    $("<div/>",{
+                                        class: "col-md-9"
+                                    }).append(
+                                        $("<div/>",{
+                                            id: 'user2-'+id,
+                                        }).append(
+                                            user2_accountname
+                                        )
+                                    )                                 
+                                )
+                            )
+                        )
+                    )
+                }//endfor
+            }, error: function(xhr, status, error) {
+              alert(error);
+            },
+        });
+    }
     
-    function create_conversation(user1,user2){
-        $('.user_conversation_title').html('Conversando con '+user2);
+
+
+    function create_conversation(user1_id,user1_accountname,user2_id,user2_accountname){
+        $('.user_conversation_title').html('Conversando con '+user2_accountname);
         $('.div_conversation').html('');
         var dataString = {
-            user1: user1,
-            user2: user2.trim()        
+            user1_id: user1_id,
+            user1_accountname: user1_accountname,
+            user2_id: user2_id,
+            user2_accountname: user2_accountname
         };
         $.ajax({
             type: "POST",
@@ -45,8 +112,14 @@ $(document).ready(function(){
             dataType: "json",
             cache : false,
             success: function(data){
+                if(data.creado){
+                    
+                    $('.conversation-selected').html('');
+                    show_conversations();
+                }
+                else
+                    alert('ya existia');
                 $('#conversation_id').val(data.id);
-                $('.div_conversation').html(data.messages);//Obtener Historial Mensajes
                 
                 $('.scroll-bottom').slimScroll({
                     scrollTo: $('.scroll-bottom')[0].scrollHeight
@@ -57,6 +130,12 @@ $(document).ready(function(){
             },
         });
     }
+
+    function show_messages(){
+        alert('haha');
+
+    }
+
 
 
     function send_message(input){

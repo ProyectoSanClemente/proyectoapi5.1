@@ -1,4 +1,5 @@
 <li>
+    <a href="#" class="user-selected" data-user2_id="{{$user->id}}" data-user2_accountname="{{ $user->accountname}}">
         <div class="form-group">
             <div class="row">
                 <div class="col-md-12">

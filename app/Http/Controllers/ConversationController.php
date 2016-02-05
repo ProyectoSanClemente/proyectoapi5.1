@@ -22,12 +22,22 @@ class ConversationController extends Controller
      */
     public function index()
     {
-        $users=Usuario::all();        
-        $conversations=Conversation::all();
+        $users=Usuario::all();
+        $conversations = Conversation::where('user1_id',Input::get('user1_id'))->get();
         return view('conversation.index')
-            ->with('users',$users)
-            ->with('conversations',$conversations);
+            ->with('users',$users);
 
+    }
+    /**
+    * Display all conversations
+    *
+    * @return array json
+    */
+    public function showconversations()
+    {
+        //$results = DB::select('select * from conversations where user1_id = ?', array($input['user1_id']));
+        $conversations = Conversation::where('user1_id',Input::get('user1_id'))->orderBy('updated_at', 'DESC')->get();
+        return json_encode($conversations);
     }
 
     /**
@@ -36,31 +46,23 @@ class ConversationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function createOrupdate(Request $request)
-    {     
-
+    {
         $input=Request::all();
-        $results = DB::select('select * from conversations where user1 = ? and user2 = ? or user1 = ? and user2 = ?', array($input['user1'],$input['user2'],$input['user2'],$input['user1']));
-        $arr['user1'] = $input['user1'];
-        $arr['user2'] = $input['user2'];
-        $arr['success'] = true;
+        $results = DB::select('select * from conversations where user1_id = ? and user2_id = ?', array($input['user1_id'],$input['user2_id']));
+        $arr['user1_id'] = $input['user1_id'];
+        $arr['user1_accountname'] = $input['user1_accountname'];
+        $arr['user2_id'] = $input['user2_id'];
+        $arr['user2_accountname'] = $input['user2_accountname'];
+        $arr['creado'] = false;
         if(empty($results)){
             Conversation::create($input);
-            $id = DB::getPdo()->lastInsertId(); 
-            $arr['id']=$id;
-        }
-        else{          
-            $id=$results[0]->id;
-            $arr['id']=$id;
-            $mensajes= DB::select('select * from messages where conversation_id = ?', array($id));
-            $arr['messages']='';
-            foreach ($mensajes as $mensaje){
-                if($mensaje->sender==$input['user1']){
-                    $arr['messages'].='<p class="bg-success">'.$mensaje->sender.': '.$mensaje->message.'</p>';
-                }
-                else
-                    $arr['messages'].='<p class="bg-warning">'.$mensaje->sender.': '.$mensaje->message.'</p>';
-            }
-
+            $coninver=new Conversation; //Crea la conversacion en el otro sentido
+            $coninver->user1_id=$input['user2_id'];
+            $coninver->user2_id=$input['user1_id'];
+            $coninver->user1_accountname=$input['user2_accountname'];
+            $coninver->user2_accountname=$input['user1_accountname'];
+            $coninver->save();
+            $arr['creado']=true;               
         }
         return json_encode($arr);        
         
@@ -72,6 +74,12 @@ class ConversationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function showmessages()
+    {
+        //
+    }
+
     public function store(Request $request)
     {
 

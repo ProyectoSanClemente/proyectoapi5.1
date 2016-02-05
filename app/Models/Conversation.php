@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Conversation extends Model {
 
 	protected $table = "conversations";
-	protected $fillable = ['user1','user2','user1_id','user2_id'];
+	protected $fillable = ['user1_id','user1_accountname','user2_id','user2_accountname'];
 
 	public static function rules ($merge=[]) {
 		return array_merge(

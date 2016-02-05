@@ -12,8 +12,10 @@
                     <div class="col-lg-12">
                     <h3 class="bold">Lista usuarios</h3>
                         <div class="btn-group">
-                            {!! Form::hidden('accountname', Auth::user()->accountname, ['id'=>'accountname']) !!}
+                            
                             {!! Form::hidden('user1_id', Auth::user()->id, ['id'=>'user1_id']) !!}
+                            {!! Form::hidden('accountname', Auth::user()->accountname, ['id'=>'user1_accountname']) !!}
+                            
                             
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Crear Conversación<span class="caret"></span></button>
                             <ul class="dropdown-menu scrollable-menu" role="menu">
@@ -28,18 +30,12 @@
 
                     <div class="portlet-title">
                         <div class="caption">
-                            Conversaciones Activas {{count($conversations)}}                            
+                            Conversaciones Activas                            
                         </div>
                     </div>
                     <div class="portlet-body form">
                         <div class="scroller scroll-users" style="height:500px">
-                            <!-- First iteration for active users, and the last for inactive users -->
-                            @foreach ($conversations as $conversation)
-                                    {!! Form::open(['class'=>'form-horizontal form-bordered conversation-list'])!!}
-                                        @include('conversation.fields-conversation')
-                                    {!! Form::close()!!}
-                            @endforeach
-                            <!-- End of iteration here -->
+                            <!--  Listado de conversaciones activas-->
                         </div>
                     </div>
 

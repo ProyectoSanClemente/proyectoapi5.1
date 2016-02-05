@@ -1,35 +1,28 @@
-@if($conversation->user1==Auth::user()->accountname || $conversation->user2==Auth::user()->accountname)
-<a href="#" class="conversation-selected" data-conversation-id="{{ $conversation->id}}">
-    <div class="form-group">
+
+                            @foreach ($conversations as $conversation)
+                                    {!! Form::open(['class'=>'form-horizontal form-bordered conversation-list'])!!}
+                                         <a href="#" class="conversation-selected" data-user2_id='{{$conversation->user2_id}}' data-user2_accountname='{{$conversation->user2_accountname}}'>
+    <div class="form-group row col-md-12">
         <div class="row">
             <div class="col-md-12">
-                <div class="row">
-                        
-                    @if($conversation->user1==Auth::user()->accountname)
-                        <div class="col-md-3">
-                        <!-- User image here (use the "crop-chat" class into the "img" tag) -->
-                        <img src="{{ $user->imagen}}" class="crop-chat"/>
-                        </div>
-                        <div class="col-md-9" id="user2-{{$conversation->id}}">
+                <div class="row">                        
+                    <div class="col-md-3">
+                    <!-- User image here (use the "crop-chat" class into the "img" tag) -->
+                    <img src="{{ $user->imagen}}" class="crop-chat"/>
+                    </div>
+                    <div class="col-md-9">
+                        <div id="user2-{{$conversation->id}}">
                             <!-- Username here -->
-                            {{ $conversation->user2 }}
+                            {{ $conversation->user2_accountname }} 
                         </div>
-                    
-                    @elseif($conversation->user2==Auth::user()->accountname)
-                         <div class="col-md-3">
-                        <!-- User image here (use the "crop-chat" class into the "img" tag) -->
-                        <img src="{{ $user->imagen}}" class="crop-chat"/>
-                        </div>
-                        <div class="col-md-9" id="user2-{{$conversation->id}}">
-                            <!-- Username here -->
-                            {{ $conversation->user1 }}
-                        </div>
-                    @endif
 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </a>
-@endif
-                    
+
+                                    {!! Form::close()!!}
+                            @endforeach
+

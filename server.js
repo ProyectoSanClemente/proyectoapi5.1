@@ -28,8 +28,8 @@ io.on('connection', function (socket) {
 
     socket.on( 'new_conversation', function( data ) {
     io.sockets.emit( 'new_conversation', {
-      user_1: data.user_1,
-      user_2: data.user_2,
+      user1: data.user_1,
+      user2: data.user_2,
       
       created_at: data.created_at,
       id: data.id

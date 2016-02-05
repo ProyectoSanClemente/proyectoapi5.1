@@ -16,11 +16,11 @@ class CreateConversationsTable extends Migration
         Schema::dropIfExists('conversations');
         Schema::create('conversations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user1',25);
-            $table->string('user2',25);
             $table->integer('user1_id')->unsigned();
-            $table->foreign('user1_id')->references('id')->on('usuarios')->onDelete('cascade');
+            $table->string('user1_accountname',25);
             $table->integer('user2_id')->unsigned();
+            $table->string('user2_accountname',25);            
+            $table->foreign('user1_id')->references('id')->on('usuarios')->onDelete('cascade');
             $table->foreign('user2_id')->references('id')->on('usuarios')->onDelete('cascade');
             $table->integer('unseen')->default(0);
             $table->timestamps();

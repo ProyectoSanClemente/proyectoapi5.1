@@ -28,11 +28,8 @@ io.on('connection', function (socket) {
 
     socket.on( 'new_conversation', function( data ) {
     io.sockets.emit( 'new_conversation', {
-      user1: data.user_1,
-      user2: data.user_2,
-      
-      created_at: data.created_at,
-      id: data.id
+      sender: data.sender,
+      created_at: data.created_at
     });
     console.log('Nueva Conversacion %d',id);
   });
@@ -42,9 +39,9 @@ io.on('connection', function (socket) {
     io.sockets.emit( 'new_message', {
     	sender: data.sender,
     	message: data.message,
-      conversation_id: data.conversation_id,
-    	created_at: data.created_at,
-    	id: data.id
+      conversation1_id: data.conversation1_id,
+      conversation2_id: data.conversation2_id,
+    	created_at: data.created_at
     });
   });
   

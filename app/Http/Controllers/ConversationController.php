@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Message;
 use App\Models\Usuario;
 use App\Models\Conversation;
 use App\Http\Controllers\Controller;
@@ -31,11 +30,11 @@ class ConversationController extends Controller
     /**
     * Display all conversations
     *
-    * @return array json
+    * @return dataay json
     */
     public function showconversations()
     {
-        //$results = DB::select('select * from conversations where user1_id = ?', array($input['user1_id']));
+        //$results = DB::select('select * from conversations where user1_id = ?', dataay($input['user1_id']));
         $conversations = Conversation::where('user1_id',Input::get('user1_id'))->orderBy('updated_at', 'DESC')->get();
         return json_encode($conversations);
     }
@@ -45,27 +44,36 @@ class ConversationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createOrupdate(Request $request)
+    public function createOrupdate()
     {
         $input=Request::all();
-        $results = DB::select('select * from conversations where user1_id = ? and user2_id = ?', array($input['user1_id'],$input['user2_id']));
-        $arr['user1_id'] = $input['user1_id'];
-        $arr['user1_accountname'] = $input['user1_accountname'];
-        $arr['user2_id'] = $input['user2_id'];
-        $arr['user2_accountname'] = $input['user2_accountname'];
-        $arr['creado'] = false;
-        if(empty($results)){
+        $conversation=Conversation::where('user1_id', '=', $input['user1_id'])->where('user2_id', '=', $input['user2_id'])->first();
+        //$results = DB::select('select * from conversations where user1_id = ? and user2_id = ?', dataay($input['user1_id'],$input['user2_id']));
+        $data['user1_id'] = $input['user1_id'];
+        $data['user1_accountname'] = $input['user1_accountname'];
+        $data['user2_id'] = $input['user2_id'];
+        $data['user2_accountname'] = $input['user2_accountname'];
+        $data['creado'] = false;
+        if(empty($conversation)){
             Conversation::create($input);
-            $coninver=new Conversation; //Crea la conversacion en el otro sentido
-            $coninver->user1_id=$input['user2_id'];
-            $coninver->user2_id=$input['user1_id'];
-            $coninver->user1_accountname=$input['user2_accountname'];
-            $coninver->user2_accountname=$input['user1_accountname'];
-            $coninver->save();
-            $arr['creado']=true;               
+            
+            $data['id']=DB::getPdo()->lastInsertId();
+            $data['creado']=true;
+            if($input['user1_id']!==$input['user2_id']){
+                $coninver=new Conversation; //Crea la conversacion en el otro sentido
+                $coninver->user1_id=$input['user2_id'];
+                $coninver->user2_id=$input['user1_id'];
+                $coninver->user1_accountname=$input['user2_accountname'];
+                $coninver->user2_accountname=$input['user1_accountname'];
+                $coninver->save();
+            }
+            
+            
         }
-        return json_encode($arr);        
-        
+        else
+            $data['id']=$conversation->id;
+
+        return json_encode($data);       
     }
 
     /**
@@ -74,40 +82,33 @@ class ConversationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-    public function showmessages()
-    {
-        //
-    }
-
     public function store(Request $request)
     {
 
-        $validator = Validator::make(Input::all(), Message::rules(),[],Message::niceNames());
-            
-            $arr['name'] = Input::get('name');
-            $arr['email'] = Input::get('email');
-            $arr['conversation_id'] = Input::get('conversation_id');
-            $arr['subject'] = Input::get('subject');
-            $arr['message'] = Input::get('message');
+        $validator = Validator::make(Input::all(), Message::rules(),[],Message::niceNames());            
+            $data['name'] = Input::get('name');
+            $data['email'] = Input::get('email');
+            $data['conversation_id'] = Input::get('conversation_id');
+            $data['subject'] = Input::get('subject');
+            $data['message'] = Input::get('message');
 
             if ($validator->fails()) {
                 
                 $error = $validator->errors();
-                $arr['success'] = false;
-                $arr['notif'] = '<div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 alert alert-danger alert-dismissable"><i class="fa fa-ban"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' .implode('', $error->all(':message<br />')). '</div>';
+                $data['success'] = false;
+                $data['notif'] = '<div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 alert alert-danger alert-dismissable"><i class="fa fa-ban"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' .implode('', $error->all(':message<br />')). '</div>';
                 
             } else {    
                 $message=Request::all();
                 Message::create($message);
                 $id = DB::getPdo()->lastInsertId();  
-                $arr = Message::DetailMessage($id);
-                $arr['new_count_message'] = count(Message::CountNewMessage());
-                $arr['success'] = true;
-                $arr['notif'] = '<div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 alert alert-success" role="alert"> <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Mensaje Enviado ...</div>';
+                $data = Message::DetailMessage($id);
+                $data['new_count_message'] = count(Message::CountNewMessage());
+                $data['success'] = true;
+                $data['notif'] = '<div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 alert alert-success" role="alert"> <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Mensaje Enviado ...</div>';
 
             }
-            return json_encode($arr);
+            return json_encode($data);
     
     }
 
@@ -147,9 +148,9 @@ class ConversationController extends Controller
         if($id){
 
             Message::UpdateSeen($id);
-            $arr = Message::DetailMessage($id);
-            $arr['update_count_message'] = count(Message::CountNewMessage());
-            return json_encode($arr);
+            $data = Message::DetailMessage($id);
+            $data['update_count_message'] = count(Message::CountNewMessage());
+            return json_encode($data);
 
         
         }

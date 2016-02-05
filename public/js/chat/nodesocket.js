@@ -10,25 +10,22 @@ socket.on( 'update_count_message', function( data ) {
 });
 
 socket.on( 'new_message', function( data ) {
-	if(data.conversation_id==$("#conversation_id").val()){
-
-		if(data.sender==$('#accountname').val()){
-			$('.div_conversation').append('<p class="bg-success">'+data.sender+': '+data.message+'</p>');        
-		}
-		else{
-			$('.div_conversation').append('<p class="bg-warning">'+data.sender+': '+data.message+'</p>');    
-		}
-        $('.scroll-bottom').slimScroll({
-        	scrollTo: $('.scroll-bottom')[0].scrollHeight
-        });
-
-	    //$( "#message-tbody" ).prepend('<tr><td>'+data.sender+'</td><td>'+data.message+'</td><td>'+data.created_at+'</td><td>'+data.conversation_id+'</td>');
-	    //$( "#no-message-notif" ).html('');
-	    //$( "#new-message-notif" ).html('<div class="alert alert-success" role="alert"> <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Nuevo ...</div>');
+	
+	if(data.conversation1_id==$("#conversation_id").val()){
+		$('.div_conversation').append('<div class="bg-success">'+data.sender+': '+data.message+'<span class=pull-right>'+'enviado a las'+data.created_at+'</span></div>');        
+		scroll();
 	}
-	if(data.sender!=$('#accountname').val()){
-		$('#notif_audio')[0].play();
 
+	if(data.conversation2_id==$("#conversation_id").val()){
+		$('.div_conversation').append('<div class="bg-warning">'+data.sender+': '+data.message+'<span class=pull-right>'+'enviado a las'+data.created_at+'</span></div>');        
+		$('#notif_audio')[0].play();
+		scroll();
 	}
 
 });
+
+function scroll(){
+    $('.scroll-bottom').slimScroll({
+        scrollTo: $('.scroll-bottom')[0].scrollHeight
+    });
+}

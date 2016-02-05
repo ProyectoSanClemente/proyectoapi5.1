@@ -37,6 +37,7 @@ Route::group(['middleware'], function () {
         Route::post('/','MessageController@update');
         Route::get('create', 'MessageController@create');
         Route::post('store','MessageController@store');
+        Route::post('showmessages','MessageController@showmessages');
     });    
 
     Route::group(['prefix' => 'chat'], function(){

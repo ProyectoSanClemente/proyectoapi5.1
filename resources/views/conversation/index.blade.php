@@ -58,10 +58,11 @@
                     <div class="portlet-body portlet-conversation" style="height:400px">
                         <div class="scroller scroll-bottom" style="height:400px !important;">
 
-                        <div class="div_conversation" data-base-url="{{ URL::to('/') }}"></div>
+                        <div class="div_conversation"></div>
                            
-                           {!! Form::hidden('conversation_id', '', ['id'=>'conversation_id']) !!}                 
-                        
+                           {!! Form::hidden('conversation_id', '', ['id'=>'conversation_id']) !!}
+                           {!! Form::hidden('conversation2_id', '', ['id'=>'conversation2_id']) !!}                        
+
                         </div>
                     </div>
                 </div>

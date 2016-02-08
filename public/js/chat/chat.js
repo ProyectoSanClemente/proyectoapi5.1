@@ -60,7 +60,29 @@ function show_messages(){
                 for (i = 0; i < messages.length; i++){
                     var sender=messages[i].sender;
                     var message=messages[i].message;
-                    $('.div_conversation').append(sender+': '+message+'<br>');
+                    var created_at=messages[i].created_at;
+                    if(sender==data.user1_accountname){                        
+                        $('.div_conversation').append(
+                                $('<row/>',{
+                                    class: 'col-md-9 pull-left'
+                                }).append(
+                                $("<div/>",{
+                                    class: 'bubble me'
+                                }).append(sender+' dice:'+'<span class="pull-right"> enviado:'+created_at+'</span>'+'<br>'+message)
+                            )
+                        )
+                    }
+                    if(sender==data.user2_accountname){
+                        $('.div_conversation').append(
+                                $('<row/>',{
+                                    class: 'col-md-9 pull-right'
+                                }).append(
+                                $("<div/>",{
+                                    class: 'bubble you'
+                                }).append(sender+' dice:'+'<span class="pull-right"> enviado:'+created_at+'</span>'+'<br>'+message)
+                            )
+                        )
+                    }
                 }
                 scroll();
             }
@@ -68,6 +90,8 @@ function show_messages(){
 
     });
 }
+
+
 
 function send_message(input){
     var user1_id=$('#user1_id').val();

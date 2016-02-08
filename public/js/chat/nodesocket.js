@@ -9,15 +9,21 @@ socket.on( 'update_count_message', function( data ) {
     $( "#new_count_message" ).html( data.update_count_message );
 });
 
-socket.on( 'new_message', function( data ) {
+socket.on('new_conversation',function(data){
+	//
+});
+
+socket.on('new_message', function( data ) {
 	if(data.conversation_id==$("#conversation_id").val()){
-		$('.div_conversation').append('<div class="bg-success">'+data.sender+': '+data.message+'<span class=pull-right>'+'enviado a las'+data.created_at+'</span></div>');        
-		scroll();
+		//$('.div_conversation').append('<div class="bg-success">'+data.sender+': '+data.message+'<span class=pull-right>'+'enviado a las'+data.created_at+'</span></div>');        
+		//scroll();
+		show_messages();
 	}
 
 	if(data.conversation2_id==$("#conversation_id").val()){
-		$('.div_conversation').append('<div class="bg-warning">'+data.sender+': '+data.message+'<span class=pull-right>'+'enviado a las'+data.created_at+'</span></div>');
-		scroll();
+		//$('.div_conversation').append('<div class="bg-warning">'+data.sender+': '+data.message+'<span class=pull-right>'+'enviado a las'+data.created_at+'</span></div>');
+		//scroll();
+		show_messages();
 	}
 
 	if($('#accountname').val()==data.user1_accountname)

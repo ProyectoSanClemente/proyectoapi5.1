@@ -33,7 +33,6 @@ $(document).ready(function(){
         send_message($(this));
     });
 
-
 });
 
 function show_messages(){
@@ -59,7 +58,8 @@ function show_messages(){
                 var messages=data.messages;
                 for (i = 0; i < messages.length; i++){
                     var sender=messages[i].sender;
-                    var message=messages[i].message;
+                    var message='<div style="font-size: 13pt">'+messages[i].message.replace(/<[^>]*>/g, '')+'</div>'; //HTML to plain text
+                    
                     var created_at=messages[i].created_at;
                     if(sender==data.user1_accountname){                        
                         $('.div_conversation').append(
@@ -72,6 +72,7 @@ function show_messages(){
                             )
                         )
                     }
+
                     if(sender==data.user2_accountname){
                         $('.div_conversation').append(
                                 $('<row/>',{
@@ -201,7 +202,8 @@ function show_conversations(){
                     var id=data[i].id;
                     var user2_id=data[i].user2_id;
                     var user2_accountname=data[i].user2_accountname;
-                    $('.scroll-users').append(                        
+                    var imagen=data[i].imagen;
+                    $('.scroll-users').append(                 
                         $("<form/>", {
                             class: 'form-horizontal form-bordered conversation-list'
                         }).append(
@@ -221,8 +223,11 @@ function show_conversations(){
                                    $("<div/>",{
                                         class: "col-md-3"
                                     }).append(
-                                        '<img src="images/avatar/default.png" class="crop-chat"/>'
-                                    ),
+                                        $("<img/>",{
+                                            class: "img-circle crop-chat",
+                                            src: imagen
+                                            })
+                                        ),                                    
                                     $("<div/>",{
                                         class: "col-md-9"
                                     }).append(

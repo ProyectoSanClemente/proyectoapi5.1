@@ -60,7 +60,7 @@ class MessageController extends Controller
             } else {   
                 $message=Request::all();
                 Message::create($message);
-                $id = DB::getPdo()->lastInsertId();  
+                $id = DB::getPdo()->lastInsertId(); 
                 $data = Message::DetailMessage($id);
                 //$data = Message::DetailMessage($id);
                 //$data['new_count_message'] = count(Message::CountNewMessage());

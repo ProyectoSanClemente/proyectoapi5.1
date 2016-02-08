@@ -22,20 +22,24 @@ class ConversationController extends Controller
     public function index()
     {
         $users=Usuario::all();
-        $conversations = Conversation::where('user1_id',Input::get('user1_id'))->get();
         return view('conversation.index')
             ->with('users',$users);
-
     }
+
     /**
     * Display all conversations
     *
-    * @return dataay json
+    * @return data array json
     */
     public function showconversations()
     {
         //$results = DB::select('select * from conversations where user1_id = ?', dataay($input['user1_id']));
         $conversations = Conversation::where('user1_id',Input::get('user1_id'))->orderBy('updated_at', 'DESC')->get();
+        foreach ($conversations as $conversation) { //Se rellenan las imagenes de usuario en la lista de conversaciones
+            $id=$conversation->user2_id; //ID del usuario a buscar
+            $imagen=Usuario::find($id)->imagen;
+            $conversation['imagen']=$imagen;
+        }
         return json_encode($conversations);
     }
 
@@ -67,8 +71,6 @@ class ConversationController extends Controller
                 $coninver->user2_accountname=$input['user1_accountname'];
                 $coninver->save();
             }
-            
-            
         }
         else
             $data['id']=$conversation->id;

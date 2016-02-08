@@ -59,9 +59,11 @@ class NoticeController extends AppBaseController
 	{
 
 		$input = $request->all();
-		$filename = 'images/noticias/'.$input['titulo'].'.jpg';
-	    $input['imagen']=$filename;
-	    Image::make(Input::file('imagen'))->resize(640, 480)->save($filename);
+		if (!empty($input['imagen'])) {
+			$filename = 'images/noticias/'.$input['titulo'].'.jpg';
+		    $input['imagen']=$filename;
+		    Image::make(Input::file('imagen'))->resize(640, 480)->save($filename);
+		}
 		$notice = $this->noticeRepository->create($input);
 		Flash::success('Noticia agregada satisfactoriamente.');
 

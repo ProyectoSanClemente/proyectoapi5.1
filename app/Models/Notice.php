@@ -21,13 +21,12 @@ class Notice extends Model
      */
     protected $casts = [
         "titulo" => "string",
-		"contenido" => "string",
-		"imagen" => "string"
+		"contenido" => "string"
     ];
 
 	public static $rules = [
 	    "titulo" => "required",
-		"contenido" => "required",
+		"contenido" => "required"
 	];
 
 }

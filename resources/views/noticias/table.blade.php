@@ -11,9 +11,11 @@
         @foreach($variable as $notice)
  <!-- Projects Row -->
             <div class="col-md-6 portfolio-item">
+                @if (!empty($notice->imagen))
                 <a>
                     {!! HTML::image($notice->imagen,null,array('width' => 400, 'height' => 300,'class' => 'img-responsive', 'data-toggle'=>'modal','data-target'=>'#myModal'))!!}
                 </a>
+                @endif
                 <h3>
                     <a href="#" data-toggle="modal" data-target="#myModal{{$notice->id}}">{!! $notice->titulo !!}</a>
                 </h3>

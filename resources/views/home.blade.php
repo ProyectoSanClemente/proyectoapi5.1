@@ -23,6 +23,12 @@
  width:98%;
 }
 </style>
+<style type="text/css">
+    @media screen and (min-width: 675px) {
+    .modal-dialog  {width:670px;}
+
+}
+</style>
 
 <div class="container">
     @include('flash::message')
@@ -42,18 +48,29 @@
             <div class="panel-heading">Avisos</div>
             <div class="panel-body"  style="height:370px">
             @foreach($notices as $notice)
-                <h2>{{ $notice->titulo }}<br></h2>
+                <h3><a href="#" data-toggle="modal" data-target="#myModal{{$notice->id}}">{!! $notice->titulo !!}</a></h3>
                 {{($notice->contenido)}}
-                                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#myModal{{$notice->id}}">Leer más <span class="glyphicon glyphicon-chevron-right"></span></a>
+                    <div class="modal fade" id="myModal{{$notice->id}}" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">{!!$notice->titulo!!}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    @include('noticias.show_fields')
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <hr>
-
-
             @endforeach
-            </div>
         </div>
+    </div>
 
-        
-        
         <div class="panel panel-primary" style="height:auto">
             <div class="panel-heading">Muro</div>
                 <div class="panel-body" style="height:500px"> 
@@ -61,15 +78,15 @@
                     Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
                     Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
                     <br>
-                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
                     Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
-                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
-                    <br>
-                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
                     Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
                     Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
                     <br>
-                                        Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
+                    <br>
+                    Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
                     Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
                     Bienvenido {{Auth::user()->rol}}: {{Auth::user()->displayname}}<br>
                     <br>

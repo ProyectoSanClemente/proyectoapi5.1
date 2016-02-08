@@ -8,7 +8,9 @@
 
 <!-- Contenido Field -->
 <div class="form-group">
+@if (!empty($notice->imagen))
   	{!! HTML::image($notice->imagen)!!}
+@endif
 </div>
 <div class="form-group text-justify" >
     {!! Form::label('contenido', 'Contenido:') !!}

@@ -49,6 +49,7 @@ class MessageController extends Controller
 
         $validator = Validator::make(Input::all(), Message::rules(),[],Message::niceNames());
             $data['conversation_id'] = Input::get('conversation_id');
+
             $data['message'] = Input::get('message');            
             if ($validator->fails()) {
 
@@ -89,7 +90,7 @@ class MessageController extends Controller
         $data['user2_id']=$conv1->user2_id;
         $data['user1_accountname']=$conv1->user1_accountname;
         $data['user2_accountname']=$conv1->user2_accountname;
-        $data['conversation1_id']=$conv1->id;
+        $data['conversation_id']=$conv1->id;
         $data['conversation2_id']=$conv2->id;
         $data['messages']=$messages;
 

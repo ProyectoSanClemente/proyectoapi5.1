@@ -39,7 +39,7 @@ io.on('connection', function (socket) {
     io.sockets.emit( 'new_message', {
     	sender: data.sender,
     	message: data.message,
-      conversation1_id: data.conversation1_id,
+      conversation_id: data.conversation_id,
       conversation2_id: data.conversation2_id,
     	created_at: data.created_at
     });

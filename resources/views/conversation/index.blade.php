@@ -12,9 +12,11 @@
                     <div class="col-lg-12">
                     <h3 class="bold">Lista usuarios</h3>
                         <div class="btn-group">
-                            
+                            {{-- Inputs de info --}}
                             {!! Form::hidden('user1_id', Auth::user()->id, ['id'=>'user1_id']) !!}
                             {!! Form::hidden('accountname', Auth::user()->accountname, ['id'=>'user1_accountname']) !!}
+                            {!! Form::hidden('conversation_id', '', ['id'=>'conversation_id']) !!}
+                            {!! Form::hidden('conversation2_id', '', ['id'=>'conversation2_id']) !!}    
                             
                             
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Crear Conversación<span class="caret"></span></button>
@@ -57,12 +59,15 @@
                     </div>
                     <div class="portlet-body portlet-conversation" style="height:400px">
                         <div class="scroller scroll-bottom" style="height:400px !important;">
+                            <div class="container" style="width:700px">
+                                {{-- Aqui mensajes--}}
+                                <div class="div_conversation">
+                                      
+                                </div>
+                            </div>
+                                                
 
-                        <div class="div_conversation" data-base-url="{{ URL::to('/') }}"></div>
-                           
-                           {!! Form::hidden('conversation_id', '', ['id'=>'conversation_id']) !!}                 
-                        
-                        </div>
+                            </div>
                     </div>
                 </div>
 

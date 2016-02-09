@@ -4,9 +4,11 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 {{-- Inputs de info --}}
 {!! Form::hidden('user1_id', Auth::user()->id, ['id'=>'user1_id']) !!}
-{!! Form::hidden('accountname', Auth::user()->accountname, ['id'=>'user1_accountname']) !!}
+{!! Form::hidden('user1_accountname', Auth::user()->accountname, ['id'=>'user1_accountname']) !!}
+{!! Form::hidden('user2_id', '', ['id'=>'user2_id']) !!}
+{!! Form::hidden('user2_accountname', '', ['id'=>'user2_accountname']) !!}
 {!! Form::hidden('conversation_id', '', ['id'=>'conversation_id']) !!}
-{!! Form::hidden('conversation2_id', '', ['id'=>'conversation2_id']) !!} 
+{!! Form::hidden('conversation2_id', '', ['id'=>'conversation2_id']) !!}
 
 <audio id="notif_audio"><source src="{!! asset('sounds/notify.mp3') !!}" type="audio/mpeg"></audio>
 <div class="container">
@@ -15,7 +17,7 @@
             <!-- Users list starts here -->
             <div class="col-md-4">
                 <!-- Begin Portlet PORTLET-->
-                <div>
+                <div id='tabs'>
                     <!-- Nav tabs -->                  
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#conversations" aria-controls="conversations" role="tab" data-toggle="tab">Conversaciones</a></li>
@@ -37,9 +39,9 @@
                             <div class="portlet">                    
                                 <div class="portlet-body form">                   
                                     <div class="scroller scroll-users">
-                                        <!--  Listado de conversaciones activas-->
-                                        @foreach ($users as $user)
-                                            {!! Form::open(['class'=>'form-horizontal'])!!}
+                                        <!--  Listado de conversaciones activas-->                                    
+                                        {!! Form::open(['class'=>'form-horizontal'])!!}
+                                            @foreach ($users as $user)
                                                 <a href="#" class="user-selected" data-user2_id="{{$user->id}}" data-user2_accountname="{{ $user->accountname}}">
                                                     <div class="form-group col-md-12">
                                                         <div class="col-md-3">
@@ -50,8 +52,8 @@
                                                         </div>
                                                     </div>
                                                 </a>
-                                            {!! Form::close()!!}
-                                        @endforeach
+                                            @endforeach
+                                        {!! Form::close()!!}                                        
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +103,6 @@
 @endsection
 
 @push('scripts')
-</style>
     {!! HTML::script('js/chat/chat.js') !!}
     {!! HTML::script('js/chat/jquery.slimscroll.min.js') !!}
     {!! HTML::script('js/chat/jquery.formatDateTime.min.js') !!}

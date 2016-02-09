@@ -46,11 +46,10 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-
         $validator = Validator::make(Input::all(), Message::rules(),[],Message::niceNames());
-            $data['conversation_id'] = Input::get('conversation_id');
-
-            $data['message'] = Input::get('message');            
+            
+            $id_conv2=Input::get('conversation2_id');
+            $conversation2=Conversation::find($id_conv2);
             if ($validator->fails()) {
 
                 $error = $validator->errors();
@@ -58,12 +57,15 @@ class MessageController extends Controller
                 //$data['notif'] = '<div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 alert alert-danger alert-dismissable"><i class="fa fa-ban"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' .implode('', $error->all(':message<br />')). '</div>';
                 
             } else {   
-                $message=Request::all();
-                Message::create($message);
+                $input=Request::all();
+                Message::create($input);
                 $id = DB::getPdo()->lastInsertId(); 
                 $data = Message::DetailMessage($id);
+                $data['user2_accountname']= $input['user2_accountname'];
                 //$data = Message::DetailMessage($id);
                 //$data['new_count_message'] = count(Message::CountNewMessage());
+                $conversation2->unseen++;
+                $conversation2->save();                
                 $data['success'] = true;
                 //$data['notif'] = '<div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 alert alert-success" role="alert"> <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Mensaje Enviado ...</div>';
 

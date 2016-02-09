@@ -11,6 +11,7 @@ $(document).ready(function(){
         var user2_id=user_selected.data('user2_id');
         var user2_accountname=user_selected.data('user2_accountname');  
         create_conversation(user1_id,user1_accountname,user2_id,user2_accountname);
+        $('#tabs a[href="#conversations"]').tab('show'); //Select conversations tab
     });
 
     $(document).delegate('.conversation-selected', 'click', function(e){//para el form creado dinamico
@@ -21,6 +22,7 @@ $(document).ready(function(){
         var user1_accountname=$('#user1_accountname').val();
         var user2_id=conversation_selected.data('user2_id');
         var user2_accountname=conversation_selected.data('user2_accountname');
+        $('#user2_accountname').val(user2_accountname);
         show_messages();
     });
 
@@ -34,7 +36,27 @@ $(document).ready(function(){
         send_message($(this));
     });
 
+    $('.scroll-conversation').click(function(){
+        update_notifications();
+    });
 });
+
+function update_notifications(){
+    var dataString = {
+        conversation_id: $('#conversation_id').val()
+    };
+    $.ajax({
+        type: "POST",
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "chat/update",
+        data: dataString,
+        dataType: "json",
+        cache : false,
+        success: function(data){
+            $('#notification-'+data.id).html('0')
+        },
+    });
+}
 
 function show_messages(){
     var dataString = {
@@ -94,11 +116,10 @@ function show_messages(){
 }
 
 function send_message(input){
-    var user1_id=$('#user1_id').val();
-    var user1_accountname=$('#user1_accountname').val();
     var dataString = {
-        user1_id: user1_id,
-        sender: user1_accountname,
+        user1_id: $('#user1_id').val(),
+        sender: $('#user1_accountname').val(),
+        user2_accountname: $('#user2_accountname').val(),
         conversation_id  : $('#conversation_id').val(),
         conversation2_id  : $('#conversation2_id').val(),
         message : $('.text-message').val(),
@@ -111,26 +132,31 @@ function send_message(input){
         dataType: "json",
         cache : false,
         success: function(data){
-            $('.text-message').val('');
             if(data.success == true){
+                $('.text-message').val('');
                 var socket = io.connect( 'http://'+window.location.hostname+':3000' );
-                socket.emit('new_message', { 
+                socket.emit('new_message',{ 
                     sender: data.sender,
+                    user2_accountname: data.user2_accountname,
                     conversation_id  : $('#conversation_id').val(),
                     conversation2_id  : $('#conversation2_id').val(),
                     message: data.message,
                     created_at: data.created_at,
                 });
+
             }else if(data.success == false){
                 if($('.text-message').val()==''){
                     alert('Mensaje Vacio')
                 }
+                if($('#conversation_id').val()==''){
+                    alert('Se debe escoger alguien con quien conversar')
+                }
                 $("#message").val(data.message);
                 $("#notif").html(data.notif);
             }
-          
+
         } ,error: function(xhr, status, error) {
-            alert(error);
+            //alert(error);
         },
 
     });
@@ -153,22 +179,21 @@ function create_conversation(user1_id,user1_accountname,user2_id,user2_accountna
         dataType: "json",
         cache : false,
         success: function(data){
+            $("#conversation_id").val(data.id);
             if(data.creado){                    
                 $('.conversation-selected').html('');
-                show_conversations();
+                
                 show_messages();
+                show_conversations();                
                 //Emit new conversation
             }
-            else{
-                alert('ya existia la conversa');
+            else{//Si ya existia la conversacion                
                 show_messages();
             }
-            $("#conversation_id").val(data.id);
-            conversation_id=data.id;
             //$('#conversation_id').val(data.id);
 
         } ,error: function(xhr, status, error) {
-          alert(error);
+          //alert(error);
         },
     });
 }
@@ -193,7 +218,7 @@ function show_conversations(){
                 $('.scroll-conversations').append($("<div/>",{
                     class:"alert alert-warning",
                     role : "alert"
-                }).append('Aun no hay conversaciones, seleccione un usuario de la lista de arriba!')
+                }).append('Aun no hay conversaciones activas, seleccione un usuario para conversar desde la pestaña Usuarios!')
                 )
             }
             else{
@@ -202,6 +227,7 @@ function show_conversations(){
                     var user2_id=data[i].user2_id;
                     var user2_accountname=data[i].user2_accountname;
                     var imagen=data[i].imagen;
+                    var notification=data[i].unseen;
                     $('.scroll-conversations').append(                 
                         $("<form/>", {
                             class: 'form-horizontal'
@@ -232,8 +258,9 @@ function show_conversations(){
                                         }).append(
                                             user2_accountname,
                                             $("<span/>",{
+                                                id: 'notification-'+id,
                                                 class:'notification'
-                                            }).append('25')
+                                            }).append(notification)
                                         )
                                     )                                 
                                 )
@@ -243,7 +270,7 @@ function show_conversations(){
                 }//endfor
             }
         }, error: function(xhr, status, error) {
-          alert(error);
+          //alert(error);
         },
     });
 }
@@ -251,5 +278,7 @@ function show_conversations(){
 function scroll(){
     $('.scroll-conversation').slimScroll({
         scrollTo: $('.scroll-conversation')[0].scrollHeight
+        
     });
+    update_notifications()
 }

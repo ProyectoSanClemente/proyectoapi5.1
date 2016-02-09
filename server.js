@@ -26,7 +26,7 @@ io.on('connection', function (socket) {
     });
   });
 
-    socket.on( 'new_conversation', function( data ) {
+  socket.on( 'new_conversation', function( data ) {
     io.sockets.emit( 'new_conversation', {
       sender: data.sender,
       created_at: data.created_at
@@ -38,6 +38,7 @@ io.on('connection', function (socket) {
   socket.on( 'new_message', function( data ) {
     io.sockets.emit( 'new_message', {
     	sender: data.sender,
+      user2_accountname: data.user2_accountname,
     	message: data.message,
       conversation_id: data.conversation_id,
       conversation2_id: data.conversation2_id,
@@ -45,4 +46,12 @@ io.on('connection', function (socket) {
     });
   });
   
+   socket.on( 'new_message_notification', function( data ) {
+    io.sockets.emit( 'new_message', {
+      sender: data.sender,
+      conversation_id: data.conversation_id,
+      conversation2_id: data.conversation2_id,
+    });
+  });
+
 });

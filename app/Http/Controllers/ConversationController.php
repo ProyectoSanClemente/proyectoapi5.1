@@ -79,83 +79,22 @@ class ConversationController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-        $validator = Validator::make(Input::all(), Message::rules(),[],Message::niceNames());            
-            $data['name'] = Input::get('name');
-            $data['email'] = Input::get('email');
-            $data['conversation_id'] = Input::get('conversation_id');
-            $data['subject'] = Input::get('subject');
-            $data['message'] = Input::get('message');
-
-            if ($validator->fails()) {
-                
-                $error = $validator->errors();
-                $data['success'] = false;
-                $data['notif'] = '<div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 alert alert-danger alert-dismissable"><i class="fa fa-ban"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' .implode('', $error->all(':message<br />')). '</div>';
-                
-            } else {    
-                $message=Request::all();
-                Message::create($message);
-                $id = DB::getPdo()->lastInsertId();  
-                $data = Message::DetailMessage($id);
-                $data['new_count_message'] = count(Message::CountNewMessage());
-                $data['success'] = true;
-                $data['notif'] = '<div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 alert alert-success" role="alert"> <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Mensaje Enviado ...</div>';
-
-            }
-            return json_encode($data);
-    
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-      
-        $id = Input::get('id');
-        if($id){
-
-            Message::UpdateSeen($id);
-            $data = Message::DetailMessage($id);
-            $data['update_count_message'] = count(Message::CountNewMessage());
-            return json_encode($data);
-
-        
-        }
+    public function update()
+    {   
+        $input=Request::all();
+        $id=$input['conversation_id'];
+        $conversa=Conversation::find($id);
+        $conversa->unseen=0;
+        $conversa->save();
+        $data['id']=$id;
+        $data['datos']=$input;
+        return json_encode($data);
     }
 
 }

@@ -43,9 +43,15 @@ socket.on('new_message', function( data ) {
                 }).append(data.sender+' dice:'+'<span class="pull-right"> enviado:'+data.created_at+'</span>'+'<br>'+message)
             )
         )
-		scroll();
+     	scroll();
 		//show_messages();
-		$('#notif_audio')[0].play();
 	}
-	
+
+	if(data.user2_accountname==$('#user1_accountname').val()){
+		$('#notif_audio')[0].play();
+		show_conversations();
+	}
+
+
 });
+

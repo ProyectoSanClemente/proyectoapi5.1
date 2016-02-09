@@ -22,7 +22,7 @@ socket.on('new_message', function( data ) {
 	if(data.conversation_id==$("#conversation_id").val()){
 		$('.div_conversation').append(
                 $('<row/>',{
-                    class: 'col-md-9 pull-left'
+                    class: 'col-md-9 pull-right'
                 }).append(
                 $("<div/>",{
                     class: 'bubble me'
@@ -36,7 +36,7 @@ socket.on('new_message', function( data ) {
 	if(data.conversation2_id==$("#conversation_id").val()){
 		$('.div_conversation').append(
                 $('<row/>',{
-                    class: 'col-md-9 pull-right'
+                    class: 'col-md-9 pull-left'
                 }).append(
                 $("<div/>",{
                     class: 'bubble you'
@@ -47,7 +47,5 @@ socket.on('new_message', function( data ) {
 		//show_messages();
 		$('#notif_audio')[0].play();
 	}
-
-
-
+	
 });

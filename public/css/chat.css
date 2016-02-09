@@ -34,6 +34,7 @@ button.tip {
     border: none;
     line-height: 15px;
 }
+
 button.tip:hover {
     text-decoration: underline;
     color: #005580;
@@ -72,28 +73,7 @@ th.actions2 {
     width: 100px;
 }
 
-/* Style to chat42 */
-img.img-comment {
-    width: 50px;
-    height: auto;
-}
-
-.crop-profile {
-    width: 200px;
-    height: 300px;
-    overflow: hidden;
-}
-
-.crop-profile img {
-    width: 150px;
-    height: 200px;
-    margin: -75px 0 0 -100px;
-}
-
-img.view-profile {
-    width: 100%;
-}
-
+/* Style to chat */
 img.crop-chat {
     width: 50px;
     height: 50px;
@@ -160,25 +140,11 @@ img.crop-chat {
     border-radius: 15px;
 }
 
-.form {
-    padding: 0 !important;
-}
-
-.form .form-bordered .form-group {
-    margin: 0;
-    border-bottom: 1px solid #efefef;
-}
-
 .scroller {
     padding: 0px;
     margin: 0px;
     padding-right: 12px;
     overflow: hidden;
-    /*height: 450px !important;*/
-}
-
-.slimScrollDiv {
-    /*height: 450px !important;*/
 }
 
 .form .form-bordered .form-group > div {
@@ -261,37 +227,26 @@ img.crop-chat {
     width:  20px;
 }
 
-.me {
-    float: left;   
+.you {
     margin: 10px 10px 10px 10px;
-    min-width: 250px; 
-    width: 500px;
+    width: 100%;
+    min-width: 200px; 
+}
+
+.you::before {
+    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+    left: -9px;
+}
+
+.me {
+    margin: 10px 10px 10px 10px;     
+    width: 100%;
+    min-width: 200px;
     background-color: lightblue;
 }
 
 .me::before {
-    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
-    left: -9px;
+    box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
+    right: -9px;
     background-color: lightblue; 
 }
-
-.you {
-    float: right; 
-    margin: 10px 10px 10px 10px;     
-    width: 500px;
-    min-width: 250px;
-}
-
-.you::before {
-    box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
-    right: -9px;    
-}
-
-
-/*Scroll Dropdown*/
-.scrollable-menu {
-    height: auto;
-    width: 280px;
-    max-width: 500px;
-    max-height: 500px;
-    overflow-x: hidden;

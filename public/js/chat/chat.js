@@ -1,7 +1,8 @@
 $(document).ready(function(){
     show_conversations();
+    $('.scroll-conversations').slimScroll();
+    $('.scroll-conversation').slimScroll();
     $('.scroll-users').slimScroll();
-    $('.scroll-bottom').slimScroll();
 
     $('.user-selected').click(function(e){
         user_selected = $(this);
@@ -64,7 +65,7 @@ function show_messages(){
                     if(sender==data.user1_accountname){                        
                         $('.div_conversation').append(
                                 $('<row/>',{
-                                    class: 'col-md-9 pull-left'
+                                    class: 'col-md-9 pull-right'
                                 }).append(
                                 $("<div/>",{
                                     class: 'bubble me'
@@ -76,7 +77,7 @@ function show_messages(){
                     if(sender==data.user2_accountname){
                         $('.div_conversation').append(
                                 $('<row/>',{
-                                    class: 'col-md-9 pull-right'
+                                    class: 'col-md-9 pull-left'
                                 }).append(
                                 $("<div/>",{
                                     class: 'bubble you'
@@ -184,14 +185,14 @@ function show_conversations(){
     $.ajax({
         type: "POST",
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url: "chat/showconversations",
+        url: "chat/show",
         data: dataString,
         dataType: "json",
         cache : false,
         success: function(data){
-            $('.scroll-users').html('');
+            $('.scroll-conversations').html('');
             if(data.length==0){
-                $('.scroll-users').append($("<div/>",{
+                $('.scroll-conversations').append($("<div/>",{
                     class:"alert alert-warning",
                     role : "alert"
                 }).append('Aun no hay conversaciones, seleccione un usuario de la lista de arriba!')
@@ -203,12 +204,12 @@ function show_conversations(){
                     var user2_id=data[i].user2_id;
                     var user2_accountname=data[i].user2_accountname;
                     var imagen=data[i].imagen;
-                    $('.scroll-users').append(                 
+                    $('.scroll-conversations').append(                 
                         $("<form/>", {
-                            class: 'form-horizontal form-bordered conversation-list'
+                            class: 'form-horizontal'
                         }).append(
                             $("<span/>",{
-                                class:'notifications-'+id
+                                class:'notifications'
                             }),                       
                             $("<a/>",{
                                 href: "#",
@@ -218,7 +219,7 @@ function show_conversations(){
                                 'data-user2_accountname': user2_accountname
                             }).append(
                                 $("<div/>",{
-                                    class: "form-group row col-md-12"
+                                    class: "form-group col-md-12"
                                 }).append(
                                    $("<div/>",{
                                         class: "col-md-3"
@@ -250,7 +251,7 @@ function show_conversations(){
 }
 
 function scroll(){
-    $('.scroll-bottom').slimScroll({
-        scrollTo: $('.scroll-bottom')[0].scrollHeight
+    $('.scroll-conversation').slimScroll({
+        scrollTo: $('.scroll-conversation')[0].scrollHeight
     });
 }

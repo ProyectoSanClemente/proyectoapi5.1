@@ -83,17 +83,17 @@ class MessageController extends Controller
         $input=Request::all();
         $conv1=Conversation::where('id',Input::get('conversation_id'))->first();        
         $conv2=Conversation::where('user1_id', '=', $conv1->user2_id)->where('user2_id', '=', $conv1->user1_id)->first();
-        //$messages1=Message::where('conversation_id',$conv1->id)->get();
-        //$messages2=Message::where('conversation_id',$conv2->id)->get();
-        $messages=DB::select('select * from messages where conversation_id = ? or conversation_id = ? order by created_at', array($conv1->id,$conv2->id));
+        $messages1=Message::where('conversation_id',$conv1->id)->get();
+        $messages2=Message::where('conversation_id',$conv2->id)->get();
+        //$messages=DB::select('select * from messages where conversation_id = ? or conversation_id = ? order by created_at', array($conv1->id,$conv2->id));
+        $messages=$messages1->merge($messages2);
         $data['user1_id']=$conv1->user1_id;
         $data['user2_id']=$conv1->user2_id;
         $data['user1_accountname']=$conv1->user1_accountname;
         $data['user2_accountname']=$conv1->user2_accountname;
         $data['conversation_id']=$conv1->id;
         $data['conversation2_id']=$conv2->id;
-        $data['messages']=$messages;
-
+        $data['messages']=$messages->sortBy('created_at')->values();
         return json_encode($data);
     }
 

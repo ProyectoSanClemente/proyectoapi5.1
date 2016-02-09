@@ -6,10 +6,10 @@
 
     <div class="row">
 
-    <div class="col-lg-3">  
-        @include('emails.sidebar')
-      </div>
-       <div class="col-lg-9">     
+    	<div class="col-lg-3">  
+        	@include('emails.sidebar')
+		</div>
+       	<div class="col-lg-9">     
 			<section class="panel panel-default mail-container">
 				<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Vista correo</strong></div>
 				<div class="panel-body">

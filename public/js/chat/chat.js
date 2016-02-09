@@ -93,8 +93,6 @@ function show_messages(){
     });
 }
 
-
-
 function send_message(input){
     var user1_id=$('#user1_id').val();
     var user1_accountname=$('#user1_accountname').val();
@@ -207,10 +205,7 @@ function show_conversations(){
                     $('.scroll-conversations').append(                 
                         $("<form/>", {
                             class: 'form-horizontal'
-                        }).append(
-                            $("<span/>",{
-                                class:'notifications'
-                            }),                       
+                        }).append(                                  
                             $("<a/>",{
                                 href: "#",
                                 class: "conversation-selected",
@@ -235,7 +230,10 @@ function show_conversations(){
                                         $("<div/>",{
                                             id: 'user2-'+id,
                                         }).append(
-                                            user2_accountname
+                                            user2_accountname,
+                                            $("<span/>",{
+                                                class:'notification'
+                                            }).append('25')
                                         )
                                     )                                 
                                 )

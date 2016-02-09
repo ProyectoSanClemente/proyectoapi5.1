@@ -18,7 +18,7 @@
                 <div>
                     <!-- Nav tabs -->                  
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#conversations" aria-controls="conversations" role="tab" data-toggle="tab">Conversaciones activas</a></li>
+                        <li role="presentation" class="active"><a href="#conversations" aria-controls="conversations" role="tab" data-toggle="tab">Conversaciones</a></li>
                         <li role="presentation"><a href="#users" aria-controls="users" role="tab" data-toggle="tab">Usuarios</a></li>
                     </ul>
                     <!-- Tab panes -->
@@ -62,7 +62,7 @@
             <!-- End of users list -->
 
             <!-- Begin conversation here -->
-            <div class="col-md-8 well well-white" style="height:450px">
+            <div class="col-md-8 well well-white" style="height:500px">
                 <div class="portlet gren">
                     <div class="portlet-title">
                         <div class="caption">
@@ -72,8 +72,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="portlet-body portlet-conversation" style="height:300px">
-                        <div class="scroller scroll-conversation" style="height:300px !important;">
+                    <div class="portlet-body portlet-conversation" style="height:350px">
+                        <div class="scroller scroll-conversation" style="height:350px !important;">
                             
                                 {{-- Aqui mensajes--}}
                                 <div class="div_conversation">
@@ -107,12 +107,10 @@
     {!! HTML::script('js/chat/jquery.formatDateTime.min.js') !!}
     {!! HTML::style('css/chat.css')!!}
     <style type="text/css">
-        .scroll-conversations { height: 400px !important; }
-        .scroll-users { height: 400px !important; }
-        .slimScrollDiv { height: 400px !important; }
-        .scroll-conversation { height: 300px !important; }
-        
-
+        .scroll-conversations { height: 450px !important; }
+        .scroll-users { height: 450px !important; }
+        .slimScrollDiv { height: 450px !important; }
+        .scroll-conversation { height: 350px !important; }   
     </style>
 @endpush
 

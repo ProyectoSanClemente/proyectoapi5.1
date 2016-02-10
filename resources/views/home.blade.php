@@ -66,11 +66,11 @@
         </div>
         <div class="col-md-6">
             <div class="panel panel-info" style="height:auto">
-                <div class="panel-heading">RSS</div>
+                <div class="panel-heading">Noticias</div>
                     <div class="panel-body" style="height:400px">                             
                         @foreach ($feed->get_items() as $item)
                             <div class="item">
-                              <h4><a href="{{ $item->get_permalink() }}">{{ $item->get_title() }}</a></h4>
+                              <h4><a target="_blank" href="{{ $item->get_permalink() }}">{{ $item->get_title() }}</a></h4>
                               <p>{{ $item->get_description() }}</p>
                             </div>
                         @endforeach

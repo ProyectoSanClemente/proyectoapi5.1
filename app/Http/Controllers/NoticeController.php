@@ -32,7 +32,7 @@ class NoticeController extends AppBaseController
 	 */
 	public function index()
 	{
-		$notices = $this->noticeRepository->paginateordered(2);
+		$notices = $this->noticeRepository->paginateordered(4);
 		$feed = Feeds::make('http://www.sanclemente.cl/web/?feed=rss',5,true);
 
 		return view('noticias.index')

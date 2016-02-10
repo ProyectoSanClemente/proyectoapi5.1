@@ -208,5 +208,5 @@ return [
         'Feeds'     => willvincent\Feeds\Facades\FeedsFacade::class,
 
     ],
-
+    
 ];

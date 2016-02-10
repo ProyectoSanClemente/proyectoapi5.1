@@ -37,7 +37,7 @@
                     </p>
 
                 </div>
-                <div align="right" class="panel-footer">{{$notice->updated_at}}</div>
+                <div align="right" class="panel-footer">{{$notice->updated_at->formatLocalized('%A %d %B %Y')}}</div>
             </div>
         </div>
         @endforeach           <!-- /.row -->

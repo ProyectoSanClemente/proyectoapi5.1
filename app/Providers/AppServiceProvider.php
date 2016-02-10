@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Providers;
-use App\Models\Message;
 use Illuminate\Support\ServiceProvider;
-use View;
 
 class AppServiceProvider extends ServiceProvider
 {

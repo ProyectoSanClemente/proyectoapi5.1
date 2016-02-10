@@ -5,14 +5,12 @@ use App\Http\Requests\CreateNoticeRequest;
 use App\Http\Requests\UpdateNoticeRequest;
 use App\Libraries\Repositories\NoticeRepository;
 use Flash;
-use Mitul\Controller\AppBaseController as AppBaseController;
 use Response;
-
 use Input;
 use Image;
 use Feeds;
 
-class NoticeController extends AppBaseController
+class NoticeController extends Controller
 {
 
 	/** @var  NoticeRepository */

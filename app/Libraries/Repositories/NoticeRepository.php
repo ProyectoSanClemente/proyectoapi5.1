@@ -63,4 +63,17 @@ class NoticeRepository extends Repository
 
         return $model->delete();
     }
+
+      /**
+     * @param int $perPage
+     * @param value $attribute
+     * @param value $order
+     * @param array $columns
+     * @return mixed
+     */
+    public function paginateordered($perPage = 1, $attribute = 'updated_at', $order = 'desc', $columns = array('*')) {
+        $this->applyCriteria();
+        return $this->model->orderBy($attribute, $order)->paginate($perPage);
+    }
+
 }

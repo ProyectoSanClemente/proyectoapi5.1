@@ -7,6 +7,7 @@ use App\Libraries\Repositories\NoticeRepository;
 use Flash;
 use Mitul\Controller\AppBaseController as AppBaseController;
 use Response;
+
 use Input;
 use Image;
 use Feeds;
@@ -31,7 +32,7 @@ class NoticeController extends AppBaseController
 	 */
 	public function index()
 	{
-		$notices = $this->noticeRepository->paginate(4);
+		$notices = $this->noticeRepository->paginateordered(2);
 		$feed = Feeds::make('http://www.sanclemente.cl/web/?feed=rss',5,true);
 
 		return view('noticias.index')

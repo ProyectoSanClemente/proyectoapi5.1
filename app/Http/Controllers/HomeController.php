@@ -33,7 +33,7 @@ class HomeController extends AppBaseController
     {
         
         $feed = Feeds::make('http://www.sanclemente.cl/web/?feed=rss',5,true);
-        $notices = $this->noticeRepository->paginate(4);
+        $notices = $this->noticeRepository->all()->sortByDesc('updated_at')->values();
 
 
         return view('home')

@@ -10,16 +10,20 @@ class Conversation extends Model {
 	public static function rules ($merge=[]) {
 		return array_merge(
 			[
-				'user1'      	=> 'required|max:25',
-				'user2'			=> 'required|max:25',
-			], 
+				'user1'      		=> 'required|max:25',
+				'user1_accountname' => 'required|max:25',
+				'user2'				=> 'required|max:25',
+				'user2_accountname' => 'required|max:25'
+			],
         $merge);
 	}
 	
 	public static function niceNames () {
 		return [
-			'user1'   	=> '<b>User 1</b>',
-			'user2' 	=> '<b>User 2</b>',			
+			'user1'   			=> '<b>Usuario 1</b>',
+			'user2' 			=> '<b>Usuario 2</b>',
+			'user1_accountname' => '<b>Cuenta Usuario 1</b>',
+			'user2_accountname' => '<b>Cuenta Usuario 2</b>'
 		];
-	}	
+	}
 }

@@ -107,6 +107,7 @@
     {!! HTML::script('js/chat/jquery.slimscroll.min.js') !!}
     {!! HTML::script('js/chat/jquery.formatDateTime.min.js') !!}
     {!! HTML::style('css/chat.css')!!}
+     {!! HTML::script('js/chat/nodesocket.js')!!} {{-- Servidor escuchando :) --}}
     <style type="text/css">
         .scroll-conversations { height: 450px !important; }
         .scroll-users { height: 450px !important; }

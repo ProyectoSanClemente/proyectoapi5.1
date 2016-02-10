@@ -25,13 +25,15 @@
                         <li> {!! HTML::link('cuentas', 'Cuentas')       !!}</li>
                         <li> {!! HTML::link('emails/index', 'Correo')   !!}</li>
                         <li> {!! HTML::link('sistemas', 'Sistemas')     !!}</li>
-                        <li><a href="{!!  URL::to('chat')  !!}">Chat <span class="badge" id="new_count_message">{{ $CountNewMessage }}</span></a></li>
+                        <li> {!! HTML::link('chat', 'Chat')             !!}</li>
+                        {{-- <li><a href="{!!  URL::to('chat')  !!}">Chat </a></li> --}}
 
                     @else
-                        <li> {!! HTML::link('cuentas', 'Cuentas')     !!}</li>
-                        <li> {!! HTML::link('emails/index', 'Correo') !!}</li>
-                        <li> {!! HTML::link('sistemas', 'Sistemas')   !!}</li>
-                        <li><a href="{!!  URL::to('chat')  !!}">Chat <span class="badge" id="new_count_message">{{ $CountNewMessage }}</span></a></li>
+                        <li> {!! HTML::link('cuentas', 'Cuentas')       !!}</li>
+                        <li> {!! HTML::link('emails/index', 'Correo')   !!}</li>
+                        <li> {!! HTML::link('sistemas', 'Sistemas')     !!}</li>
+                        <li> {!! HTML::link('chat', 'Chat')             !!}</li>
+                        {{-- <li><a href="{!!  URL::to('chat')  !!}">Chat </a></li> --}}
 
                     @endif
                 @endif

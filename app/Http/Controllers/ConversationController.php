@@ -13,7 +13,7 @@ class ConversationController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +24,42 @@ class ConversationController extends Controller
         $users=Usuario::all();
         return view('conversation.index')
             ->with('users',$users);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createOrupdate()
+    {
+        $validator = Validator::make(Input::all(), Conversation::rules(),[],Conversation::niceNames());
+        $input=Request::all();
+        $conversation=Conversation::where('user1_id', '=', $input['user1_id'])->where('user2_id', '=', $input['user2_id'])->first();
+        //$results = DB::select('select * from conversations where user1_id = ? and user2_id = ?', dataay($input['user1_id'],$input['user2_id']));
+        $data['user1_id'] = $input['user1_id'];
+        $data['user1_accountname'] = $input['user1_accountname'];
+        $data['user2_id'] = $input['user2_id'];
+        $data['user2_accountname'] = $input['user2_accountname'];
+        $data['created'] = false;
+        if(empty($conversation)){
+            $conversation=Conversation::create($input);            
+            $data['id']=$conversation->id;
+            $data['created']=true;
+            if($input['user1_id']!==$input['user2_id']){
+                //$coninver=new Conversation; //Crea la conversacion en el otro sentido
+                $inputinver=['user1_id'=>$input['user2_id'],
+                        'user2_id'=>$input['user1_id'],
+                        'user1_accountname'=>$input['user2_accountname'],
+                        'user2_accountname'=>$input['user1_accountname']
+                    ];
+                $coninver=Conversation::create($inputinver); //Crea la conversacion en el otro sentido
+            }
+        }
+        else
+            $data['id']=$conversation->id;
+
+        return json_encode($data);       
     }
 
     /**
@@ -44,57 +80,18 @@ class ConversationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createOrupdate()
-    {
-        $input=Request::all();
-        $conversation=Conversation::where('user1_id', '=', $input['user1_id'])->where('user2_id', '=', $input['user2_id'])->first();
-        //$results = DB::select('select * from conversations where user1_id = ? and user2_id = ?', dataay($input['user1_id'],$input['user2_id']));
-        $data['user1_id'] = $input['user1_id'];
-        $data['user1_accountname'] = $input['user1_accountname'];
-        $data['user2_id'] = $input['user2_id'];
-        $data['user2_accountname'] = $input['user2_accountname'];
-        $data['creado'] = false;
-        if(empty($conversation)){
-            Conversation::create($input);
-            
-            $data['id']=DB::getPdo()->lastInsertId();
-            $data['creado']=true;
-            if($input['user1_id']!==$input['user2_id']){
-                $coninver=new Conversation; //Crea la conversacion en el otro sentido
-                $coninver->user1_id=$input['user2_id'];
-                $coninver->user2_id=$input['user1_id'];
-                $coninver->user1_accountname=$input['user2_accountname'];
-                $coninver->user2_accountname=$input['user1_accountname'];
-                $coninver->save();
-            }
-        }
-        else
-            $data['id']=$conversation->id;
-
-        return json_encode($data);       
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update()
-    {   
-        $input=Request::all();
-        $id=$input['conversation_id'];
-        $conversa=Conversation::find($id);
-        $conversa->unseen=0;
-        $conversa->save();
+    public function update()    {   
+        
+        $id=Input::get('conversation_id');
+        Conversation::where('id',$id)->update(['unseen'=>0]);
         $data['id']=$id;
-        $data['datos']=$input;
-        return json_encode($data);
+        return json_encode($id);
     }
 
 }

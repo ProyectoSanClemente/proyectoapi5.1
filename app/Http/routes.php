@@ -27,24 +27,14 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware'], function () {
-    //
-});
-
-
-Route::group(['middleware'], function () {
-    Route::group(['prefix' => 'messages'], function () {
-        //Route::get('/', 'MessageController@index');
-        //Route::post('/','MessageController@update');
-        //Route::get('create', 'MessageController@create');
-        Route::post('store','MessageController@store');
-        Route::post('showmessages','MessageController@showmessages');
-    });    
-
+    
     Route::group(['prefix' => 'chat'], function(){
         Route::get('/','ConversationController@index');
         Route::post('create','ConversationController@createorUpdate');
         Route::post('show','ConversationController@showconversations');
         Route::post('update','ConversationController@update');
+        Route::post('store','MessageController@store');
+        Route::post('showmessages','MessageController@showmessages');
     });
 
     Route::get('login', 'Auth\AuthController@getLogin');

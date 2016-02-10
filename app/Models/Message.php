@@ -22,25 +22,5 @@ class Message extends Model {
 			'message'  			=> '<b>Mensaje</b>',
 		];
 	}
-	
-	public function scopeListMessage()
-	{
-		return $this->get();
-	}
-	
-	public function scopeCountNewMessage()
-	{
-		return $this->where('seen',0)->get();
-	}
-
-	public function scopeUpdateSeen($query,$id)
-	{
-		return $query->where('id',$id)->update(['seen'=>1]);
-	}
-
-	public function scopeDetailMessage($query,$id)
-	{
-		return $query->find($id)->toArray();
-	}
 
 }

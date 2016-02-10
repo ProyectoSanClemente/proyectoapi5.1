@@ -14,10 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $ListMessage      = Message::ListMessage();
-        $CountNewMessage  = count(Message::CountNewMessage());
-        View::share('CountNewMessage',$CountNewMessage);
-        View::share('ListMessage',$ListMessage);
+        //
     }
 
     /**

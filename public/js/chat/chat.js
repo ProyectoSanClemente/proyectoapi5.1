@@ -52,8 +52,8 @@ function update_notifications(){
         data: dataString,
         dataType: "json",
         cache : false,
-        success: function(data){
-            $('#notification-'+data.id).html('0')
+        success: function(id){
+            $('#notification-'+id).html('0')
         },
     });
 }
@@ -65,7 +65,7 @@ function show_messages(){
     $.ajax({
         type: "POST",
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url: "messages/showmessages",
+        url: "chat/showmessages",
         data: dataString,
         dataType: "json",
         cache : false,
@@ -85,28 +85,11 @@ function show_messages(){
                     
                     var created_at=messages[i].created_at;
                     if(sender==data.user1_accountname){                        
-                        $('.div_conversation').append(
-                                $('<row/>',{
-                                    class: 'col-md-9 pull-right'
-                                }).append(
-                                $("<div/>",{
-                                    class: 'bubble me'
-                                }).append(sender+' dice:'+'<span class="pull-right"> enviado:'+created_at+'</span>'+'<br>'+message)
-                            )
-                        )
+                        printmessage('right','me',sender,created_at,message);
                     }
 
-                    if(sender==data.user2_accountname){
-                        $('.div_conversation').append(
-                                $('<row/>',{
-                                    class: 'col-md-9 pull-left'
-                                }).append(
-                                $("<div/>",{
-                                    class: 'bubble you'
-                                }).append(sender+' dice:'+'<span class="pull-right"> enviado:'+created_at+'</span>'+'<br>'+message)
-                            )
-                        )
-                    }
+                    if(sender==data.user2_accountname)
+                        printmessage('left','you',sender,created_at,message);
                 }
                 scroll();
             }
@@ -127,14 +110,14 @@ function send_message(input){
     $.ajax({
         type: "POST",
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url: "messages/store",
+        url: "chat/store",
         data: dataString,
         dataType: "json",
         cache : false,
         success: function(data){
             if(data.success == true){
                 $('.text-message').val('');
-                var socket = io.connect( 'http://'+window.location.hostname+':3000' );
+                var socket = io.connect( 'http://'+window.location.hostname+':3000');
                 socket.emit('new_message',{ 
                     sender: data.sender,
                     user2_accountname: data.user2_accountname,
@@ -156,7 +139,7 @@ function send_message(input){
             }
 
         } ,error: function(xhr, status, error) {
-            //alert(error);
+            alert('Has sido desconectado del servidor');
         },
 
     });
@@ -180,20 +163,17 @@ function create_conversation(user1_id,user1_accountname,user2_id,user2_accountna
         cache : false,
         success: function(data){
             $("#conversation_id").val(data.id);
-            if(data.creado){                    
+            if(data.created){
                 $('.conversation-selected').html('');
-                
                 show_messages();
-                show_conversations();                
-                //Emit new conversation
+                show_conversations();
             }
             else{//Si ya existia la conversacion                
                 show_messages();
             }
-            //$('#conversation_id').val(data.id);
 
         } ,error: function(xhr, status, error) {
-          //alert(error);
+            alert(error);
         },
     });
 }
@@ -281,4 +261,16 @@ function scroll(){
         
     });
     update_notifications()
+}
+
+function printmessage(direction,who,sender,created_at,message){
+    $('.div_conversation').append(
+            $('<row/>',{
+                class: 'col-md-9 pull-'+direction
+            }).append(
+            $("<div/>",{
+                class: 'bubble '+who
+            }).append(sender+' dice:'+'<span class="pull-right"> enviado:'+created_at+'</span>'+'<br>'+message)
+        )
+    )
 }

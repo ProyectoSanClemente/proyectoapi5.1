@@ -203,4 +203,12 @@ class CuentaController extends AppBaseController
 		return view('cuentas.crecic')
 			->with('nombre',$informacion->accountname);
 	}
+
+	public function solicitudcompras()
+	{
+		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
+		return view('cuentas.solicitudcompras')
+			->with('id',$informacion->id_sidam)
+			->with('pass',$informacion->pass_sidam);
+	}
 }

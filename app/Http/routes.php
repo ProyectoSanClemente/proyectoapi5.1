@@ -85,7 +85,11 @@ Route::group(['middleware'], function () {
 
     Route::get('cuentas/{id}/zimbra', [
     'as' => 'cuentas.zimbra',
-    'uses' => 'CuentaController@zimbra']);   
+    'uses' => 'CuentaController@zimbra']);
+
+    Route::get('cuentas/{id}/solicitudcompras', [
+    'as' => 'cuentas.solicitudcompras',
+    'uses' => 'CuentaController@solicitudcompras']);   
     
     Route::get('emails/index', [
         'as' => 'emails.index',

@@ -9,7 +9,8 @@
 
                 <div class="panel-body">    
                     Intranet v1.0       
-            {{$username=trim(shell_exec('echo %username%'))}}
+            
+            <?php ($_SERVER['REMOTE_USER'])?>
 
                 </div>
             </div>

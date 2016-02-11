@@ -6,17 +6,15 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div align="center" class="panel-heading">Inicio de Sesion</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                    {!! Form::open(['class'=>'form-horizontal','role'=>'form','method'=>'POST']) !!}
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('accountname') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Usuario</label>
-
+                            {!! Form::label(null,'Usuario',['class'=>'col-md-4 control-label'])!!}
                             <div class="col-md-6">
-                                <input type="accountname" class="form-control" name="accountname" value="{{ old('accountname') }}">
-
+                                {!! Form::input('accountname','accountname',old('accountname') ,['class'=>'form-control'])!!}
                                 @if ($errors->has('accountname'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('accountname') }}</strong>
@@ -26,11 +24,11 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
+                            {!!Form::label('password','Contraseña',['class'=>'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
-
+                                {!! Form::input('password', 'password', null,['class'=>'form-control']) !!}
+                                
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -43,7 +41,7 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember"> Remember Me
+                                        <input type="checkbox" name="remember"> Recordarme
                                     </label>
                                 </div>
                             </div>
@@ -55,10 +53,10 @@
                                     <i class="fa fa-btn fa-sign-in"></i>Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Olvido su contraseña?</a>
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close()!!}
                 </div>
             </div>
         </div>

@@ -32,8 +32,17 @@ class UsuarioController extends Controller
 	public function index()
 	{
 		$usuarios = $this->usuarioRepository->all();
-		return view('usuarios.index')
-			->with('usuarios', $usuarios);
+		// $ldapusuarios = Adldap::users()->all();	
+		// $ldapgrupos = Adldap::groups()->all();
+		// $ldapcomputers = Adldap::computers()->all();
+		// $ldapprinters = Adldap::printers()->all();
+		// $ldapremoteuser = Adldap::printers()->all();
+		return view('usuarios.index',compact('usuarios'));
+			// ->with('ldapgrupos',$ldapgrupos)
+			// ->with('ldapusuarios',$ldapusuarios)
+			// ->with('ldapcomputers',$ldapcomputers)
+			// ->with('ldapprinters',$ldapprinters)
+			// ->with('usuarios', $usuarios);
 	}
 
 	/**

@@ -100,6 +100,7 @@
             <!-- End of conversation here -->
         </div>
     </div>
+</div>
 @endsection
 
 @push('scripts')

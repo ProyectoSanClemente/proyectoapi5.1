@@ -34,39 +34,52 @@
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-danger" >
-                <div class="panel-heading">Avisos</div>
-                <div class="panel-body"  style="height:400px">
-                @foreach($notices as $notice)
-                    <h4><a href="#" data-toggle="modal" data-target="#myModal{{$notice->id}}">{!! $notice->titulo !!}</a></h4>
-                        @if (strlen($notice->contenido) > 180)
-                            {!! substr($notice->contenido, 0, 180)."...";!!}
-                        @else
-                            {!! $notice->contenido !!}
-                        @endif
-                        <div class="modal fade" id="myModal{{$notice->id}}" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">{!!$notice->titulo!!}</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        @include('noticias.show_fields')
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <div class="panel-heading clearfix">                    
+                    <h4 class="panel-title pull-left">Avisos</h4>
+                    <div class="btn-group pull-right">
+                        <button class="btn glyphicon glyphicon-menu-hamburger" type="button" data-toggle="collapse" href="#collpaseavisos"></button>
+                    </div>
+                </div>            
+                
+                <div id="collpaseavisos" class="panel-collapse collapse in">
+                    <div class="panel-body"  style="height:400px">
+                        @foreach($notices as $notice)
+                            <h4><a href="#" data-toggle="modal" data-target="#myModal{{$notice->id}}">{!! $notice->titulo !!}</a></h4>
+                            @if (strlen($notice->contenido) > 180)
+                                {!! substr($notice->contenido, 0, 180)."...";!!}
+                            @else
+                                {!! $notice->contenido !!}
+                            @endif
+                            <div class="modal fade" id="myModal{{$notice->id}}" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">{!!$notice->titulo!!}</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            @include('noticias.show_fields')
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    <hr>
-                @endforeach
+                            </div><hr>                    
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="panel panel-info" style="height:auto">
-                <div class="panel-heading">Noticias</div>
+                <div class="panel-heading clearfix">                    
+                    <h4 class="panel-title pull-left">Noticias</h4>
+                    <div class="btn-group pull-right">
+                        <button class="btn glyphicon glyphicon-menu-hamburger" type="button" data-toggle="collapse" href="#collpasenoticias"></button>
+                    </div>
+                </div>
+                  <div id="collpasenoticias" class="panel-collapse collapse in">    
                     <div class="panel-body" style="height:400px">                             
                         @foreach ($feed->get_items() as $item)
                             <div class="item">
@@ -79,7 +92,7 @@
             </div>
         </div>
     </div>
-
-
 </div>
+
+
 @endsection

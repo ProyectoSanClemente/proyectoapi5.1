@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
-	 @include('sistemas.show_fields')
+	{!! Breadcrumb::render('sistemasshow')!!}
+	@include('sistemas.show_fields')
 </div>
 @endsection

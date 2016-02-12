@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+    
 <meta name="csrf-token" content="{{ csrf_token() }}">
 {{-- Inputs de info --}}
 {!! Form::hidden('user1_id', Auth::user()->id, ['id'=>'user1_id']) !!}
@@ -13,6 +13,7 @@
 <audio id="notif_audio"><source src="{!! asset('sounds/notify.mp3') !!}" type="audio/mpeg"></audio>
 <div class="container">
     <div class="row">
+    {!! Breadcrumbs::render('chat') !!}
         <div class="col-md-12">
             <!-- Users list starts here -->
             <div class="col-md-4">

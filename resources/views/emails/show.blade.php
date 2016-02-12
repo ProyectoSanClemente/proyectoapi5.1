@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-
+	{!!Breadcrumbs::render('emailsshow')!!}
     <div class="row">
 
     	<div class="col-lg-3">  

@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-
+        {!! Breadcrumbs::render('sistemas')!!}
         @include('flash::message')
         <div class="row">
             <h1 class="pull-left">Sistemas</h1>

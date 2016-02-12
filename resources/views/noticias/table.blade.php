@@ -11,33 +11,40 @@
  <!-- Projects Row -->
         <div class="col-md-6 portfolio-item">
             <div class="panel panel-danger" >
-                <div class="panel-heading" >{!!$notice->titulo!!}</div>
-                <div align="right" class="panel-body"  style="height:auto">
-                        <p>
-                        <a href="{!! route('noticias.edit', [$notice->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
-                        <a href="{!! route('noticias.delete', [$notice->id]) !!}" onclick="return confirm('Are you sure wants to delete this Notice?')"><i class="glyphicon glyphicon-remove"></i></a>
-                        @include('noticias.show')
-                        </p>
-                    @if (!empty($notice->imagen))
-                        <a>
-                        {!! HTML::image($notice->imagen,null,array('width' => 400, 'height' => 300,'class' => 'img-responsive', 'data-toggle'=>'modal','data-target'=>'#myModal'))!!}
-                        </a>
-                    <hr>
-                    @endif
-                    <p class="col-md-9 portfolio-item text-justify">                 
-                        @if (strlen($notice->contenido) > 180)
-                            {!! substr($notice->contenido, 0, 180)."...";!!}
-                        @else
-                            {!! $notice->contenido !!}
-                        
-                        @endif
-                        <div>
-                            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#myModal{{$notice->id}}">Leer más <span class="glyphicon glyphicon-chevron-right"></span></a>
-                        </div>
-                    </p>
-
+                  <div class="panel-heading clearfix">                    
+                    <h4 class="panel-title pull-left">{!!$notice->titulo!!}</h4>
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-danger glyphicon glyphicon-menu-hamburger" type="button" data-toggle="collapse" href="#collpase-{!!$notice->id!!}"></button>
+                    </div>
                 </div>
-                <div align="right" class="panel-footer">{{$notice->updated_at->formatLocalized('%A %d %B %Y')}}</div>
+                <div id="collpase-{!!$notice->id!!}" class="panel-collapse collapse in">
+                    <div align="right" class="panel-body"  style="height:auto">
+                            <p>
+                            <a href="{!! route('noticias.edit', [$notice->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a href="{!! route('noticias.delete', [$notice->id]) !!}" onclick="return confirm('Are you sure wants to delete this Notice?')"><i class="glyphicon glyphicon-remove"></i></a>
+                            @include('noticias.show')
+                            </p>
+                        @if (!empty($notice->imagen))
+                            <a>
+                            {!! HTML::image($notice->imagen,null,array('width' => 400, 'height' => 300,'class' => 'img-responsive', 'data-toggle'=>'modal','data-target'=>'#myModal'))!!}
+                            </a>
+                        <hr>
+                        @endif
+                        <p class="col-md-9 portfolio-item text-justify">                 
+                            @if (strlen($notice->contenido) > 180)
+                                {!! substr($notice->contenido, 0, 180)."...";!!}
+                            @else
+                                {!! $notice->contenido !!}
+                            
+                            @endif
+                            <div>
+                                <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#myModal{{$notice->id}}">Leer más <span class="glyphicon glyphicon-chevron-right"></span></a>
+                            </div>
+                        </p>
+
+                    </div>
+                    
+                </div>
             </div>
         </div>
         @endforeach           <!-- /.row -->

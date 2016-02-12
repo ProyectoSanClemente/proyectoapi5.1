@@ -1,8 +1,3 @@
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#cuentastable').DataTable();
-    } );
-</script>
 <table id="cuentastable"  class="table">
     <thead>
             <th>Accountname</th>
@@ -32,3 +27,17 @@
     @endforeach
     </tbody>
 </table>
+
+
+@push('styles')
+{!! HTML::style('css/jquery.dataTables.css')!!}
+@endpush
+
+@push('scripts')
+{!! HTML::script('js/jquery.dataTables.js') !!}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#cuentastable').DataTable();
+    });
+</script>
+@endpush

@@ -1,13 +1,6 @@
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#usuarios').DataTable();
-    } );
-</script>
-
 <table id="usuarios" class="table table-responsive">
     <thead>
         <th>AccountName</th>
-        <th>DisplayName</th>
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Email</th>
@@ -17,7 +10,6 @@
     @foreach($usuarios as $usuario)
         <tr>
             <td>{!! $usuario->accountname !!}</td>
-            <td>{!! $usuario->displayname !!}</td>
             <td>{!! $usuario->nombre !!}</td>
             <td>{!! $usuario->apellido !!}</td>
             <td>{!! $usuario->email !!}</td>
@@ -33,3 +25,16 @@
     @endforeach
     </tbody>
 </table>
+
+@push('styles')
+{!! HTML::style('css/jquery.dataTables.css')!!}
+@endpush
+
+@push('scripts')
+{!! HTML::script('js/jquery.dataTables.js') !!}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#usuarios').DataTable();
+    } );
+</script>
+@endpush

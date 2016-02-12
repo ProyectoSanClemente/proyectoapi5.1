@@ -3,21 +3,16 @@
 <head>
     @include('layouts.head')
 </head>
-<body>
-
-    <header class="row">
+    <body>
         @include('layouts.header')
-    </header>
+    
+        <div class="content" style="min-height: 600px">
+            @yield('content')
+        </div>
 
-    <div id="main" class="row" style="min-height: 500px">
-        @yield('content')
-    </div>
-
-    <footer class="row">
-        @include('layouts.footer')
-    </footer>
-
-</div>
-</body>
+        <div class="footer">
+            @include('layouts.footer')
+        </div>
+    </body>
 </html>
 

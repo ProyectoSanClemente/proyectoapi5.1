@@ -1,8 +1,4 @@
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#correos').DataTable();
-    } );
-</script>
+
 
 <table id="correos" class="table table-responsive">
     <thead>
@@ -38,4 +34,15 @@
 	@endforeach
 </table>
 
+@push('styles')
+{!! HTML::style('css/jquery.dataTables.css')!!}
+@endpush
 
+@push('scripts')
+{!! HTML::script('js/jquery.dataTables.js') !!}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#correos').DataTable();
+    });
+</script>
+@endpush

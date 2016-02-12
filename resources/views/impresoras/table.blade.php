@@ -1,9 +1,3 @@
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#impresorastable').DataTable();
-    } );
-</script>
-
 <table id="impresorastable" class="table">
     <thead>
     <th>Usuario</th>
@@ -23,3 +17,16 @@
     @endforeach
     </tbody>
 </table>
+
+@push('styles')
+{!! HTML::style('css/jquery.dataTables.css')!!}
+@endpush
+
+@push('scripts')
+{!! HTML::script('js/jquery.dataTables.js') !!}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#impresorastable').DataTable();
+    });
+</script>
+@endpush

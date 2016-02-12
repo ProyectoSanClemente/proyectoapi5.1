@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-
+    
     <div class="container">
-
+        {!! Breadcrumbs::render('usuarios') !!}
         @include('flash::message')
         <h1 class="pull-left">Usuarios</h1>
 

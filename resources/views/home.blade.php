@@ -22,6 +22,7 @@
 </style>
 
 <div class="container">
+    {!! Breadcrumbs::render('home') !!}
     @include('flash::message')
     <br>
     <div class="row">   

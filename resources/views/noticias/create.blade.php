@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-
+	{!! Breadcrumbs::render('noticiascreate') !!}
     @include('common.errors')
 
     {!! Form::open(['route' => 'noticias.store','files'=> true]) !!}

@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-
+        {!! Breadcrumbs::render('impresoras') !!}
         @include('flash::message')
 
         <div class="row">

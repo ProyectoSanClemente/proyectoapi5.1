@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 class AuthController extends Controller
 {
     protected $username = 'accountname';
+    protected $loginPath = 'login';
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller

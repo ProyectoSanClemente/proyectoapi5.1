@@ -204,3 +204,37 @@
 .context-menu-accesskey {
   text-decoration: underline;
 }
+
+
+.cmi-fa {
+    display: block; !important;
+    line-height: 20px; !important;
+}
+
+.cmi-fa:before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 28px;
+    font-family: FontAwesome;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    color: #2980b9;
+    text-align: center;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.cmi-fa span {
+    font-family: sans-serif;
+}
+
+.cmi-fa.context-menu-hover:before {
+    color: #fff;
+}

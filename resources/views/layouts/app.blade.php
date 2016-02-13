@@ -5,7 +5,7 @@
 </head>
     <body>
         @include('layouts.header')
-        <div class="content" style="min-height: 600px">
+        <div class="content" style="min-height: 500px">
             @yield('content')
         </div>
 

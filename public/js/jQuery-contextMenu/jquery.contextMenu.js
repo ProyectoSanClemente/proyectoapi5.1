@@ -1248,7 +1248,12 @@
                             if ($.isFunction(item.icon)) {
                                 item._icon = item.icon.call(this, this, $t, key, item);
                             } else {
-                                item._icon = root.classNames.icon + ' ' + root.classNames.icon + '-' + item.icon;
+                                if ( item.icon.substring(0,3) == 'fa-' ) {
+                                    // to enable font awesome
+                                    item._icon = 'cmi-fa fa ' + item.icon;
+                                } else {
+                                    item._icon = root.classNames.icon + ' ' + root.classNames.icon + '-' + item.icon;
+                                }
                             }
                             $t.addClass(item._icon);
                         }

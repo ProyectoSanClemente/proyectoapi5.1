@@ -91,31 +91,17 @@ Route::group(['middleware'], function () {
     'as' => 'cuentas.solicitudcompras',
     'uses' => 'CuentaController@solicitudcompras']);   
     
-    Route::get('emails/index', [
-        'as' => 'emails.index',
-        'uses' => 'EmailController@index'
-    ]);
-
-    Route::get('emails/unseen', [
-        'as' => 'emails.unseen',
-        'uses' => 'EmailController@unseen'
-    ]);
-
-    Route::get('emails/{id}/show', [
-        'as' => 'emails.show',
-        'uses' => 'EmailController@show',
-    ]);
+    Route::group(['prefix' => 'emails'], function(){
+    Route::get('index', 'EmailController@index');
+    Route::get('sent', 'EmailController@sent');
+    Route::get('unseen','EmailController@unseen');
+    Route::get('{id}/show','EmailController@show');
     
-    Route::get('emails/{id}/markMailAsRead', [
-        'as' => 'emails.markMailAsRead',
-        'uses' => 'EmailController@markMailAsRead',
-    ]);
+    Route::get('{id}/markMailAsRead', 'EmailController@markMailAsRead');
+    Route::get('{id}/markMailAsUnread','EmailController@markMailAsUnread');
 
-    Route::get('emails/{id}/markMailAsUnread', [
-        'as' => 'emails.markMailAsUnread',
-        'uses' => 'EmailController@markMailAsUnread',
-    ]);
-
+    });
+    
     Route::resource('sistemas', 'SistemaController');
 
     Route::get('sistemas/{id}/delete', [

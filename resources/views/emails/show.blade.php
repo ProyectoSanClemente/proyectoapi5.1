@@ -33,12 +33,10 @@
 						<div class="row">
 							<div class="col-md-12">
                                 <ul class="list-unstyled list-inline">
-                                    <li><i class="fa fa-calendar-o"></i>Fecha: {{$mail->date}}</li>
-                                    <li><i class="fa fa-user"></i>De: {{$mail->fromName}}</li>
-                                     <li><i class="fa fa-users">Para:</i>
-                                    @foreach ($mail->to as $element)
-                                    	{{$element}}
-                                    @endforeach
+                                    <li><i class="fa fa-calendar-o"></i> Fecha: {{$mail->date}}</li>
+                                    <li><i class="fa fa-user"></i> De: {{$mail->fromName}}</li>
+                                     <li><i class="fa fa-users"></i> Para:
+                                    	{!!implode(',',$mail->to) !!}
                                     </li>                                    
                                 </ul>
 							</div>
@@ -63,12 +61,6 @@
 					
 					<div class="mail-actions">
                     <a href="#/mail/compose" class="btn btn-sm btn-default">Responder <i class="fa fa-mail-reply"></i></a>	
-                    	<ul class="list-unstyled list-inline">
-							<li><a href="#"><span class="label label-default">Technology</span></a></li>
-							<li><a href="#"><span class="label label-default">Technology</span></a></li>
-							<li><a href="#"><span class="label label-default">Technology</span></a></li>
-							<li><a href="#"><span class="label label-default">Technology</span></a></li>
-						</ul>
                     </div>			
 				</div>
 			</section>

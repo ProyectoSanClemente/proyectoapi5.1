@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Adldap\Exceptions\AdldapException as AdldapException;
+use PhpImap\Mailbox;
+use Flash;
 
 class Handler extends ExceptionHandler
 {
@@ -44,6 +47,15 @@ class Handler extends ExceptionHandler
     {
         if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
+        }
+        if ($e instanceof AdldapException) {
+            Flash::warning($e->getMessage());
+            return redirect(route('usuarios.index'));
+        }
+
+        if($e instanceof Exception){
+            Flash::warning($e->getMessage());
+            return redirect(url('home'));
         }
 
         return parent::render($request, $e);

@@ -64,6 +64,27 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Windows Auth Attribute (SSO)
+    |--------------------------------------------------------------------------
+    |
+    | The windows authentication attribute is the name of the server variable
+    | that is filled when SSO authentication is performed.
+    |
+    | This is only used in conjunction with the Adldap\Laravel\Middleware\WindowsAuthenticate
+    | middleware.
+    |
+    | If your using Windows authentication this attribute must be named `AUTH_USER`.
+    |
+    | If your using Apache, this attribute must be named `REMOTE_USER`.
+    |
+    | The key of the array is what the user will be discovered from in LDAP.
+    |
+    */
+
+    'windows_auth_attribute' => ['samaccountname' => 'AUTH_USER'],
+
+    /*
+    |--------------------------------------------------------------------------
     | Bind User to Model
     |--------------------------------------------------------------------------
     |

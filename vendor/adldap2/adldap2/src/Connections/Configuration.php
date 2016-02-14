@@ -98,6 +98,13 @@ class Configuration
     protected $accountSuffix;
 
     /**
+     * The LDAP admin account suffix.
+     *
+     * @var string
+     */
+    protected $adminAccountSuffix;
+
+    /**
      * The LDAP administrator username.
      *
      * @var string
@@ -128,6 +135,12 @@ class Configuration
                     (is_object($options) ? get_class($options) : gettype($options))
                 )
             );
+        }
+
+        if (array_key_exists('use_ssl', $options)) {
+            if (!array_key_exists('port', $options) && $options['use_ssl'] === true) {
+                $options['port'] = ConnectionInterface::PORT_SSL;
+            }
         }
 
         foreach ($options as $key => $value) {
@@ -422,6 +435,26 @@ class Configuration
     public function getAdminPassword()
     {
         return $this->adminPassword;
+    }
+
+    /**
+     * Sets the administrators account suffix option.
+     *
+     * @param $suffix
+     */
+    public function setAdminAccountSuffix($suffix)
+    {
+        $this->adminAccountSuffix = (string) $suffix;
+    }
+
+    /**
+     * Returns the administrators account suffix option.
+     *
+     * @return string|null
+     */
+    public function getAdminAccountSuffix()
+    {
+        return $this->adminAccountSuffix;
     }
 
     /**

@@ -15,39 +15,70 @@ use HTML;
 
 class EmailController extends Controller
 {
+	protected $hostname;
+	protected $username;
+    protected $password;
+    protected $carpeta;
+
 	function __construct()
 	{
 		$this->middleware('auth');
+		$this->hostname="{sanclemente.cl:993/imap/ssl/novalidate-cert}";
+		$this->username="prueba";
+		$this->password="Prueba2015";
+		$this->carpeta='attachments/'.$this->username;
 	}
 
-    private function conect(){
-		$hostname="{sanclemente.cl:993/imap/ssl/novalidate-cert}INBOX";
-	   	$username="prueba";
-     	$password="Prueba2015";
-     	$carpeta='attachments/'.$username;
-		if (!file_exists($carpeta)){
-		    mkdir($carpeta, 0777, true);
-		}
-     	$mailbox = new ImapMailbox($hostname, $username,$password,$carpeta);	
-    	return $mailbox;
-    }
 
+	/**
+	 * Display all Inbox Mails.
+	 *
+	 *
+	 * @return Response
+	 */
 	public function index()
     {
-    	$mailbox = $this->conect();
+    	
+    	$hostname=$this->hostname.'INBOX';
+     	$mailbox = new ImapMailbox($hostname, $this->username,$this->password,$this->carpeta);
 		$mailboxmsginfo = $mailbox->getMailboxInfo();
 		$mailsIds = $mailbox->searchMailbox('ALL');
-
 		if(!$mailsIds) {
 		    die('La bandeja de entrada esta vacia');
 		}
 		else{
 			$mailsinfo = $mailbox->getMailsInfo($mailsIds);
 			$mailsinfo=array_reverse($mailsinfo);
+			
 			return view('emails.index')
 	    			->with('mailboxmsginfo',$mailboxmsginfo)
 	    			->with('mailsinfo',$mailsinfo);
-		}	
+		}
+    }
+
+	/**
+	 * Display Sent Mails.
+	 *
+	 *
+	 * @return Response
+	 */
+    public function sent()
+    {
+    	$hostname=$this->hostname.'Sent';
+     	$mailbox = new ImapMailbox($hostname, $this->username,$this->password,$this->carpeta);
+		$mailboxmsginfo = $mailbox->getMailboxInfo();
+		$mailsIds = $mailbox->searchMailbox('ALL');
+		if(!$mailsIds) {
+		    die('La bandeja de entrada esta vacia');
+		}
+		else{
+			$mailsinfo = $mailbox->getMailsInfo($mailsIds);
+			$mailsinfo=array_reverse($mailsinfo);
+			
+			return view('emails.sent')
+	    			->with('mailboxmsginfo',$mailboxmsginfo)
+	    			->with('mailsinfo',$mailsinfo);
+		}
     }
 
 	public function unseen()
@@ -55,7 +86,7 @@ class EmailController extends Controller
 		$mailbox = $this->conect();
 		$mailboxmsginfo = $mailbox->getMailboxInfo();
 		$mailsIds = $mailbox->searchMailbox('UNSEEN');
-		
+
 		if(!$mailsIds) {
 			Flash::error('No hay mensajes sin leer!.');
 			return redirect()->route('emails.index');
@@ -69,21 +100,30 @@ class EmailController extends Controller
 		}
 	}
 
+	/**
+	 * Show the entire Mail.
+	 *
+	 * @param $mailId
+	 *
+	 * @return Response
+	 */
 	public function show($mailId)
-	{
-		$mailbox = $this->conect();
-		$mail = $mailbox->getMail($mailId);
-		$mailboxmsginfo = $mailbox->getMailboxInfo();
+	{		
+		$mailbox=$this->SearchMailbox($mailId);
+		if(!$mailbox){
+			Flash::warning('Mail no Encontrado');
+			return redirect('emails/index');
+		}
+		$mail=$mailbox->getMail($mailId);
 		return view('emails.show')
-				->with('mailId',$mailId)
-				->with('mailboxmsginfo',$mailboxmsginfo)
-				->with('mail',$mail);
+			->with('mail',$mail);		
 	}
 
 	public function markMailAsUnread($mailId)
 	{
-		$mailbox = $this->conect();
+		$mailbox=$this->SearchMailbox($mailId);
 		$unread=$mailbox->markMailAsUnread($mailId);
+
 		if($unread)
 			Flash::success('Correo Marcado como No Leído');
 		else
@@ -92,9 +132,11 @@ class EmailController extends Controller
 		return redirect()->back();
 	}
 
+
+
 	public function markMailAsRead($mailId)
 	{
-		$mailbox = $this->conect();
+		$mailbox=$this->SearchMailbox($mailId);
 		$Leído=$mailbox->markMailAsRead($mailId);
 		if($Leído)
 			Flash::success('Correo Marcado como Leído');
@@ -102,8 +144,24 @@ class EmailController extends Controller
 			Flash::error('El correo no se pudo marcar como Leído');
 		
 		return redirect()->back();
-
 	}
 
+	/**
+	 * Find a Mail into the Mailboxs.
+	 *
+	 * @param $mailId
+	 *
+	 * @return Mailbox
+	 */
+	public function SearchMailbox($mailId){
+		$hostnames=['INBOX','Sent'];
+		foreach ($hostnames as $hostname) {
+			$mailbox = new ImapMailbox($this->hostname.$hostname, $this->username,$this->password,$this->carpeta);
+			$mailsIds = $mailbox->searchMailbox('ALL');
+			if(in_array($mailId,$mailsIds))
+				return $mailbox;			
+		}
+		return False;
+	}
 
 }

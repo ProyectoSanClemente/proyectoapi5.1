@@ -81,19 +81,24 @@ Breadcrumbs::register('sistemasshow',function($breadcrumbs){
 	$breadcrumbs->push('Mostrar',url('sistemas/show'));
 });
 
-
-// Home > email> unseen
+// Home > email> inbox
 Breadcrumbs::register('emails',function($breadcrumbs){
 	$breadcrumbs->parent('home');
 	$breadcrumbs->push('Correos',url('emails/index'));
 });
 
-// Home > email >inbox
+
+// Home > email >unseen
 Breadcrumbs::register('unseen',function($breadcrumbs){
 	$breadcrumbs->parent('emails');
 	$breadcrumbs->push('No vistos',url('sistemas/unseen'));
 });
 
+// Home > email >unseen
+Breadcrumbs::register('sents',function($breadcrumbs){
+	$breadcrumbs->parent('emails');
+	$breadcrumbs->push('Enviados',url('emails/index'));
+});
 
 // Home > email >show
 Breadcrumbs::register('emailsshow',function($breadcrumbs){

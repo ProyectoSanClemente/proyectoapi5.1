@@ -3,7 +3,7 @@
 <!-- Content -->
 <div class="container">
         {!! Breadcrumbs::render('emails')!!}
-        <h1>Buzon de Entrada</h1><hr>
+        <h1>Buzón de Entrada</h1><hr>
    
     @include('flash::message')
     <div class="row">

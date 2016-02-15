@@ -25,22 +25,36 @@
     {!! Breadcrumbs::render('home') !!}
     @include('flash::message')
     <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default" style="height:auto">
+        <div class="col-md-3">
+            <div class="panel panel-primary" style="height:auto">
                 <div class="panel-heading clearfix">                    
-                    <h4 class="panel-title pull-left">Muro</h4>
+                    <h4 class="panel-title pull-left">Perfil</h4>
                     <div class="btn-group pull-right">
-                        <button class="btn glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" href="#collpasemuro"></button>
+                        <button class="btn btn-primary glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" href="#collpaseperfil"></button>
                     </div>
                 </div>
-                  <div id="collpasemuro" class="panel-collapse collapse">    
+                  <div id="collpaseperfil" class="panel-collapse collapse in">    
+                    <div class="panel-body" style="height:400px">                             
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-primary" style="height:auto">
+                <div class="panel-heading clearfix">                    
+                    <h4 class="panel-title pull-left">Comunidad</h4>
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-primary glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" href="#collpasemuro"></button>
+                    </div>
+                </div>
+                  <div id="collpasemuro" class="panel-collapse collapse in">    
                     <div class="panel-body" style="height:400px">                             
                         @include('muro')
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3">
             <div class="panel panel-danger" >
                 <div class="panel-heading clearfix">                    
                     <h4 class="panel-title pull-left">Avisos</h4>
@@ -65,7 +79,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-9">
             <div class="panel panel-info" style="height:auto">
                 <div class="panel-heading clearfix">                    
                     <h4 class="panel-title pull-left">Noticias</h4>

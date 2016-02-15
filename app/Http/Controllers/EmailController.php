@@ -29,7 +29,6 @@ class EmailController extends Controller
 		$this->carpeta='attachments/'.$this->username;
 	}
 
-
 	/**
 	 * Display all Inbox Mails.
 	 *

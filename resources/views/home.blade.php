@@ -30,17 +30,12 @@
                 <div class="panel-heading clearfix">                    
                     <h4 class="panel-title pull-left">Muro</h4>
                     <div class="btn-group pull-right">
-                        <button class="btn glyphicon glyphicon-menu-hamburger" type="button" data-toggle="collapse" href="#collpasemuro"></button>
+                        <button class="btn glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" href="#collpasemuro"></button>
                     </div>
                 </div>
                   <div id="collpasemuro" class="panel-collapse collapse">    
                     <div class="panel-body" style="height:400px">                             
-                        @foreach ($feed->get_items() as $item)
-                            <div class="item">
-                              <h4><a target="_blank" href="{{ $item->get_permalink() }}">{{ $item->get_title() }}</a></h4>
-                              <p>{{ $item->get_description() }}</p>
-                            </div>
-                        @endforeach
+                        @include('muro')
                     </div>
                 </div>
             </div>
@@ -50,7 +45,7 @@
                 <div class="panel-heading clearfix">                    
                     <h4 class="panel-title pull-left">Avisos</h4>
                     <div class="btn-group pull-right">
-                        <button class="btn btn-danger glyphicon glyphicon-menu-hamburger" type="button" data-toggle="collapse" href="#collpaseavisos"></button>
+                        <button class="btn btn-danger glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" href="#collpaseavisos"></button>
                     </div>
                 </div>            
                 
@@ -75,7 +70,7 @@
                 <div class="panel-heading clearfix">                    
                     <h4 class="panel-title pull-left">Noticias</h4>
                     <div class="btn-group pull-right">
-                        <button class="btn btn-info glyphicon glyphicon-menu-hamburger" type="button" data-toggle="collapse" href="#collpasenoticias"></button>
+                        <button class="btn btn-info glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" href="#collpasenoticias"></button>
                     </div>
                 </div>
                   <div id="collpasenoticias" class="panel-collapse collapse in">    

@@ -127,5 +127,15 @@ Route::group(['middleware'], function () {
         'as' => 'getldapusers',
         'uses' => 'UsuarioController@getldapusers'
     ]);
+
+    Route::resource('posts', 'PostController');
+
+    Route::get('posts/{id}/create', [
+     'as' => 'posts.create',
+     'uses' => 'PostController@create']);
+
+    Route::get('posts/{id}/delete', [
+    'as' => 'posts.delete',
+    'uses' => 'PostController@destroy']);
 });
 

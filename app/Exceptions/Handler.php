@@ -45,18 +45,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if ($e instanceof ModelNotFoundException) {
-            $e = new NotFoundHttpException($e->getMessage(), $e);
-        }
-        if ($e instanceof AdldapException) {
-            Flash::warning($e->getMessage());
-            return redirect(route('usuarios.index'));
-        }
+        // if ($e instanceof ModelNotFoundException) {
+        //     $e = new NotFoundHttpException($e->getMessage(), $e);
+        // }
+        // if ($e instanceof AdldapException) {
+        //     Flash::warning($e->getMessage());
+        //     return redirect(route('usuarios.index'));
+        // }
 
-        if($e instanceof Exception){
-            Flash::warning($e->getMessage());
-            return redirect(url('home'));
-        }
+        // if($e instanceof Exception){
+        //     Flash::warning($e->getMessage());
+        //     return redirect(url('home'));
+        // }
 
         return parent::render($request, $e);
     }

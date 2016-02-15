@@ -12,10 +12,15 @@ class CreateUsuariosTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('impresoras');
+        Schema::dropIfExists('comentarios');
+        Schema::dropIfExists('posts');
+        Schema::dropIfExists('messages');
+        Schema::dropIfExists('conversations');
         Schema::dropIfExists('usuarios');
         Schema::create('usuarios', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('accountname',25);
+            $table->string('accountname',25)->unique();
             $table->string('rut',25)->nullable();
             $table->string('nombre',25)->nullable();
             $table->string('apellido',25)->nullable();

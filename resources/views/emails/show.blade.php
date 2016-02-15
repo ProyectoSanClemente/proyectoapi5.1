@@ -44,21 +44,19 @@
 					</div>
                     
 					<div class="mail-content">
-						{{--*/ print(nl2br($mail->textPlain)) /*--}} {{-- Imprime el mail --}}
+						{!! $mail->textPlain !!} {{-- Imprime el mail --}}
 					</div>
-					{{--*/  $archivos=$mail->getAttachments() /*--}} {{-- Se asignan los attachments--}}
 					@if(!empty($archivos))
 						<div class="mail-attachments">
 							<p><i class="fa fa-paperclip"></i> {!!count($archivos)!!} | <a href="javascript:;">Descargar</a></p>
 							<ul class="list-unstyled">
 								@foreach ($archivos as $archivo)
-									<li><a href="javascript:;">{!! $archivo->name !!} </a></li>
-									<?php $file=$archivo->name ?>
+									<li><a href="{{ URL::to($archivo->filePath)  }}">{!! $archivo->name !!} </a></li>
 								@endforeach
 							</ul>							 
 						</div>
 					@endif
-					
+					<br>
 					<div class="mail-actions">
                     <a href="#/mail/compose" class="btn btn-sm btn-default">Responder <i class="fa fa-mail-reply"></i></a>	
                     </div>			

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use PhpImap\Mailbox as ImapMailbox;
 use PhpImap\IncomingMail;
 use PhpImap\IncomingMailAttachment;
+use File;
 use Flash;
 use HTML;
 
@@ -29,14 +30,10 @@ class EmailController extends Controller
 		$this->username="prueba";
 		$this->password="Prueba2015";
 		$this->carpeta='attachments/'.$this->username;
-		if (!file_exists($this->carpeta)) {	//Crear carpeta de archivos adjuntos
-		    mkdir($this->carpeta, 0777, true);
-		}
-		$files = glob($this->carpeta.'/*'); // Obtener todos los archivos
-		foreach($files as $file){ // Iterar sobre los archivos
-		  if(is_file($file))
-		    unlink($file); 		// Eliminar archivo
-		}
+		if (!File::exists($this->carpeta)) {	//Crear carpeta de archivos adjuntos
+		    File::makeDirectory($this->carpeta);
+		}		
+		File::cleanDirectory($this->carpeta); //Se eliminan los archivos
 
 		$this->mailbox = new ImapMailbox($this->hostname.'INBOX', $this->username,$this->password,$this->carpeta);
 		$this->Unread=$this->mailbox->getMailboxInfo()->Unread;
@@ -150,12 +147,12 @@ class EmailController extends Controller
 		}
 		$mail=$mailbox->getMail($mailId);
 		$archivos=$mail->getAttachments();
+		foreach ($archivos as $archivo) {
+			$archivo->ruta=$this->carpeta.'/'.basename($archivo->filePath);
+		}
 		$mailbox=null; //Cerramos el mailbox
 		$mail->textPlain=(nl2br($mail->textPlain));
-		foreach ($archivos as $archivo) {
-			var_dump((string)$archivo->filePath);
-		}
-		
+
 		return view('emails.show')
 			->with('mail',$mail)
 			->with('inboxunread',$this->Unread)

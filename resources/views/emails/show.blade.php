@@ -5,7 +5,6 @@
 <div class="container">
 	{!!Breadcrumbs::render('emailsshow')!!}
     <div class="row">
-
     	<div class="col-lg-3">  
         	@include('emails.sidebar')
 		</div>
@@ -47,19 +46,17 @@
 						{!! $mail->textPlain !!} {{-- Imprime el mail --}}
 					</div>
 					@if(!empty($archivos))
+					<hr>
 						<div class="mail-attachments">
-							<p><i class="fa fa-paperclip"></i> {!!count($archivos)!!} | <a href="javascript:;">Descargar</a></p>
+							<p>{!!count($archivos)!!} Archivo/s Adjunto/s</p>
 							<ul class="list-unstyled">
 								@foreach ($archivos as $archivo)
-									<li><a href="{{ URL::to($archivo->filePath)  }}">{!! $archivo->name !!} </a></li>
+									<li><i class="fa fa-paperclip"></i><a href="{{URL::to($archivo->ruta)}}" target="_blank" download="{{$archivo->name}}">{!! $archivo->name !!} </a></li>
 								@endforeach
 							</ul>							 
 						</div>
 					@endif
 					<br>
-					<div class="mail-actions">
-                    <a href="#/mail/compose" class="btn btn-sm btn-default">Responder <i class="fa fa-mail-reply"></i></a>	
-                    </div>			
 				</div>
 			</section>
 		</div>

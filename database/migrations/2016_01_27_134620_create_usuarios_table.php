@@ -12,6 +12,7 @@ class CreateUsuariosTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('cuentas');
         Schema::dropIfExists('impresoras');
         Schema::dropIfExists('comentarios');
         Schema::dropIfExists('posts');

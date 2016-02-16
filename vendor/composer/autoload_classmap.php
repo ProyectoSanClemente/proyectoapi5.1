@@ -7,11 +7,13 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'CreateConversationsTable' => $baseDir . '/database/migrations/2016_01_28_134620_create_conversations_table.php',
+    'CreateCuentaTable' => $baseDir . '/database/migrations/2016_02_16_161043_create_cuenta_table.php',
     'CreateImpresorasTable' => $baseDir . '/database/migrations/2016_02_15_130044_create_impresoras_table.php',
     'CreateMessagesTable' => $baseDir . '/database/migrations/2016_01_28_134832_create_messages_table.php',
     'CreateNoticiasTable' => $baseDir . '/database/migrations/2016_01_28_224204_create_noticias_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePostsTable' => $baseDir . '/database/migrations/2016_02_15_124711_create_posts_table.php',
+    'CreateSistemasTable' => $baseDir . '/database/migrations/2016_02_16_125010_create_sistemas_table.php',
     'CreateUsuariosTable' => $baseDir . '/database/migrations/2016_01_27_134620_create_usuarios_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -518,6 +520,7 @@ return array(
     'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => $vendorDir . '/sebastian/recursion-context/src/InvalidArgumentException.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
+    'SistemasTableSeeder' => $baseDir . '/database/seeds/SistemasTableSeeder.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'UsuariosTableSeeder' => $baseDir . '/database/seeds/UsuariosTableSeeder.php',

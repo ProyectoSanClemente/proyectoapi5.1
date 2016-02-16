@@ -4,23 +4,23 @@ use App\Http\Requests;
 use App\Http\Requests\CreateCuentaRequest;
 use App\Http\Requests\UpdateCuentaRequest;
 use App\Libraries\Repositories\CuentaRepository;
-use Flash;
-use Mitul\Controller\AppBaseController as AppBaseController;
-use Response;
 use App\Libraries\Repositories\UsuarioRepository;
+use Flash;
+use Response;
 use App\Models\Usuario;
 use Auth;
 
-class CuentaController extends AppBaseController
+class CuentaController extends Controller
 {
 
 	/** @var  CuentaRepository */
 	private $cuentaRepository;
 	private $usuarioRepository;
 
-	function __construct(CuentaRepository $cuentaRepo)
+	function __construct(CuentaRepository $cuentaRepo,UsuarioRepository $usuarioRepo)
 	{
 		$this->cuentaRepository = $cuentaRepo;
+		$this->usuarioRepository = $usuarioRepo;
 	}
 
 	/**
@@ -43,8 +43,9 @@ class CuentaController extends AppBaseController
 	 */
 	public function create($id)
 	{
-
-		return view('cuentas.create')->with('id',$id);
+		$usuario= $this->usuarioRepository->find($id);
+		return view('cuentas.create')
+			->with('usuario',$usuario);
 	}
 
 	/**

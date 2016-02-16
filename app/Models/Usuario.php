@@ -56,19 +56,14 @@ class Usuario extends Model
         $this->attributes['password'] = bcrypt($password);
     }
 
-    public function cuenta()
-    {
-        return $this->hasOne('Cuenta','accountname');
-    }
-
     public function Impresoras()
     {
         return $this->hasMany('App\Models\Impresora','id_usuario');
     }
 
-    public function conversation()
+    public function Cuenta()
     {
-    	 return $this->belongsToMany('App\Models\Conversation');
+        return $this->hasMany('App\Models\Cuenta','id_usuario');
     }
 
 }

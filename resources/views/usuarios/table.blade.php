@@ -17,7 +17,7 @@
                 <a href='#' data-toggle="modal" data-toggle="modal" data-target="#showModal{{$usuario->id}}" lda><i class="glyphicon glyphicon-eye-open"></i></a>
                 <a href="{{ route('usuarios.edit', [$usuario->id]) }}"><i class="glyphicon glyphicon-edit"></i></a>
                 <a href="{{ route('usuarios.delete', [$usuario->id]) }}" onclick="return confirm('Estas seguro que deseas eliminar este usuario?')"><i class="glyphicon glyphicon-trash"></i></a>
-                <a href="{{ URL::to('cuentas/' .$usuario->accountname.'/create') }}"><i class="glyphicon glyphicon-hdd"></i></a>
+                <a href="{{ route('cuentas.create',[$usuario->id]) }}"><i class="glyphicon glyphicon-hdd"></i></a>
                 <a href="{{ route('impresoras.create',[$usuario->id]) }}"><i class="glyphicon glyphicon-print"></i></a>
                 @include('usuarios.show_modal'){{-- Insertar codigo del Modal --}}
             </td>

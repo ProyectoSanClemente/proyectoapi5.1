@@ -9,13 +9,13 @@ class Cuenta extends Model
     
 
 	public $fillable = [
-		"accountname",
 		"id_sidam",
 		"pass_sidam",
 		"id_crecic",
 		"pass_crecic",
 		"id_zimbra",
 		"pass_zimbra",
+		"id_usuario",
 	];
 
     /**
@@ -42,9 +42,9 @@ class Cuenta extends Model
 
 	];
 
-	public function usuario()
+	public function Usuario()
     {
-        return $this->belongsTo('Usuario','accountname');
+        return $this->belongsTo('App\Models\Usuario','accountname');
     }
 
 }

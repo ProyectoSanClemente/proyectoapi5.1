@@ -1,0 +1,35 @@
+BEGIN:VCALENDAR
+PRODID:Zimbra-Calendar-Provider
+VERSION:2.0
+METHOD:REPLY
+BEGIN:VTIMEZONE
+TZID:America/Argentina/Buenos_Aires
+BEGIN:STANDARD
+DTSTART:16010101T000000
+TZOFFSETTO:-0300
+TZOFFSETFROM:-0300
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:ea28dba0-f7af-4287-9108-11bb916c5e10
+SUMMARY:Aceptar: Reunion
+LOCATION:salonr1@sanclemente.cl
+ATTENDEE;CN=Salon R1;CUTYPE=RESOURCE;ROLE=NON-PARTICIPANT;PARTSTAT=ACCEPTED:
+ mailto:salonr1@sanclemente.cl
+ORGANIZER;CN=Prueba:mailto:prueba@sanclemente.cl
+DTSTART;TZID="America/Argentina/Buenos_Aires":20160113T104500
+DTEND;TZID="America/Argentina/Buenos_Aires":20160113T123000
+STATUS:CONFIRMED
+CLASS:PUBLIC
+TRANSP:OPAQUE
+LAST-MODIFIED:20160112T142313Z
+DTSTAMP:20160112T142313Z
+SEQUENCE:1
+DESCRIPTION:Salon R1 ha sido reservada para tu reunión.\n\n\n-----Invitación
+  original-----\n\nLa siguiente reunión ha sido modificada:\n\nAsunto: Reunio
+ n \nOrganizador: "Prueba" <prueba@sanclemente.cl> \n\nUbicación: salonr1@san
+ clemente.cl \nRecursos: "Salon R1" <salonr1@sanclemente.cl> (Salon R1) \nHor
+ a: Miércoles\, 13 de Enero 2016\, 10:45:00 - 12:30:00 GMT -03:00 Argentina\n
+  \n\n ~ ~ ~ ~ ~ ~ ~ ~ ~\n\n\n\n
+END:VEVENT
+END:VCALENDAR

@@ -21,8 +21,8 @@ class EmailController extends Controller
     protected $password;
     protected $carpeta;
     protected $mailbox;
-    protected $mailboxmsginfo;
     protected $Unread;
+    
 	function __construct()
 	{
 		$this->middleware('auth');
@@ -46,25 +46,8 @@ class EmailController extends Controller
 	 * @return Response
 	 */
 	public function index()
-    {
-    	
-    	/*$mbox = imap_open($this->hostname, $this->username,$this->password, OP_HALFOPEN)
-      	or die("can't connect: " . imap_last_error());
-		$list = imap_getmailboxes($mbox, $this->hostname, "*");
-		if (is_array($list)) {
-		    foreach ($list as $key => $val) {
-		        echo "($key) ";
-		        echo imap_utf7_decode($val->name) . ",";
-		        echo "'" . $val->delimiter . "',";
-		        echo $val->attributes . "<br />\n";
-		    }
-		} else {
-		    echo "imap_getmailboxes failed: " . imap_last_error() . "\n";
-		}
-
-		imap_close($mbox);*/
-
-    	$mailsIds = $this->mailbox->searchMailbox('ALL');
+    {	
+		$mailsIds = $this->mailbox->searchMailbox('ALL');
 		if(!$mailsIds) {
 		    Flash::warning('La bandeja de entrada esta vacia');
 		    $this->mailbox=null;
@@ -146,19 +129,45 @@ class EmailController extends Controller
 			return redirect('emails/index');
 		}
 		$mail=$mailbox->getMail($mailId);
-		$archivos=$mail->getAttachments();
-		foreach ($archivos as $archivo) {
-			$archivo->ruta=$this->carpeta.'/'.basename($archivo->filePath);
+		$Attachments=$mail->getAttachments();
+		foreach ($Attachments as $attachment) {
+			$attachment->route=$this->carpeta.'/'.basename($attachment->filePath);
 		}
+		$mail->textPlain=(strip_tags(nl2br($mail->textPlain), '<br>'));
 		$mailbox=null; //Cerramos el mailbox
-		$mail->textPlain=(nl2br($mail->textPlain));
-
 		return view('emails.show')
 			->with('mail',$mail)
 			->with('inboxunread',$this->Unread)
-			->with('archivos',$archivos);
+			->with('Attachments',$Attachments);
 	}
 
+	/**
+	 * Mark a Mail has Read.
+	 *
+	 * @param $mailId
+	 *
+	 * @return reload page
+	 */
+
+	public function markMailAsRead($mailId)
+	{
+		$mailbox=$this->SearchMailbox($mailId);
+		$read=$mailbox->markMailAsRead($mailId);
+		if($read)
+			Flash::success('Correo Marcado como Leído');
+		else
+			Flash::error('El correo no se pudo marcar como Leído');
+		
+		return redirect()->back();
+	}
+
+	/**
+	 * Mark a Mail as Unread.
+	 *
+	 * @param $mailId
+	 *
+	 * @return reload page
+	 */
 	public function markMailAsUnread($mailId)
 	{
 		$mailbox=$this->SearchMailbox($mailId);
@@ -168,20 +177,6 @@ class EmailController extends Controller
 			Flash::success('Correo Marcado como No Leído');
 		else
 			Flash::error('El correo no se pudo marcar como no Leído');
-		
-		return redirect()->back();
-	}
-
-
-
-	public function markMailAsRead($mailId)
-	{
-		$mailbox=$this->SearchMailbox($mailId);
-		$Leído=$mailbox->markMailAsRead($mailId);
-		if($Leído)
-			Flash::success('Correo Marcado como Leído');
-		else
-			Flash::error('El correo no se pudo marcar como Leído');
 		
 		return redirect()->back();
 	}

@@ -55,7 +55,7 @@
                     $('#showModal'+id).modal('show');
                 }
             },
-            "edit": {name: "Editar", icon: "fa-pencil",callback: function(){
+            "edit": {name: "Editar", icon: "edit",callback: function(){
                     var id=$(this).attr('id');
                     url="{{ route('usuarios.edit', $usuario->id) }}"
                     var url = url.replace("{{$usuario->id}}",id);

@@ -31,7 +31,6 @@ class CuentaController extends Controller
 	public function index()
 	{
 		$cuentas = $this->cuentaRepository->all();
-		/*$comments = $this->usuarioRepository->find(1)->where('id', '=', $cuentas['usuario_id'])->first();*/
 		return view('cuentas.index')
 			->with('cuentas', $cuentas);
 	}
@@ -44,8 +43,16 @@ class CuentaController extends Controller
 	public function create($id)
 	{
 		$usuario= $this->usuarioRepository->find($id);
-		return view('cuentas.create')
-			->with('usuario',$usuario);
+		
+		$cuenta=$usuario->Cuenta->first();
+		
+		if($cuenta){//Si es que ya tiene asociada cuentas			
+			return redirect(route('cuentas.edit', $cuenta->id));
+		}
+		else{
+			return view('cuentas.create')
+				->with('usuario',$usuario);
+		}
 	}
 
 	/**
@@ -58,20 +65,12 @@ class CuentaController extends Controller
 	public function store(CreateCuentaRequest $request)
 	{
 		$input = $request->all();
-
-		try{
-			$cuenta = $this->cuentaRepository->create($input);
-			Flash::success('Cuenta agregada satisfactoriamente.');
-			return redirect(route('cuentas.index'));
-
-		    } catch(QueryException $e) {
-        		if (preg_match('/Duplicate entry/',$e->getMessage())){
-            	return response([
-                'success' => false,
-                'message' => 'Role exists for that user'
-            	], 500);
-       			}
-			}
+		
+		$cuenta = $this->cuentaRepository->create($input);
+		
+		Flash::success('Cuenta agregada satisfactoriamente.');
+		
+		return redirect(route('cuentas.index'));
 	}
 	/**
 	 * Display the specified Cuenta.
@@ -104,16 +103,17 @@ class CuentaController extends Controller
 	public function edit($id)
 	{
 		$cuenta = $this->cuentaRepository->find($id);
-
 		if(empty($cuenta))
 		{
+			return var_dump($cuenta);
 			Flash::error('Cuenta no encontrada.');
 
 			return redirect(route('cuentas.index'));
 		}
 
-		return view('cuentas.edit')->with('cuenta', $cuenta)
-									->with('id',$id);
+		return view('cuentas.edit')
+			->with('cuenta', $cuenta)
+			->with('usuario',$cuenta->usuario);
 	}
 
 	/**

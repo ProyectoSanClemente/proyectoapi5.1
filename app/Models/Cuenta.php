@@ -24,7 +24,7 @@ class Cuenta extends Model
      * @var array
      */
     protected $casts = [
-    	"accountname" => "string",
+    	//"id" => "string",
 		"id_sidam" => "string",
 		"pass_sidam" => "string",
 		"id_crecic" => "string",
@@ -34,7 +34,7 @@ class Cuenta extends Model
     ];
 
 	public static $rules = [
-		"accountname" => "unique:cuentas"
+		//"accountname" => "unique:cuentas"
 	];
 
 	public static $update_rules = [
@@ -44,7 +44,7 @@ class Cuenta extends Model
 
 	public function Usuario()
     {
-        return $this->belongsTo('App\Models\Usuario','accountname');
+        return $this->belongsTo('App\Models\Usuario','id_usuario');
     }
 
 }

@@ -69,8 +69,11 @@ class ImpresoraController extends Controller
 			}
 		}
 		$input['id_usuario']=$usuario->id;
+
 		$impresora = $this->impresoraRepository->create($input);
+		
 		Flash::success('Impresora agregada satisfactoriamente.');
+		
 		return redirect(route('impresoras.index'));		
 	}
 
@@ -105,7 +108,7 @@ class ImpresoraController extends Controller
 	public function edit($id)
 	{
 		$impresora = $this->impresoraRepository->find($id);
-
+		$usuario=$this->usuarioRepository->find($impresora->id_usuario);
 		if(empty($impresora))
 		{
 			Flash::error('Impresora no encontrada.');
@@ -113,8 +116,9 @@ class ImpresoraController extends Controller
 			return redirect(route('impresoras.index'));
 		}
 
-		return view('impresoras.edit')->with('impresora', $impresora)
-										->with('id',$id);
+		return view('impresoras.edit')
+			->with('impresora', $impresora)
+			->with('usuario',$usuario);
 	}
 
 	/**

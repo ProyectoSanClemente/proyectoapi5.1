@@ -1,9 +1,3 @@
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#sistemastable').DataTable();
-    } );
-</script>
-
 @if(Auth::user()->rol=='admin')
         <table id="sistemastable" class="table">
             <thead>
@@ -14,7 +8,7 @@
             <th width="50px">Action</th>
             </thead>
             <tbody>
-
+            
             @foreach($sistemas as $sistema)
                 <tr>
                     <td>{!! $sistema->nombre_sistema !!}</td>
@@ -51,3 +45,11 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#sistemastable').DataTable();
+    } );
+</script>
+@endpush

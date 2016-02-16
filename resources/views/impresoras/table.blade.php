@@ -39,7 +39,7 @@
     $('#impresoras').contextMenu({
         selector: 'tr',
         items: {
-            "edit": {name: "Editar", icon: "fa-pencil",callback: function(){
+            "edit": {name: "Editar", icon: "edit",callback: function(){
                     var id=$(this).attr('id');
                     url="{{ route('impresoras.edit', $impresora->id) }}"
                     var url = url.replace("{{$impresora->id}}",id);
@@ -60,5 +60,4 @@
     });
 });
 </script>
-
 @endpush

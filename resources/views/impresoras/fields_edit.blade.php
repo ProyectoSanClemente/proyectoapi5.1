@@ -1,7 +1,6 @@
-
 <div class="form-group col-sm-6 col-lg-4">
     {!! Form::label('Accountname', 'Accountname:') !!}
-	{!! Form::text('accountname',$impresora->accountname, ['class' => 'form-control','readonly' => 'readonly']) !!}
+	{!! Form::text('accountname',null, ['class' => 'form-control','readonly' => 'readonly']) !!}
 </div>
 <!-- Modelo Impresora Field -->
 <div class="form-group col-sm-6 col-lg-4">

@@ -15,10 +15,10 @@
             <td>{!! $usuario->email !!}</td>
             <td>
                 <a href='#' data-toggle="modal" data-toggle="modal" data-target="#showModal{{$usuario->id}}" lda><i class="glyphicon glyphicon-eye-open"></i></a>
-                <a href="{!! route('usuarios.edit', [$usuario->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
-                <a href="{!! route('usuarios.delete', [$usuario->id]) !!}" onclick="return confirm('Estas seguro que deseas eliminar este usuario?')"><i class="glyphicon glyphicon-trash"></i></a>
+                <a href="{{ route('usuarios.edit', [$usuario->id]) }}"><i class="glyphicon glyphicon-edit"></i></a>
+                <a href="{{ route('usuarios.delete', [$usuario->id]) }}" onclick="return confirm('Estas seguro que deseas eliminar este usuario?')"><i class="glyphicon glyphicon-trash"></i></a>
                 <a href="{{ URL::to('cuentas/' .$usuario->accountname.'/create') }}"><i class="glyphicon glyphicon-hdd"></i></a>
-                <a href="{{ URL::to('impresoras/' .$usuario->accountname.'/create') }}"><i class="glyphicon glyphicon-print"></i></a>
+                <a href="{{ route('impresoras.create',[$usuario->id]) }}"><i class="glyphicon glyphicon-print"></i></a>
                 @include('usuarios.show_modal'){{-- Insertar codigo del Modal --}}
             </td>
         </tr>
@@ -56,17 +56,17 @@
                 }
             },
             "edit": {name: "Editar", icon: "fa-pencil",callback: function(){
-                var id=$(this).attr('id');
-                url="{!! route('usuarios.edit', $usuario->id) !!}"
-                var url = url.replace("{{$usuario->id}}",id);
-                window.location.href = url;            
+                    var id=$(this).attr('id');
+                    url="{{ route('usuarios.edit', $usuario->id) }}"
+                    var url = url.replace("{{$usuario->id}}",id);
+                    window.location.href = url;            
                 }
             },
             "delete": {name: "Eliminar", icon: "fa-trash",callback: function(){
                     var answer=confirm('Estas seguro que deseas eliminar este usuario?');
                     if(answer){
                         var id=$(this).attr('id');
-                        url="{!! route('usuarios.delete', $usuario->id) !!}"
+                        url="{{ route('usuarios.delete', $usuario->id) }}"
                         var url = url.replace("{{$usuario->id}}",id);
                         window.location.href = url;        
                     }
@@ -78,7 +78,10 @@
                 }
             },
             "impresora": {name: "Asignar Impresora", icon: "fa-print",callback: function(){
-                    alert('falta agregar redirección'+' 2');
+                    var id=$(this).attr('id');
+                    url="{{ route('impresoras.create', $usuario->id) }}"
+                    var url = url.replace("{{$usuario->id}}",id);
+                    window.location.href = url;            
                 }
             },
         }

@@ -92,14 +92,12 @@ Route::group(['middleware'], function () {
     'uses' => 'CuentaController@solicitudcompras']);   
     
     Route::group(['prefix' => 'emails'], function(){
-    Route::get('index', 'EmailController@index');
-    Route::get('sent', 'EmailController@sent');
-    Route::get('unseen','EmailController@unseen');
-    Route::get('{id}/show','EmailController@show');
-    
-    Route::get('{id}/markMailAsRead', 'EmailController@markMailAsRead');
-    Route::get('{id}/markMailAsUnread','EmailController@markMailAsUnread');
-
+        Route::get('index', 'EmailController@index');
+        Route::get('sent', 'EmailController@sent');
+        Route::get('unseen','EmailController@unseen');
+        Route::get('{id}/show','EmailController@show');    
+        Route::get('{id}/markMailAsRead', 'EmailController@markMailAsRead');
+        Route::get('{id}/markMailAsUnread','EmailController@markMailAsUnread');
     });
     
     Route::resource('sistemas', 'SistemaController');

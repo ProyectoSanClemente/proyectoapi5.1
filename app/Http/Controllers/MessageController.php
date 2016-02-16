@@ -27,8 +27,8 @@ class MessageController extends Controller
             $data['success'] = false;
         }else{ 
             $input=Request::all();
-            Message::create($input);
-            $id = DB::getPdo()->lastInsertId(); 
+            $message=Message::create($input);
+            $id = $message->id;
             $data = Message::find($id)->toArray();
             $data['user2_accountname']= $input['user2_accountname'];
             $id_conv2=$input['conversation2_id'];

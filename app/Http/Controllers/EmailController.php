@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use PhpImap\Mailbox as ImapMailbox;
-use PhpImap\IncomingMail;
-use PhpImap\IncomingMailAttachment;
 use File;
 use Flash;
 use HTML;

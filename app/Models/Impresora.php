@@ -9,8 +9,9 @@ class Impresora extends Model
     
 
 	public $fillable = [
+        "modelo_impresora",
         "accountname",
-		"modelo_impresora"
+        "id_usuario"
 	];
 
     /**
@@ -26,11 +27,5 @@ class Impresora extends Model
         "accountname" => "required",
 		"modelo_impresora" => "required"
 	];
-
-	 public function usuario()
-    {
-        return $this->belongsToMany('Usuario','accountname');
-    }
-
 }
 /*$impresora = Impresora::find(1);*/

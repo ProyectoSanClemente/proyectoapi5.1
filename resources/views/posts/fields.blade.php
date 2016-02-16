@@ -1,28 +1,21 @@
 <!-- Nombre Sistema Field -->
-<div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('nombre_sistema', 'Nombre Sistema:') !!}
-	{!! Form::text('nombre_sistema', null, ['class' => 'form-control']) !!}
+<div class="form-group">
+    {!! Form::label('titulo', 'Titulo:') !!}
+	{!! Form::text('titulo', null, ['class' => 'form-control','id' => 'titulo','placeholder' => 'Ingrese un Titulo','maxlength' => 30,'required' => true]) !!}
 </div>
 
-<!-- Imagen Sistema Field -->
-<div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('imagen_sistema', 'Imagen Sistema:') !!}
-	{!! Form::file('imagen_sistema') !!}
-</div>
 
 <!-- Redireccionar Field -->
-<div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('controlador', 'Controlador:') !!}
-	{!! Form::text('controlador', null, ['class' => 'form-control']) !!}
+<div class="form-group">
+    {!! Form::label('contenido', 'Contenido:') !!}
+	{!! Form::textarea('contenido', null, ['class' => 'form-control','id' => 'titulo','placeholder' => 'Ingrese el Contenido','maxlength' => 30,'required' => true]) !!}
 </div>
-
-<div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('funcion', 'Funcion:') !!}
-	{!! Form::text('funcion', null, ['class' => 'form-control']) !!}
-</div>
+{!!Form::hidden('tipo','comunidad')!!}
+{!!Form::hidden('id_usuario','1')!!}
 
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+    {!!Form::button('Cancelar', ['class' => 'btn btn-default', 'data-dismiss'=>'modal']) !!}
 </div>

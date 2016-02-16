@@ -22,50 +22,40 @@
 </style>
 
 <div class="container">
-    {!! Breadcrumbs::render('home') !!}
     @include('flash::message')
-    <div class="row">
-        <div class="col-md-3">
+
+
+    <div class="panel-group" id="accordion">
+
+        <!-- start panel left -->
+        <div class="panel-left col-sm-3">
+            <!-- start panel -->
             <div class="panel panel-primary" style="height:auto">
-                <div class="panel-heading clearfix">                    
+                <div class="panel-heading clearfix">
                     <h4 class="panel-title pull-left">Perfil</h4>
                     <div class="btn-group pull-right">
-                        <button class="btn btn-primary glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" href="#collpaseperfil"></button>
+                        <button class="btn btn-primary glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" data-parent="#accordion" href="#collpaseperfil"></button>
                     </div>
                 </div>
-                  <div id="collpaseperfil" class="panel-collapse collapse in">    
-                    <div class="panel-body" style="height:400px">                             
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div class="panel panel-primary" style="height:auto">
-                <div class="panel-heading clearfix">                    
-                    <h4 class="panel-title pull-left">Comunidad</h4>
-                    <div class="btn-group pull-right">
-                        <button class="btn btn-primary glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" href="#collpasemuro"></button>
-                    </div>
-                </div>
-                  <div id="collpasemuro" class="panel-collapse collapse in">    
-                    <div class="panel-body" style="height:400px">                             
-                        @include('muro')
+                <div id="collpaseperfil" class="panel-collapse collapse">
+                    <div class="panel-body" style="height:400px">
+                        TESTTESTTESTTESTTEST
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="panel panel-danger" >
-                <div class="panel-heading clearfix">                    
+            <!-- end panel -->
+
+            <!-- start panel -->
+            <div class="panel panel-danger" style="height:auto">
+                <div class="panel-heading clearfix">
                     <h4 class="panel-title pull-left">Avisos</h4>
                     <div class="btn-group pull-right">
-                        <button class="btn btn-danger glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" href="#collpaseavisos"></button>
+                        <button class="btn btn-danger glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" data-parent="#accordion" href="#collpaseavisos"></button>
                     </div>
-                </div>            
-                
-                <div id="collpaseavisos" class="panel-collapse collapse in">
-                    <div class="panel-body"  style="height:400px">
-                        @foreach($notices as $notice)
+                </div>
+                <div id="collpaseavisos" class="panel-collapse collapse">
+                    <div class="panel-body" style="height:400px">
+                            @foreach($notices as $notice)
                             <h4><a href="#" data-toggle="modal" data-target="#myModal{{$notice->id}}">{!! $notice->titulo !!}</a></h4>
                             @if (strlen($notice->contenido) > 180)
                                 {!! substr($notice->contenido, 0, 180)."...";!!}
@@ -78,27 +68,54 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-9">
-            <div class="panel panel-info" style="height:auto">
-                <div class="panel-heading clearfix">                    
-                    <h4 class="panel-title pull-left">Noticias</h4>
+            <!-- end panel -->            
+        </div> 
+        <!-- end panel left -->
+
+        <!-- start panel right -->
+        <div class="panel-left col-sm-9">
+            <!-- start panel -->
+            <div class="panel panel-primary" style="height:auto">
+                <div class="panel-heading clearfix">
+                    <h4 class="panel-title pull-left">Comunidad</h4>
                     <div class="btn-group pull-right">
-                        <button class="btn btn-info glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" href="#collpasenoticias"></button>
+                        <button class="btn btn-primary glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" data-parent="#accordion" href="#collpasecomunidad"></button>
                     </div>
                 </div>
-                  <div id="collpasenoticias" class="panel-collapse collapse in">    
-                    <div class="panel-body" style="height:400px">                             
+                <div id="collpasecomunidad" class="panel-collapse collapse">
+                    <div class="panel-body" style="height:400px">
+                        @include('muro')
+                    </div>
+                    <div class="panel-footer">
+                        @include('posts.create')
+                    </div>
+                </div>
+            </div>
+            <!-- end panel -->
+
+            <!-- start panel -->
+            <div class="panel panel-info" style="height:auto">
+                <div class="panel-heading clearfix">
+                    <h4 class="panel-title pull-left">Noticias</h4>
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-info glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" data-parent="#accordion" href="#collpasenotice"></button>
+                    </div>
+                </div>
+                <div id="collpasenotice" class="panel-collapse collapse">
+                    <div class="panel-body" style="height:400px">
                         @foreach ($feed->get_items() as $item)
                             <div class="item">
-                              <h4><a target="_blank" href="{{ $item->get_permalink() }}">{{ $item->get_title() }}</a></h4>
-                              <p>{{ $item->get_description() }}</p>
+                                <h4><a target="_blank" href="{{ $item->get_permalink() }}">{{ $item->get_title() }}</a>
+                                </h4>
+                                <p>{{ $item->get_description() }}</p>
                             </div>
                         @endforeach
                     </div>
                 </div>
             </div>
-        </div>
+            <!-- end panel -->
+        </div> 
+        <!-- end panel right -->
     </div>
 </div>
 

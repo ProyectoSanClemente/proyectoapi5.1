@@ -11,7 +11,8 @@ class Post extends Model
 	public $fillable = [
 		"id_usuario",
 		"contenido",
-		"tipo"
+		"tipo",
+		"titulo"
 	];
 
     /**

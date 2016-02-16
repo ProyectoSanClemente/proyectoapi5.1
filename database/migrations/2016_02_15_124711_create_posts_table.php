@@ -15,6 +15,7 @@ class CreatePostsTable extends Migration
         Schema::dropIfExists('posts');
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('titulo');
             $table->text('contenido');
             $table->string('tipo');
             $table->integer('id_usuario')->unsigned();

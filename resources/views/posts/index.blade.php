@@ -15,7 +15,6 @@
             @if($posts->isEmpty())
                 <div class="well text-center">Posts no encontrados.</div>
             @else
-                @include('posts.table')
             @endif
         </div>
 

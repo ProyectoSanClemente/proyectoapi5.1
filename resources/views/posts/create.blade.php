@@ -1,7 +1,7 @@
 
 	@include('common.errors')
 <div align="right">
-	<a class="btn btn-primary" data-toggle="modal" href='#modal-id'>Nuevo Post!</a>
+	<a class="btn btn-primary" id="post" data-toggle="modal" href='#modal-id'>Nuevo Post!</a>
 </div>
 
 <div class="modal fade" id="modal-id" role="dialog">

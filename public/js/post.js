@@ -1,14 +1,29 @@
 $(document).ready(function(){
-
+    
+    $('#post').click(function() {
+        $('#error').hide();
+    });
+        // body...
 	$('.send-button').click(function(){//En el envento click
+    if ($('#titulo').val()=="" || $('#contenido').val()=="" ){
+            $('#error').show();
+            return false;
+        }
     send_post($(this));
     $('#modal-id').modal('toggle');
-    $( "#collpasecomunidad" ).load( "home/index #container" );
-
+    $('#muro').load( " #muro" );
 	});
+    refreshTable();
 });
 
+function refreshTable(){
+    $('#muro').load(" #muro", function(){
+       setTimeout(refreshTable, 3000);
+    });
+}
+
 function send_post(input){
+    
     var dataString = {
         titulo: $('#titulo').val(),
         contenido: $('#contenido').val(),
@@ -24,7 +39,9 @@ function send_post(input){
         cache : false,
         success: function(data){
             if(data.success == true){
-                $('.text-message').val('');
+                $('#titulo').val('');
+                $('#contenido').val('');
+
                 /*var socket = io.connect( 'http://'+window.location.hostname+':3000');
                 socket.emit('new_message',{ 
                     titulo: data.titulo,

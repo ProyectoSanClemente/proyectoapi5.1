@@ -59,6 +59,8 @@ class PostController extends AppBaseController
         	$post=Post::create($input);           
         	$data=Request::all();
         	$data['success'] = true;
+        
+        	
 
         return json_encode($data);
     }

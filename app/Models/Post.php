@@ -27,10 +27,6 @@ class Post extends Model
     ];
 
 	public static $rules = [
-		"id_usuario" => "required",
-		"titulo" => "required",
-		"contenido" => "required",
-		"tipo"=> "required"
 	];
 
 	public static $update_rules = [
@@ -38,8 +34,8 @@ class Post extends Model
 
 	];
 
-	public function usuario()
+	public function Usuario()
     {
-        return $this->belongsTo('Usuario','id');
+        return $this->belongsTo('App\Models\Usuario','id_usuario');
     }
 }

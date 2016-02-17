@@ -1,20 +1,23 @@
+<div class="contenedor" id="muro">
 @foreach($posteos as $posteo)
-<div class="well">
-  <div class="media">
-  	<a class="pull-left" href="#">
-		<img class="media-object" src="http://placekitten.com/150/150">
-		</a>
-		<div class="media-body" id="muro">
-		<h4 class="media-heading">{!! $posteo->titulo !!}</h4>
-      <p class="text-right">{!!$posteo->id_usuario!!}</p>
-      <p>{!!$posteo->contenido!!}</p>
-      <ul class="list-inline list-unstyled">
-			<li><span><i class="glyphicon glyphicon-calendar"></i> {!!$posteo->created_at!!} </span></li>
-        <li>|</li>
-        <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-        <li>|</li>
-		</ul>
-   </div>
-</div>
-</div>
+
+  <div class="well">
+    <div class="media">
+    	<a class="pull-left" href="#">
+  		<img  class="img-circle special-img" width="25px" src="{!!$posteo->Usuario->imagen!!}">
+  		</a>
+  		<div class="media-body">
+  		<h4 class="media-heading">{!! $posteo->titulo !!}</h4><hr>
+        <p>{!!$posteo->contenido!!}</p>
+        <ul class="list-inline list-unstyled">
+  			<li><span><i class="glyphicon glyphicon-calendar"></i> {!!$posteo->created_at->diffForHumans()!!} </span></li>
+          <li>|</li>
+          <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+          <li>|</li>
+          <span><class="text-right">Escrito por :{!!$posteo->Usuario->displayname!!}</span>
+  		  </ul>
+      </div>
+    </div>
+  </div>
 @endforeach
+</div>

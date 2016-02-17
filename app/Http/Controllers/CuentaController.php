@@ -167,49 +167,52 @@ class CuentaController extends Controller
 		return redirect(route('cuentas.index'));
 	}
 
+	//Comienzo Envio datos de cuentas
 	public function glpi($id)
 	{
-
-		$informacion = $this->cuentaRepository->find();
+		//$informacion = $this->cuentaRepository->find();
 		return view('cuentas.glpi')
 			->with('info',$informacion);
 	}
 
-	public function sidam($id)
+	public function sidam()
 	{
-
-		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
+		$id=Auth::user()->id;
+		$cuenta = $this->usuarioRepository->find($id)->Cuenta->first();
 		return view('cuentas.sidam')
-			->with('id',$informacion->id_sidam)
-			->with('pass',$informacion->pass_sidam);
+			->with('id',$cuenta->id_sidam)
+			->with('pass',$cuenta->pass_sidam);	
+		
 	}
 
 	public function owncloud()
-	{
-		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
+	{	
+		$accountname=Auth::user()->accountname;
 		return view('cuentas.owncloud')
-			->with('nombre',$informacion->accountname);
+			->with('nombre',$accountname);
 	}
 
 	public function zimbra()
 	{
-		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
+		$id=Auth::user()->id;
+		$cuenta = $this->usuarioRepository->find($id)->Cuenta->first();
 		return view('cuentas.zimbra')
-			->with('nombre',$informacion->accountname);
+			->with('nombre',$cuenta->id_zimbra);
 	}
 
 	public function crecic()
 	{
-		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
+		$accountname=Auth::user()->accountname;
 		return view('cuentas.crecic')
-			->with('nombre',$informacion->accountname);
+			->with('nombre',$accountname);
 	}
 
 	public function solicitudcompras()
 	{
-		$informacion = $this->cuentaRepository->findBy('accountname',Auth::user()->accountname);
+		$id=Auth::user()->id;
+		$cuenta = $this->usuarioRepository->find($id)->Cuenta->first();		
 		return view('cuentas.solicitudcompras')
-			->with('id',$informacion->id_sidam)
-			->with('pass',$informacion->pass_sidam);
+			->with('id',$cuenta->id_sidam)
+			->with('pass',$cuenta->pass_sidam);
 	}
 }

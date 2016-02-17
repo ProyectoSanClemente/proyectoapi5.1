@@ -63,7 +63,11 @@ class Usuario extends Model
 
     public function Cuenta()
     {
-        return $this->hasMany('App\Models\Cuenta','id_usuario');
+        return $this->hasOne('App\Models\Cuenta','id_usuario');
+    }
+
+    public function hasCuenta(){    
+        return (bool) $this->Cuenta()->first();
     }
 
 }

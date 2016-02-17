@@ -7,7 +7,6 @@ use App\Libraries\Repositories\CuentaRepository;
 use App\Libraries\Repositories\UsuarioRepository;
 use Flash;
 use Response;
-use App\Models\Usuario;
 use Auth;
 
 class CuentaController extends Controller
@@ -44,9 +43,8 @@ class CuentaController extends Controller
 	{
 		$usuario= $this->usuarioRepository->find($id);
 		
-		$cuenta=$usuario->Cuenta->first();
-		
-		if($cuenta){//Si es que ya tiene asociada cuentas			
+		if($this->usuarioRepository->hasCuenta($id)){//Si es que ya tiene asociada cuenta
+			$cuenta=$this->usuarioRepository->Cuenta($id);
 			return redirect(route('cuentas.edit', $cuenta->id));
 		}
 		else{
@@ -177,12 +175,19 @@ class CuentaController extends Controller
 
 	public function sidam()
 	{
-		$id=Auth::user()->id;
-		$cuenta = $this->usuarioRepository->find($id)->Cuenta->first();
-		return view('cuentas.sidam')
-			->with('id',$cuenta->id_sidam)
-			->with('pass',$cuenta->pass_sidam);	
-		
+		$id=Auth::user()->id;	
+		if($this->usuarioRepository->hasCuenta($id)){
+			$cuenta = $this->usuarioRepository->Cuenta($id);
+			if(empty($cuenta->id_sidam) || empty($cuenta->pass_sidam))
+			{
+				return print('faltan completar datos de ingreso Zimbra');
+			}
+			return view('cuentas.sidam')
+				->with('id',$cuenta->id_sidam)
+				->with('pass',$cuenta->pass_sidam);
+		}
+		else
+			return print('sidam sin cuenta');
 	}
 
 	public function owncloud()
@@ -195,9 +200,16 @@ class CuentaController extends Controller
 	public function zimbra()
 	{
 		$id=Auth::user()->id;
-		$cuenta = $this->usuarioRepository->find($id)->Cuenta->first();
-		return view('cuentas.zimbra')
-			->with('nombre',$cuenta->id_zimbra);
+		if($this->usuarioRepository->hasCuenta($id)){
+			$cuenta = $this->usuarioRepository->Cuenta($id);
+			if(empty($cuenta->id_zimbra) || empty($cuenta->pass_zimbra))
+			{
+				return print('faltan completar datos de ingreso Zimbra');
+			}
+			return view('cuentas.zimbra')
+				->with('nombre',$cuenta->id_zimbra);
+		}		
+		return print('zimbra sin cuenta');
 	}
 
 	public function crecic()
@@ -210,9 +222,17 @@ class CuentaController extends Controller
 	public function solicitudcompras()
 	{
 		$id=Auth::user()->id;
-		$cuenta = $this->usuarioRepository->find($id)->Cuenta->first();		
-		return view('cuentas.solicitudcompras')
-			->with('id',$cuenta->id_sidam)
-			->with('pass',$cuenta->pass_sidam);
+		if($this->usuarioRepository->hasCuenta($id)){
+			$cuenta = $this->usuarioRepository->Cuenta($id);
+			if(empty($cuenta->id_sidam) || empty($cuenta->pass_sidam))
+			{
+				return print('faltan completar datos de ingreso solicitudcompras');
+			}
+			return view('cuentas.solicitudcompras')
+				->with('id',$cuenta->id_sidam)
+				->with('pass',$cuenta->pass_sidam);
+		}
+		else 
+			return print('solicitud de compras sin cuenta');
 	}
 }

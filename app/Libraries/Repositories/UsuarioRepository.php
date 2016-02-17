@@ -63,4 +63,19 @@ class UsuarioRepository extends Repository
 
         return $model->delete();
     }
+
+     /**
+    * Check if exists a Cuenta for this usuario
+    *
+    **/
+    public function hasCuenta($id){
+        return (bool) $this->model->find($id)->Cuenta;        
+    }
+    /**
+    * return the relationship hasOne for this usuario
+    *
+    **/
+    public function Cuenta($id){
+        return $this->model->find($id)->Cuenta;
+    }
 }

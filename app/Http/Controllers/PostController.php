@@ -9,13 +9,13 @@ use Mitul\Controller\AppBaseController as AppBaseController;
 use Response;
 use App\Models\Post;
 use Auth;
+use Validator, Input, Request, DB;
 
 class PostController extends AppBaseController
 {
 
 	/** @var  postRepository */
-	#private $postRepository;
-	#private $usuarioRepository;
+
 	private $postRepository;
 	function __construct(PostRepository $postRepo)
 	{
@@ -55,22 +55,15 @@ class PostController extends AppBaseController
 	 */
 	public function store(CreatePostRequest $request)
 	{
-		$input = $request->all();
+			$input=Request::all();
+        	$post=Post::create($input);           
+        	$data=Request::all();
+        	$data['success'] = true;
 
-		try{
-			$post = $this->postRepository->create($input);
-			Flash::success('Post agregada satisfactoriamente.');
-			return redirect(route('posts.index'));
+        return json_encode($data);
+    }
 
-		    } catch(QueryException $e) {
-        		if (preg_match('/Duplicate entry/',$e->getMessage())){
-            	return response([
-                'success' => false,
-                'message' => 'Role exists for that user'
-            	], 500);
-       			}
-			}
-	}
+
 	/**
 	 * Display the specified post.
 	 *

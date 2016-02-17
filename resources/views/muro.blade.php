@@ -1,17 +1,15 @@
+@foreach($posteos as $posteo)
 <div class="well">
   <div class="media">
   	<a class="pull-left" href="#">
 		<img class="media-object" src="http://placekitten.com/150/150">
 		</a>
-		<div class="media-body">
-		<h4 class="media-heading">Receta 1</h4>
-      <p class="text-right">By Francisco</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-Aliquam in felis sit amet augue.</p>
+		<div class="media-body" id="muro">
+		<h4 class="media-heading">{!! $posteo->titulo !!}</h4>
+      <p class="text-right">{!!$posteo->id_usuario!!}</p>
+      <p>{!!$posteo->contenido!!}</p>
       <ul class="list-inline list-unstyled">
-			<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
+			<li><span><i class="glyphicon glyphicon-calendar"></i> {!!$posteo->created_at!!} </span></li>
         <li>|</li>
         <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
         <li>|</li>
@@ -19,24 +17,4 @@ Aliquam in felis sit amet augue.</p>
    </div>
 </div>
 </div>
-<div class="well">
-  <div class="media">
-		<a class="pull-left" href="#">
-		<img class="media-object" src="http://placekitten.com/150/150">
-		</a>
-		<div class="media-body">
-		<h4 class="media-heading">Receta 2</h4>
-      <p class="text-right">By Anailuj</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
-Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
-dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
-Aliquam in felis sit amet augue.</p>
-      <ul class="list-inline list-unstyled">
-      <li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
-        <li>|</li>
-        <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-        <li>|</li>
-    </ul>
-   </div>
-</div>
-</div>
+@endforeach

@@ -126,14 +126,12 @@ Route::group(['middleware'], function () {
         'uses' => 'UsuarioController@getldapusers'
     ]);
 
-    Route::resource('posts', 'PostController');
-
-    Route::get('posts/{id}/create', [
-     'as' => 'posts.create',
-     'uses' => 'PostController@create']);
-
-    Route::get('posts/{id}/delete', [
-    'as' => 'posts.delete',
-    'uses' => 'PostController@destroy']);
+    Route::group(['prefix' => 'posts'], function(){
+        Route::get('/','PostController@index');
+        Route::post('create','PostController@createorUpdate');
+        Route::post('show','PostController@showconversations');
+        Route::post('update','PostController@update');
+        Route::post('store','PostController@store');
+    });
 });
 

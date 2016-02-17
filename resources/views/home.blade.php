@@ -20,10 +20,9 @@
 
 }
 </style>
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="container">
     @include('flash::message')
-
 
     <div class="panel-group" id="accordion">
 
@@ -121,3 +120,6 @@
 
 
 @endsection
+@push('scripts')
+    {!! HTML::script('js/post.js') !!}
+@endpush

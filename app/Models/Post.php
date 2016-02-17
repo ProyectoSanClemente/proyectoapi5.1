@@ -28,6 +28,7 @@ class Post extends Model
 
 	public static $rules = [
 		"id_usuario" => "required",
+		"titulo" => "required",
 		"contenido" => "required",
 		"tipo"=> "required"
 	];

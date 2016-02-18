@@ -126,25 +126,15 @@ Route::group(['middleware'], function () {
         'uses' => 'UsuarioController@getldapusers'
     ]);
 
-    Route::get('contenido', function()
-    {
+    Route::get('contenido', function(){
         return view('contenido');
     });
 
-
-    Route::get('contenido', function()
-    {
-        return view('contenido');
+    Route::group(['prefix' => 'posts'], function(){
+        Route::get('/','PostController@index');
+        Route::post('create','PostController@createorUpdate');
+        Route::post('show','PostController@showconversations');
+        Route::post('update','PostController@update');
+        Route::post('store','PostController@store');
     });
-
-    Route::resource('posts', 'PostController');
-
-    Route::get('posts/{id}/create', [
-     'as' => 'posts.create',
-     'uses' => 'PostController@create']);
-
-    Route::get('posts/{id}/delete', [
-    'as' => 'posts.delete',
-    'uses' => 'PostController@destroy']);
-});
-
+});   

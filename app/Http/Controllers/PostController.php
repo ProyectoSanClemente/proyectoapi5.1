@@ -150,13 +150,13 @@ class PostController extends AppBaseController
 		{
 			Flash::error('post no encontrada.');
 
-			return redirect(route('posts.index'));
+			return redirect(url('home'));
 		}
 
 		$this->postRepository->delete($id);
 
-		Flash::success('post borrada satisfactoriamente.');
+		Flash::success('Post borrado satisfactoriamente.');
 
-		return redirect(route('posts.index'));
+		return redirect(url('home'));
 	}
 }

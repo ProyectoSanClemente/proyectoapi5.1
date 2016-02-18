@@ -132,9 +132,13 @@ Route::group(['middleware'], function () {
 
     Route::group(['prefix' => 'posts'], function(){
         Route::get('/','PostController@index');
-        Route::post('create','PostController@createorUpdate');
-        Route::post('show','PostController@showconversations');
+        Route::post('create','PostController@create');
+        Route::post('show','PostController@show');
         Route::post('update','PostController@update');
         Route::post('store','PostController@store');
+        Route::get('{id}/delete',[
+            'as' => 'posts.delete',
+            'uses' => 'PostController@destroy'
+        ]);
     });
 });   

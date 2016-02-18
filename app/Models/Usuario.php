@@ -70,4 +70,9 @@ class Usuario extends Model
         return (bool) $this->Cuenta()->first();
     }
 
+    public function Posts()
+    {
+        return $this->hasMany('App\Models\Post','id_usuario');
+    }
+
 }

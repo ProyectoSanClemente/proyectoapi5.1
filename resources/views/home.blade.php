@@ -20,10 +20,9 @@
 
 }
 </style>
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="container">
     @include('flash::message')
-
 
     <div class="panel-group" id="accordion">
 
@@ -53,7 +52,7 @@
                         <button class="btn btn-danger glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" data-parent="#accordion" href="#collpaseavisos"></button>
                     </div>
                 </div>
-                <div id="collpaseavisos" class="panel-collapse collapse">
+                <div id="collpaseavisos" class="panel-collapse collapse in">
                     <div class="panel-body" style="height:400px">
                             @foreach($notices as $notice)
                             <h4><a href="#" data-toggle="modal" data-target="#myModal{{$notice->id}}">{!! $notice->titulo !!}</a></h4>
@@ -82,8 +81,8 @@
                         <button class="btn btn-primary glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" data-parent="#accordion" href="#collpasecomunidad"></button>
                     </div>
                 </div>
-                <div id="collpasecomunidad" class="panel-collapse collapse">
-                    <div class="panel-body" style="height:400px">
+                <div id="collpasecomunidad" class="panel-collapse collapse in">
+                    <div class="panel-body" style="height:350px">
                         @include('muro')
                     </div>
                     <div class="panel-footer">
@@ -121,3 +120,6 @@
 
 
 @endsection
+@push('scripts')
+    {!! HTML::script('js/post.js') !!}
+@endpush

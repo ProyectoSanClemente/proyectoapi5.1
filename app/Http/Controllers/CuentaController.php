@@ -8,6 +8,10 @@ use App\Libraries\Repositories\UsuarioRepository;
 use Flash;
 use Response;
 use Auth;
+use GuzzleHttp\Client;
+use Guzzle\Plugin\Cookie\Cookie;
+use Guzzle\Plugin\Cookie\CookiePlugin;
+use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
 
 class CuentaController extends Controller
 {
@@ -166,7 +170,7 @@ class CuentaController extends Controller
 	}
 
 	//Comienzo Envio datos de cuentas
-	public function glpi($id)
+	public function glpi()
 	{
 		//$informacion = $this->cuentaRepository->find();
 		return view('cuentas.glpi')
@@ -192,9 +196,23 @@ class CuentaController extends Controller
 
 	public function owncloud()
 	{	
-		$accountname=Auth::user()->accountname;
-		return view('cuentas.owncloud')
-			->with('nombre',$accountname);
+		$id=Auth::user()->id;	
+		if($this->usuarioRepository->hasCuenta($id)){
+			$cuenta = $this->usuarioRepository->Cuenta($id);
+			if(empty($cuenta->id_sidam) || empty($cuenta->pass_sidam))
+			{
+				return print('faltan completar datos de ingreso Zimbra');
+			}			
+
+			return view('cuentas.owncloud')
+				->with('id',$cuenta->id_sidam)
+				->with('pass',$cuenta->pass_sidam);
+
+			
+		}
+		else
+			return print('sidam sin cuenta');
+
 	}
 
 	public function zimbra()

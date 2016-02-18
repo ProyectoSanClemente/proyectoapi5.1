@@ -21,7 +21,7 @@
                         <li> {!! HTML::link('usuarios', 'Directorio Empleados') !!}</li>
                         <li> {!! HTML::link('impresoras', 'Impresoras') !!}</li>
                         <li> {!! HTML::link('noticias', 'Noticias')     !!}</li>
-                        <li> {!! HTML::link('usuarios', 'Contenido')    !!}</li>
+                        <li> {!! HTML::link('contenido', 'Contenido')   !!}</li>
                         <li> {!! HTML::link('cuentas', 'Cuentas')       !!}</li>
                         <li> {!! HTML::link('emails/index', 'Correo')   !!}</li>
                         <li> {!! HTML::link('sistemas', 'Sistemas')     !!}</li>
@@ -29,6 +29,7 @@
                         {{-- <li><a href="{!!  URL::to('chat')  !!}">Chat </a></li> --}}
 
                     @else
+                        <li> {!! HTML::link('contenido', 'Contenido')   !!}</li>
                         <li> {!! HTML::link('cuentas', 'Cuentas')       !!}</li>
                         <li> {!! HTML::link('emails/index', 'Correo')   !!}</li>
                         <li> {!! HTML::link('sistemas', 'Sistemas')     !!}</li>

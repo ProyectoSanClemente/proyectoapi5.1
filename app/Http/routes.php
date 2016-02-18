@@ -126,6 +126,11 @@ Route::group(['middleware'], function () {
         'uses' => 'UsuarioController@getldapusers'
     ]);
 
+    Route::get('contenido', function()
+    {
+        return view('contenido');
+    });
+
     Route::resource('posts', 'PostController');
 
     Route::get('posts/{id}/create', [

@@ -24,6 +24,7 @@ class CuentaController extends Controller
 	{
 		$this->cuentaRepository = $cuentaRepo;
 		$this->usuarioRepository = $usuarioRepo;
+		$this->middleware('auth');
 	}
 
 	/**

@@ -1,20 +1,24 @@
 <table id="usuarios" class="table table-responsive" style="display:none">
     <thead>
-        <th>AccountName</th>
+        <th>Imagen</th>
+        <th>Cuenta</th>
+        <th>Rut</th>
         <th>Nombre</th>
         <th>Apellido</th>
-        <th>Email</th>
+        <th>Correo</th>
     <th width="120px">Acciones</th>
 </thead>
     <tbody>
     @foreach($usuarios as $usuario)
         <tr id="{{$usuario->id}}">
+            <td><img src="{!! $usuario->imagen !!}" class="img-responsive img-circle" width="20px"></a></td>
             <td>{!! $usuario->accountname !!}</td>
+            <td>{!! $usuario->rut !!}</td>
             <td>{!! $usuario->nombre !!}</td>
             <td>{!! $usuario->apellido !!}</td>
             <td>{!! $usuario->email !!}</td>
             <td>
-                <a href='#' data-toggle="modal" data-toggle="modal" data-target="#showModal{{$usuario->id}}" lda><i class="glyphicon glyphicon-eye-open"></i></a>
+                <a href='#' data-toggle="modal" data-toggle="modal" data-target="#showModal{{$usuario->id}}"><i class="glyphicon glyphicon-eye-open"></i></a>
                 <a href="{{ route('usuarios.edit', [$usuario->id]) }}"><i class="glyphicon glyphicon-edit"></i></a>
                 <a href="{{ route('usuarios.delete', [$usuario->id]) }}" onclick="return confirm('Estas seguro que deseas eliminar este usuario?')"><i class="glyphicon glyphicon-trash"></i></a>
                 <a href="{{ route('cuentas.create',[$usuario->id]) }}"><i class="glyphicon glyphicon-hdd"></i></a>
@@ -43,8 +47,9 @@
 })
 </script>
 
+<!-- Incluir  Css contextMenu-->
 {!! HTML::script('js/jQuery-contextMenu/jquery.contextMenu.js')!!}
-
+<!-- Jquery menu contextual -->
 <script type="text/javascript">
     $(function(){
     $('#usuarios').contextMenu({
@@ -74,7 +79,10 @@
             },
             "sep1": "---------",
             "cuentas": {name: "Asignar Cuentas", icon: "fa-hdd-o",callback: function(){
-                    alert('falta agregar redirección'+' 1');
+                    var id=$(this).attr('id');
+                    url="{{ route('cuentas.create', $usuario->id) }}"
+                    var url = url.replace("{{$usuario->id}}",id);
+                    window.location.href = url; 
                 }
             },
             "impresora": {name: "Asignar Impresora", icon: "fa-print",callback: function(){

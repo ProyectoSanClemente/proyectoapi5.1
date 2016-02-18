@@ -5,14 +5,14 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-				<div class="panel-heading">Edicion datos de usuario</div>					
+				<div class="panel-heading">Edición datos de usuario </div>					
 				<div class="panel-body">                       
                 	<!-- accountname Field -->
                 	<div class="form-group{{ $errors->has('accountname') ? ' has-error' : '' }}">
                         <div class="form-group">                            
-                            {!! Form::label('accountname', 'AccountName:',array('class'=>"col-md-4 control-label")) !!}
+                            {!! Form::label('accountname', 'Cuenta:',['class'=>"col-md-4 control-label"]) !!}
 	                        <div class="col-md-6">
-	                        {!! Form::text('accountname', null, ['class' => 'form-control','readonly'=>'readonly']) !!}
+                            {!! Form::text('accountname', null, ['class' => 'form-control','readonly'=>'readonly','style'=>'border: none;']) !!}
                             
 	                        @if ($errors->has('accountname'))
                                 <span class="help-block">
@@ -22,11 +22,28 @@
                             </div>
                         </div>
                     </div>
-
+                    <!-- Rut Field -->
+                    <div class="form-group{{ $errors->has('rut') ? ' has-error' : '' }}">
+                        <div class="form-group">
+                            {!! Form::label('rut', 'Rut:',['class'=>"col-md-4 control-label"]) !!}
+                            <div class="col-md-6">
+                            @if(empty($usuario->rut))
+                                {!! Form::text('rut', null, ['class' => 'form-control']) !!}
+                            @else
+                                {!! Form::text('rut', null, ['class' => 'form-control','readonly'=>'readonly','style'=>'border: none;']) !!}
+                            @endif 
+                            @if ($errors->has('rut'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('rut') }}</strong>
+                                </span>
+                            @endif  
+                            </div>
+                        </div>
+                    </div>
                     <!-- Nombre Field -->
                     <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
                         <div class="form-group">
-                            {!! Form::label('nombre', 'Nombre:',array('class'=>"col-md-4 control-label")) !!}
+                            {!! Form::label('nombre', 'Nombre:',['class'=>"col-md-4 control-label"]) !!}
 	                        <div class="col-md-6">
 							{!! Form::text('nombre', null, ['class' => 'form-control']) !!}
                              @if ($errors->has('nombre'))
@@ -41,7 +58,7 @@
                     <!-- Apellido Field -->
                     <div class="form-group{{ $errors->has('apellido') ? ' has-error' : '' }}">
                         <div class="form-group">
-                            {!! Form::label('apellido', 'Apellido:',array('class'=>"col-md-4 control-label")) !!}
+                            {!! Form::label('apellido', 'Apellido:',['class'=>"col-md-4 control-label"]) !!}
 	                        <div class="col-md-6">
 							{!! Form::text('apellido', null, ['class' => 'form-control']) !!}
                              @if ($errors->has('apellido'))
@@ -56,7 +73,7 @@
                     <!-- Email Field -->
 					<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <div class="form-group">
-                            {!! Form::label('email', 'Email:',array('class'=>"col-md-4 control-label")) !!}
+                            {!! Form::label('email', 'Email:',['class'=>"col-md-4 control-label"]) !!}
 	                        <div class="col-md-6">
 							{!! Form::text('email', null, ['class' => 'form-control']) !!}
                              @if ($errors->has('email'))

@@ -12,9 +12,9 @@
                     	<!-- accountname Field -->
                     	<div class="form-group{{ $errors->has('accountname') ? ' has-error' : '' }}">
 	                        <div class="form-group">                            
-	                            {!! Form::label('accountname', 'Nombre Usuario:',['class'=>"col-md-4 control-label"]) !!}
+	                            {!! Form::label('accountname', 'Cuenta:',['class'=>"col-md-4 control-label"]) !!}
 		                        <div class="col-md-6">
-		                        {!! Form::text('accountname', null, ['class' => 'form-control']) !!}
+		                        {!! Form::text('accountname', null, ['class' => 'form-control','Placeholder'=>'Cuenta Usuario']) !!}
 	                            
 		                        @if ($errors->has('accountname'))
                                     <span class="help-block">
@@ -24,7 +24,8 @@
 	                            </div>
 	                        </div>
 	                    </div>
-
+                        
+                        <!-- Rol Select -->
                         <div class="form-group">                           
                             {!! Form::label('rol', 'Rol:',['class'=>"col-md-4 control-label"]) !!}
                             <div class="col-md-6">
@@ -37,7 +38,9 @@
                             <div class="form-group">
                                 {!! Form::label('rut', 'Rut:',['class'=>"col-md-4 control-label"]) !!}
                                 <div class="col-md-6">
-                                {!! Form::text('rut', null, ['class' => 'form-control']) !!}
+                                    
+                                    {!! Form::text('rut', null, ['class' => 'form-control','Placeholder'=>'Ej:11.111.111-1  o  11111111-1']) !!}
+                                
                                  @if ($errors->has('rut'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('rut') }}</strong>
@@ -50,9 +53,9 @@
                         <!-- Nombre Field -->
                         <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
 	                        <div class="form-group">
-	                            {!! Form::label('nombre', 'Nombre:',array('class'=>"col-md-4 control-label")) !!}
+	                            {!! Form::label('nombre', 'Nombre:',['class'=>"col-md-4 control-label"]) !!}
 		                        <div class="col-md-6">
-								{!! Form::text('nombre', null, ['class' => 'form-control']) !!}
+								{!! Form::text('nombre', null, ['class' => 'form-control','Placeholder'=>'Nombre Usuario']) !!}
 	                             @if ($errors->has('nombre'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('nombre') }}</strong>
@@ -65,9 +68,9 @@
                         <!-- Apellido Field -->
                         <div class="form-group{{ $errors->has('apellido') ? ' has-error' : '' }}">
 	                        <div class="form-group">
-	                            {!! Form::label('apellido', 'Apellido:',array('class'=>"col-md-4 control-label")) !!}
+	                            {!! Form::label('apellido', 'Apellido:',['class'=>"col-md-4 control-label"]) !!}
 		                        <div class="col-md-6">
-								{!! Form::text('apellido', null, ['class' => 'form-control']) !!}
+								{!! Form::text('apellido', null, ['class' => 'form-control','Placeholder'=>'Apellido Usuario']) !!}
 	                             @if ($errors->has('apellido'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('apellido') }}</strong>
@@ -80,23 +83,22 @@
                         <!-- Email Field -->
 						<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 	                        <div class="form-group">
-	                            {!! Form::label('email', 'Email:',array('class'=>"col-md-4 control-label")) !!}
+	                            {!! Form::label('email', 'Email:',['class'=>"col-md-4 control-label"]) !!}
 		                        <div class="col-md-6">
-								{!! Form::text('email', null, ['class' => 'form-control']) !!}
+								{!! Form::text('email', null, ['class' => 'form-control','Placeholder'=>'Correo Electrónico']) !!}
 	                             @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @endif	
+                                @endif
 	                            </div>
 	                        </div>
-	                    </div>        
+	                    </div>
        					
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
-
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">                            
+                            {!! Form::label('password','Contraseña',['class'=>'col-md-4 control-label'])!!}
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
+                                {!! Form::password('password',['class'=>'form-control','Placeholder'=>'Contraseña'])!!}
                                  @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -106,11 +108,10 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Confirm Password</label>
-
+                            {!! Form::label('password_confirmation','Confirmar Contraseña',['class'=>'col-md-4 control-label'])!!}
+                            
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password_confirmation">
-
+                                {!! Form::password('password_confirmation',['class'=>'form-control','Placeholder'=>'Confirmación contraseña'])!!}
                                 @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>

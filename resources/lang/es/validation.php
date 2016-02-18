@@ -91,6 +91,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'rut' =>[
+            'rut_valid' => 'El campo Rut no tiene un formato válido',
+            ]
     ],
 
     /*
@@ -104,6 +107,13 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'password' => 'Contraseña',
+        'password_confirmation' => 'confirmación de contraseña',
+        'accountname' => 'Cuenta',
+        'rut' => 'Rut',
+        'nombre' => 'Nombre',
+        'apellido'  => 'Apellido'
+        ],
 
 ];

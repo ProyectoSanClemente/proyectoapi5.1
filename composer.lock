@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "203e53b522e57d2d3a1476810695832a",
-    "content-hash": "cbd50f84b096073f68f64d3550288291",
+    "hash": "9847d96a0e57e842d37008eccb8743f9",
+    "content-hash": "facd9e1a738ab3a016edcf95b7e0faf0",
     "packages": [
         {
             "name": "adldap2/adldap2",
@@ -1427,6 +1427,49 @@
                 "storage"
             ],
             "time": "2015-12-19 20:16:43"
+        },
+        {
+            "name": "malahierba-lab/chile-rut",
+            "version": "5.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/malahierba-lab/chile-rut.git",
+                "reference": "96a97d1c99a1f1ff9257e97697cd75856219863b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/malahierba-lab/chile-rut/zipball/96a97d1c99a1f1ff9257e97697cd75856219863b",
+                "reference": "96a97d1c99a1f1ff9257e97697cd75856219863b",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.1.*",
+                "php": ">=5.5.18"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Malahierba\\ChileRut\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "malahierba team",
+                    "email": "lab@malahierba.cl",
+                    "homepage": "http://malahierba.cl"
+                }
+            ],
+            "description": "Librería Laravel para el manejo y validación de RUT chileno",
+            "keywords": [
+                "chile",
+                "laravel",
+                "rut"
+            ],
+            "time": "2015-08-12 13:01:04"
         },
         {
             "name": "mitulgolakiya/laravel-api-generator",

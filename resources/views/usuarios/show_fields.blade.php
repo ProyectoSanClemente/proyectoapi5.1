@@ -1,3 +1,8 @@
+<div class="form-group">
+    {!! Form::label('accountname', 'Cuenta:') !!}
+    {!! $usuario->accountname !!}
+</div>
+
 <!-- Rut Field -->
 <div class="form-group">
     {!! Form::label('rut', 'Rut:') !!}
@@ -18,6 +23,6 @@
 
 <!-- email Field -->
 <div class="form-group">
-    {!! Form::label('email', 'Email:') !!}
+    {!! Form::label('email', 'Correo:') !!}
     {!! $usuario->email !!}
 </div>

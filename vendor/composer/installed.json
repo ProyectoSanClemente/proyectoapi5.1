@@ -4329,5 +4329,50 @@
             "laravel",
             "ldap"
         ]
+    },
+    {
+        "name": "malahierba-lab/chile-rut",
+        "version": "5.1.0",
+        "version_normalized": "5.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/malahierba-lab/chile-rut.git",
+            "reference": "96a97d1c99a1f1ff9257e97697cd75856219863b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/malahierba-lab/chile-rut/zipball/96a97d1c99a1f1ff9257e97697cd75856219863b",
+            "reference": "96a97d1c99a1f1ff9257e97697cd75856219863b",
+            "shasum": ""
+        },
+        "require": {
+            "laravel/framework": "5.1.*",
+            "php": ">=5.5.18"
+        },
+        "time": "2015-08-12 13:01:04",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Malahierba\\ChileRut\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "malahierba team",
+                "email": "lab@malahierba.cl",
+                "homepage": "http://malahierba.cl"
+            }
+        ],
+        "description": "Librería Laravel para el manejo y validación de RUT chileno",
+        "keywords": [
+            "chile",
+            "laravel",
+            "rut"
+        ]
     }
 ]

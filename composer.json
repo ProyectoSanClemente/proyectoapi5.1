@@ -16,7 +16,8 @@
         "php-imap/php-imap": "~2.0",
         "adldap2/adldap2-laravel": "1.4.*",
         "willvincent/feeds": "1.0.*",
-        "davejamesmiller/laravel-breadcrumbs": "^3.0"        
+        "davejamesmiller/laravel-breadcrumbs": "^3.0",
+        "malahierba-lab/chile-rut": "^5.1"        
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

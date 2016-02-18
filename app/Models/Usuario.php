@@ -36,16 +36,19 @@ class Usuario extends Model
 
 	public static $create_rules = [
 		"accountname" => "required|unique:usuarios",
-		"nombre" => "required",
-		"apellido" => "required",
+		"rut" => "required|rut_valid",
+		"nombre" => "required|alpha",
+		"apellido" => "required|alpha",
 		"email" => "email",
 		'password' => 'required|min:3|confirmed',
         'password_confirmation' => 'min:3'
 	];
 
-		public static $update_rules = [
-		"nombre" => "required",
-		"apellido" => "required",
+	public static $update_rules = [
+		"rut" => "required|rut_valid",
+		"nombre" => "required|alpha",
+		"apellido" => "required|alpha",
+		'email' => 'email',	
 		'old_password'=>"required_with:password|min:3",
 		'password' => 'required_with:old_password|min:3|confirmed',
         'password_confirmation' => 'min:3'
@@ -53,7 +56,28 @@ class Usuario extends Model
 
     public function setPasswordAttribute($password)
     {   
-        $this->attributes['password'] = bcrypt($password);
+        $this->attributes['password'] = bcrypt($password);//Encriptamos el Password
+    }
+
+  	public function setRutAttribute($rut) //Formateo de Rut
+    {   
+    	$rut=str_replace('-', '', $rut);//Eliminamos guion
+    	$rut=str_replace('.', '', $rut);//Eliminamos los puntos
+        $parte4 = substr($rut, -1); 	//  solo el numero verificador 
+    	$parte3 = substr($rut, -4,3); 	// la cuenta va de derecha a izq  
+    	$parte2 = substr($rut, -7,3); 	
+        $parte1 = substr($rut, 0,-7);   //de esta manera toma todos los caracteres desde el 8 hacia la izq
+    	$this->attributes['rut']=$parte1.".".$parte2.".".$parte3."-".$parte4;
+    }
+
+    public function setNombreAttribute($nombre)//Se coloca Mayúscula solo la primer letra
+    {
+    	$this->attributes['nombre']=ucfirst(strtolower($nombre));
+    }
+
+    public function setApellidoAttribute($apellido)//Se coloca Mayúscula solo la primer letra
+    {
+    	$this->attributes['apellido']=ucfirst(strtolower($apellido));
     }
 
     public function Impresoras()

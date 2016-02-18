@@ -10,13 +10,11 @@
 		            <div class="col-md-6">
 		                @include('usuarios.show_fields')
 		            </div>
-		            <div class="col-md-6">
-		                
-		                {!! HTML::image($usuario->imagen) !!}
-
+		            <div class="col-md-6">		                
+		                {!! HTML::image($usuario->imagen,null,["class"=>"img-circle",'width'=>'250px'])!!}
 		            </div>
 	            </div>
-	            </div>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>

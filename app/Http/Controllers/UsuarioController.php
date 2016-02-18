@@ -20,8 +20,8 @@ class UsuarioController extends Controller
 	function __construct(UsuarioRepository $usuarioRepo)
 	{
 		$this->usuarioRepository = $usuarioRepo;
-		//$this->middleware('auth');
-		//$this->middleware('admin',['only'=>['create','index','delete']]);
+		$this->middleware('auth');
+		$this->middleware('admin',['only'=>['create','index','delete']]);
 	}
 
 	/**
@@ -73,32 +73,13 @@ class UsuarioController extends Controller
         else
         	$input['imagen']='images/avatar/default.png';
 
-        $input['displayname']=$input['nombre'].' '.$input['apellido'];
+        $input['displayname']=ucfirst(strtolower($input['nombre'])).' '.ucfirst(strtolower($input['apellido']));
+
         $usuario = $this->usuarioRepository->create($input);
 		
 		Flash::success('Usuario agregado satisfactoriamente.');
 
 		return redirect(route('usuarios.index'));
-	}
-
-	/**
-	 * Display the specified Usuario.
-	 *
-	 * @param  int $id
-	 *
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		$usuario = $this->usuarioRepository->find($id);
-
-		if(empty($usuario))
-		{
-			Flash::error('Usuario no encontrado');
-
-			return redirect(route('usuarios.index'));
-		}
-		return view('usuarios.show')->with('usuario', $usuario);
 	}
 
 	/**
@@ -118,10 +99,10 @@ class UsuarioController extends Controller
 
 			return redirect(route('usuarios.index'))
 			                    ->withInput();
-
 		}
 
-		return view('usuarios.edit')->with('usuario', $usuario);
+		return view('usuarios.edit')
+			->with('usuario', $usuario);
 	}
 
 	/**
@@ -149,14 +130,15 @@ class UsuarioController extends Controller
         if($input['old_password']!="" ){
 	        if (!Hash::check($input['old_password'], $usuario->password)) {
 	        	return redirect(action('UsuarioController@edit', array($id)))
-	   				   ->withErrors('El Password actual no corresponde');
+	   				->withErrors('El Password actual no corresponde');
 			}
 		}
 		else{
 			unset($input['password']);
 		}
-
-		$input['displayname']=$input['nombre'].' '.$input['apellido'];
+		
+		$input['displayname']=ucfirst(strtolower($input['nombre'])).' '.ucfirst(strtolower($input['apellido']));
+		
         $this->usuarioRepository->updateRich($input, $id);
 
 		Flash::success('Usuario '.$usuario->accountname.' actualizado satisfactoriamente.');
@@ -192,10 +174,10 @@ class UsuarioController extends Controller
 		return redirect(route('usuarios.index'));
 	}
 
-
 	public function getldapusers(){
-    	$ldapusuarios = Adldap::users()->all();	
+    	$ldapusuarios = Adldap::users()->all();
 		$agregados=0;
+
 		foreach ($ldapusuarios as $user) {			
 			$usuario=$this->usuarioRepository->findBy('accountname',$user->getAccountName());
 
@@ -217,11 +199,10 @@ class UsuarioController extends Controller
 			else{
 				
 			}
-
 		}
 		Flash::success('Importados '.$agregados.' usuarios desde el DA');
-		return redirect(route('usuarios.index'));
 
+		return redirect(route('usuarios.index'));
     }
 
 }

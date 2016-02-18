@@ -143,6 +143,7 @@ return [
         Adldap\Laravel\AdldapServiceProvider::class,
         willvincent\Feeds\FeedsServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+        Malahierba\ChileRut\ChileRutServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -208,7 +209,7 @@ return [
         'Adldap'    => Adldap\Laravel\Facades\Adldap::class,
         'Feeds'     => willvincent\Feeds\Facades\FeedsFacade::class,
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
-
+        'Rut'       => Malahierba\ChileRut\Facades\ChileRut::class
     ],
     
 ];

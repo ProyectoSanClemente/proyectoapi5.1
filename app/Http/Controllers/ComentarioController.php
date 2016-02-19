@@ -44,7 +44,7 @@ class ComentarioController extends AppBaseController
 	 *
 	 * @return Response
 	 */
-	public function store(CreateComentarioRequest $request)
+	public function store()
 	{
 			$input=Request::all();
         	$Comentario=Comentario::create($input);           

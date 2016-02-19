@@ -85,6 +85,7 @@
                     <div class="panel-body" style="height:400px">
                         @include('muro')
                     </div>
+                    @include('comentarios.create')
                 </div>
             </div>
             <!-- end panel -->

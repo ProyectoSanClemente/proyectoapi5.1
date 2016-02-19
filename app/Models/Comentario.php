@@ -9,7 +9,9 @@ class Comentario extends Model
     
 
 	public $fillable = [
-		"contenido"
+		"contenido",
+        "id_usuario",
+        "id_post"
 	];
 
     /**

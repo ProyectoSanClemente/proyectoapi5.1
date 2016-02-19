@@ -141,4 +141,15 @@ Route::group(['middleware'], function () {
             'uses' => 'PostController@destroy'
         ]);
     });
+    Route::group(['prefix' => 'comentarios'], function(){
+        Route::get('/','ComentarioController@index');
+        Route::post('create','ComentarioController@create');
+        Route::post('show','ComentarioController@show');
+        Route::post('update','ComentarioController@update');
+        Route::post('store','ComentarioController@store');
+        Route::get('{id}/delete',[
+            'as' => 'comentario.delete',
+            'uses' => 'ComentarioController@destroy'
+        ]);
+    });
 });   

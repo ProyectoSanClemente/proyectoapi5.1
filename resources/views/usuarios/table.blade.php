@@ -16,7 +16,11 @@
             <td>{!! $usuario->rut !!}</td>
             <td>{!! $usuario->nombre !!}</td>
             <td>{!! $usuario->apellido !!}</td>
-            <td>{!! $usuario->email !!}</td>
+            @if($usuario->hasCuenta())
+            <td>{!! $usuario->Cuenta->id_zimbra !!}</td>
+            @else
+            <td> </td>
+            @endif
             <td>
                 <a href='#' data-toggle="modal" data-toggle="modal" data-target="#showModal{{$usuario->id}}"><i class="glyphicon glyphicon-eye-open"></i></a>
                 <a href="{{ route('usuarios.edit', [$usuario->id]) }}"><i class="glyphicon glyphicon-edit"></i></a>

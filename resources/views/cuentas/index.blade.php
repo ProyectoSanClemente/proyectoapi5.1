@@ -5,7 +5,7 @@
     <div class="container">
 
         @include('flash::message')
-
+    
         <div class="row">
             <h1 class="pull-left">Cuentas</h1>
         </div>
@@ -14,7 +14,11 @@
             @if($cuentas->isEmpty())
                 <div class="well text-center">Cuentas no encontradas.</div>
             @else
-                @include('cuentas.table')
+                @if(Auth::user()->rol=='admin')
+                    @include('cuentas.table')
+                    <hr>
+                @endif
+                @include('cuentas.index_user')
             @endif
         </div>
 

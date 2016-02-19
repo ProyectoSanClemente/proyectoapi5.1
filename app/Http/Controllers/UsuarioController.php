@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Requests\CreateUsuarioRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
+use Carbon\Carbon;
 use App\Libraries\Repositories\UsuarioRepository;
 use Flash, Input, Image, Adldap, Response, File;
 
@@ -164,24 +165,18 @@ class UsuarioController extends Controller
 			$usuario=$this->usuarioRepository->findBy('accountname',$user->getAccountName());
 
 			if(empty($usuario)){
-				$data=[
-				'accountname' => $user->getAccountName(),
-				'displayname' => $user->getDisplayName(),
-				'nombre' 	  => $user->getFirstName(),
-				'apellido'    => $user->getLastName(),
-				'rol'		  => 'usuario',
-				'imagen' 	  => 'images/avatar/default.png',
-				'password'    => '12345',
-				'created_at'  => $user->getCreatedAt(),
-				'updated_at'  => $user->getUpdatedAt(),
-				];
-				$usuario = $this->usuarioRepository->create($data);
+				$usuario=new \App\Models\Usuario;
+				$usuario->accountname=$user->getAccountName();
+				$usuario->nombre=$user->getFirstName();
+				$usuario->apellido=$user->getLastName();
+				$usuario->rol= 'usuario';
+				$usuario->imagen= 'images/avatar/default.png';
+				$usuario->password= '12345';		
+				$usuario->save();
 				$agregados++;
 			}
-			else{
-				
-			}
 		}
+		$ldapusuarios=null;
 		Flash::success('Importados '.$agregados.' usuarios desde el DA');
 
 		return redirect(route('usuarios.index'));

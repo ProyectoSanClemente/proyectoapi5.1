@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="container">
         {!! Breadcrumbs::render('sistemas')!!}
         @include('flash::message')
@@ -16,10 +15,12 @@
             @if($sistemas->isEmpty())
                 <div class="well text-center">Sistemas no encontrados.</div>
             @else
-                @include('sistemas.table')
+                @if(Auth::user()->rol=='admin')
+                    @include('sistemas.table')
+                    <hr>
+                @endif
+                @include('sistemas.index_user')
             @endif
         </div>
-
-
     </div>
 @endsection

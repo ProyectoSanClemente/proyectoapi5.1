@@ -8,10 +8,6 @@ use App\Libraries\Repositories\UsuarioRepository;
 use Flash;
 use Response;
 use Auth;
-use GuzzleHttp\Client;
-use Guzzle\Plugin\Cookie\Cookie;
-use Guzzle\Plugin\Cookie\CookiePlugin;
-use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
 
 class CuentaController extends Controller
 {
@@ -33,10 +29,16 @@ class CuentaController extends Controller
 	 * @return Response
 	 */
 	public function index()
-	{
+	{	
+		$id=Auth::id();
+		$cuenta=null;
+		if($this->usuarioRepository->hasCuenta($id))
+			$cuenta=$this->usuarioRepository->Cuenta($id);
+					
 		$cuentas = $this->cuentaRepository->all();
 		return view('cuentas.index')
-			->with('cuentas', $cuentas);
+			->with('cuentas', $cuentas)
+			->with('cuenta',$cuenta);
 	}
 
 	/**

@@ -13,9 +13,7 @@ class Usuario extends Model
 		"rut",
 		"nombre",
 		"apellido",
-		"displayname",
 		"rol",
-		"email",
 		"password",
 		"imagen"
 	];
@@ -28,9 +26,7 @@ class Usuario extends Model
     protected $casts = [
         "accountname"=> "string",
 		"nombre" => "string",
-		"displayname"=> "string",
 		"apellido" => "string",
-		"email" => "string",
 		"password" => "string"
     ];
 
@@ -39,7 +35,6 @@ class Usuario extends Model
 		"rut" => "required|rut_valid",
 		"nombre" => "required|alpha",
 		"apellido" => "required|alpha",
-		"email" => "email",
 		'password' => 'required|min:3|confirmed',
         'password_confirmation' => 'min:3'
 	];
@@ -48,7 +43,6 @@ class Usuario extends Model
 		"rut" => "required|rut_valid",
 		"nombre" => "required|alpha",
 		"apellido" => "required|alpha",
-		'email' => 'email',	
 		'old_password'=>'required_with:password|min:3|old_password',
 		'password' => 'required_with:old_password|min:3|confirmed',
         'password_confirmation' => 'min:3'
@@ -72,17 +66,12 @@ class Usuario extends Model
 
     public function setNombreAttribute($nombre)//Se coloca Mayúscula solo la primer letra
     {
-    	$this->attributes['nombre']=ucfirst(strtolower($nombre));
+    	$this->attributes['nombre']=ucfirst(strtolower(htmlentities($nombre)));
     }
 
     public function setApellidoAttribute($apellido)//Se coloca Mayúscula solo la primer letra
     {
-    	$this->attributes['apellido']=ucfirst(strtolower($apellido));
-    }
-
-    public function setDisplayNameAttribute($nombre,$apellido)
-    {
-    	$this->attributes['displayname']=ucfirst(strtolower($nombre)).' '.ucfirst(strtolower($apellido));
+    	$this->attributes['apellido']=ucfirst(strtolower(htmlentities($apellido)));
     }
 
     public function Impresoras()

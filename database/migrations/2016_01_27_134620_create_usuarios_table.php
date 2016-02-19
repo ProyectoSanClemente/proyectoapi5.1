@@ -25,8 +25,6 @@ class CreateUsuariosTable extends Migration
             $table->string('rut',25)->nullable();
             $table->string('nombre',25)->nullable();
             $table->string('apellido',25)->nullable();
-            $table->string('displayname',45)->nullable();
-            $table->string('email',100)->nullable();
             $table->string('rol',10);
             $table->string('imagen',100);
             $table->string('password',100);

@@ -3,7 +3,7 @@
 
   <div class="well">
     <div class="media">
-    	<a class="pull-left" href="#">
+    	<a class="pull-left" href="#showModal{!!$posteo->Usuario->id!!}" data-toggle="modal" data-toggle="modal">
   		<img  class="img-circle special-img" width="25px" src="{!!$posteo->Usuario->imagen!!}">
   		</a>
         <div class="media-body">
@@ -18,7 +18,7 @@
           <li>|</li>
             <span><class="text-right">Escrito por :{!!$posteo->Usuario->nombre.' '.$posteo->Usuario->apellido!!}</span>
           <li>|</li>
-          <span><a class="btn btn-primary glyphicon glyphicon-comment post" id="post" data-post-id="{!! $posteo->id!!}" data-toggle="modal" href='#modal-comentario' ></a></span>
+          <span><a class="btn btn-primary glyphicon glyphicon-comment comentar" id="" data-post-id="{!! $posteo->id!!}" data-toggle="modal" href='#modal-comentario' ></a></span>
   		  </ul>
       </div>
     </div>

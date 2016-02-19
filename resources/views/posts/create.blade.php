@@ -11,8 +11,6 @@
 	        		@include('posts.fields')
 				</div>
 			</div>
-			<div class="modal-footer">
-			</div>
 		</div>
 	</div>
 </div>

@@ -1,5 +1,5 @@
 <!-- Nombre Sistema Field -->
-	<div class="form-group" id="error" >
+	<div class="form-group" id="nocomentario" >
 		<div class="alert alert-danger">
 			<label>Ingrese un contenido</label>
 		</div>

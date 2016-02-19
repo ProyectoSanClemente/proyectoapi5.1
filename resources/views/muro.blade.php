@@ -6,8 +6,8 @@
     	<a class="pull-left" href="#">
   		<img  class="img-circle special-img" width="25px" src="{!!$posteo->Usuario->imagen!!}">
   		</a>
-  		<div class="media-body">
-  		<h4 class="media-heading">{!! $posteo->titulo !!}
+        <div class="media-body">
+        <h4 class="media-heading">{!! $posteo->titulo !!}
       @if(Auth::id()==$posteo->id_usuario)
       <a href="{!! route('posts.delete', [$posteo->id]) !!}" onclick="return confirm('Estas seguro que deseas eliminar este mensaje?')"><i class="glyphicon glyphicon-remove pull-right"></i></a>
       @endif</h4>

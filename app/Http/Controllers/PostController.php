@@ -27,13 +27,6 @@ class PostController extends AppBaseController
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-		$posts = $this->postRepository->all();
-
-		return view('posts.index')
-			->with('posts', $posts);
-	}
 
 	/**
 	 * Show the form for creating a new post.
@@ -94,46 +87,9 @@ class PostController extends AppBaseController
 	 *
 	 * @return Response
 	 */
-	public function edit($id)
-	{
-		$post = $this->postRepository->find($id);
 
-		if(empty($post))
-		{
-			Flash::error('post no encontrada.');
 
-			return redirect(route('posts.index'));
-		}
 
-		return view('posts.edit')->with('post', $post)
-									->with('id',$id);
-	}
-
-	/**
-	 * Update the specified post in storage.
-	 *
-	 * @param  int              $id
-	 * @param UpdatepostRequest $request
-	 *
-	 * @return Response
-	 */
-	public function update($id, UpdatepostRequest $request)
-	{
-		$post = $this->postRepository->find($id);
-
-		if(empty($post))
-		{
-			Flash::error('post no encontrada.');
-
-			return redirect(route('posts.index'));
-		}
-
-		$this->postRepository->updateRich($request->all(), $id);
-
-		Flash::success('post actualizada satisfactoriamente.');
-
-		return redirect(route('posts.index'));
-	}
 
 	/**
 	 * Remove the specified post from storage.

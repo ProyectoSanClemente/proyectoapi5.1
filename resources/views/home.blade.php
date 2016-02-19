@@ -78,15 +78,13 @@
                 <div class="panel-heading clearfix">
                     <h4 class="panel-title pull-left">Comunidad</h4>
                     <div class="btn-group pull-right">
+                        <a class="btn btn-primary" id="post" data-toggle="modal" href='#modal-id'>Nuevo Post!</a>@include('posts.create')
                         <button class="btn btn-primary glyphicon glyphicon-chevron-down" type="button" data-toggle="collapse" data-parent="#accordion" href="#collpasecomunidad"></button>
                     </div>
                 </div>
                 <div id="collpasecomunidad" class="panel-collapse collapse in">
-                    <div class="panel-body" style="height:350px">
+                    <div class="panel-body" style="height:400px">
                         @include('muro')
-                    </div>
-                    <div class="panel-footer">
-                        @include('posts.create')
                     </div>
                 </div>
             </div>

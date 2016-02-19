@@ -149,7 +149,7 @@ class UsuarioController extends Controller
 
 		$this->usuarioRepository->delete($id);
 		$filename = $usuario->imagen;
-		if(File::exists($filename))
+		if(File::exists($filename)&&(basename($filename)!='default.png'))
 			File::delete($filename);
 
 		Flash::success('Usuario borrado satisfactoriamente.');

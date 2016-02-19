@@ -1,50 +1,45 @@
 $(document).ready(function(){
-    
-    $('#post').click(function() {
-        $('#error').hide();
-    });
-        // body...
-	$('.send-button').click(function(){//En el envento click
-    if ($('#titulo').val()=="" || $('#contenido').val()=="" ){
-            $('#error').show();
-            return false;
-        }
-    send_post($(this));
-    $('#modal-id').modal('toggle');
-    $('#muro').load( " #muro" );
-	});
-    refreshTable();
+    window.onbeforeunload = function() {
+    if (modal.isOpen()) {
+      return "Modal should be closed before reloading or something...";
+    }
+}
+ //    $('#post').click(function() {
+ //        $('#error').hide();
+ //    });
+ //        // body...
+	// $('.send-button').click(function(){//En el envento click
+ //    if ($('#contenido').val()=="" ){
+ //            $('#error').show();
+ //            return false;
+ //        }
+ //    send_post($(this));
+ //    $('#modal-id').modal('toggle');
+ //    $('#muro').load( "#muro" );
+	// });
+ //    refreshTable();
 });
 
-function refreshTable(){
-    $('#muro').load(" #muro", function(){
-        if($('#modal-comentario').hasClass('in')){
-            setTimeout(refreshTable, 100000000);
-        }
-        else{
-       setTimeout(refreshTable, 3000);
-   }
-    });
-}
+// function refreshTable(){
+//     $('#muro').load(" #muro", function(){
+//        setTimeout(refreshTable, 3000);
+//     });
+// }
 
-function send_post(input){
+function send_comentario(input){
     
     var dataString = {
-        titulo: $('#titulo').val(),
         contenido: $('#contenido').val(),
-        tipo: $('#tipo').val(),
-        id_usuario  : $('#id_usuario').val(),
     };
     $.ajax({
         type: "POST",
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url: "posts/store",
+        url: "comentarios/store",
         data: dataString,
         dataType: "json",
         cache : false,
         success: function(data){
             if(data.success == true){
-                $('#titulo').val('');
                 $('#contenido').val('');
 
                 /*var socket = io.connect( 'http://'+window.location.hostname+':3000');
@@ -76,6 +71,4 @@ function send_post(input){
 
     });
 }
-
-
 

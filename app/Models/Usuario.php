@@ -104,4 +104,9 @@ class Usuario extends Model
         return $this->hasMany('App\Models\Post','id_usuario');
     }
 
+    public function Comentarios()
+    {
+        return $this->hasMany('App\Models\Comentario','id_usuario');
+    }
+
 }

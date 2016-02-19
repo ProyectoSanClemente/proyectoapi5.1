@@ -7,7 +7,6 @@
    overflow: auto;
 }
 
-
 .panel {
  display: inline-block;
  padding:  0; 
@@ -120,4 +119,5 @@
 @endsection
 @push('scripts')
     {!! HTML::script('js/post.js') !!}
+    {!! HTML::script('js/comentario.js') !!}
 @endpush

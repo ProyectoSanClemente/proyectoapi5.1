@@ -14,11 +14,11 @@
       <hr>
         <p>{!!$posteo->contenido!!}</p>
         <ul class="list-inline list-unstyled">
-  			<li><span><i class="glyphicon glyphicon-calendar"></i> {!!$posteo->created_at->diffForHumans()!!} </span></li>
+    			<li><span><i class="glyphicon glyphicon-calendar"></i> {!!$posteo->created_at->diffForHumans()!!} </span></li>
           <li>|</li>
-          <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+            <span><class="text-right">Escrito por :{!!$posteo->Usuario->nombre.' '.$posteo->Usuario->apellido!!}</span>
           <li>|</li>
-          <span><class="text-right">Escrito por :{!!$posteo->Usuario->displayname!!}</span>
+          <span><a class="btn btn-primary glyphicon glyphicon-comment" id="post" data-toggle="modal" href='#modal-comentario'></a>@include('comentarios.create')</span>
   		  </ul>
       </div>
     </div>

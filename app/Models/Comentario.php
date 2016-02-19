@@ -2,17 +2,14 @@
 
 use Illuminate\Database\Eloquent\Model as Model;
 
-class Post extends Model
+class Comentario extends Model
 {
     
-	public $table = "posts";
+	public $table = "comentarios";
     
 
 	public $fillable = [
-		"id_usuario",
-		"contenido",
-		"tipo",
-		"titulo"
+		"contenido"
 	];
 
     /**
@@ -23,7 +20,7 @@ class Post extends Model
     protected $casts = [
     	"id_usuario" => "string",
 		"contenido" => "string",
-		"tipo" => "string"
+		"id_post" => "string"
     ];
 
 	public static $rules = [
@@ -38,9 +35,8 @@ class Post extends Model
     {
         return $this->belongsTo('App\Models\Usuario','id_usuario');
     }
-	public function Comentarios()
+	public function Post()
     {
-        return $this->hasMany('App\Models\Comentario','id_post');
+        return $this->belongsTo('App\Models\Post','id_post');
     }
-
 }

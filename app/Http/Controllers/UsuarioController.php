@@ -4,7 +4,7 @@ use App\Http\Requests;
 use App\Http\Requests\CreateUsuarioRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
 use App\Libraries\Repositories\UsuarioRepository;
-use Flash, Input, Image, Adldap, Response;
+use Flash, Input, Image, Adldap, Response, File;
 
 class UsuarioController extends Controller
 {
@@ -62,7 +62,7 @@ class UsuarioController extends Controller
 		$input = $request->all();		
 		
 		if (Input::hasFile('imagen')){
-			$input['imagen'] = 'images/avatar/'.$input['rut'].'.jpg';              
+			$input['imagen'] = 'images/avatar/'.$input['accountname'].'.jpg';              
             Image::make(Input::file('imagen'))->resize(300, 300)->save($input['imagen']);
         }
         else
@@ -147,9 +147,9 @@ class UsuarioController extends Controller
 		}
 
 		$this->usuarioRepository->delete($id);
-		$filename = 'images/avatar/'.$usuario->accountname.'.jpg';
+		$filename = $usuario->imagen;
 		if(File::exists($filename))
-			unlink($filename);
+			File::delete($filename);
 
 		Flash::success('Usuario borrado satisfactoriamente.');
 

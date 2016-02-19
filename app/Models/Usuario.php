@@ -44,12 +44,12 @@ class Usuario extends Model
         'password_confirmation' => 'min:3'
 	];
 
-	public static $update_rules = [
+	public static $update_rules = [	
 		"rut" => "required|rut_valid",
 		"nombre" => "required|alpha",
 		"apellido" => "required|alpha",
 		'email' => 'email',	
-		'old_password'=>"required_with:password|min:3",
+		'old_password'=>'required_with:password|min:3|old_password',
 		'password' => 'required_with:old_password|min:3|confirmed',
         'password_confirmation' => 'min:3'
 	];
@@ -78,6 +78,11 @@ class Usuario extends Model
     public function setApellidoAttribute($apellido)//Se coloca Mayúscula solo la primer letra
     {
     	$this->attributes['apellido']=ucfirst(strtolower($apellido));
+    }
+
+    public function setDisplayNameAttribute($nombre,$apellido)
+    {
+    	$this->attributes['displayname']=ucfirst(strtolower($nombre)).' '.ucfirst(strtolower($apellido));
     }
 
     public function Impresoras()

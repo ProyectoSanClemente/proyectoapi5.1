@@ -113,7 +113,8 @@ return [
         'accountname' => 'Cuenta',
         'rut' => 'Rut',
         'nombre' => 'Nombre',
-        'apellido'  => 'Apellido'
+        'apellido'  => 'Apellido',
+        'old_password' => 'Contraseña actual'
         ],
 
 ];

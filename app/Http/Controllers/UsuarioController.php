@@ -4,12 +4,7 @@ use App\Http\Requests;
 use App\Http\Requests\CreateUsuarioRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
 use App\Libraries\Repositories\UsuarioRepository;
-use Flash;
-use Input;
-use Image;
-use Hash;
-use Adldap;
-use Response;
+use Flash, Input, Image, Adldap, Response;
 
 class UsuarioController extends Controller
 {
@@ -73,8 +68,6 @@ class UsuarioController extends Controller
         else
         	$input['imagen']='images/avatar/default.png';
 
-        $input['displayname']=ucfirst(strtolower($input['nombre'])).' '.ucfirst(strtolower($input['apellido']));
-
         $usuario = $this->usuarioRepository->create($input);
 		
 		Flash::success('Usuario agregado satisfactoriamente.');
@@ -124,21 +117,10 @@ class UsuarioController extends Controller
 		}
 		$input=$request->all();
 		if (Input::hasFile('imagen')){//Actualizar Imagen
-			$input['imagen'] = 'images/avatar/'.$usuario->accountname.'.jpg';           
+			$input['imagen'] = 'images/avatar/'.$usuario->accountname.'.jpg';         
             Image::make(Input::file('imagen'))->resize(300, 300)->save($input['imagen']);
         }
-        if($input['old_password']!="" ){
-	        if (!Hash::check($input['old_password'], $usuario->password)) {
-	        	return redirect(action('UsuarioController@edit', array($id)))
-	   				->withErrors('El Password actual no corresponde');
-			}
-		}
-		else{
-			unset($input['password']);
-		}
-		
-		$input['displayname']=ucfirst(strtolower($input['nombre'])).' '.ucfirst(strtolower($input['apellido']));
-		
+
         $this->usuarioRepository->updateRich($input, $id);
 
 		Flash::success('Usuario '.$usuario->accountname.' actualizado satisfactoriamente.');
@@ -166,7 +148,7 @@ class UsuarioController extends Controller
 
 		$this->usuarioRepository->delete($id);
 		$filename = 'images/avatar/'.$usuario->accountname.'.jpg';
-		if(file_exists($filename))
+		if(File::exists($filename))
 			unlink($filename);
 
 		Flash::success('Usuario borrado satisfactoriamente.');

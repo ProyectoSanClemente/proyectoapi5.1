@@ -117,7 +117,7 @@
                 <div class="panel-body">
 
                     <div class="form-group{{ $errors->has('old_password') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">Password actual</label>
+                        <label class="col-md-4 control-label">Contraseña actual</label>
 
                         <div class="col-md-6">
 
@@ -128,12 +128,12 @@
                                 </span>
                             @endif
                         </div>
-                    </div>            
+                    </div>
 
 
             
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">Password</label>
+                        <label class="col-md-4 control-label">Constraseña nueva</label>
 
                         <div class="col-md-6">
                             {!! Form::password('password', ['class'=>'form-control']) !!}
@@ -146,7 +146,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                        <label class="col-md-4 control-label">Confirmar Password</label>
+                        <label class="col-md-4 control-label">Confirmar Contraseña</label>
 
                         <div class="col-md-6">
                             

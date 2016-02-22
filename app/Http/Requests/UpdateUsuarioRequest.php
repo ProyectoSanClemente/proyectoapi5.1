@@ -13,7 +13,7 @@ class UpdateUsuarioRequest extends Request {
         $factory->extend('old_password',
             function ($attribute, $value, $parameters)
             {
-            $id=Request::get('id');
+            $id=$this->id;
         	$usuario=Usuario::find($id);           	
             	
                 return Hash::check($value, $usuario->password);

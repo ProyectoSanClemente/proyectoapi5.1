@@ -4,10 +4,8 @@ use Illuminate\Database\Eloquent\Model as Model;
 use Exception;
 
 class Usuario extends Model
-{
-    
+{    
 	public $table = "usuarios";
-
 
 	public $fillable = [
 		"accountname",

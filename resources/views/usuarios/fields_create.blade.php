@@ -80,22 +80,7 @@
 	                        </div>
 	                    </div>
 
-                        <!-- Email Field -->
-						<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-	                        <div class="form-group">
-	                            {!! Form::label('email', 'Email:',['class'=>"col-md-4 control-label"]) !!}
-		                        <div class="col-md-6">
-								{!! Form::text('email', null, ['class' => 'form-control','Placeholder'=>'Correo Electrónico']) !!}
-	                             @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-	                            </div>
-	                        </div>
-	                    </div>
-       					
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">                            
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             {!! Form::label('password','Contraseña',['class'=>'col-md-4 control-label'])!!}
                             <div class="col-md-6">
                                 {!! Form::password('password',['class'=>'form-control','Placeholder'=>'Contraseña'])!!}

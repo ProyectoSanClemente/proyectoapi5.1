@@ -17,11 +17,10 @@
                 @if(Auth::user()->rol=='admin')
                     @include('cuentas.table')
                     <hr>
-                @endif
-                @include('cuentas.index_user')
+                @endif                
             @endif
+            @include('cuentas.index_user')
         </div>
-
 
     </div>
 @endsection

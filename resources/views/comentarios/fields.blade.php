@@ -1,7 +1,7 @@
 <!-- Nombre Sistema Field -->
 	<div class="form-group" id="nocomentario" >
 		<div class="alert alert-danger">
-			<label>Ingrese un contenido</label>
+			<label>a</label>
 		</div>
 	</div>
 	<!-- Redireccionar Field -->

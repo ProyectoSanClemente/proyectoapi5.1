@@ -1,9 +1,9 @@
 $(document).ready(function(){
-    
+
     $('#post').click(function() {
         $('#error').hide();
     });
-    $('#1').click(function() {
+    $('#comentar').click(function() {
         $('#nocomentario').hide();
     });
         // body...
@@ -16,20 +16,22 @@ $(document).ready(function(){
         $('#modal-id').modal('toggle');
         $('#muro').load( " #muro" );
 	});
-    $('.send-comentario').click(function(){//En el envento click
-        if ($('#contenido2').val()=="" ){
-            $('#nocomentario').show();
-            return false;
-            }
-        send_comentario($(this));
-        $('#modal-comentario').modal('toggle');
-    });
-    refreshTable();
+
     $('#modal-comentario').on('show.bs.modal',function(e){
         var id = $(e.relatedTarget).data('post-id');
         $('#id_post').val(id);
     });
 
+    $('.send-comentario').click(function(){//En el envento click
+        if ($('#contenido2').val()==""){
+            $('#nocomentario').show();
+            return false;
+            }
+        send_comentario($(this));
+        $('#modal-comentario').modal('toggle');
+        $('#muro').load( " #muro" );
+    });
+    refreshTable();
     
 });
 
@@ -104,7 +106,7 @@ function send_comentario(input){
         cache : false,
         success: function(data){
             if(data.success == true){
-                $('#contenido2').val('');
+                //$('#contenido2').val('');
 
                 /*var socket = io.connect( 'http://'+window.location.hostname+':3000');
                 socket.emit('new_message',{ 

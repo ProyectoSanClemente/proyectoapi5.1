@@ -18,7 +18,7 @@
           <li>|</li>
             <span><class="text-right">Escrito por :{!!$posteo->Usuario->nombre.' '.$posteo->Usuario->apellido!!}</span>
           <li>|</li>
-          <span><a class="btn btn-primary glyphicon glyphicon-comment comentar" id="" data-post-id="{!! $posteo->id!!}" data-toggle="modal" href='#modal-comentario' ></a></span>
+          <span><a class="btn btn-primary glyphicon glyphicon-comment comentar" id="comentar" data-post-id="{!! $posteo->id!!}" data-toggle="modal" href='#modal-comentario' ></a></span>
   		  </ul>
       </div>
     </div>

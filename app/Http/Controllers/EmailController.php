@@ -7,10 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use PhpImap\Mailbox as ImapMailbox;
-use File;
-use Flash;
-use HTML;
-
+use App\Models\Usuario;
+use File, Flash, HTML, Auth;
 
 class EmailController extends Controller
 {
@@ -25,15 +23,15 @@ class EmailController extends Controller
 	{
 		$this->middleware('auth');
 		$this->hostname="{sanclemente.cl:993/imap/ssl/novalidate-cert}";
-		$this->username="prueba";
-		$this->password="Prueba2015";
+		$id=Auth::id();
+		$cuenta=Usuario::find($id)->Zimbra;
 		$this->carpeta='attachments/'.$this->username;
 		if (!File::exists($this->carpeta)) {	//Crear carpeta de archivos adjuntos
 		    File::makeDirectory($this->carpeta);
 		}		
 		File::cleanDirectory($this->carpeta); //Se eliminan los archivos
 
-		$this->mailbox = new ImapMailbox($this->hostname.'INBOX', $this->username,$this->password,$this->carpeta);
+		$this->mailbox = new ImapMailbox($this->hostname.'INBOX', $cuenta->id_zimbra,$cuenta->pass_zimbra,$this->carpeta);
 		$this->Unread=$this->mailbox->getMailboxInfo()->Unread;
 	}
 

@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Model;
+use Exception;
 
 class Usuario extends Model
 {
@@ -86,6 +87,17 @@ class Usuario extends Model
 
     public function hasCuenta(){    
         return (bool) $this->Cuenta()->first();
+    }
+
+    public function Zimbra()
+    {
+        if(!$this->hasCuenta())
+            throw new Exception("No hay Cuentas asociadas");
+        else{
+            if(empty($this->Cuenta->id_zimbra)|| empty($this->Cuenta->pass_zimbra))
+                throw new Exception("Faltan datos por completar Zimbra");
+        }
+        return $this->Cuenta();
     }
 
     public function Posts()

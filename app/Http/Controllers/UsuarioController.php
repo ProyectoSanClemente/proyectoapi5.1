@@ -18,6 +18,7 @@ class UsuarioController extends Controller
 		$this->usuarioRepository = $usuarioRepo;
 		$this->middleware('auth');
 		$this->middleware('admin',['only'=>['create','index','delete']]);
+		$this->middleware('security');//Restringiendo privilegios para que un usuario basico
 	}
 
 	/**

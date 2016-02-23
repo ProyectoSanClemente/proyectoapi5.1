@@ -24,14 +24,3 @@ socket.on('new_message', function( data ) {
 	}
 
 });
-
-socket.on('send_post', function( data ) {
-	// var sender=data.sender;
-	// var created_at=data.created_at;
- 	// var titulo= data.titulo,
- 	// var contenido = data.contenido,
- 	// var tipo = data.tipo,
- 	// var id_usuario = data.id_usuario,
- 	// var updated_at = data.updated_at
-
-});

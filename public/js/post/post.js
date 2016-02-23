@@ -20,6 +20,7 @@ $(document).ready(function(){
     $('#modal-comentario').on('show.bs.modal',function(e){
         var id = $(e.relatedTarget).data('post-id');
         $('#id_post').val(id);
+        show_comentarios($(this));
     });
 
     $('.send-comentario').click(function(){//En el envento click
@@ -91,6 +92,74 @@ function send_post(input){
 
     });
 }
+
+function show_comentarios(modal){
+    var dataString = {
+        id_post:$('#id_post').val()
+    };
+    $.ajax({
+        type: "POST",
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "comentarios/show_comentarios",
+        data: dataString,
+        dataType: "json",
+        cache : false,
+        success: function(data){
+            for (i = 0; i < data.length; i++) {
+                var usuario=data[i].usuario;
+                var nombre=usuario.nombre+usuario.apellido;
+                var imagen=usuario.imagen;
+                var contenido=data[i].contenido;
+                var created_at=data[i].created_at;
+                modal.find(".comentarios").prepend(
+                    $("<row/>", {
+                        class: 'row'
+                    }).append(
+                        $("<div/>",{
+                            class: 'col-sm-1 thumbnail'
+                        }).append(
+                            $("<img/>",{
+                                class: "img-responsive user-photo",
+                                src: imagen
+                            })
+                        ),
+                        $("<div/>",{
+                            class: "col-sm-11"
+                        }).append(
+                            $("<div/>",{
+                                class: "panel panel-default"
+                            }).append(
+                                $("<div/>",{
+                                    class: "panel-heading"
+                                }).append(
+                                    $("<strong/>",{
+                                    }).append(
+                                        nombre,
+                                        $("<span/>",{
+                                            class: "text-muted"
+                                        }).append(
+                                            created_at
+                                        )
+                                    )
+                                ),
+                                $("<div/>",{
+                                    class: "panel-body"
+                                }).append(
+                                contenido
+                                )
+
+                            )
+
+                        )
+
+                    ) //end row
+                                   
+                ) //end append modal
+            }//endfor
+        }
+    });
+}
+
 function send_comentario(input){
     var dataString = {
         contenido: $('#contenido2').val(),

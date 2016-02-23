@@ -144,9 +144,9 @@ Route::group(['middleware'], function () {
     Route::group(['prefix' => 'comentarios'], function(){
         Route::get('/','ComentarioController@index');
         Route::post('create','ComentarioController@create');
-        Route::post('show','ComentarioController@show');
         Route::post('update','ComentarioController@update');
         Route::post('store','ComentarioController@store');
+        Route::post('show_comentarios','ComentarioController@show_comentarios');
         Route::get('{id}/delete',[
             'as' => 'comentario.delete',
             'uses' => 'ComentarioController@destroy'

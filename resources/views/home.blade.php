@@ -116,8 +116,9 @@
     </div>
 </div>
 
-
 @endsection
+
 @push('scripts')
-    {!! HTML::script('js/post.js') !!}
+    {!! HTML::script('js/post/post.js') !!}
+    <!-- {!! HTML::script('js/post/nodesocket.js') !!} -->
 @endpush

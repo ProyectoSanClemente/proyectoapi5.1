@@ -46,47 +46,28 @@ class ComentarioController extends AppBaseController
 	 */
 	public function store()
 	{
-			$input=Request::all();
-        	$Comentario=Comentario::create($input);           
-        	$data=Request::all();
-        	$data['success'] = true;
-        
-        	
+		$input=Request::all();
+    	$Comentario=Comentario::create($input);           
+    	$data=Request::all();
+    	$data['success'] = true;
 
         return json_encode($data);
     }
 
-
-	/**
-	 * Display the specified Comentario.
-	 *
-	 * @param  int $id
-	 *
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		$Comentario = $this->ComentarioRepository->find($id);
-
-		if(empty($Comentario))
-		{
-			Flash::error('Comentario no encontrada.');
-
-			return redirect(route('Comentarios.index'));
-		}
-
-		return view('Comentarios.show')->with('Comentario', $Comentario);
-	}
-
-	/**
-	 * Show the form for editing the specified Comentario.
-	 *
-	 * @param  int $id
-	 *
-	 * @return Response
-	 */
-
-
+    /**
+     * Display the comentarios history.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show_comentarios()
+    {
+        $input=Request::all();
+        $comentarios=$this->ComentarioRepository->findAllBy('id_post',$input['id_post']);
+        foreach ($comentarios as $comentario) {
+        	$comentario->usuario=$comentario->Usuario;   	
+        }
+        return json_encode($comentarios);
+    }
 
 
 	/**

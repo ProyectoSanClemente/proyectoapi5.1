@@ -117,7 +117,14 @@ class UsuarioController extends Controller
 			Flash::error('Usuario no encontrado');
 			return redirect(route('usuarios.index'));
 		}
-		$input=$request->all();
+
+		if (trim(Input::get('password')) == '') { //Evita actualizar el password si es vacio.
+		   $input = Input::except('password');
+		}
+		else {
+		   $input = Input::all();
+		}
+
 		if (Input::hasFile('imagen')){//Actualizar Imagen
 			$input['imagen'] = 'images/avatar/'.$usuario->accountname.'.jpg';         
             Image::make(Input::file('imagen'))->resize(300, 300)->save($input['imagen']);

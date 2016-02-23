@@ -105,6 +105,7 @@ function show_comentarios(modal){
         dataType: "json",
         cache : false,
         success: function(data){
+            modal.find(".comentarios").html('');
             for (i = 0; i < data.length; i++) {
                 var usuario=data[i].usuario;
                 var nombre=usuario.nombre+usuario.apellido;

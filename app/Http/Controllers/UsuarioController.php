@@ -5,7 +5,8 @@ use App\Http\Requests\CreateUsuarioRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
 use Carbon\Carbon;
 use App\Libraries\Repositories\UsuarioRepository;
-use Flash, Input, Image, Adldap, Response, File, Auth;
+use Flash, Input, Image, Adldap;
+use Response, File, Auth, Exception;
 
 class UsuarioController extends Controller
 {
@@ -17,8 +18,7 @@ class UsuarioController extends Controller
 	{
 		$this->usuarioRepository = $usuarioRepo;
 		$this->middleware('auth');
-		$this->middleware('admin',['only'=>['create','index','delete']]);
-		//$this->middleware('security');//Restringiendo privilegios para que un usuario basico
+		$this->middleware('admin',['except'=>['edit','update']]);		
 	}
 
 	/**
@@ -95,6 +95,10 @@ class UsuarioController extends Controller
 			return redirect(route('usuarios.index'))
 			                    ->withInput();
 		}
+		
+		//Validamos que tenga los permisos o sea su propia cuenta
+		if(Auth::user()->id!=$id && Auth::user()->rol!='admin')
+			throw new Exception("No posee los privilegios para editar otros usuarios");
 
 		return view('usuarios.edit')
 			->with('usuario', $usuario);

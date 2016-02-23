@@ -5,16 +5,13 @@ use App\Http\Requests\CreateCuentaRequest;
 use App\Http\Requests\UpdateCuentaRequest;
 use App\Libraries\Repositories\CuentaRepository;
 use App\Libraries\Repositories\UsuarioRepository;
-use Flash;
-use Response;
-use Auth;
-use Exception;
+use Flash, Response, Auth, Exception;
 
 class CuentaController extends Controller
 {
-
 	/** @var  CuentaRepository */
 	private $cuentaRepository;
+	/** @var  UsuarioRepository */
 	private $usuarioRepository;
 
 	function __construct(CuentaRepository $cuentaRepo,UsuarioRepository $usuarioRepo)
@@ -22,7 +19,6 @@ class CuentaController extends Controller
 		$this->cuentaRepository = $cuentaRepo;
 		$this->usuarioRepository = $usuarioRepo;
 		$this->middleware('auth');
-		//$this->middleware('security',['except'=>['index']]);
 	}
 
 	/**
@@ -31,7 +27,7 @@ class CuentaController extends Controller
 	 * @return Response
 	 */
 	public function index()
-	{	
+	{
 		$id=Auth::id();
 		$cuenta=null;
 		if($this->usuarioRepository->hasCuenta($id))
@@ -50,6 +46,10 @@ class CuentaController extends Controller
 	 */
 	public function create($id)
 	{
+		//Validamos que tenga los permisos o este asignando su propia cuenta
+		if(Auth::user()->id!=$id && Auth::user()->rol!='admin')
+			throw new Exception("No posee los privilegios para asignar cuentas a otros usuarios");
+
 		$usuario= $this->usuarioRepository->find($id);
 		
 		if($this->usuarioRepository->hasCuenta($id)){//Si es que ya tiene asociada cuenta
@@ -79,6 +79,7 @@ class CuentaController extends Controller
 		
 		return redirect(route('cuentas.index'));
 	}
+	
 	/**
 	 * Display the specified Cuenta.
 	 *
@@ -109,10 +110,12 @@ class CuentaController extends Controller
 	 */
 	public function edit($id)
 	{
+		//Validamos que tenga los permisos o este asignando su propia cuenta
+		if(Auth::user()->id!=$id && Auth::user()->rol!='admin')
+			throw new Exception("No posee los privilegios para editar las cuentas asignadas de otros usuarios");
 		$cuenta = $this->cuentaRepository->find($id);
 		if(empty($cuenta))
 		{
-			return var_dump($cuenta);
 			Flash::error('Cuenta no encontrada.');
 
 			return redirect(route('cuentas.index'));

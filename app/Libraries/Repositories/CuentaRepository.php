@@ -3,7 +3,7 @@
 use App\Models\Cuenta;
 use Bosnadev\Repositories\Eloquent\Repository;
 use Schema;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Exception;
 
 class CuentaRepository extends Repository
 {
@@ -46,7 +46,7 @@ class CuentaRepository extends Repository
 
         if(empty($model))
         {
-            throw new HttpException(1001, "Cuenta not found");
+            throw new Exception("Cuenta no encontrada");
         }
 
         return $model;
@@ -58,9 +58,28 @@ class CuentaRepository extends Repository
 
         if(empty($model))
         {
-            throw new HttpException(1001, "Cuenta not found");
+            throw new Exception("Cuenta no encontrada");
         }
 
         return $model->delete();
     }
+    
+    /**
+    *@param $id Cuenta id
+    *
+    *@return Response
+    */
+    public function obtenercuenta($id,$sistema)
+    {
+        $model = $this->apiFindOrFail($id);
+        $user='id_'.(string)$sistema;
+        $pass='pass_'.(string)$sistema;
+        
+        if(empty($model->$user)|| empty($model->$pass))
+        {
+            throw new Exception("Faltan datos por ingresar del Sistema ".ucfirst($sistema));
+        }
+        return $model;
+    }
+
 }

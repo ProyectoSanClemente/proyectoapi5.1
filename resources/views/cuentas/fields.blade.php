@@ -13,6 +13,21 @@
                 {!! Form::text('id_usuario',$usuario->id, ['class' => 'form-control','readonly' => 'readonly']) !!}
             </div>
         </div>
+        
+        <div class="panel-body">          
+            <!-- Zimbra Id Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('id_zimbra', 'Zimbra Id:') !!}
+                {!! Form::text('id_zimbra', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <!-- Zimbra Pass Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('pass_zimbra', 'Zimbra Pass:') !!}
+                {!! Form::text('pass_zimbra',null, ['class' => 'form-control']) !!}
+            </div>
+        </div>
+
         <div class="panel-body">
              <!-- Sidam Id Field -->
             <div class="form-group col-sm-6 col-sm-4">
@@ -26,30 +41,46 @@
             </div>
         </div>
         <div class="panel-body">
-            <!-- Nube Id Field -->
+            <!-- Crecic Id Field -->
             <div class="form-grouicp col-sm-6 col-sm-4">
                 {!! Form::label('id_crecic', 'Crecic Id:') !!}
             	{!! Form::text('id_crecic', null, ['class' => 'form-control']) !!}
             </div>
 
-            <!-- Nube Pass Field -->
+            <!-- Crecic Pass Field -->
             <div class="form-group col-sm-6 col-sm-4">
                 {!! Form::label('pass_crecic', 'Crecic Pass:') !!}
             	{!! Form::text('pass_crecic',null,['class' => 'form-control']) !!}
             </div>
         </div>
         <div class="panel-body">
+            <!-- Nube Id Field -->
             <div class="form-grouicp col-sm-6 col-sm-4">
-                {!! Form::label('id_zimbra', 'Zimbra Id:') !!}
-                {!! Form::text('id_zimbra', null, ['class' => 'form-control']) !!}
+                {!! Form::label('id_owncloud', 'Nube Id:') !!}
+                {!! Form::text('id_owncloud', null, ['class' => 'form-control']) !!}
             </div>
 
             <!-- Nube Pass Field -->
             <div class="form-group col-sm-6 col-sm-4">
-                {!! Form::label('pass_zimbra', 'Zimbra Pass:') !!}
-                {!! Form::text('pass_zimbra',null, ['class' => 'form-control']) !!}
+                {!! Form::label('pass_owncloud', 'Nube Pass:') !!}
+                {!! Form::text('pass_owncloud',null,['class' => 'form-control']) !!}
             </div>
         </div>
+
+        <div class="panel-body">          
+            <!-- Solicitud Compras Id Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('id_solicitudcompras', 'Solicitud Compras id') !!}
+                {!! Form::text('id_solicitudcompras', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <!-- Zimbra Pass Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('pass_solicitudcompras', 'Solicitud Compras Pass:') !!}
+                {!! Form::text('pass_solicitudcompras',null, ['class' => 'form-control']) !!}
+            </div>
+        </div>
+        
         <div class="panel-body">
             <!-- Submit Field -->
             <div class="form-group col-sm-12">

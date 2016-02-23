@@ -11,7 +11,7 @@
 		<div align="center">{!!HTML::image("images/load/default.gif")!!}
 			Redireccionando, por favor espere...
 		</div>
-		{!!Form::hidden('kt_login_user',$id)!!}
+		{!!Form::hidden('kt_login_user',$user)!!}
     {!! Form::close() !!}
 </div>
 @endsection

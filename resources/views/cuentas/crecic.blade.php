@@ -4,18 +4,13 @@
 <div class="container">
 
     @include('common.errors')
-    <iframe src="http://sanclemente.crecic.cl/login.php" width="100%" height="600px"></iframe>
-
-</div>
-@endsection
-
-@push('scripts')
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#myframe').load(function(){
-		        $('#myframe').contents().find('#TxtUser').val('usertest');
-		        $('#myframe').contents().find('#TxtPass').val('passtest');
-		    });
-		});
-	</script>
-@endpush
+		<!-- Modelo Impresora Field -->
+<body onload="document.form1.submit()">
+    {!! Form::open(['url' => ['http://sanclemente.crecic.cl/login.php'],'method' => 'post','id'=>'form1','name'=>'form1']) !!}
+    <br><br><br><br><br><br>
+    <div align="center">{!!HTML::image("images/load/default.gif")!!}
+	Redireccionando, por favor espere...
+	</div>
+    {!! Form::close() !!}
+  </div>
+  @endsection

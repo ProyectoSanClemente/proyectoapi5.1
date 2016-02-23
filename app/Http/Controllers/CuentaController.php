@@ -35,7 +35,7 @@ class CuentaController extends Controller
 		$cuenta=null;
 		if($this->usuarioRepository->hasCuenta($id))
 			$cuenta=$this->usuarioRepository->Cuenta($id);
-					
+
 		$cuentas = $this->cuentaRepository->all();
 		return view('cuentas.index')
 			->with('cuentas', $cuentas)
@@ -176,85 +176,55 @@ class CuentaController extends Controller
 	//Comienzo Envio datos de cuentas
 	public function glpi()
 	{
-		//$informacion = $this->cuentaRepository->find();
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
 		return view('cuentas.glpi')
-			->with('info',$informacion);
+			->with('user',$cuenta->id_glpi)
+			->with('pass',$cuenta->pass_glpi);		
 	}
 
 	public function sidam()
-	{
-		$id=Auth::user()->id;	
-		if($this->usuarioRepository->hasCuenta($id)){
-			$cuenta = $this->usuarioRepository->Cuenta($id);
-			if(empty($cuenta->id_sidam) || empty($cuenta->pass_sidam))
-			{
-				return print('faltan completar datos de ingreso Zimbra');
-			}
-			return view('cuentas.sidam')
-				->with('id',$cuenta->id_sidam)
-				->with('pass',$cuenta->pass_sidam);
-		}
-		else
-			return print('sidam sin cuenta');
+	{	
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'sidam');
+		return view('cuentas.sidam')
+			->with('user',$cuenta->id_sidam)
+			->with('pass',$cuenta->pass_sidam);
+		
 	}
 
 	public function owncloud()
 	{	
-		$id=Auth::user()->id;	
-		if($this->usuarioRepository->hasCuenta($id)){
-			$cuenta = $this->usuarioRepository->Cuenta($id);
-			if(empty($cuenta->id_sidam) || empty($cuenta->pass_sidam))
-			{
-				return print('faltan completar datos de ingreso Zimbra');
-			}			
-
-			return view('cuentas.owncloud')
-				->with('id',$cuenta->id_sidam)
-				->with('pass',$cuenta->pass_sidam);
-
-			
-		}
-		else
-			return print('sidam sin cuenta');
-
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'owncloud');
+		return view('cuentas.owncloud')
+			->with('user',$cuenta->id_sidam)
+			->with('pass',$cuenta->pass_sidam);
 	}
 
 	public function zimbra()
 	{
-		$id=Auth::user()->id;
-		if($this->usuarioRepository->hasCuenta($id)){
-			$cuenta = $this->usuarioRepository->Cuenta($id);
-			if(empty($cuenta->id_zimbra) || empty($cuenta->pass_zimbra))
-			{
-				return print('faltan completar datos de ingreso Zimbra');
-			}
-			return view('cuentas.zimbra')
-				->with('nombre',$cuenta->id_zimbra);
-		}		
-		return print('zimbra sin cuenta');
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'zimbra');
+		return view('cuentas.zimbra')
+				->with('user',$cuenta->id_zimbra)
+				->with('pass',$cuenta->pass_zimbra);
 	}
 
 	public function crecic()
 	{
-		$accountname=Auth::user()->accountname;
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'crecic');
 		return view('cuentas.crecic')
-			->with('nombre',$accountname);
+				->with('user',$cuenta->id_crecic)
+				->with('pass',$cuenta->pass_crecic);
 	}
 
 	public function solicitudcompras()
 	{
-		$id=Auth::user()->id;
-		if($this->usuarioRepository->hasCuenta($id)){
-			$cuenta = $this->usuarioRepository->Cuenta($id);
-			if(empty($cuenta->id_sidam) || empty($cuenta->pass_sidam))
-			{
-				return print('faltan completar datos de ingreso solicitudcompras');
-			}
-			return view('cuentas.solicitudcompras')
-				->with('id',$cuenta->id_sidam)
-				->with('pass',$cuenta->pass_sidam);
-		}
-		else 
-			return print('solicitud de compras sin cuenta');
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
+		return view('cuentas.solicitudcompras')
+			->with('user',$cuenta->id_solicitudcompras)
+			->with('pass',$cuenta->pass_solicitudcompras);
 	}
 }

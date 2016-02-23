@@ -19,6 +19,10 @@ class CreateCuentaTable extends Migration
             $table->string('pass_sidam',25);
             $table->string('id_crecic',25);
             $table->string('pass_crecic',25);
+            $table->string('id_owncloud',25);
+            $table->string('pass_owncloud',25);
+            $table->string('id_solicitudcompras',25);
+            $table->string('pass_solicitudcompras',25);
             $table->string('id_zimbra',25);
             $table->string('pass_zimbra',25);
             $table->integer('id_usuario')->unsigned();

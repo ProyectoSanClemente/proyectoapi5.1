@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use PhpImap\Mailbox as ImapMailbox;
-use App\Models\Usuario;
+use App\Libraries\Repositories\CuentaRepository;
+use App\Libraries\Repositories\UsuarioRepository;
 use File, Flash, HTML, Auth;
 
 class EmailController extends Controller
@@ -18,17 +19,21 @@ class EmailController extends Controller
     protected $carpeta;
     protected $mailbox;
     protected $Unread;
+    private $cuentaRepository;
+    private $usuarioRepository;
     
-	function __construct()
+	function __construct(CuentaRepository $cuentaRepo,UsuarioRepository $usuarioRepo)
 	{
 		$this->middleware('auth');
+		$this->cuentaRepository = $cuentaRepo;
+		$this->usuarioRepository = $usuarioRepo;
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'zimbra');
 		$this->hostname="{sanclemente.cl:993/imap/ssl/novalidate-cert}";
-		$id=Auth::id();
-		$cuenta=Usuario::find($id)->Zimbra;
 		$this->carpeta='attachments/'.$this->username;
 		if (!File::exists($this->carpeta)) {	//Crear carpeta de archivos adjuntos
 		    File::makeDirectory($this->carpeta);
-		}		
+		}
 		File::cleanDirectory($this->carpeta); //Se eliminan los archivos
 
 		$this->mailbox = new ImapMailbox($this->hostname.'INBOX', $cuenta->id_zimbra,$cuenta->pass_zimbra,$this->carpeta);
@@ -42,7 +47,7 @@ class EmailController extends Controller
 	 * @return Response
 	 */
 	public function index()
-    {	
+    {
 		$mailsIds = $this->mailbox->searchMailbox('ALL');
 		if(!$mailsIds) {
 		    Flash::warning('La bandeja de entrada esta vacia');

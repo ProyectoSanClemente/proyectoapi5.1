@@ -63,10 +63,11 @@ class ComentarioController extends AppBaseController
     {
         $input=Request::all();
         $comentarios=$this->ComentarioRepository->findAllBy('id_post',$input['id_post']);
+
         foreach ($comentarios as $comentario) {
         	$comentario->usuario=$comentario->Usuario;   	
         }
-        return json_encode($comentarios);
+        return json_encode($comentarios->reverse());
     }
 
 

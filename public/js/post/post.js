@@ -14,10 +14,12 @@ $(document).ready(function(){
         $('#muro').load( " #muro" );
 	});
 
-    $('#modal-comentario').on('show.bs.modal',function(e){
+    $('#modal-comentario').on('show.bs.modal',function (e){
         var id = $(e.relatedTarget).data('post-id');
         $('#id_post').val(id);
+        $('#modal-comentario').animate({ scrollTop: 1123123 }, 'slow');
         show_comentarios($(this));
+        refreshComentario();
     });
 
     $('.send-comentario').click(function(){//En el envento click
@@ -25,7 +27,7 @@ $(document).ready(function(){
             return false;
             }
         send_comentario($(this));
-        $('#modal-comentario').modal('toggle');
+        refreshComentario();
         $('#muro').load( " #muro" );
     });
     refreshTable();
@@ -38,9 +40,8 @@ function refreshTable(){
 }
 
 function refreshComentario () {
-    $('.comentarios').load( ".comentarios",function(){
-        show_comentarios($(this));
-     setTimeout(refreshComentario,3000);
+    $('modal-comentario').find('.comentarios').load('modal-comentario').find('.comentarios',function(){
+     setTimeout(refreshComentario,1000);
     });
 }
 
@@ -110,7 +111,7 @@ function show_comentarios(modal){
             modal.find(".comentarios").html('');
             for (i = 0; i < data.length; i++) {
                 var usuario=data[i].usuario;
-                var nombre=usuario.nombre+usuario.apellido;
+                var nombre=usuario.nombre+' '+usuario.apellido+' ';
                 var imagen=usuario.imagen;
                 var contenido=data[i].contenido;
                 var created_at=data[i].created_at;

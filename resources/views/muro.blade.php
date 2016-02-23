@@ -16,7 +16,7 @@
         <ul class="list-inline list-unstyled">
     			<li><span><i class="glyphicon glyphicon-calendar"></i> {!!$posteo->created_at->diffForHumans()!!} </span></li>
           <li>|</li>
-            <span><class="text-right">Escrito por :{!!$posteo->Usuario->nombre.' '.$posteo->Usuario->apellido!!}</span>
+            <span><class="text-right">Escrito por :  {!!$posteo->Usuario->nombre.' '.$posteo->Usuario->apellido!!}</span>
           <li>|</li>
           <span><a class="btn btn-primary glyphicon glyphicon-comment comentar" id="comentar" data-post-id="{!! $posteo->id!!}" data-toggle="modal" href='#modal-comentario' ></a></span>
   		  </ul>

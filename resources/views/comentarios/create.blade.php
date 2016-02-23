@@ -1,7 +1,7 @@
 	@include('common.errors')
 <style type="text/css">
-    @media screen {
-    .modal-dialog  {width:1200px;}
+    @media screen and (min-width: 675px) {
+    .modal-dialog  {width:670px;}
 
 }
 </style>

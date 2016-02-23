@@ -23,4 +23,15 @@ io.on('connection', function (socket) {
     });
   });
 
+  socket.on( 'send_post', function( data ) {
+    io.sockets.emit( 'send_post', {
+      sender: data.sender,
+      titulo: data.titulo,
+      contenido: data.contenido,
+      tipo  : data.tipo,
+      id_usuario : data.id_usuario,
+      created_at: data.created_at,
+      updated_at: data.updated_at
+  });
+
 });

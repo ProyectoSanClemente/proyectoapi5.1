@@ -120,5 +120,4 @@
 @endsection
 @push('scripts')
     {!! HTML::script('js/post.js') !!}
-    {!! HTML::script('js/comentario.js') !!}
 @endpush

@@ -31,13 +31,13 @@ $(document).ready(function(){
         $('#modal-comentario').modal('toggle');
         $('#muro').load( " #muro" );
     });
-    refreshTable();
+    //refreshTable();
     
 });
 
 function refreshTable(){
     $('#muro').load(" #muro", function(){
-       setTimeout(refreshTable, 2000);
+       setTimeout(refreshTable, 3000);
     });
 }
 
@@ -62,15 +62,15 @@ function send_post(input){
                 $('#titulo').val('');
                 $('#contenido').val('');
 
-                /*var socket = io.connect( 'http://'+window.location.hostname+':3000');
-                socket.emit('new_message',{ 
+                var socket = io.connect( 'http://'+window.location.hostname+':3000');
+                socket.emit('send_post',{ 
                     titulo: data.titulo,
                     contenido: data.contenido,
                     tipo  : data.tipo,
                     id_usuario : data.id_usuario,
                     created_at: data.created_at,
                     updated_at: data.updated_at
-                });*/
+                });
 
 
 
@@ -106,7 +106,7 @@ function send_comentario(input){
         cache : false,
         success: function(data){
             if(data.success == true){
-                //$('#contenido2').val('');
+                $('#contenido2').val('');
 
                 /*var socket = io.connect( 'http://'+window.location.hostname+':3000');
                 socket.emit('new_message',{ 

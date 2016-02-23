@@ -15,6 +15,7 @@
 			<div class="modal-body">
 				<div class="container" style="width:100%">
 				@foreach($comentarios as $comentario)
+				{!!$comentario['id_post']!!}
                     <div class="panel-body" style="height:400px">
 						<div class="row">
 							<div class="col-sm-1">
@@ -24,6 +25,7 @@
 							</div><!-- /col-sm-1 -->
 							<div class="col-sm-11">
 								<div class="panel panel-default">
+								     
 									<div class="panel-heading">
 										<strong>{!!$comentario->Usuario->nombre.' '.$comentario->Usuario->apellido!!}</strong> <span class="text-muted">{!!$comentario->created_at->diffForHumans()!!}</span>
 									</div>

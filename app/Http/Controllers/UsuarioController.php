@@ -5,7 +5,7 @@ use App\Http\Requests\CreateUsuarioRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
 use Carbon\Carbon;
 use App\Libraries\Repositories\UsuarioRepository;
-use Flash, Input, Image, Adldap, Response, File;
+use Flash, Input, Image, Adldap, Response, File, Auth;
 
 class UsuarioController extends Controller
 {
@@ -133,6 +133,9 @@ class UsuarioController extends Controller
         $this->usuarioRepository->updateRich($input, $id);
 
 		Flash::success('Usuario '.$usuario->accountname.' actualizado satisfactoriamente.');
+		
+		if(Auth::user()->rol!='admin')//Si el usuario no es admin, se envia el mensaje a pagina inicio
+			return redirect(url('home'));	
 
 		return redirect(route('usuarios.index'));
 	}

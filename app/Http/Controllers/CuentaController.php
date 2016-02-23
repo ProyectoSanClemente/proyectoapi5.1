@@ -8,6 +8,7 @@ use App\Libraries\Repositories\UsuarioRepository;
 use Flash;
 use Response;
 use Auth;
+use Exception;
 
 class CuentaController extends Controller
 {
@@ -21,7 +22,7 @@ class CuentaController extends Controller
 		$this->cuentaRepository = $cuentaRepo;
 		$this->usuarioRepository = $usuarioRepo;
 		$this->middleware('auth');
-		$this->middleware('security',['except'=>['index']]);
+		//$this->middleware('security',['except'=>['index']]);
 	}
 
 	/**
@@ -176,6 +177,7 @@ class CuentaController extends Controller
 	//Comienzo Envio datos de cuentas
 	public function glpi()
 	{
+		$this->tienecuentas();
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
 		return view('cuentas.glpi')
 			->with('user',$cuenta->id_glpi)
@@ -184,16 +186,19 @@ class CuentaController extends Controller
 
 	public function sidam()
 	{	
+		$this->tienecuentas();
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
 		$cuenta=$this->cuentaRepository->obtenercuenta($id,'sidam');
 		return view('cuentas.sidam')
 			->with('user',$cuenta->id_sidam)
 			->with('pass',$cuenta->pass_sidam);
 		
+		
 	}
 
 	public function owncloud()
 	{	
+		$this->tienecuentas();
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
 		$cuenta=$this->cuentaRepository->obtenercuenta($id,'owncloud');
 		return view('cuentas.owncloud')
@@ -203,6 +208,7 @@ class CuentaController extends Controller
 
 	public function zimbra()
 	{
+		$this->tienecuentas();
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
 		$cuenta=$this->cuentaRepository->obtenercuenta($id,'zimbra');
 		return view('cuentas.zimbra')
@@ -212,6 +218,7 @@ class CuentaController extends Controller
 
 	public function crecic()
 	{
+		$this->tienecuentas();
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
 		$cuenta=$this->cuentaRepository->obtenercuenta($id,'crecic');
 		return view('cuentas.crecic')
@@ -221,10 +228,21 @@ class CuentaController extends Controller
 
 	public function solicitudcompras()
 	{
+		$this->tienecuentas();
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
 		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
 		return view('cuentas.solicitudcompras')
 			->with('user',$cuenta->id_solicitudcompras)
 			->with('pass',$cuenta->pass_solicitudcompras);
 	}
+
+
+	public function tienecuentas()
+	{
+		if(!$this->usuarioRepository->hasCuenta(Auth::user()->id))
+		{
+			throw new Exception("El usuario no tiene Cuentas Asignadas");
+		}
+	}
+
 }

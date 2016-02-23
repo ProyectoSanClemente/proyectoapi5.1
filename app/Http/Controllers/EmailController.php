@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use PhpImap\Mailbox as ImapMailbox;
 use App\Libraries\Repositories\CuentaRepository;
 use App\Libraries\Repositories\UsuarioRepository;
-use File, Flash, HTML, Auth;
+use File, Exception, Flash, HTML, Auth;
 
 class EmailController extends Controller
 {
@@ -27,6 +27,10 @@ class EmailController extends Controller
 		$this->middleware('auth');
 		$this->cuentaRepository = $cuentaRepo;
 		$this->usuarioRepository = $usuarioRepo;
+		if(!$this->usuarioRepository->hasCuenta(Auth::user()->id))
+		{
+			throw new Exception("El usuario no tiene Cuentas Asignadas");
+		}
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
 		$cuenta=$this->cuentaRepository->obtenercuenta($id,'zimbra');
 		$this->hostname="{sanclemente.cl:993/imap/ssl/novalidate-cert}";

@@ -1,9 +1,4 @@
 <!-- Nombre Sistema Field -->
-	<div class="form-group" id="nocomentario" >
-		<div class="alert alert-danger">
-			<label>a</label>
-		</div>
-	</div>
 	<!-- Redireccionar Field -->
 	<div class="form-group">
 	    {!! Form::label('contenido', 'Contenido:') !!}

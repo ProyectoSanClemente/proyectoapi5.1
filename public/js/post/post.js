@@ -3,9 +3,6 @@ $(document).ready(function(){
     $('#post').click(function() {
         $('#error').hide();
     });
-    $('#comentar').click(function() {
-        $('#nocomentario').hide();
-    });
         // body...
 	$('.send-button').click(function(){//En el envento click
         if ($('#titulo').val()=="" || $('#contenido').val()=="" ){
@@ -25,20 +22,25 @@ $(document).ready(function(){
 
     $('.send-comentario').click(function(){//En el envento click
         if ($('#contenido2').val()==""){
-            $('#nocomentario').show();
             return false;
             }
         send_comentario($(this));
         $('#modal-comentario').modal('toggle');
         $('#muro').load( " #muro" );
     });
-    //refreshTable();
-    
+    refreshTable();
 });
 
 function refreshTable(){
     $('#muro').load(" #muro", function(){
        setTimeout(refreshTable, 3000);
+    });
+}
+
+function refreshComentario () {
+    $('.comentarios').load( ".comentarios",function(){
+        show_comentarios($(this));
+     setTimeout(refreshComentario,3000);
     });
 }
 

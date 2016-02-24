@@ -141,6 +141,7 @@ return [
         Mitul\Generator\GeneratorServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Adldap\Laravel\AdldapServiceProvider::class,
+        Adldap\Laravel\AdldapAuthServiceProvider::class,
         willvincent\Feeds\FeedsServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
         Malahierba\ChileRut\ChileRutServiceProvider::class,

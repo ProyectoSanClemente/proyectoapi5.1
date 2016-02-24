@@ -86,7 +86,6 @@ return array(
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
-    'App\\Http\\Middleware\\UserSecurity' => $baseDir . '/app/Http/Middleware/UserSecurity.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Requests\\CreateCuentaRequest' => $baseDir . '/app/Http/Requests/CreateCuentaRequest.php',
     'App\\Http\\Requests\\CreateImpresoraRequest' => $baseDir . '/app/Http/Requests/CreateImpresoraRequest.php',

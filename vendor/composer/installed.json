@@ -4199,49 +4199,6 @@
         ]
     },
     {
-        "name": "adldap2/adldap2-laravel",
-        "version": "v1.4.6",
-        "version_normalized": "1.4.6.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Adldap2/Adldap2-Laravel.git",
-            "reference": "3a45cecbad2c07910e12d672fb33ed1a74ade9df"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/Adldap2/Adldap2-Laravel/zipball/3a45cecbad2c07910e12d672fb33ed1a74ade9df",
-            "reference": "3a45cecbad2c07910e12d672fb33ed1a74ade9df",
-            "shasum": ""
-        },
-        "require": {
-            "adldap2/adldap2": "5.2.*",
-            "php": ">=5.5.0"
-        },
-        "require-dev": {
-            "mockery/mockery": "0.9.*",
-            "orchestra/testbench": "~3.2"
-        },
-        "time": "2016-02-16 22:03:50",
-        "type": "project",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Adldap\\Laravel\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "description": "Adldap2 for Laravel 5.",
-        "keywords": [
-            "adLDAP",
-            "adldap2",
-            "laravel",
-            "ldap"
-        ]
-    },
-    {
         "name": "guzzlehttp/psr7",
         "version": "1.2.3",
         "version_normalized": "1.2.3.0",
@@ -4372,6 +4329,49 @@
             "dbal",
             "persistence",
             "queryobject"
+        ]
+    },
+    {
+        "name": "adldap2/adldap2-laravel",
+        "version": "v1.4.7",
+        "version_normalized": "1.4.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Adldap2/Adldap2-Laravel.git",
+            "reference": "7e70595c8ed32a725c55f4e014652edb26c2ed79"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Adldap2/Adldap2-Laravel/zipball/7e70595c8ed32a725c55f4e014652edb26c2ed79",
+            "reference": "7e70595c8ed32a725c55f4e014652edb26c2ed79",
+            "shasum": ""
+        },
+        "require": {
+            "adldap2/adldap2": "5.2.*",
+            "php": ">=5.5.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "0.9.*",
+            "orchestra/testbench": "~3.2"
+        },
+        "time": "2016-02-23 15:54:27",
+        "type": "project",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Adldap\\Laravel\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Adldap2 for Laravel 5.",
+        "keywords": [
+            "adLDAP",
+            "adldap2",
+            "laravel",
+            "ldap"
         ]
     }
 ]

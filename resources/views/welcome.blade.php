@@ -11,7 +11,7 @@
                 <div class="panel-body">    
                     Intranet v1.0       
             {{$username=trim(shell_exec('echo %username%'))}}
-
+        {{ $_SERVER['AUTH_USER'] }}
                 </div>
             </div>
         </div>

@@ -61,16 +61,16 @@
         },
         {
             "name": "adldap2/adldap2-laravel",
-            "version": "v1.4.6",
+            "version": "v1.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Adldap2/Adldap2-Laravel.git",
-                "reference": "3a45cecbad2c07910e12d672fb33ed1a74ade9df"
+                "reference": "7e70595c8ed32a725c55f4e014652edb26c2ed79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Adldap2/Adldap2-Laravel/zipball/3a45cecbad2c07910e12d672fb33ed1a74ade9df",
-                "reference": "3a45cecbad2c07910e12d672fb33ed1a74ade9df",
+                "url": "https://api.github.com/repos/Adldap2/Adldap2-Laravel/zipball/7e70595c8ed32a725c55f4e014652edb26c2ed79",
+                "reference": "7e70595c8ed32a725c55f4e014652edb26c2ed79",
                 "shasum": ""
             },
             "require": {
@@ -98,7 +98,7 @@
                 "laravel",
                 "ldap"
             ],
-            "time": "2016-02-16 22:03:50"
+            "time": "2016-02-23 15:54:27"
         },
         {
             "name": "bosnadev/repositories",

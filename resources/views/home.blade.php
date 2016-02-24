@@ -37,7 +37,7 @@
                 </div>
                 <div id="collpaseperfil" class="panel-collapse collapse">
                     <div class="panel-body" style="height:400px">
-                        TESTTESTTESTTESTTEST
+                        @include('usuarios.perfil')
                     </div>
                 </div>
             </div>

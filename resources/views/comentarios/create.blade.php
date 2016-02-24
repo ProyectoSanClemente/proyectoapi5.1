@@ -15,7 +15,6 @@
 			<div class="modal-body">
 				<div class="container" style="width:100%">
 					<div class="comentarios">
-
 					</div>
 					@include('comentarios.fields')
 				</div>

@@ -1,31 +1,32 @@
 <div class="form-group">
     {!! Form::label('accountname', 'Cuenta:') !!}
-    {!! Auth::user()->accountname !!}
+    {!! $usuario->accountname !!}
 </div>
 
 <!-- Rut Field -->
 <div class="form-group">
     {!! Form::label('rut', 'Rut:') !!}
-    {!! Auth::user()->rut !!}
+    {!! $usuario->rut !!}
 </div>
 
 <!-- Nombre Field -->
 <div class="form-group">
     {!! Form::label('nombre', 'Nombre:') !!}
-    {!! Auth::user()->nombre !!}
+    {!! $usuario->nombre !!}
 </div>
 
 <!-- Apellido Field -->
 <div class="form-group">
     {!! Form::label('apellido', 'Apellido:') !!}
-    {!! Auth::user()->apellido !!}
+    {!! $usuario->apellido !!}
 </div>
-
-<!-- email Field -->
+@if($usuario->hasCuenta())
 <div class="form-group">
-    {!! Form::label('email', 'Correo:') !!}
-    {!! Auth::user()->email !!}
+    {!! Form::label('correo', 'Correo:') !!}
+    {!! $usuario->Cuenta->id_zimbra !!}
+
 </div>
+@endif
 <div align="center">
 {!! HTML::image(Auth::user()->imagen,null,["class"=>"img-circle",'width'=>'165px'])!!}
 </div>

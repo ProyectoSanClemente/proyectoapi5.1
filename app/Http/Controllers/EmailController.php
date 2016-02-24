@@ -37,6 +37,9 @@ class EmailController extends Controller
 		$this->password=$cuenta->pass_zimbra;
 		$this->hostname="{sanclemente.cl:993/imap/ssl/novalidate-cert}";
 		$this->carpeta='attachments/'.$this->username;
+		if(!File::exists('attachments')){
+			File::makeDirectory('attachments');
+		}
 		if (!File::exists($this->carpeta)) {	//Crear carpeta de archivos adjuntos
 		    File::makeDirectory($this->carpeta);
 		}

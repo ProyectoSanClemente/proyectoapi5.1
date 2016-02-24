@@ -17,9 +17,8 @@ $(document).ready(function(){
     $('#modal-comentario').on('show.bs.modal',function (e){
         var id = $(e.relatedTarget).data('post-id');
         $('#id_post').val(id);
-        $('#modal-comentario').animate({ scrollTop: 1123123 }, 'slow');
+        $('#modal-comentario').animate({ scrollTop: 0 }, 'slow');
         show_comentarios($(this));
-        refreshComentario();
     });
 
     $('.send-comentario').click(function(){//En el envento click
@@ -27,11 +26,11 @@ $(document).ready(function(){
             return false;
             }
         send_comentario($(this));
-        refreshComentario();
-        $('#muro').load( " #muro" );
+        $('#modal-comentario').modal('toggle');
+        $('#muro').load(" #muro");
     });
     $('.goto-anchor-top').click(function(){
-        $('#modal-comentario').animate({ scrollTop: 0 }, 'slow');
+        $('#modal-comentario').animate({ scrollTop: 1123123 }, 'slow');
     });
     refreshTable();
 });

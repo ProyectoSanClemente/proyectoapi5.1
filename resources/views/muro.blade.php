@@ -13,12 +13,14 @@
       @endif</h4>
       <hr>
         <p>{!!$posteo->contenido!!}</p>
+        <hr>
         <ul class="list-inline list-unstyled">
     			<li><span><i class="glyphicon glyphicon-calendar"></i> {!!$posteo->created_at->diffForHumans()!!} </span></li>
           <li>|</li>
             <span><class="text-right">Escrito por :  {!!$posteo->Usuario->nombre.' '.$posteo->Usuario->apellido!!}</span>
+
           <li>|</li>
-          <span><a class="btn btn-primary glyphicon glyphicon-comment comentar" id="comentar" data-post-id="{!! $posteo->id!!}" data-toggle="modal" href='#modal-comentario' ></a></span>
+          <a class="pull-right" id="comentar" data-post-id="{!! $posteo->id!!}" data-toggle="modal" href='#modal-comentario'><span class="btn btn-primary"><i class=" glyphicon glyphicon-comment comentar"></i> {!!$posteo->Comentarios->count()!!} Comentarios</span></a>
   		  </ul>
       </div>
     </div>

@@ -238,6 +238,18 @@ class CuentaController extends Controller
 		$this->tienecuentas();
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
 		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
+		session_start();
+		   	$_SESSION["kt_login_id"] = "1";
+ 			$_SESSION["kt_login_user"] = "informatica";
+  			$_SESSION["kt_login_level"] = "master";
+  			$_SESSION["kt_nombre"] = "Depto. Informática";
+  			$_SESSION["kt_email"] = "mlillo@sanclemente.cl";
+  			$_SESSION["kt_fecha_ingreso"] = "2009-04-22";
+			  $_SESSION["kt_hora_ingreso"] = "2009-04-22";
+			  $_SESSION["kt_cargo"] = "Programador";
+			  $_SESSION["kt_depto"] = "";
+			  $_SESSION["kt_ubicacion"] = "Ninguno";
+			  $_SESSION["kt_nivel_temp"] = "";
 		return view('cuentas.solicitudcompras')
 			->with('user',$cuenta->id_solicitudcompras)
 			->with('pass',$cuenta->pass_solicitudcompras);

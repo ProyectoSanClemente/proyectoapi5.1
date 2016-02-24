@@ -23,7 +23,7 @@
 @if($usuario->hasCuenta())
 <div class="form-group">
     {!! Form::label('correo', 'Correo:') !!}
-    {!! $usuario->Cuenta->id_zimbra !!}
+    {!! $usuario->Cuenta->id_zimbra.'@sanclemente.cl'!!}
 
 </div>
 @endif

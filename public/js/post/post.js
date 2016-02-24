@@ -30,6 +30,9 @@ $(document).ready(function(){
         refreshComentario();
         $('#muro').load( " #muro" );
     });
+    $('.goto-anchor-top').click(function(){
+        $('#modal-comentario').animate({ scrollTop: 0 }, 'slow');
+    });
     refreshTable();
 });
 

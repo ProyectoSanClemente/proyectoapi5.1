@@ -111,16 +111,19 @@ class CuentaController extends Controller
 	 */
 	public function edit($id)
 	{
-		//Validamos que tenga los permisos o este asignando su propia cuenta
-		if(Auth::user()->id!=$id && Auth::user()->rol!='admin')
-			throw new Exception("No posee los privilegios para editar las cuentas asignadas de otros usuarios");
+
 		$cuenta = $this->cuentaRepository->find($id);
+
 		if(empty($cuenta))
 		{
 			Flash::error('Cuenta no encontrada.');
 
 			return redirect(route('cuentas.index'));
 		}
+
+		//Validamos que tenga los permisos o este asignando su propia cuenta
+		if($cuenta->id_usuario!=Auth::id() && Auth::user()->rol!='admin')
+			throw new Exception("No posee los privilegios para editar las cuentas asignadas de otros usuarios");
 
 		return view('cuentas.edit')
 			->with('cuenta', $cuenta)

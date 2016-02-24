@@ -33,14 +33,16 @@ class EmailController extends Controller
 		}
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
 		$cuenta=$this->cuentaRepository->obtenercuenta($id,'zimbra');
+		$this->username=$cuenta->id_zimbra;
+		$this->password=$cuenta->pass_zimbra;
 		$this->hostname="{sanclemente.cl:993/imap/ssl/novalidate-cert}";
 		$this->carpeta='attachments/'.$this->username;
 		if (!File::exists($this->carpeta)) {	//Crear carpeta de archivos adjuntos
 		    File::makeDirectory($this->carpeta);
 		}
-		File::cleanDirectory($this->carpeta); //Se eliminan los archivos
-
-		$this->mailbox = new ImapMailbox($this->hostname.'INBOX', $cuenta->id_zimbra,$cuenta->pass_zimbra,$this->carpeta);
+		File::cleanDirectory($this->carpeta); //Se eliminan los archivos adjuntos del servidor intranet
+	
+		$this->mailbox = new ImapMailbox($this->hostname.'INBOX', $this->username,$this->password,$this->carpeta);
 		$this->Unread=$this->mailbox->getMailboxInfo()->Unread;
 	}
 

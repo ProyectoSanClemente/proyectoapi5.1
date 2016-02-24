@@ -1,24 +1,32 @@
 <table id="cuentastable"  class="table">
-    <thead>
-            <th>Accountname</th>
-			<th>Id Sidam</th>
-			<th>Pass Sidam</th>
-			<th>Id Crecic</th>
-			<th>Pass Crecic</th>
-            <th>Id Zimbra</th>
-            <th>Pass Zimbra</th>
+    <thead> 
+        <th>Usuario</th>
+        <th>Zimbra Usuario </th>
+        <th>Zimbra Password </th>
+		<th>Sidam Usuario </th>
+		<th>Sidam Password</th>
+		<th>Crecic Usuario</th>
+		<th>Crecic Password</th>
+        <th>Nube Usuario</th>
+        <th>Nube Password</th>
+        <th>Solicitud Compras Usuario</th>
+        <th>Solicitud Compras Password</th>       
     <th width="50px">Acciones</th>
     </thead>
     <tbody>
     @foreach($cuentas as $cuenta)
         <tr id="{{$cuenta->id}}">
             <td>{!! $cuenta->usuario->accountname!!}</td>
+            <td>{!! $cuenta->id_zimbra !!}</td>
+            <td>{!! $cuenta->pass_zimbra !!}</td>
 			<td>{!! $cuenta->id_sidam !!}</td>
 			<td>{!! $cuenta->pass_sidam !!}</td>
 			<td>{!! $cuenta->id_crecic !!}</td>
 			<td>{!! $cuenta->pass_crecic !!}</td>
-            <td>{!! $cuenta->id_zimbra !!}</td>
-            <td>{!! $cuenta->pass_zimbra !!}</td>
+            <td>{!! $cuenta->id_nube !!}</td>
+            <td>{!! $cuenta->pass_nube !!}</td>
+            <td>{!! $cuenta->id_solicitudcompras !!}</td>
+            <td>{!! $cuenta->pass_solicitudcompras !!}</td>
             <td>
                 <a href="{!! route('cuentas.edit', [$cuenta->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
                 <a href="{!! route('cuentas.delete', [$cuenta->id]) !!}" onclick="return confirm('Estas seguro que deseas eliminar esta cuenta?')"><i class="glyphicon glyphicon-remove"></i></a>

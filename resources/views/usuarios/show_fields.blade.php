@@ -21,8 +21,11 @@
     {!! $usuario->apellido !!}
 </div>
 
-<!-- email Field -->
+<!-- Correo Field -->
+@if($usuario->hasCuenta())
 <div class="form-group">
-    {!! Form::label('email', 'Correo:') !!}
-    {!! $usuario->email !!}
+    {!! Form::label('correo', 'Correo:') !!}
+    {!! $usuario->Cuenta->id_zimbra !!}
+
 </div>
+@endif

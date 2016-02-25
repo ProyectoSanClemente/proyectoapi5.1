@@ -19,6 +19,7 @@ $(document).ready(function(){
         $('#id_post').val(id);
         $('#modal-comentario').animate({ scrollTop: 0 }, 'slow');
         show_comentarios($(this));
+        $('#muro').load( " #muro" )
     });
 
     $('.send-comentario').click(function(){//En el envento click

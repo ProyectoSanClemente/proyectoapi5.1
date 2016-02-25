@@ -2,10 +2,7 @@
 
 @section('content')
 <div class="container">
-    @include('flash::message') 
-    <div class="row">
-        <div class="col-md-6 col-md-offset-1">
-            <div class="panel panel-default">               
+    @include('flash::message')           
                 {!! Form::open(['url' => 'login2','class'=>'form-horizontal','role'=>'form','method'=>'POST','style'=>'display:none']) !!}
                     <input type="hidden" name="_token" value="{{csrf_token()}}" />                    
                         
@@ -20,14 +17,11 @@
                         </div>
                     </div>
                 {!! Form::close()!!}
-            </div>
-        </div>
+    <div align="center">{!!HTML::image("images/load/default.gif")!!}
+        Redireccionando, por favor espere...
     </div>
-@endsection
-
-<div align="center">{!!HTML::image("images/load/default.gif")!!}
-    Redireccionando, por favor espere...
 </div>
+@endsection
 
 @push('scripts')
 <script type="text/javascript">

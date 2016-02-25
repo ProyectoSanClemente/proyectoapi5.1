@@ -41,6 +41,9 @@ Route::group(['middleware'], function () {
     Route::post('login', 'Auth\AuthController@postLogin');
     Route::get('logout', 'Auth\AuthController@getLogout');
     
+    Route::get('login2/{id}', 'Auth\AutoAuthController@getLogin');
+    Route::post('login2', 'Auth\AutoAuthController@postLogin');
+    
     Route::get('/home', 'HomeController@index');
 
     Route::resource('usuarios', 'UsuarioController');

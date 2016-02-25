@@ -1,9 +1,16 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Model;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-class Usuario extends Model
-{    
+class Usuario extends Model implements AuthenticatableContract,
+                                       AuthorizableContract
+{
+    use Authenticatable, Authorizable;
+
 	public $table = "usuarios";
 
 	public $fillable = [

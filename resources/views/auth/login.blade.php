@@ -14,7 +14,7 @@
                         <div class="form-group{{ $errors->has('accountname') ? ' has-error' : '' }}">
                             {!! Form::label(null,'Usuario',['class'=>'col-md-4 control-label'])!!}
                             <div class="col-md-6">
-                                {!! Form::input('accountname','accountname',old('accountname') ,['class'=>'form-control'])!!}
+                                {!! Form::input('accountname','accountname',old('accountname') ,['class'=>'form-control','id'=>'accountname'])!!}
                                 @if ($errors->has('accountname'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('accountname') }}</strong>

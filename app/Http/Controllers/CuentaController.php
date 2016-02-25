@@ -5,7 +5,7 @@ use App\Http\Requests\CreateCuentaRequest;
 use App\Http\Requests\UpdateCuentaRequest;
 use App\Libraries\Repositories\CuentaRepository;
 use App\Libraries\Repositories\UsuarioRepository;
-use Flash, Response, Auth, Exception;
+use Flash, Response, Auth, Exception, Redirect;
 
 class CuentaController extends Controller
 {
@@ -238,12 +238,93 @@ class CuentaController extends Controller
 		$this->tienecuentas();
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
 		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
-		return view('cuentas.solicitudcompras')
+		return view('cuentas/reset.solicitudcompras')
 			->with('user',$cuenta->id_solicitudcompras)
 			->with('pass',$cuenta->pass_solicitudcompras);
 	}
 
+	public function boleta()
+	{
+		$this->tienecuentas();
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
+		return view('cuentas/reset.boleta')
+			->with('user',$cuenta->id_solicitudcompras)
+			->with('pass',$cuenta->pass_solicitudcompras);
+	}
 
+	public function garantia()
+	{
+		$this->tienecuentas();
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
+		return view('cuentas/reset.garantia')
+			->with('user',$cuenta->id_solicitudcompras)
+			->with('pass',$cuenta->pass_solicitudcompras);
+	}
+
+	public function daem()
+	{
+		$this->tienecuentas();
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
+		return view('cuentas/reset.daem')
+			->with('user',$cuenta->id_solicitudcompras)
+			->with('pass',$cuenta->pass_solicitudcompras);
+	}
+
+	public function bodega()
+	{
+		$this->tienecuentas();
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
+		return view('cuentas/reset.bodega')
+			->with('user',$cuenta->id_solicitudcompras)
+			->with('pass',$cuenta->pass_solicitudcompras);
+	}
+
+	public function correspondencia()
+	{
+		$this->tienecuentas();
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
+		return view('cuentas/reset.correspondencia')
+			->with('user',$cuenta->id_solicitudcompras)
+			->with('pass',$cuenta->pass_solicitudcompras);
+	}
+
+	public function social()
+	{
+		$this->tienecuentas();
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
+		return view('cuentas/reset.social')
+			->with('user',$cuenta->id_solicitudcompras)
+			->with('pass',$cuenta->pass_solicitudcompras);
+	}
+
+	public function plan()
+	{
+		$this->tienecuentas();
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
+		return view('cuentas/reset.plan')
+			->with('user',$cuenta->id_solicitudcompras)
+			->with('pass',$cuenta->pass_solicitudcompras);
+	}
+
+	public function pge()
+	{
+		$this->tienecuentas();
+		return Redirect::away('http://pge.reset.cl', 301);
+	}
+
+	public function deploytoweb()
+	{
+		$this->tienecuentas();
+		return Redirect::away('http://reset.sanclemente.cl/sistemas/deploy-to-web/Index.html', 301);
+	}
+	
 	public function tienecuentas()
 	{
 		if(!$this->usuarioRepository->hasCuenta(Auth::user()->id))

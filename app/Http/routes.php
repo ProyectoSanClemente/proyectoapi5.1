@@ -92,8 +92,44 @@ Route::group(['middleware'], function () {
 
     Route::get('cuentas/{id}/solicitudcompras', [
     'as' => 'cuentas.solicitudcompras',
-    'uses' => 'CuentaController@solicitudcompras']);   
+    'uses' => 'CuentaController@solicitudcompras']);
+
+    Route::get('cuentas/{id}/boleta', [
+    'as' => 'cuentas.boleta',
+    'uses' => 'CuentaController@boleta']);
+
+    Route::get('cuentas/{id}/garantia', [
+    'as' => 'cuentas.garantia',
+    'uses' => 'CuentaController@garantia']);
+
+    Route::get('cuentas/{id}/daem', [
+    'as' => 'cuentas.daem',
+    'uses' => 'CuentaController@daem']);
+
+    Route::get('cuentas/{id}/bodega', [
+    'as' => 'cuentas.bodega',
+    'uses' => 'CuentaController@bodega']);
     
+    Route::get('cuentas/{id}/correspondencia', [
+    'as' => 'cuentas.correspondencia',
+    'uses' => 'CuentaController@correspondencia']);
+
+    Route::get('cuentas/{id}/social', [
+    'as' => 'cuentas.social',
+    'uses' => 'CuentaController@social']);
+
+    Route::get('cuentas/{id}/plan', [
+    'as' => 'cuentas.plan',
+    'uses' => 'CuentaController@plan']);
+
+    Route::get('cuentas/{id}/pge', [
+    'as' => 'cuentas.pge',
+    'uses' => 'CuentaController@pge']);
+
+    Route::get('cuentas/{id}/deploytoweb', [
+    'as' => 'cuentas.deploytoweb',
+    'uses' => 'CuentaController@deploytoweb']);
+
     Route::group(['prefix' => 'emails'], function(){
         Route::get('index', 'EmailController@index');
         Route::get('sent', 'EmailController@sent');

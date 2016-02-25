@@ -13,7 +13,7 @@
 <!--[if lte IE 8]><html class="ng-csp ie ie8 lte9 lte8" data-placeholder-focus="false" lang="es" ><![endif]-->
 <!--[if IE 9]><html class="ng-csp ie ie9 lte9" data-placeholder-focus="false" lang="es" ><![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--><html class="ng-csp" data-placeholder-focus="false" lang="es" ><!--<![endif]-->
-	<head data-requesttoken="$oc_requesttoken">
+	<head data-requesttoken="">
 		<meta charset="utf-8">
 		<title>
 		ownCloud		</title>
@@ -140,12 +140,12 @@
 		</p>
 
 						<div class="remember-login-container">
-			<input type="checkbox" name="remember_login" value="0" id="remember_login" class="checkbox checkbox--white">
+			<input type="checkbox" name="remember_login" value="1" id="remember_login" class="checkbox checkbox--white">
 			<label for="remember_login">recordar</label>
 		</div>
 		<input type="hidden" name="timezone-offset" id="timezone-offset"/>
 		<input type="hidden" name="timezone" id="timezone"/>
-		<input type="hidden" name="requesttoken" value="$oc_requesttoken">
+		<input type="hidden" name="requesttoken" value="">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	</fieldset>
 </form>

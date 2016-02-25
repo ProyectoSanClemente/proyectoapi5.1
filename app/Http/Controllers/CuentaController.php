@@ -209,8 +209,8 @@ class CuentaController extends Controller
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
 		$cuenta=$this->cuentaRepository->obtenercuenta($id,'owncloud');
 		return view('cuentas.owncloud')
-			->with('user',$cuenta->id_sidam)
-			->with('pass',$cuenta->pass_sidam);
+			->with('user',$cuenta->id_owncloud)
+			->with('pass',$cuenta->pass_owncloud);
 	}
 
 	public function zimbra()

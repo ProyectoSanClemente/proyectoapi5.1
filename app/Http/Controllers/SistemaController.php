@@ -59,7 +59,7 @@ class SistemaController extends AppBaseController
 
 		$filename = 'images/sistemas/'.$input['nombre_sistema'].'.jpg';
 		$input['imagen_sistema']=$filename;
-	    Image::make(Input::file('imagen_sistema'))->resize(400, 300)->save($filename);
+	    Image::make(Input::file('imagen_sistema'))->resize(270,200)->save($filename);
 
 		$sistema = $this->sistemaRepository->create($input);
 

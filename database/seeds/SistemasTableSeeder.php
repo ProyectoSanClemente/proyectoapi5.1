@@ -15,33 +15,92 @@ class SistemasTableSeeder extends Seeder
     		['nombre_sistema' =>'Sidam',
             'imagen_sistema' => 'images/sistemas/Sidam.jpg',            
             'controlador' => 'cuentas',
-            'funcion' => 'sidam'
+            'funcion' => 'sidam',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],
             ['nombre_sistema' =>'Impresoras',
             'imagen_sistema' => 'images/sistemas/Impresora.jpg',            
             'controlador' => 'impresoras',
-            'funcion' => 'imprimir'
+            'funcion' => 'imprimir',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],
             ['nombre_sistema' =>'Crecic',
             'imagen_sistema' => 'images/sistemas/Crecic.jpg',            
             'controlador' => 'cuentas',
-            'funcion' => 'crecic'
+            'funcion' => 'crecic',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],
             ['nombre_sistema' =>'Nube',
             'imagen_sistema' => 'images/sistemas/Nube.jpg',            
             'controlador' => 'cuentas',
-            'funcion' => 'owncloud'
+            'funcion' => 'owncloud',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],
             ['nombre_sistema' =>'Zimbra',
             'imagen_sistema' => 'images/sistemas/Zimbra.jpg',            
             'controlador' => 'cuentas',
-            'funcion' => 'zimbra'
-            ]
-            ,
+            'funcion' => 'zimbra',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ],
             ['nombre_sistema' =>'Solicitud de Compras',
             'imagen_sistema' => 'images/sistemas/Solicitud de Compras.jpg',            
             'controlador' => 'cuentas',
-            'funcion' => 'solicitudcompras'
+            'funcion' => 'solicitudcompras',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ],
+            ['nombre_sistema' =>'Boleta',
+            'imagen_sistema' => 'images/sistemas/Boleta.jpg',            
+            'controlador' => 'cuentas',
+            'funcion' => 'boleta',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ],
+            ['nombre_sistema' =>'Garantia',
+            'imagen_sistema' => 'images/sistemas/Garantia.jpg',            
+            'controlador' => 'cuentas',
+            'funcion' => 'garantia',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ],
+            ['nombre_sistema' =>'Daem',
+            'imagen_sistema' => 'images/sistemas/Daem.jpg',            
+            'controlador' => 'cuentas',
+            'funcion' => 'daem',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ],
+            ['nombre_sistema' =>'Bodega',
+            'imagen_sistema' => 'images/sistemas/Bodega.jpg',            
+            'controlador' => 'cuentas',
+            'funcion' => 'bodega',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ],
+            ['nombre_sistema' =>'Correspondencia',
+            'imagen_sistema' => 'images/sistemas/Correspondencia.jpg',            
+            'controlador' => 'cuentas',
+            'funcion' => 'correspondencia',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ],
+            ['nombre_sistema' =>'Social',
+            'imagen_sistema' => 'images/sistemas/Social.jpg',            
+            'controlador' => 'cuentas',
+            'funcion' => 'social',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ],
+            ['nombre_sistema' =>'Plan',
+            'imagen_sistema' => 'images/sistemas/Plan.jpg',            
+            'controlador' => 'cuentas',
+            'funcion' => 'plan',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ],
+            ['nombre_sistema' =>'Pge',
+            'imagen_sistema' => 'images/sistemas/Pge.jpg',            
+            'controlador' => 'cuentas',
+            'funcion' => 'pge',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ],
+            ['nombre_sistema' =>'Deploytoweb',
+            'imagen_sistema' => 'images/sistemas/Deploytoweb.jpg',            
+            'controlador' => 'cuentas',
+            'funcion' => 'deploytoweb',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],
         ];
 

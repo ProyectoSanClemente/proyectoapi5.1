@@ -15,24 +15,16 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 @if(!Auth::guest())
-                    @if(Auth::user()->rol=='admin')    
+                    @if(Auth::user()->rol=='admin')   
                         <li> <a href="{{url('usuarios')}}"><i class="fa fa-users"></i><p>Usuarios</p></a> </li>
                         <li> <a href="{{url('impresoras')}}"><i class="glyphicon glyphicon-print"></i><p>Impresoras</p></a> </li>
                         <li> <a href="{{url('noticias')}}"><i class="fa fa-newspaper-o"></i><p>Noticias</p></a></li>
-                        <li> <a href="{{url('contenido')}}"><i class="fa fa-shield"></i><p>Ley de Transparencia</p></a></li>
-                        <li> <a href="{{url('cuentas')}}"><i class="glyphicon glyphicon-hdd"></i><p>Cuentas</p></a> </li>
-                        <li><a href="{{url('emails/index')}}"><i class="fa fa-envelope"></i><p>Correo</p></a></li>                            
-                        <li><a href="{{url('sistemas')}}"><i class="glyphicon glyphicon-th-large"></i><p>Sistemas</p></a></li>
-                        <li><a href="{{url('chat')}}"><i class="fa fa-whatsapp"></i><p>Chat</p></a></li>
-
-                    @else
-                        <li> <a href="{{url('contenido')}}"><i class="fa fa-shield"></i><p>Ley de Transparencia</p></a></li>
+                    @endif
+                       <li> <a href="{{url('contenido')}}"><i class="fa fa-shield"></i><p>Ley de Transparencia</p></a></li>
                         <li> <a href="{{url('cuentas')}}"><i class="glyphicon glyphicon-hdd"></i><p>Cuentas</p></a> </li>
                         <li><a href="{{url('emails/index')}}"><i class="fa fa-envelope"></i><p>Correo</p></a></li>
                         <li><a href="{{url('sistemas')}}"><i class="glyphicon glyphicon-th-large"></i><p>Sistemas</p></a></li>
                         <li><a href="{{url('chat')}}"><i class="fa fa-whatsapp"></i><p>Chat</p></a></li>
-
-                    @endif
                 @endif
             </ul>
 

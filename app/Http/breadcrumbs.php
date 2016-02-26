@@ -105,3 +105,9 @@ Breadcrumbs::register('emailsshow',function($breadcrumbs){
 	$breadcrumbs->parent('emails');
 	$breadcrumbs->push('Mostrar',url('emails/show'));
 });
+
+// Home > Sistemas
+Breadcrumbs::register('contenido',function($breadcrumbs){
+	$breadcrumbs->parent('home');
+	$breadcrumbs->push('Contenido',url('contenido'));
+});

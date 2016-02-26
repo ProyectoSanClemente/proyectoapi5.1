@@ -1,6 +1,3 @@
-{!! HTML::style('css/file-input.css')!!}
-{!! HTML::script('js/file-input.js')!!}
-
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -133,3 +130,9 @@
         </div>
     </div>
 </div>
+@push('styles')
+    {!! HTML::style('css/file-input.css')!!}
+@endpush
+@push('scripts')
+    {!! HTML::script('js/file-input.js')!!}
+@endpush

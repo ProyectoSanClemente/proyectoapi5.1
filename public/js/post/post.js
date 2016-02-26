@@ -140,6 +140,7 @@ function show_comentarios(modal){
                                     class: "panel-heading"
                                 }).append(
                                     $("<strong/>",{
+                                        style: "color:black"
                                     }).append(
                                         nombre,
                                         $("<span/>",{

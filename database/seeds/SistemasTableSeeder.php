@@ -19,7 +19,7 @@ class SistemasTableSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],
             ['nombre_sistema' =>'Impresoras',
-            'imagen_sistema' => 'images/sistemas/Impresora.jpg',            
+            'imagen_sistema' => 'images/sistemas/Impresoras.jpg',            
             'controlador' => 'impresoras',
             'funcion' => 'imprimir',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()

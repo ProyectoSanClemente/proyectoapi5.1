@@ -12,7 +12,7 @@
 	<!-- Redireccionar Field -->
 	<div class="form-group">
 	    {!! Form::label('contenido', 'Contenido:') !!}
-		{!! Form::textarea('contenido', null, ['class' => 'form-control','id' => 'contenido','placeholder' => 'Ingrese el Contenido']) !!}
+		{!! Form::textarea('contenido', null, ['class' => 'form-control contenido','id' => 'contenido','placeholder' => 'Ingrese el Contenido']) !!}
 	</div>
 
 	{!!Form::hidden('tipo','comunidad',['id'=>'tipo'])!!}

@@ -19,22 +19,11 @@
 {!! HTML::script('js/emoticons/emojione.js') !!}
 {!! HTML::script('js/notificationcheck.js')	 !!}
 {!! HTML::script('node_modules/socket.io/node_modules/socket.io-client/socket.io.js') !!}
+{!! HTML::script('js/jquery.textcomplete.js')        !!}
+</script>
   <script type="text/javascript">
-    // #################################################
-    // # Optional
-
-    // default is PNG but you may also use SVG
-    
-
-    // default is ignore ASCII smileys like :) but you can easily turn them on
     emojione.ascii = true;
-
-    // if you want to host the images somewhere else
-    // you can easily change the default paths
     emojione.imagePathPNG = 'images/emoticons/';
-    
-
-    // #################################################
   </script>
  {{-- Modulo socket io--}}
 

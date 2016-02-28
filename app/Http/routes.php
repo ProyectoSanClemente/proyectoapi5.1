@@ -52,6 +52,8 @@ Route::group(['middleware'], function () {
         'uses' => 'UsuarioController@destroy',
     ]);
 
+    Route::get('getunseen','FunctionsController@getunseen');
+
     Route::resource('noticias', 'NoticeController');
 
     Route::get('noticias/{id}/delete', [

@@ -11,6 +11,12 @@ use App\Libraries\Repositories\CuentaRepository;
 use App\Libraries\Repositories\UsuarioRepository;
 use File, Exception, Flash, HTML, Auth;
 
+use Ddeboer\Imap\Server;
+use Ddeboer\Imap\Exception\AuthenticationFailedException;
+use Ddeboer\Imap\SearchExpression;
+use Ddeboer\Imap\Search\Flag\Unseen;
+
+
 class EmailController extends Controller
 {
 	protected $hostname;
@@ -21,10 +27,12 @@ class EmailController extends Controller
     protected $Unread;
     private $cuentaRepository;
     private $usuarioRepository;
-    
+    protected $connection;
+
 	function __construct(CuentaRepository $cuentaRepo,UsuarioRepository $usuarioRepo)
 	{
 		$this->middleware('auth');
+		
 		$this->cuentaRepository = $cuentaRepo;
 		$this->usuarioRepository = $usuarioRepo;
 		if(!$this->usuarioRepository->hasCuenta(Auth::user()->id))
@@ -44,9 +52,23 @@ class EmailController extends Controller
 		    File::makeDirectory($this->carpeta);
 		}
 		File::cleanDirectory($this->carpeta); //Se eliminan los archivos adjuntos del servidor intranet
-	
 		$this->mailbox = new ImapMailbox($this->hostname.'INBOX', $this->username,$this->password,$this->carpeta);
 		$this->Unread=$this->mailbox->getMailboxInfo()->Unread;
+
+
+
+		$hostname = "sanclemente.cl";
+        $port="993";
+        $flags="ssl/novalidate-cert";
+
+
+        try{
+			$Server=new Server($hostname,$port,$flags);
+			$this->connection = $Server->authenticate($this->username,$this->password);    
+		} catch (AuthenticationFailedException $e) {
+			return 'fallo';
+		}
+
 	}
 
 	/**
@@ -57,6 +79,14 @@ class EmailController extends Controller
 	 */
 	public function index()
     {
+
+    	$inbox=$this->connection->getMailbox('Sent');
+		$search = new SearchExpression();
+		$search->addCondition(new Unseen('UNSEEN'));
+		$unseen=$inbox->getMessages($search);
+    	dd($unseen);
+
+    	
 		$mailsIds = $this->mailbox->searchMailbox('ALL');
 		if(!$mailsIds) {
 		    Flash::warning('La bandeja de entrada esta vacia');

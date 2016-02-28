@@ -133,7 +133,7 @@ Route::group(['middleware'], function () {
     'uses' => 'CuentaController@deploytoweb']);
 
     Route::group(['prefix' => 'emails'], function(){
-        Route::get('index', 'EmailController@index');
+        Route::get('inbox', 'EmailController@inbox');
         Route::get('sent', 'EmailController@sent');
         Route::get('unseen','EmailController@unseen');
         Route::get('{id}/show','EmailController@show');    

@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use PhpImap\Mailbox as ImapMailbox;
 use App\Libraries\Repositories\CuentaRepository;
 use App\Libraries\Repositories\UsuarioRepository;
-use File, Exception, Flash, HTML, Auth;
-
+use File, Exception, Flash,  Auth;
+use Illuminate\Database\Eloquent\Collection;
 use Ddeboer\Imap\Server;
 use Ddeboer\Imap\Exception\AuthenticationFailedException;
 use Ddeboer\Imap\SearchExpression;
 use Ddeboer\Imap\Search\Flag\Unseen;
+use Ddeboer\Imap\Message;
 
 
 class EmailController extends Controller
@@ -40,11 +40,14 @@ class EmailController extends Controller
 			throw new Exception("El usuario no tiene Cuentas Asignadas");
 		}
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
-		$cuenta=$this->cuentaRepository->obtenercuenta($id,'zimbra');
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'zimbra');		
+
 		$this->username=$cuenta->id_zimbra;
 		$this->password=$cuenta->pass_zimbra;
 		$this->hostname="{sanclemente.cl:993/imap/ssl/novalidate-cert}";
+		
 		$this->carpeta='attachments/'.$this->username;
+		
 		if(!File::exists('attachments')){
 			File::makeDirectory('attachments');
 		}
@@ -52,23 +55,19 @@ class EmailController extends Controller
 		    File::makeDirectory($this->carpeta);
 		}
 		File::cleanDirectory($this->carpeta); //Se eliminan los archivos adjuntos del servidor intranet
-		$this->mailbox = new ImapMailbox($this->hostname.'INBOX', $this->username,$this->password,$this->carpeta);
-		$this->Unread=$this->mailbox->getMailboxInfo()->Unread;
-
-
 
 		$hostname = "sanclemente.cl";
         $port="993";
         $flags="ssl/novalidate-cert";
 
 
-        try{
-			$Server=new Server($hostname,$port,$flags);
-			$this->connection = $Server->authenticate($this->username,$this->password);    
-		} catch (AuthenticationFailedException $e) {
+        /*try{*/
+		$Server=new Server($hostname,$port,$flags);
+		$this->connection = $Server->authenticate($this->username,$this->password);    
+		/*} catch (AuthenticationFailedException $e) {
 			return 'fallo';
 		}
-
+*/
 	}
 
 	/**
@@ -77,30 +76,22 @@ class EmailController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function inbox()
     {
-
-    	$inbox=$this->connection->getMailbox('Sent');
-		$search = new SearchExpression();
-		$search->addCondition(new Unseen('UNSEEN'));
-		$unseen=$inbox->getMessages($search);
-    	dd($unseen);
-
-    	
-		$mailsIds = $this->mailbox->searchMailbox('ALL');
-		if(!$mailsIds) {
+    	$search = new SearchExpression();
+    	$search->addCondition(new Unseen('UNSEEN'));
+    	$inbox=$this->connection->getMailbox('INBOX');        
+        $unseen=$inbox->getMessages($search);
+        $MessageIterator=$inbox->getMessages();              
+        $messages=$this->getCollectionmessages($MessageIterator);
+		if(empty($MessageIterator->count())) {
 		    Flash::warning('La bandeja de entrada esta vacia');
-		    $this->mailbox=null;
-		    return redirect(url('emails/index'));
+		    return redirect(url('home'));
 		}
-		else{
-			$mailsinfo = $this->mailbox->getMailsInfo($mailsIds);
-			$mailsinfo=array_reverse($mailsinfo);
-			$this->mailbox=null;		
-			return view('emails.index')
-	    			->with('inboxunread',$this->Unread)
-	    			->with('mailsinfo',$mailsinfo);
-		}
+		return view('emails.index')
+			->with('inboxunread',count($unseen))
+			->with('mailsinfo',$messages);
+		/*}*/
     }
 
     /**
@@ -111,21 +102,23 @@ class EmailController extends Controller
 	 */
 	public function unseen()
 	{
-		$mailsIds = $this->mailbox->searchMailbox('UNSEEN');
-		if(!$mailsIds) {
-		    Flash::warning('No hay Correos sin ver');
+		
+        $search = new SearchExpression();
+        $search->addCondition(new Unseen('UNSEEN'));
+        $inbox=$this->connection->getMailbox('INBOX');
+        $unseen=$inbox->getMessages($search);
+        if(empty($unseen->count()))
+        {
+    	    Flash::warning('No hay Mensajes No Vistos');
 		    $this->mailbox=null;
-		    return redirect(url('emails/index'));
-		}
-		else{
-			$mailsinfo = $this->mailbox->getMailsInfo($mailsIds);
-			$mailsinfo=array_reverse($mailsinfo);
-			$this->mailbox=null;
-			return view('emails.index')
-	    			->with('inboxunread',$this->Unread)
-	    			->with('mailsinfo',$mailsinfo);
-		}
+		    return redirect(url('emails/inbox'));
+		}        
+        $messages=$this->getCollectionmessages($unseen);
+		return view('emails.index')
+			->with('inboxunread',count($unseen))
+			->with('mailsinfo',$messages);
 	}
+	
 
 	/**
 	 * Display Sent Mails.
@@ -134,24 +127,21 @@ class EmailController extends Controller
 	 * @return Response
 	 */
     public function sent()
-    {
-    	$this->mailbox=null; //Cerrando Inbox
-    	$mailbox = new ImapMailbox($this->hostname.'Sent', $this->username,$this->password,$this->carpeta);//Conectando al mailbox de los mensajes enviados
-		$mailboxmsginfo = $mailbox->getMailboxInfo();		
-		$mailsIds = $mailbox->searchMailbox('ALL');		
-		if(!$mailsIds) {
-		    Flash:warning('La bandeja de entrada esta vacia');
-		    $this->mailbox=null;
-		    return redirect()->url('emails/index');
-		}
-		else{
-			$mailsinfo = $mailbox->getMailsInfo($mailsIds);
-			$mailsinfo=array_reverse($mailsinfo);
-			$mailbox=null;// Cerrando Mailbox Sent
-			return view('emails.sent')
-	    			->with('mailsinfo',$mailsinfo)
-	    			->with('inboxunread',$this->Unread);
-		}
+    {		
+        $search = new SearchExpression();
+        $search->addCondition(new Unseen('UNSEEN'));
+    	$inbox=$this->connection->getMailbox('INBOX'); 
+        $unseen=$inbox->getMessages($search);
+        $sent=$this->connection->getMailbox('Sent');
+        if(empty($sent->count()))
+        {
+    	    Flash::warning('No hay Mensajes Enviados');
+		    return redirect(url('emails/inbox'));
+		}        
+        $messages=$this->getCollectionmessages($sent);
+		return view('emails.sent')
+			->with('inboxunread',count($unseen))
+			->with('mailsinfo',$messages);
     }
 
 	/**
@@ -162,23 +152,38 @@ class EmailController extends Controller
 	 * @return Response
 	 */
 	public function show($mailId)
-	{		
-		$mailbox=$this->SearchMailbox($mailId);
-		if(!$mailbox){
-			Flash::warning('Mail no Encontrado');
-			return redirect('emails/index');
+	{
+		$mailboxes=['INBOX','Sent'];
+		foreach ($mailboxes as $mbox) {
+			$mailbox=$this->connection->getMailbox($mbox);
+			$messages=$mailbox->getMessages();
+			
+			foreach ($messages as $message) {
+				if($message->getNumber()==$mailId)
+				{
+					$value=$mailbox->getMessage($mailId);
+					$message=$this->getObjectMessage($value);
+					$search = new SearchExpression();
+			        $search->addCondition(new Unseen('UNSEEN'));
+			    	$inbox=$this->connection->getMailbox('INBOX'); 
+			        $unseen=$inbox->getMessages($search);
+					/*
+					foreach ($Attachments as $attachment) {
+						$attachment->route=$this->carpeta.'/'.basename($attachment->filePath);
+					}
+					$mail->textPlain=(strip_tags(nl2br($mail->textPlain), '<br>'));
+					$mailbox=null; //Cerramos el mailbox*/
+					return view('emails.show')
+						->with('mail',$message)
+						->with('inboxunread',count($unseen));
+				}				
+			}
 		}
-		$mail=$mailbox->getMail($mailId);
-		$Attachments=$mail->getAttachments();
-		foreach ($Attachments as $attachment) {
-			$attachment->route=$this->carpeta.'/'.basename($attachment->filePath);
-		}
-		$mail->textPlain=(strip_tags(nl2br($mail->textPlain), '<br>'));
-		$mailbox=null; //Cerramos el mailbox
-		return view('emails.show')
-			->with('mail',$mail)
-			->with('inboxunread',$this->Unread)
-			->with('Attachments',$Attachments);
+
+		Flash::warning('Mail no Encontrado');
+		return redirect('emails/inbox');
+
+		
 	}
 
 	/**
@@ -222,22 +227,43 @@ class EmailController extends Controller
 	}
 
 	/**
-	 * Find a Mail into the Mailboxs.
-	 *
-	 * @param $mailId
-	 *
-	 * @return Mailbox
-	 */
-	public function SearchMailbox($mailId){
-		$hostnames=['INBOX','Sent'];
-		foreach ($hostnames as $hostname) {
-			$mailbox = new ImapMailbox($this->hostname.$hostname, $this->username,$this->password,$this->carpeta);
-			$mailsIds = $mailbox->searchMailbox('ALL');
-			if(in_array($mailId,$mailsIds))
-				return $mailbox;
-			$mailbox=null;	//Cerrando el Mailbox ya visitado
-		}
-		return False;
+	*
+	* @param MessageIterator|Message[]
+	*
+	* @return Collection
+	*/
+
+	public function getCollectionmessages($MessageIterator)
+	{
+	    $messages = new Collection;       
+
+        foreach ($MessageIterator as $value) {
+            $message = new \stdClass;
+            $message->number=$value->getNumber();
+            $message->subject=$value->getSubject();
+            $message->from=$value->getFrom();
+            $message->size=$value->getSize();
+            $message->to=$value->getTo();
+            $message->date=$value->getDate()->format('Y-m-d H:i:s');
+            $message->seen=$value->isSeen();
+            $messages->prepend($message);
+        }
+        return $messages;
 	}
 
+	public function getObjectMessage($value)
+	{
+		$message = new \stdClass;
+		$message->number=$value->getNumber();
+        $message->subject=$value->getSubject();
+        $message->from=$value->getFrom();
+        $message->size=$value->getSize();
+        $message->to=$value->getTo();
+        $message->date=$value->getDate()->format('Y-m-d H:i:s');
+        $message->seen=$value->isSeen();
+        $message->textPlain=strip_tags(nl2br($value->getBodyText()), '<br>');
+        $message->Attachments=$value->getAttachments();
+       	dd($message->Attachments);
+     	return $message;
+	}
 }

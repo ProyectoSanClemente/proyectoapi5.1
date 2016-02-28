@@ -6,7 +6,7 @@
             </div>
 
             <div class="list-group">
-                <a href="{{ url('emails/index') }}" class="list-group-item"><i class="glyphicon glyphicon-inbox"></i> Bandeja de Entrada</a>
+                <a href="{{ url('emails/inbox') }}" class="list-group-item"><i class="glyphicon glyphicon-inbox"></i> Bandeja de Entrada</a>
                  <a href="{{ url('emails/unseen') }}" class="list-group-item"><i class="glyphicon glyphicon-envelope"></i> No vistos<span class="badge">{{$inboxunread}}</span></a>
                 <a href="{{ url('emails/sent') }}" class="list-group-item"><i class="glyphicon glyphicon-send"></i> Enviados<span class="badge"></span></a>
                

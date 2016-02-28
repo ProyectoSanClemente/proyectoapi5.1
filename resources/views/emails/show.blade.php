@@ -32,7 +32,7 @@
 								<div class="col-md-12">
 	                                <ul class="list-unstyled list-inline">
 	                                    <li><i class="fa fa-calendar-o"></i> Fecha: {{$mail->date}}</li>
-	                                    <li><i class="fa fa-user"></i> De: {{$mail->fromName}}</li>
+	                                    <li><i class="fa fa-user"></i> De: {{$mail->from}}</li>
 	                                     <li><i class="fa fa-users"></i> Para:
 	                                    	{!!implode(',',$mail->to) !!}
 	                                    </li>                                    
@@ -44,7 +44,7 @@
 						<div class="mail-content">
 							{!! $mail->textPlain !!} {{-- Imprime el contenido del mail --}}
 						</div>
-						
+						<!-- 
 						@if(!empty($Attachments))
 						<hr>
 							<div class="mail-attachments">
@@ -55,7 +55,7 @@
 									@endforeach
 								</ul>							 
 							</div>
-						@endif
+						@endif -->
 					</div>{{-- Termina el Area Imprimible --}}
 				</div>
 			</section>

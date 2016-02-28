@@ -17,7 +17,7 @@ function GetUnseenMails(){
         },
         error: function(xhr, status, error) {
             url='../getunseen';
-            GetUnseenMails();
+            //GetUnseenMails();
         },
         
     });

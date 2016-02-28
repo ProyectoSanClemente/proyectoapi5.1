@@ -138,6 +138,7 @@ Route::group(['middleware'], function () {
         Route::get('unseen','EmailController@unseen');
         Route::get('{id}/show','EmailController@show'); 
     });
+    Route::get('getunseen','EmailController@getunseen');
     
     Route::resource('sistemas', 'SistemaController');
 

@@ -15,5 +15,6 @@
 {!! HTML::script('js/jquery.min.js')        !!}
 {!! HTML::script('js/bootstrap.min.js')     !!}
 {!! HTML::script('js/navbar-with-icons.js')  !!}
+{!! HTML::script('js/notificationcheck.js')!!}
 {!! HTML::script('node_modules/socket.io/node_modules/socket.io-client/socket.io.js') !!} {{-- Modulo socket io--}}
 @stack('scripts')

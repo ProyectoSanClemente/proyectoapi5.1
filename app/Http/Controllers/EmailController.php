@@ -24,9 +24,10 @@ class EmailController extends Controller
 	protected $username;
     protected $password;
     protected $carpeta;
+    protected $connection;
+    protected $unseen;
     private $cuentaRepository;
     private $usuarioRepository;
-    protected $connection;
 
 	function __construct(CuentaRepository $cuentaRepo,UsuarioRepository $usuarioRepo)
 	{
@@ -43,6 +44,7 @@ class EmailController extends Controller
 		$hostname = "sanclemente.cl";
         $port="993";
         $flags="ssl/novalidate-cert";
+
 		$username=$cuenta->id_zimbra;
 		$password=$cuenta->pass_zimbra;
 		
@@ -58,7 +60,11 @@ class EmailController extends Controller
 		}
         
 		$Server=new Server($hostname,$port,$flags);
-		$this->connection = $Server->authenticate($username,$password);    
+		$search = new SearchExpression();
+        $search->addCondition(new Unseen('UNSEEN'));
+		
+		$this->connection = $Server->authenticate($username,$password);
+        $this->unseen=$this->connection->getMailbox('INBOX')->getMessages($search)->count();
 	}
 
 	/**
@@ -69,17 +75,14 @@ class EmailController extends Controller
 	 */
 	public function inbox()
     {
-    	$search = new SearchExpression();
-    	$search->addCondition(new Unseen('UNSEEN'));
-    	$inbox=$this->connection->getMailbox('INBOX');        
-        $unseen=$inbox->getMessages($search);
+    	$inbox=$this->connection->getMailbox('INBOX');
         $messages=$this->getCollectionMessages($inbox->getMessages());
         if(empty($messages->count())) {
 		    Flash::warning('La bandeja de entrada esta vacia');
 		    return redirect(url('home'));
 		}
 		return view('emails.index')
-			->with('inboxunread',count($unseen))
+			->with('inboxunread',$this->unseen)
 			->with('mailsinfo',$messages);
 		/*}*/
     }
@@ -95,17 +98,16 @@ class EmailController extends Controller
         $search = new SearchExpression();
         $search->addCondition(new Unseen('UNSEEN'));
         $inbox=$this->connection->getMailbox('INBOX');
-        $unseen=$inbox->getMessages($search);
-        if(empty($unseen->count()))
+        $messages=$this->getCollectionMessages($inbox->getMessages($search));;
+        if(empty($messages->count()))
         {
     	    Flash::warning('No hay Mensajes No Vistos');
-		    $this->mailbox=null;
 		    return redirect(url('emails/inbox'));
 		}        
         
 		return view('emails.index')
-			->with('inboxunread',count($unseen))
-			->with('mailsinfo',$unseen);
+			->with('inboxunread',$this->unseen)
+			->with('mailsinfo',$messages);
 	}	
 
 	/**
@@ -115,11 +117,7 @@ class EmailController extends Controller
 	 * @return Response
 	 */
     public function sent()
-    {		
-        $search = new SearchExpression();
-        $search->addCondition(new Unseen('UNSEEN'));
-    	$inbox=$this->connection->getMailbox('INBOX'); 
-        $unseen=$inbox->getMessages($search);
+    {
 
         $sent=$this->connection->getMailbox('Sent');
         $messages=$this->getCollectionMessages($sent);
@@ -130,7 +128,7 @@ class EmailController extends Controller
 		}        
         
 		return view('emails.sent')
-			->with('inboxunread',count($unseen))
+			->with('inboxunread',$this->unseen)
 			->with('mailsinfo',$messages);
     }
 
@@ -151,7 +149,7 @@ class EmailController extends Controller
 			$unseen=$inbox->getMessages($search);
 
 			return view('emails.show')
-				->with('mail',$this->getObjectMessage($message))
+				->with('mail',$message)
 				->with('inboxunread',count($unseen));
 		}
 
@@ -173,11 +171,9 @@ class EmailController extends Controller
 		$mailboxes=['INBOX','Sent'];
 		foreach ($mailboxes as $mbox) {
 			$mailbox=$this->connection->getMailbox($mbox);
-			try {
-				$message=$mailbox->getMessage($number);
-				return $message;
-			} catch (MessageDoesNotExistException $e) {
-				
+			foreach ($mailbox->getMessages() as $key => $message){
+				if($message->getNumber()==$number)
+					return $this->getObjectMessage($message);
 			}
 		}
 		return False;
@@ -227,5 +223,11 @@ class EmailController extends Controller
 			File::put($attachment->path,$attachment->getDecodedContent());
 		}	
      	return $message;
+	}
+
+
+	public function getunseen()
+	{	
+        return json_encode($this->unseen);
 	}
 }

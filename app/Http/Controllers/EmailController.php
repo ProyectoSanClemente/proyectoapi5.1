@@ -12,6 +12,7 @@ use File, Exception, Flash,  Auth;
 use Illuminate\Database\Eloquent\Collection;
 use Ddeboer\Imap\Server;
 use Ddeboer\Imap\Exception\AuthenticationFailedException;
+use Ddeboer\Imap\Exception\MessageDoesNotExistException;
 use Ddeboer\Imap\SearchExpression;
 use Ddeboer\Imap\Search\Flag\Unseen;
 use Ddeboer\Imap\Message;
@@ -23,16 +24,13 @@ class EmailController extends Controller
 	protected $username;
     protected $password;
     protected $carpeta;
-    protected $mailbox;
-    protected $Unread;
     private $cuentaRepository;
     private $usuarioRepository;
     protected $connection;
 
 	function __construct(CuentaRepository $cuentaRepo,UsuarioRepository $usuarioRepo)
 	{
-		$this->middleware('auth');
-		
+		$this->middleware('auth');		
 		$this->cuentaRepository = $cuentaRepo;
 		$this->usuarioRepository = $usuarioRepo;
 		if(!$this->usuarioRepository->hasCuenta(Auth::user()->id))
@@ -42,32 +40,25 @@ class EmailController extends Controller
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
 		$cuenta=$this->cuentaRepository->obtenercuenta($id,'zimbra');		
 
-		$this->username=$cuenta->id_zimbra;
-		$this->password=$cuenta->pass_zimbra;
-		$this->hostname="{sanclemente.cl:993/imap/ssl/novalidate-cert}";
+		$hostname = "sanclemente.cl";
+        $port="993";
+        $flags="ssl/novalidate-cert";
+		$username=$cuenta->id_zimbra;
+		$password=$cuenta->pass_zimbra;
 		
-		$this->carpeta='attachments/'.$this->username;
-		
+		$this->carpeta='attachments/'.$username;		
 		if(!File::exists('attachments')){
 			File::makeDirectory('attachments');
 		}
 		if (!File::exists($this->carpeta)) {	//Crear carpeta de archivos adjuntos
 		    File::makeDirectory($this->carpeta);
 		}
-		File::cleanDirectory($this->carpeta); //Se eliminan los archivos adjuntos del servidor intranet
-
-		$hostname = "sanclemente.cl";
-        $port="993";
-        $flags="ssl/novalidate-cert";
-
-
-        /*try{*/
-		$Server=new Server($hostname,$port,$flags);
-		$this->connection = $Server->authenticate($this->username,$this->password);    
-		/*} catch (AuthenticationFailedException $e) {
-			return 'fallo';
+		if(File::lastModified($this->carpeta)<time() - (24*60*60)){//Si los archivos llevan mas de un dia
+			File::cleanDirectory($this->carpeta); //Se eliminan los archivos adjuntos del servidor intranet			
 		}
-*/
+        
+		$Server=new Server($hostname,$port,$flags);
+		$this->connection = $Server->authenticate($username,$password);    
 	}
 
 	/**
@@ -82,9 +73,8 @@ class EmailController extends Controller
     	$search->addCondition(new Unseen('UNSEEN'));
     	$inbox=$this->connection->getMailbox('INBOX');        
         $unseen=$inbox->getMessages($search);
-        $MessageIterator=$inbox->getMessages();              
-        $messages=$this->getCollectionmessages($MessageIterator);
-		if(empty($MessageIterator->count())) {
+        $messages=$this->getCollectionMessages($inbox->getMessages());
+        if(empty($messages->count())) {
 		    Flash::warning('La bandeja de entrada esta vacia');
 		    return redirect(url('home'));
 		}
@@ -101,8 +91,7 @@ class EmailController extends Controller
 	 * @return Response
 	 */
 	public function unseen()
-	{
-		
+	{		
         $search = new SearchExpression();
         $search->addCondition(new Unseen('UNSEEN'));
         $inbox=$this->connection->getMailbox('INBOX');
@@ -113,12 +102,11 @@ class EmailController extends Controller
 		    $this->mailbox=null;
 		    return redirect(url('emails/inbox'));
 		}        
-        $messages=$this->getCollectionmessages($unseen);
+        
 		return view('emails.index')
 			->with('inboxunread',count($unseen))
-			->with('mailsinfo',$messages);
-	}
-	
+			->with('mailsinfo',$unseen);
+	}	
 
 	/**
 	 * Display Sent Mails.
@@ -132,13 +120,15 @@ class EmailController extends Controller
         $search->addCondition(new Unseen('UNSEEN'));
     	$inbox=$this->connection->getMailbox('INBOX'); 
         $unseen=$inbox->getMessages($search);
+
         $sent=$this->connection->getMailbox('Sent');
-        if(empty($sent->count()))
+        $messages=$this->getCollectionMessages($sent);
+        if(empty($messages->count()))
         {
     	    Flash::warning('No hay Mensajes Enviados');
 		    return redirect(url('emails/inbox'));
 		}        
-        $messages=$this->getCollectionmessages($sent);
+        
 		return view('emails.sent')
 			->with('inboxunread',count($unseen))
 			->with('mailsinfo',$messages);
@@ -147,83 +137,50 @@ class EmailController extends Controller
 	/**
 	 * Show the entire Mail.
 	 *
-	 * @param $mailId
+	 * @param $number
 	 *
 	 * @return Response
 	 */
-	public function show($mailId)
+	public function show($number)
+	{
+		$message=$this->SearchMessageinMailboxes($number);
+		if($message){
+			$search = new SearchExpression();
+			$search->addCondition(new Unseen('UNSEEN'));
+			$inbox=$this->connection->getMailbox('INBOX'); 
+			$unseen=$inbox->getMessages($search);
+
+			return view('emails.show')
+				->with('mail',$this->getObjectMessage($message))
+				->with('inboxunread',count($unseen));
+		}
+
+		Flash::warning('Mail no Encontrado');
+		return redirect('emails/inbox');		
+	}
+
+	/**
+	*
+	 * Search into mailboxes and get a message by message number
+     *
+     * @param int $number Message number
+     *
+     * @return Message
+     *
+	*/
+	public function SearchMessageinMailboxes($number)
 	{
 		$mailboxes=['INBOX','Sent'];
 		foreach ($mailboxes as $mbox) {
 			$mailbox=$this->connection->getMailbox($mbox);
-			$messages=$mailbox->getMessages();
-			
-			foreach ($messages as $message) {
-				if($message->getNumber()==$mailId)
-				{
-					$value=$mailbox->getMessage($mailId);
-					$message=$this->getObjectMessage($value);
-					$search = new SearchExpression();
-			        $search->addCondition(new Unseen('UNSEEN'));
-			    	$inbox=$this->connection->getMailbox('INBOX'); 
-			        $unseen=$inbox->getMessages($search);
-					/*
-					foreach ($Attachments as $attachment) {
-						$attachment->route=$this->carpeta.'/'.basename($attachment->filePath);
-					}
-					$mail->textPlain=(strip_tags(nl2br($mail->textPlain), '<br>'));
-					$mailbox=null; //Cerramos el mailbox*/
-					return view('emails.show')
-						->with('mail',$message)
-						->with('inboxunread',count($unseen));
-				}				
+			try {
+				$message=$mailbox->getMessage($number);
+				return $message;
+			} catch (MessageDoesNotExistException $e) {
+				
 			}
 		}
-
-		Flash::warning('Mail no Encontrado');
-		return redirect('emails/inbox');
-
-		
-	}
-
-	/**
-	 * Mark a Mail has Read.
-	 *
-	 * @param $mailId
-	 *
-	 * @return reload page
-	 */
-
-	public function markMailAsRead($mailId)
-	{
-		$mailbox=$this->SearchMailbox($mailId);
-		$read=$mailbox->markMailAsRead($mailId);
-		if($read)
-			Flash::success('Correo Marcado como Leído');
-		else
-			Flash::error('El correo no se pudo marcar como Leído');
-		
-		return redirect()->back();
-	}
-
-	/**
-	 * Mark a Mail as Unread.
-	 *
-	 * @param $mailId
-	 *
-	 * @return reload page
-	 */
-	public function markMailAsUnread($mailId)
-	{
-		$mailbox=$this->SearchMailbox($mailId);
-		$unread=$mailbox->markMailAsUnread($mailId);
-
-		if($unread)
-			Flash::success('Correo Marcado como No Leído');
-		else
-			Flash::error('El correo no se pudo marcar como no Leído');
-		
-		return redirect()->back();
+		return False;
 	}
 
 	/**
@@ -233,7 +190,7 @@ class EmailController extends Controller
 	* @return Collection
 	*/
 
-	public function getCollectionmessages($MessageIterator)
+	public function getCollectionMessages($MessageIterator)
 	{
 	    $messages = new Collection;       
 
@@ -246,9 +203,10 @@ class EmailController extends Controller
             $message->to=$value->getTo();
             $message->date=$value->getDate()->format('Y-m-d H:i:s');
             $message->seen=$value->isSeen();
-            $messages->prepend($message);
+            $messages->push($message);
         }
-        return $messages;
+
+        return $messages->sortByDesc('number');
 	}
 
 	public function getObjectMessage($value)
@@ -263,7 +221,11 @@ class EmailController extends Controller
         $message->seen=$value->isSeen();
         $message->textPlain=strip_tags(nl2br($value->getBodyText()), '<br>');
         $message->Attachments=$value->getAttachments();
-       	dd($message->Attachments);
+        foreach ($message->Attachments as $attachment) {
+        	$attachment->Filename=$attachment->getFilename();
+        	$attachment->path=$this->carpeta.'/'.$message->number.'_'.$attachment->Filename;
+			File::put($attachment->path,$attachment->getDecodedContent());
+		}	
      	return $message;
 	}
 }

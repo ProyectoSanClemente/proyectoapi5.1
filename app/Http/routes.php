@@ -136,9 +136,7 @@ Route::group(['middleware'], function () {
         Route::get('inbox', 'EmailController@inbox');
         Route::get('sent', 'EmailController@sent');
         Route::get('unseen','EmailController@unseen');
-        Route::get('{id}/show','EmailController@show');    
-        Route::get('{id}/markMailAsRead', 'EmailController@markMailAsRead');
-        Route::get('{id}/markMailAsUnread','EmailController@markMailAsUnread');
+        Route::get('{id}/show','EmailController@show'); 
     });
     
     Route::resource('sistemas', 'SistemaController');

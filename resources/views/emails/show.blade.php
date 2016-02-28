@@ -44,18 +44,17 @@
 						<div class="mail-content">
 							{!! $mail->textPlain !!} {{-- Imprime el contenido del mail --}}
 						</div>
-						<!-- 
-						@if(!empty($Attachments))
+						@if(!empty($mail->Attachments))
 						<hr>
 							<div class="mail-attachments">
-								<p>{!!count($Attachments)!!} Archivo/s Adjunto/s</p>
+								<p>{!!count($mail->Attachments)!!} Archivo/s Adjunto/s</p>
 								<ul class="list-unstyled">
-									@foreach ($Attachments as $attachment)
-										<li><i class="fa fa-paperclip"></i><a href="{{URL::to($attachment->route)}}" target="_blank" download="{{$attachment->name}}">{!! $attachment->name !!}</a></li>
+									@foreach ($mail->Attachments as $attachment)
+										<li><i class="fa fa-paperclip"></i><a href="{{URL::to($attachment->path)}}" target="_blank" download="{{$attachment->Filename}}">{!! $attachment->Filename !!}</a></li>
 									@endforeach
 								</ul>							 
 							</div>
-						@endif -->
+						@endif
 					</div>{{-- Termina el Area Imprimible --}}
 				</div>
 			</section>

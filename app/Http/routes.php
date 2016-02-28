@@ -52,6 +52,8 @@ Route::group(['middleware'], function () {
         'uses' => 'UsuarioController@destroy',
     ]);
 
+    Route::get('getunseen','FunctionsController@getunseen');
+
     Route::resource('noticias', 'NoticeController');
 
     Route::get('noticias/{id}/delete', [
@@ -131,13 +133,12 @@ Route::group(['middleware'], function () {
     'uses' => 'CuentaController@deploytoweb']);
 
     Route::group(['prefix' => 'emails'], function(){
-        Route::get('index', 'EmailController@index');
+        Route::get('inbox', 'EmailController@inbox');
         Route::get('sent', 'EmailController@sent');
         Route::get('unseen','EmailController@unseen');
-        Route::get('{id}/show','EmailController@show');    
-        Route::get('{id}/markMailAsRead', 'EmailController@markMailAsRead');
-        Route::get('{id}/markMailAsUnread','EmailController@markMailAsUnread');
+        Route::get('{id}/show','EmailController@show'); 
     });
+    Route::get('getunseen','EmailController@getunseen');
     
     Route::resource('sistemas', 'SistemaController');
 

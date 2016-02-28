@@ -33,14 +33,15 @@ class Grammar
 
         $query = $this->compileOrWheres($builder, $query);
 
-        // Count the total amount of filters
+        // Count the total amount of filters.
         $total = count($builder->wheres)
-            + count($builder->orWheres)
             + count($builder->filters);
 
-        // Make sure we wrap the query in an 'and'
-        // if using multiple filters
-        if ($total > 1) {
+        // Make sure we wrap the query in an 'and' if using
+        // multiple filters. We also need to check if only
+        // one where is used with multiple orWheres, that
+        // we wrap it in an 'and' query.
+        if ($total > 1 || (count($builder->wheres) === 1 && count($builder->orWheres) > 0)) {
             $query = $this->compileAnd($query);
         }
 
@@ -301,10 +302,12 @@ class Grammar
             $ors .= $this->compileWhere($where);
         }
 
-        // Make sure we wrap the query in an 'and' if using
-        // multiple wheres. For example (&QUERY).
-        if (count($builder->orWheres) > 0) {
+        // Make sure we wrap the query in an 'or' if using
+        // multiple orWheres. For example (|(QUERY)(ORWHEREQUERY)).
+        if ((!empty($query) && count($builder->getOrWheres()) > 0) || count($builder->getOrWheres()) > 1) {
             $query .= $this->compileOr($ors);
+        } else {
+            $query .= $ors;
         }
 
         return $query;

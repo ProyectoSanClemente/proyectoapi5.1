@@ -32,7 +32,7 @@
 								<div class="col-md-12">
 	                                <ul class="list-unstyled list-inline">
 	                                    <li><i class="fa fa-calendar-o"></i> Fecha: {{$mail->date}}</li>
-	                                    <li><i class="fa fa-user"></i> De: {{$mail->fromName}}</li>
+	                                    <li><i class="fa fa-user"></i> De: {{$mail->from}}</li>
 	                                     <li><i class="fa fa-users"></i> Para:
 	                                    	{!!implode(',',$mail->to) !!}
 	                                    </li>                                    
@@ -44,14 +44,13 @@
 						<div class="mail-content">
 							{!! $mail->textPlain !!} {{-- Imprime el contenido del mail --}}
 						</div>
-						
-						@if(!empty($Attachments))
+						@if(!empty($mail->Attachments))
 						<hr>
 							<div class="mail-attachments">
-								<p>{!!count($Attachments)!!} Archivo/s Adjunto/s</p>
+								<p>{!!count($mail->Attachments)!!} Archivo/s Adjunto/s</p>
 								<ul class="list-unstyled">
-									@foreach ($Attachments as $attachment)
-										<li><i class="fa fa-paperclip"></i><a href="{{URL::to($attachment->route)}}" target="_blank" download="{{$attachment->name}}">{!! $attachment->name !!}</a></li>
+									@foreach ($mail->Attachments as $attachment)
+										<li><i class="fa fa-paperclip"></i><a href="{{URL::to($attachment->path)}}" target="_blank" download="{{$attachment->Filename}}">{!! $attachment->Filename !!}</a></li>
 									@endforeach
 								</ul>							 
 							</div>

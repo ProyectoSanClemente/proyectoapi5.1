@@ -16,4 +16,31 @@
         </div>
     </div>
 </div>
+
+  <div class="container">
+
+    <div class="clearfix">
+
+      <div class="column-1-2 input">
+        <h3>Input:</h3>
+        <input type="text" id="inputText" name="inputText" style="width: 100%" value=""/>
+      </div>
+
+      <div class="column-1-2 output">
+        <h3>Output:</h3>
+        <p id="outputText"></p>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $("#inputText").on('keyup change input',function(e) {
+              var source = $('#inputText').val();
+              var preview = emojione.toImage(source);
+              $('#outputText').html(preview);
+            });
+          });
+        </script>
+      </div>
+
+    </div>
+
+  </div>
 @endsection

@@ -10,11 +10,36 @@
     <!-- Styles -->
 {!! HTML::style('css/bootstrap.min.css')    !!}
 {!! HTML::style('css/navbar-with-icons.css')	!!}
+{!! HTML::style('css/emoticons/emojione.min.css')!!}
 @stack('styles')
     <!-- Javascipts -->
 {!! HTML::script('js/jquery.min.js')        !!}
 {!! HTML::script('js/bootstrap.min.js')     !!}
 {!! HTML::script('js/navbar-with-icons.js')  !!}
-{!! HTML::script('js/notificationcheck.js')!!}
-{!! HTML::script('node_modules/socket.io/node_modules/socket.io-client/socket.io.js') !!} {{-- Modulo socket io--}}
-@stack('scripts')
+{!! HTML::script('js/emoticons/emojione.js') !!}
+{!! HTML::script('js/notificationcheck.js')	 !!}
+{!! HTML::script('node_modules/socket.io/node_modules/socket.io-client/socket.io.js') !!}
+  <script type="text/javascript">
+    // #################################################
+    // # Optional
+
+    // default is PNG but you may also use SVG
+    
+
+    // default is ignore ASCII smileys like :) but you can easily turn them on
+    emojione.ascii = true;
+
+    // if you want to host the images somewhere else
+    // you can easily change the default paths
+    emojione.imagePathPNG = 'images/emoticons/';
+    
+
+    // #################################################
+  </script>
+ {{-- Modulo socket io--}}
+
+
+
+
+  @stack('scripts')
+

@@ -32,7 +32,7 @@ $(document).ready(function(){
         }
     });
 
-    $('.send-button').click(function(){//En el envento click
+    $('.send-button').click(function(){//En el envento click           
         send_message($(this));
     });
 
@@ -81,7 +81,7 @@ function show_messages(){
                 var messages=data.messages;
                 for (i = 0; i < messages.length; i++){
                     var sender=messages[i].sender;
-                    var message='<div style="font-size: 13pt">'+messages[i].message.replace(/<[^>]*>/g, '')+'</div>'; //HTML to plain text
+                    var message='<div style="font-size: 13pt">'+messages[i].message+'</div>'; //HTML to plain text
                     
                     var created_at=messages[i].created_at;
                     if(sender==data.user1_accountname){                        
@@ -99,12 +99,16 @@ function show_messages(){
 }
 
 function send_message(input){
+    var input = $('.text-message').val();
+    var output = emojione.shortnameToImage(input);
+    $('.text-message').val(output);
     var dataString = {
         user1_id: $('#user1_id').val(),
         sender: $('#user1_accountname').val(),
         user2_accountname: $('#user2_accountname').val(),
         conversation_id  : $('#conversation_id').val(),
         conversation2_id  : $('#conversation2_id').val(),
+
         message : $('.text-message').val(),
     };
     $.ajax({

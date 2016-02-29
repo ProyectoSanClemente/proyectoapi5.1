@@ -23,3 +23,23 @@
 	    {!! Form::submit('Guardar', ['class' => 'btn btn-primary send-button']) !!}
 	    {!!Form::button('Cancelar', ['class' => 'btn btn-default', 'data-dismiss'=>'modal']) !!}
 	</div>
+
+<script>
+    $('#contenido').emojiarea({wysiwyg: false});  
+    var $wysiwyg = $('.emojis-wysiwyg').emojiarea({wysiwyg: true});
+    var $wysiwyg_value = $('#emojis-wysiwyg-value');
+    
+    $wysiwyg.on('change', function() {
+        $wysiwyg_value.text($(this).val());
+    });
+    $wysiwyg.trigger('change');
+</script>
+
+@push('scripts')
+    {!! HTML::script('js/emoticons/emojiarea/jquery.emojiarea.js')!!}
+    {!! HTML::script('images/emoticons/emojis.js')!!}
+@endpush
+
+@push('styles')
+    {!! HTML::style('css/emoticons/jquery.emojiarea.css') !!}    
+@endpush

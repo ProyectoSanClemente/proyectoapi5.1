@@ -93,7 +93,7 @@
                         <div class="input-group">
                             <input type="text" class="text-message form-control">  
                             <span class="input-group-btn">
-                                {!!  Form::button('Enviar', ['class'=>"btn btn-success form-control send-button",'style'=>'margin-bottom:43px;color:#fff']) !!}
+                                {!!  Form::button('Enviar', ['class'=>"btn btn-success form-control send-button",'style'=>'margin-bottom:44px;color:#fff']) !!}
                             </span>
                         </div>
                     </div>
@@ -107,15 +107,14 @@
 </div>
 
 <script>
-        $('.text-message').emojiarea({wysiwyg: false});  
-        var $wysiwyg = $('.emojis-wysiwyg').emojiarea({wysiwyg: true});
-        var $wysiwyg_value = $('#emojis-wysiwyg-value');
-        
-        $wysiwyg.on('change', function() {
-            $wysiwyg_value.text($(this).val());
-        });
-        $wysiwyg.trigger('change');
-
+    $('.text-message').emojiarea({wysiwyg: false});  
+    var $wysiwyg = $('.emojis-wysiwyg').emojiarea({wysiwyg: true});
+    var $wysiwyg_value = $('#emojis-wysiwyg-value');
+    
+    $wysiwyg.on('change', function() {
+        $wysiwyg_value.text($(this).val());
+    });
+    $wysiwyg.trigger('change');
 </script>
 
 

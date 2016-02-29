@@ -18,17 +18,10 @@
 {!! HTML::script('js/navbar-with-icons.js')  !!}
 {!! HTML::script('js/emoticons/emojione.js') !!}
 {!! HTML::script('js/notificationcheck.js')	 !!}
-{!! HTML::script('node_modules/socket.io/node_modules/socket.io-client/socket.io.js') !!}
-{!! HTML::script('js/jquery.textcomplete.js')        !!}
-</script>
-  <script type="text/javascript">
+{!! HTML::script('node_modules/socket.io/node_modules/socket.io-client/socket.io.js') !!}{{-- Modulo socket io--}}
+<script type="text/javascript">
     emojione.ascii = true;
     emojione.imagePathPNG = 'images/emoticons/';
-  </script>
- {{-- Modulo socket io--}}
-
-
-
-
-  @stack('scripts')
+</script>
+@stack('scripts')
 

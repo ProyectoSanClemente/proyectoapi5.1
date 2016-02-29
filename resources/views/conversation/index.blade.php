@@ -90,31 +90,56 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="input-group">
-                            <input type="text" class="form-control text-message form-control">
+                            <input type="text" class="form-control text-message form-control">        
                             <span class="input-group-btn">
                                 {!!  Form::button('Enviar', ['class'=>"btn btn-primary form-control send-button"]) !!}
                             </span>
                         </div>
                     </div>
+                    
                 </div>
+
             </div>
             <!-- End of conversation here -->
         </div>
     </div>
 </div>
+
+<script>
+        $('.text-message').emojiarea({wysiwyg: false});  
+        var $wysiwyg = $('.emojis-wysiwyg').emojiarea({wysiwyg: true});
+        var $wysiwyg_value = $('#emojis-wysiwyg-value');
+        
+        $wysiwyg.on('change', function() {
+            $wysiwyg_value.text($(this).val());
+        });
+        $wysiwyg.trigger('change');
+</script>
+
+
+
+
 @endsection
 
 @push('scripts')
     {!! HTML::script('js/chat/chat.js') !!}
     {!! HTML::script('js/chat/jquery.slimscroll.min.js') !!}
     {!! HTML::script('js/chat/jquery.formatDateTime.min.js') !!}
+    
+    {!! HTML::script('js/chat/nodesocket.js')!!} {{-- Servidor escuchando :) --}}    
+    {!! HTML::script('js/emoticons/emojiarea/jquery.emojiarea.js')!!}
+    {!! HTML::script('images/emoticons/emojis.js')!!}
+
+@endpush
+
+@push('styles')
     {!! HTML::style('css/chat.css')!!}
-     {!! HTML::script('js/chat/nodesocket.js')!!} {{-- Servidor escuchando :) --}}
     <style type="text/css">
         .scroll-conversations { height: 450px !important; }
         .scroll-users { height: 450px !important; }
         .slimScrollDiv { height: 450px !important; }
         .scroll-conversation { height: 350px !important; }   
     </style>
+    {!! HTML::style('css/emoticons/jquery.emojiarea.css') !!}    
 @endpush
 

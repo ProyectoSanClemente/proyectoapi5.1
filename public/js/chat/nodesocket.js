@@ -7,7 +7,7 @@ socket.on('new_message', function( data ) {
 
 	var sender=data.sender;
 	var created_at=data.created_at;
-	var message='<div style="font-size: 13pt">'+data.message.replace(/<[^>]*>/g, '')+'</div>'; //HTML to plain text
+	var message='<div style="font-size: 13pt">'+data.message+'</div>'; //HTML to plain text
 	if(data.conversation_id==$("#conversation_id").val()){
 		printmessage('right','me',sender,created_at,message);
 		scroll();

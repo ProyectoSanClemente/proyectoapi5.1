@@ -26,6 +26,12 @@ $(document).ready(function(){
         show_messages();
     });
 
+    $(".text-message").on('keyup change input',function(e) {
+        var source = $('.text-message').html();
+        var preview = emojione.toImage(source);        
+        $('.text-message').html(preview);
+    });
+
     $('.text-message').keypress(function(e){ //Apretando enter
         if (e.which == 13) {
             send_message($('.send-button'));

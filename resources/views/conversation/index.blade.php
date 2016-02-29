@@ -66,7 +66,7 @@
             <!-- End of users list -->
 
             <!-- Begin conversation here -->
-            <div class="col-md-8 well well-white" style="height:500px">
+            <div class="col-md-8 well well-white">
                 <div class="portlet gren">
                     <div class="portlet-title">
                         <div class="caption">
@@ -91,9 +91,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="input-group">
-                            <input type="text" class="form-control text-message form-control">        
+                            <input type="text" class="text-message form-control">  
                             <span class="input-group-btn">
-                                {!!  Form::button('Enviar', ['class'=>"btn btn-primary form-control send-button"]) !!}
+                                {!!  Form::button('Enviar', ['class'=>"btn btn-success form-control send-button",'style'=>'margin-bottom:43px;color:#fff']) !!}
                             </span>
                         </div>
                     </div>
@@ -115,6 +115,7 @@
             $wysiwyg_value.text($(this).val());
         });
         $wysiwyg.trigger('change');
+
 </script>
 
 

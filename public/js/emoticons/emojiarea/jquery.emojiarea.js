@@ -29,7 +29,7 @@
 		icons: {},
 		defaults: {
 			button: null,
-			buttonLabel: 'Emojis',
+			buttonLabel: 'Emoticonos',
 			buttonPosition: 'after'
 		}
 	};
@@ -178,7 +178,7 @@
 		} else if (this.options.button !== false) {
 			$button = $('<a href="javascript:void(0)">');
 			$button.html(this.options.buttonLabel);
-			$button.addClass('emoji-button');
+			$button.addClass('emoji-button btn btn-warning');
 			$button.attr({title: this.options.buttonLabel});
 			this.$editor[this.options.buttonPosition]($button);
 		} else {
@@ -418,12 +418,11 @@
 	EmojiMenu.prototype.reposition = function() {
 		var $button = this.emojiarea.$button;
 		var offset = $button.offset();
-		offset.top += $button.outerHeight();
 		offset.left += Math.round($button.outerWidth() / 2);
 		
 		this.$menu.css({
-			top: offset.top,
-			left: offset.left
+			left: offset.left,
+			top:"430px"
 		});
 	};
 

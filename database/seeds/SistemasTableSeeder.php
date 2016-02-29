@@ -72,12 +72,6 @@ class SistemasTableSeeder extends Seeder
             'funcion' => 'bodega',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],
-            ['nombre_sistema' =>'Correspondencia',
-            'imagen_sistema' => 'images/sistemas/Correspondencia.jpg',            
-            'controlador' => 'cuentas',
-            'funcion' => 'correspondencia',
-            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
-            ],
             ['nombre_sistema' =>'Social',
             'imagen_sistema' => 'images/sistemas/Social.jpg',            
             'controlador' => 'cuentas',

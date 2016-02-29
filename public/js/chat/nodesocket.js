@@ -20,6 +20,7 @@ socket.on('new_message', function( data ) {
 
 	if(data.user2_accountname==$('#user1_accountname').val()){
 		$('#notif_audio')[0].play();
+		$('#notif_zumbido')[0].play();
 		show_conversations();
 	}
 

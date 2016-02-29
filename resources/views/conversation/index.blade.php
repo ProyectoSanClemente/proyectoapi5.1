@@ -11,6 +11,7 @@
 {!! Form::hidden('conversation2_id', '', ['id'=>'conversation2_id']) !!}
 
 <audio id="notif_audio"><source src="{!! asset('sounds/notify.mp3') !!}" type="audio/mpeg"></audio>
+<audio id="notif_zumbido"><source src="{!! asset('sounds/zumbidomsn.mp3') !!}" type="audio/mpeg"></audio>
 <div class="container">
     <div class="row">
     {!! Breadcrumbs::render('chat') !!}

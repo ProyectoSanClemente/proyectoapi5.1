@@ -283,16 +283,6 @@ class CuentaController extends Controller
 			->with('pass',$cuenta->pass_solicitudcompras);
 	}
 
-	public function correspondencia()
-	{
-		$this->tienecuentas();
-		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
-		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
-		return view('cuentas/reset.correspondencia')
-			->with('user',$cuenta->id_solicitudcompras)
-			->with('pass',$cuenta->pass_solicitudcompras);
-	}
-
 	public function social()
 	{
 		$this->tienecuentas();

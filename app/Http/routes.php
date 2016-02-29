@@ -111,10 +111,6 @@ Route::group(['middleware'], function () {
     Route::get('cuentas/{id}/bodega', [
     'as' => 'cuentas.bodega',
     'uses' => 'CuentaController@bodega']);
-    
-    Route::get('cuentas/{id}/correspondencia', [
-    'as' => 'cuentas.correspondencia',
-    'uses' => 'CuentaController@correspondencia']);
 
     Route::get('cuentas/{id}/social', [
     'as' => 'cuentas.social',

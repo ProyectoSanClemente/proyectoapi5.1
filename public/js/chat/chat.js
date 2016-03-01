@@ -3,6 +3,7 @@ $(document).ready(function(){
     $('.scroll-conversations').slimScroll();
     $('.scroll-conversation').slimScroll();
     $('.scroll-users').slimScroll();
+    $('.text-message').focus();
 
     $('.user-selected').click(function(e){
         user_selected = $(this);
@@ -11,6 +12,7 @@ $(document).ready(function(){
         var user2_id=user_selected.data('user2_id');
         var user2_accountname=user_selected.data('user2_accountname');  
         create_conversation(user1_id,user1_accountname,user2_id,user2_accountname);
+        $('.text-message').focus();
         $('#tabs a[href="#conversations"]').tab('show'); //Select conversations tab
     });
 
@@ -24,6 +26,7 @@ $(document).ready(function(){
         var user2_accountname=conversation_selected.data('user2_accountname');
         $('#user2_accountname').val(user2_accountname);
         show_messages();
+        $('.text-message').focus();
     });  
 
     $('.text-message').keypress(function(e){ //Apretando enter
@@ -151,6 +154,7 @@ function send_message(input){
 function create_conversation(user1_id,user1_accountname,user2_id,user2_accountname){
     $('.user_conversation_title').html('Conversando con '+user2_accountname);
     $('.div_conversation').html('');
+    $('.text-message').focus();
     var dataString = {
         user1_id: user1_id,
         user1_accountname: user1_accountname,

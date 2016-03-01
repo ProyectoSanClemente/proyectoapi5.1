@@ -280,6 +280,7 @@
 	EmojiArea_WYSIWYG.prototype.insert = function(emoji) {
 		var content;
 		var $img = $(EmojiArea.createIcon(emoji));
+
 		if ($img[0].attachEvent) {
 			$img[0].attachEvent('onresizestart', function(e) { e.returnValue = false; }, false);
 		}
@@ -367,6 +368,7 @@
 			}
 		});
 
+
 		$body.on('mouseup', function() {
 			self.hide();
 		});
@@ -395,6 +397,7 @@
 	EmojiMenu.prototype.onItemSelected = function(emoji) {
 		this.emojiarea.insert(emoji);
 		this.hide();
+		$('.text-message').focus();
 	};
 
 	EmojiMenu.prototype.load = function() {

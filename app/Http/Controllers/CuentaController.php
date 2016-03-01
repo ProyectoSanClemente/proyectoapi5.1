@@ -247,50 +247,50 @@ class CuentaController extends Controller
 	{
 		$this->tienecuentas();
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
-		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'boleta');
 		return view('cuentas/reset.boleta')
-			->with('user',$cuenta->id_solicitudcompras)
-			->with('pass',$cuenta->pass_solicitudcompras);
+			->with('user',$cuenta->id_boleta)
+			->with('pass',$cuenta->pass_boleta);
 	}
 
 	public function garantia()
 	{
 		$this->tienecuentas();
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
-		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'garantia');
 		return view('cuentas/reset.garantia')
-			->with('user',$cuenta->id_solicitudcompras)
-			->with('pass',$cuenta->pass_solicitudcompras);
+			->with('user',$cuenta->id_garantia)
+			->with('pass',$cuenta->pass_garantia);
 	}
 
 	public function bodega()
 	{
 		$this->tienecuentas();
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
-		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'bodega');
 		return view('cuentas/reset.bodega')
-			->with('user',$cuenta->id_solicitudcompras)
-			->with('pass',$cuenta->pass_solicitudcompras);
+			->with('user',$cuenta->id_bodega)
+			->with('pass',$cuenta->pass_bodega);
 	}
 
 	public function social()
 	{
 		$this->tienecuentas();
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
-		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'social');
 		return view('cuentas/reset.social')
-			->with('user',$cuenta->id_solicitudcompras)
-			->with('pass',$cuenta->pass_solicitudcompras);
+			->with('user',$cuenta->id_social)
+			->with('pass',$cuenta->pass_social);
 	}
 
 	public function plan()
 	{
 		$this->tienecuentas();
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
-		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'plan');
 		return view('cuentas/reset.plan')
-			->with('user',$cuenta->id_solicitudcompras)
-			->with('pass',$cuenta->pass_solicitudcompras);
+			->with('user',$cuenta->id_plan)
+			->with('pass',$cuenta->pass_plan);
 	}
 	
 	public function tienecuentas()

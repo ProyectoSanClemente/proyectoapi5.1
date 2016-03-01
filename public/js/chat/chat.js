@@ -53,7 +53,10 @@ function update_notifications(){
         dataType: "json",
         cache : false,
         success: function(id){
-            $('#notification-'+id).html('0')
+            var convunseen=parseInt($('#notification-'+id).text());
+            var totalunseen=parseInt($('#conversation-unseen').text());
+            $('#conversation-unseen').html(totalunseen-convunseen);
+            $('#notification-'+id).html('0');
         },
     });
 }

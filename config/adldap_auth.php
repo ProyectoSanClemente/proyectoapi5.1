@@ -19,7 +19,7 @@ return [
     |
     */
 
-    'username_attribute' => ['username' => 'samaccountname'],
+    'username_attribute' => ['accountname' => 'samaccountname'],
 
      /*
      |--------------------------------------------------------------------------

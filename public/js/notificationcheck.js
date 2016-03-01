@@ -1,7 +1,7 @@
  var url= 'getunseen';
 $(document).ready(function(){
-
 	 GetUnseenMails();
+	 GetConversationsUseen();
 });
 
 function GetUnseenMails(){	
@@ -22,4 +22,27 @@ function GetUnseenMails(){
         
     });
 	setTimeout(GetUnseenMails, 1000*60);
+}
+
+
+function GetConversationsUseen(){
+	var dataString = {
+        accountname: $('#accountname').val()
+    };
+	$.ajax({
+ 		type: "POST",
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: "chat/getunseen",
+        data: dataString,
+        dataType: "json",
+        cache : false,
+        success: function(data){
+        	$('#conversation-unseen').html(data);
+        },
+        error: function(xhr, status, error) {
+            
+        },        
+	});
+
+	setTimeout(GetConversationsUseen, 1000*30);
 }

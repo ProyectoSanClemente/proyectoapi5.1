@@ -94,4 +94,15 @@ class ConversationController extends Controller
         return json_encode($id);
     }
 
+    public function getunseen()
+    {
+        $accountname=Input::get('accountname');
+        $conversations=Conversation::where('user1_accountname',$accountname)->get();
+        $unseen=0;
+        foreach ($conversations as $key => $conversation) {
+            $unseen+=$conversation->unseen;
+        }
+        return json_encode($unseen);
+    }
+
 }

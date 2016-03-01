@@ -35,6 +35,7 @@ Route::group(['middleware'], function () {
         Route::post('update','ConversationController@update');
         Route::post('store','MessageController@store');
         Route::post('showmessages','MessageController@showmessages');
+        Route::post('getunseen','ConversationController@getunseen');
     });
 
     Route::get('login', 'Auth\AuthController@getLogin');

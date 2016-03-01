@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    
-<meta name="csrf-token" content="{{ csrf_token() }}">
+
 {{-- Inputs de info --}}
 {!! Form::hidden('user1_id', Auth::user()->id, ['id'=>'user1_id']) !!}
 {!! Form::hidden('user1_accountname', Auth::user()->accountname, ['id'=>'user1_accountname']) !!}

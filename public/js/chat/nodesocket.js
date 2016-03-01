@@ -21,9 +21,30 @@ socket.on('new_message', function( data ) {
 
 	if(data.user2_accountname==$('#accountname').val()){
 		$('#notif_audio')[0].play();
-		$('#notif_zumbido')[0].play();
+		//$('#notif_zumbido')[0].play();
+
+	    var dataString = {
+	        accountname: $('#accountname').val()
+	    };
+		$.ajax({
+	 		type: "POST",
+	        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+	        url: "chat/getunseen",
+	        data: dataString,
+	        dataType: "json",
+	        cache : false,
+	        success: function(data){
+	        	$('#conversation-unseen').html(data);
+	        },
+	        error: function(xhr, status, error) {
+	            
+	        },        
+    	});
+
 		show_conversations();
 	}
+
+
 
 
 });

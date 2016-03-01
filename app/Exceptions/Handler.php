@@ -46,16 +46,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-/*        if ($e instanceof ModelNotFoundException) {
+    /*    if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
         if ($e instanceof AdldapException) {
-            Flash::warning($e->getMessage());
+            Flash::warning('No se pudo conectar con el Directorio Activo, reinicie la conexion o revise sus datos.');
             return redirect(route('usuarios.index'));
         }
 
         if($e instanceof AuthenticationFailedException){
-            Flash::warning('Fallo al logeo del correo');
+            Flash::warning('Fallo de autentificación servidor de correos.');
             return redirect(url('home'));
         }
 
@@ -63,8 +63,7 @@ class Handler extends ExceptionHandler
             Flash::warning($e->getMessage());
             return redirect(url('home'));
         }*/
-
-
+        
         return parent::render($request, $e);
     }
 }

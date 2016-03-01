@@ -398,6 +398,8 @@
 		this.emojiarea.insert(emoji);
 		this.hide();
 		$('.text-message').focus();
+		$('#contenido').focus();
+		$('#contenido2').focus();
 	};
 
 	EmojiMenu.prototype.load = function() {

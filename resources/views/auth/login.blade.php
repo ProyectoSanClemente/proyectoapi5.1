@@ -53,7 +53,6 @@
                                     <i class="fa fa-btn fa-sign-in"></i>Entrar
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Olvido su contraseña?</a>
                             </div>
                         </div>
                     {!! Form::close()!!}
@@ -71,7 +70,7 @@
                 <p><b><u>Si no puede acceder:</u></b> Rogamos enviar un correo a: <a href="mailto:admin@sanclemente.cl">admin@sanclemente.cl</a>, indicando su problemática. El inconveniente será solucionado con un margen máximo de 72 horas hábiles.</p>
             </div><br>
 
-            <div class="text-right"><b>Adminisatracion Intranet</b><br>Departamento Informática<br>Ilustre Municipalidad San Clemente</div>
+            <div class="text-right"><b>Administración Intranet</b><br>Departamento Informática<br>Ilustre Municipalidad San Clemente</div>
 </div>
     
         

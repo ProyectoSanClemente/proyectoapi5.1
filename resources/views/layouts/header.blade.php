@@ -31,7 +31,8 @@
             <ul class="nav navbar-nav navbar-right">
             <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{!!  url('/login')  !!}">Iniciar Sesion</a></li>
+                    <li> <a href="{!!  url('/login')  !!}"><i class="fa fa-btn fa-sign-in"></i><p>Inicio Sesión</p></a> </li>
+
                 @else
                     {!! Form::hidden('accountname', Auth::user()->accountname, ['id'=>'accountname']) !!}
                     <li class="dropdown">

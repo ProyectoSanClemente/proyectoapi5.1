@@ -3,11 +3,12 @@ var socket = io.connect( 'http://'+window.location.hostname+':3000' );
 
 socket.on('new_message', function( data ) {
 	if($('.div_conversation').text()=='Aun no hay mensajes enviados')
-		$('.div_conversation').html('');//cls 
-
+		$('.div_conversation').html('');//cls
+	
 	var sender=data.sender;
 	var created_at=data.created_at;
 	var message='<div style="font-size: 13pt">'+data.message+'</div>'; //HTML to plain text
+	
 	if(data.conversation_id==$("#conversation_id").val()){
 		printmessage('right','me',sender,created_at,message);
 		scroll();
@@ -18,10 +19,11 @@ socket.on('new_message', function( data ) {
      	scroll();
 	}
 
-	if(data.user2_accountname==$('#user1_accountname').val()){
+	if(data.user2_accountname==$('#accountname').val()){
 		$('#notif_audio')[0].play();
 		$('#notif_zumbido')[0].play();
 		show_conversations();
 	}
+
 
 });

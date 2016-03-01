@@ -19,9 +19,12 @@
 {!! HTML::script('js/emoticons/emojione.js') !!}
 {!! HTML::script('js/notificationcheck.js')	 !!}
 {!! HTML::script('node_modules/socket.io/node_modules/socket.io-client/socket.io.js') !!}{{-- Modulo socket io--}}
+{!! HTML::script('js/chat/nodesocket.js')!!} {{-- Servidor escuchando :) --}}  
 <script type="text/javascript">
     emojione.ascii = true;
     emojione.imagePathPNG = 'images/emoticons/';
 </script>
 @stack('scripts')
 
+<audio id="notif_audio"><source src="{!! asset('sounds/notify.mp3') !!}" type="audio/mpeg"></audio>
+<audio id="notif_zumbido"><source src="{!! asset('sounds/zumbidomsn.mp3') !!}" type="audio/mpeg"></audio>

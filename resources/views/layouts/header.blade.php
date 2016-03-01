@@ -20,7 +20,6 @@
                         <li> <a href="{{url('impresoras')}}"><i class="glyphicon glyphicon-print"></i><p>Impresoras</p></a> </li>
                         <li> <a href="{{url('noticias')}}"><i class="fa fa-newspaper-o"></i><p>Noticias</p></a></li>
                     @endif
-                        <li><a href="{{url('contenido')}}"><i class="fa fa-shield"></i><p>Ley de Transparencia</p></a></li>
                         <li><a href="{{url('cuentas')}}"><i class="glyphicon glyphicon-hdd"></i><p>Cuentas</p></a> </li>
                         <li><a href="{{url('emails/inbox')}}"><i class="fa fa-envelope"><span class="label" id='mails-unseen'>0</span></i><p>Correo</p></a></li>
                         <li><a href="{{url('sistemas')}}"><i class="glyphicon glyphicon-th-large"></i><p>Sistemas</p></a></li>
@@ -34,12 +33,13 @@
                 @if (Auth::guest())
                     <li><a href="{!!  url('/login')  !!}">Iniciar Sesion</a></li>
                 @else
+                    {!! Form::hidden('accountname', Auth::user()->accountname, ['id'=>'accountname']) !!}
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i>{!! HTML::image(Auth::user()->imagen,null,array('class'=>'img-circle special-img','width'=>'25px')) !!}</i>
                                 <p>{!!  Auth::user()->nombre.' '.Auth::user()->apellido  !!}</p>
                             </a>          
-                      
+                        
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{!!  URL::to('usuarios/' .Auth::id().'/edit')  !!}"><i class="fa fa-btn fa-edit"></i>Editar</a></li>
 

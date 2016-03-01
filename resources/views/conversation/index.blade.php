@@ -10,8 +10,6 @@
 {!! Form::hidden('conversation_id', '', ['id'=>'conversation_id']) !!}
 {!! Form::hidden('conversation2_id', '', ['id'=>'conversation2_id']) !!}
 
-<audio id="notif_audio"><source src="{!! asset('sounds/notify.mp3') !!}" type="audio/mpeg"></audio>
-<audio id="notif_zumbido"><source src="{!! asset('sounds/zumbidomsn.mp3') !!}" type="audio/mpeg"></audio>
 <div class="container">
     <div class="row">
     {!! Breadcrumbs::render('chat') !!}
@@ -127,7 +125,6 @@
     {!! HTML::script('js/chat/jquery.slimscroll.min.js') !!}
     {!! HTML::script('js/chat/jquery.formatDateTime.min.js') !!}
     
-    {!! HTML::script('js/chat/nodesocket.js')!!} {{-- Servidor escuchando :) --}}    
     {!! HTML::script('js/emoticons/emojiarea/jquery.emojiarea.js')!!}
     {!! HTML::script('images/emoticons/emojis.js')!!}
 

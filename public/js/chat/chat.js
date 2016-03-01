@@ -24,13 +24,7 @@ $(document).ready(function(){
         var user2_accountname=conversation_selected.data('user2_accountname');
         $('#user2_accountname').val(user2_accountname);
         show_messages();
-    });
-
-    $(".text-message").on('keyup change input',function(e) {
-        var source = $('.text-message').html();
-        var preview = emojione.toImage(source);        
-        $('.text-message').html(preview);
-    });
+    });  
 
     $('.text-message').keypress(function(e){ //Apretando enter
         if (e.which == 13) {
@@ -106,16 +100,14 @@ function show_messages(){
 
 function send_message(input){
     var input = $('.text-message').val();
-    var output = emojione.shortnameToImage(input);
-    $('.text-message').val(output);
+    var output = emojione.shortnameToImage(input.replace(/<[^>]*>/g, ''));
     var dataString = {
         user1_id: $('#user1_id').val(),
         sender: $('#user1_accountname').val(),
         user2_accountname: $('#user2_accountname').val(),
         conversation_id  : $('#conversation_id').val(),
         conversation2_id  : $('#conversation2_id').val(),
-
-        message : $('.text-message').val(),
+        message : output,
     };
     $.ajax({
         type: "POST",
@@ -136,7 +128,6 @@ function send_message(input){
                     message: data.message,
                     created_at: data.created_at,
                 });
-
             }else if(data.success == false){
                 if($('.text-message').val()==''){
                     alert('Mensaje Vacio')
@@ -145,7 +136,6 @@ function send_message(input){
                     alert('Se debe escoger alguien con quien conversar')
                 }
                 $("#message").val(data.message);
-                $("#notif").html(data.notif);
             }
 
         } ,error: function(xhr, status, error) {
@@ -181,7 +171,6 @@ function create_conversation(user1_id,user1_accountname,user2_id,user2_accountna
             else{//Si ya existia la conversacion                
                 show_messages();
             }
-
         } ,error: function(xhr, status, error) {
             alert(error);
         },
@@ -267,8 +256,7 @@ function show_conversations(){
 
 function scroll(){
     $('.scroll-conversation').slimScroll({
-        scrollTo: $('.scroll-conversation')[0].scrollHeight
-        
+        scrollTo: $('.scroll-conversation')[0].scrollHeight        
     });
     update_notifications()
 }

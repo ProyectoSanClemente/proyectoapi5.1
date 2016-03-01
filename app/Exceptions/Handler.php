@@ -46,7 +46,8 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-    /*    if ($e instanceof ModelNotFoundException) {
+        
+        if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
         if ($e instanceof AdldapException) {
@@ -60,9 +61,14 @@ class Handler extends ExceptionHandler
         }
 
         if($e instanceof Exception){
-            Flash::warning($e->getMessage());
+            $message=$e->getMessage();
+            if($message=='ldap_bind(): Unable to bind to server: Invalid credentials'){
+                Flash::error('El password ingresado no es válido');
+                return redirect('login');
+            }
+            Flash::warning($message);
             return redirect(url('home'));
-        }*/
+        }
         
         return parent::render($request, $e);
     }

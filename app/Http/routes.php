@@ -105,10 +105,6 @@ Route::group(['middleware'], function () {
     'as' => 'cuentas.garantia',
     'uses' => 'CuentaController@garantia']);
 
-    Route::get('cuentas/{id}/daem', [
-    'as' => 'cuentas.daem',
-    'uses' => 'CuentaController@daem']);
-
     Route::get('cuentas/{id}/bodega', [
     'as' => 'cuentas.bodega',
     'uses' => 'CuentaController@bodega']);
@@ -120,14 +116,6 @@ Route::group(['middleware'], function () {
     Route::get('cuentas/{id}/plan', [
     'as' => 'cuentas.plan',
     'uses' => 'CuentaController@plan']);
-
-    Route::get('cuentas/{id}/pge', [
-    'as' => 'cuentas.pge',
-    'uses' => 'CuentaController@pge']);
-
-    Route::get('cuentas/{id}/deploytoweb', [
-    'as' => 'cuentas.deploytoweb',
-    'uses' => 'CuentaController@deploytoweb']);
 
     Route::group(['prefix' => 'emails'], function(){
         Route::get('inbox', 'EmailController@inbox');

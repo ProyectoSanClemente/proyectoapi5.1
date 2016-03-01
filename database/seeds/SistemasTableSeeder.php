@@ -60,12 +60,6 @@ class SistemasTableSeeder extends Seeder
             'funcion' => 'garantia',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],
-            ['nombre_sistema' =>'Daem',
-            'imagen_sistema' => 'images/sistemas/Daem.jpg',            
-            'controlador' => 'cuentas',
-            'funcion' => 'daem',
-            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
-            ],
             ['nombre_sistema' =>'Bodega',
             'imagen_sistema' => 'images/sistemas/Bodega.jpg',            
             'controlador' => 'cuentas',
@@ -82,18 +76,6 @@ class SistemasTableSeeder extends Seeder
             'imagen_sistema' => 'images/sistemas/Plan.jpg',            
             'controlador' => 'cuentas',
             'funcion' => 'plan',
-            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
-            ],
-            ['nombre_sistema' =>'Pge',
-            'imagen_sistema' => 'images/sistemas/Pge.jpg',            
-            'controlador' => 'cuentas',
-            'funcion' => 'pge',
-            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
-            ],
-            ['nombre_sistema' =>'Deploytoweb',
-            'imagen_sistema' => 'images/sistemas/Deploytoweb.jpg',            
-            'controlador' => 'cuentas',
-            'funcion' => 'deploytoweb',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],
         ];

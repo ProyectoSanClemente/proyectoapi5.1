@@ -1,4 +1,9 @@
-<table id="cuentastable"  class="table">
+<script type="text/javascript">
+.panel-body {
+   overflow: auto;
+}
+</script>
+<table id="cuentastable"  class="table" overflow:none >
     <thead> 
         <th>Usuario</th>
         <th>Zimbra Usuario </th>
@@ -10,7 +15,17 @@
         <th>Nube Usuario</th>
         <th>Nube Password</th>
         <th>Solicitud Compras Usuario</th>
-        <th>Solicitud Compras Password</th>       
+        <th>Solicitud Compras Password</th>
+        <th>Boleta Usuario</th>
+        <th>Boleta Password</th>
+        <th>Garantia Usuario</th>
+        <th>Garantia Password</th>
+        <th>Bodega Usuario</th>
+        <th>Bodega Password</th>
+        <th>Social Usuario</th>
+        <th>Social Password</th>
+        <th>Plan Usuario</th>
+        <th>Plan Password</th>      
     <th width="50px">Acciones</th>
     </thead>
     <tbody>
@@ -27,6 +42,16 @@
             <td>{!! $cuenta->pass_nube !!}</td>
             <td>{!! $cuenta->id_solicitudcompras !!}</td>
             <td>{!! $cuenta->pass_solicitudcompras !!}</td>
+            <td>{!! $cuenta->id_boleta!!}</td>
+            <td>{!! $cuenta->pass_boleta!!}</td>
+            <td>{!! $cuenta->id_garantia !!}</td>
+            <td>{!! $cuenta->pass_garantia !!}</td>
+            <td>{!! $cuenta->id_bodega !!}</td>
+            <td>{!! $cuenta->pass_bodega !!}</td>
+            <td>{!! $cuenta->id_social !!}</td>
+            <td>{!! $cuenta->pass_social !!}</td>
+            <td>{!! $cuenta->id_plan !!}</td>
+            <td>{!! $cuenta->pass_plan !!}</td>
             <td>
                 <a href="{!! route('cuentas.edit', [$cuenta->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
                 <a href="{!! route('cuentas.delete', [$cuenta->id]) !!}" onclick="return confirm('Estas seguro que deseas eliminar esta cuenta?')"><i class="glyphicon glyphicon-remove"></i></a>

@@ -19,7 +19,18 @@ class Cuenta extends Model
 		"pass_solicitudcompras",
 		"id_zimbra",
 		"pass_zimbra",
+		"id_boleta",
+		"pass_boleta",
+		"id_garantia",
+		"pass_garantia",
+		"id_bodega",
+		"pass_bodega",
+		"id_social",
+		"pass_social",
+		"id_plan",
+		"pass_plan",
 		"id_usuario",
+
 	];
 
     /**

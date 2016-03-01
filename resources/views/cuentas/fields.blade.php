@@ -74,10 +74,80 @@
                 {!! Form::text('id_solicitudcompras', null, ['class' => 'form-control']) !!}
             </div>
 
-            <!-- Zimbra Pass Field -->
+            <!-- Solicitid Compas Pass Field -->
             <div class="form-group col-sm-6 col-sm-4">
                 {!! Form::label('pass_solicitudcompras', 'Solicitud Compras Pass:') !!}
                 {!! Form::text('pass_solicitudcompras',null, ['class' => 'form-control']) !!}
+            </div>
+        </div>
+
+        <div class="panel-body">          
+            <!-- Boleta Id Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('id_boleta', 'Boleta id') !!}
+                {!! Form::text('id_boleta', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <!-- Boleta Pass Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('pass_boleta', 'Boleta Pass:') !!}
+                {!! Form::text('pass_boleta',null, ['class' => 'form-control']) !!}
+            </div>
+        </div>
+
+        <div class="panel-body">          
+            <!-- Garantia Id Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('id_garantia', 'Garantia id') !!}
+                {!! Form::text('id_garantia', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <!-- Garantia Pass Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('pass_garantia', 'Garantia Pass:') !!}
+                {!! Form::text('pass_garantia',null, ['class' => 'form-control']) !!}
+            </div>
+        </div>                
+
+        <div class="panel-body">          
+            <!-- Bodega Id Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('id_bodega', 'Bodega id') !!}
+                {!! Form::text('id_bodega', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <!-- Bodega Pass Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('pass_bodega', 'Bodega Pass:') !!}
+                {!! Form::text('pass_bodega',null, ['class' => 'form-control']) !!}
+            </div>
+        </div>        
+
+        <div class="panel-body">          
+            <!-- Social Id Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('id_social', 'Social id') !!}
+                {!! Form::text('id_social', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <!-- Social Pass Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('pass_social', 'Social Pass:') !!}
+                {!! Form::text('pass_social',null, ['class' => 'form-control']) !!}
+            </div>
+        </div>        
+
+        <div class="panel-body">          
+            <!-- Plan Id Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('id_plan', 'Plan id') !!}
+                {!! Form::text('id_plan', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <!-- Plan Pass Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('pass_plan', 'Plan Pass:') !!}
+                {!! Form::text('pass_plan',null, ['class' => 'form-control']) !!}
             </div>
         </div>
         

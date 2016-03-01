@@ -263,16 +263,6 @@ class CuentaController extends Controller
 			->with('pass',$cuenta->pass_solicitudcompras);
 	}
 
-	public function daem()
-	{
-		$this->tienecuentas();
-		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
-		$cuenta=$this->cuentaRepository->obtenercuenta($id,'solicitudcompras');
-		return view('cuentas/reset.daem')
-			->with('user',$cuenta->id_solicitudcompras)
-			->with('pass',$cuenta->pass_solicitudcompras);
-	}
-
 	public function bodega()
 	{
 		$this->tienecuentas();
@@ -301,18 +291,6 @@ class CuentaController extends Controller
 		return view('cuentas/reset.plan')
 			->with('user',$cuenta->id_solicitudcompras)
 			->with('pass',$cuenta->pass_solicitudcompras);
-	}
-
-	public function pge()
-	{
-		$this->tienecuentas();
-		return Redirect::away('http://pge.reset.cl', 301);
-	}
-
-	public function deploytoweb()
-	{
-		$this->tienecuentas();
-		return Redirect::away('http://reset.sanclemente.cl/sistemas/deploy-to-web/Index.html', 301);
 	}
 	
 	public function tienecuentas()

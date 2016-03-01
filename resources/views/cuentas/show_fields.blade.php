@@ -98,7 +98,7 @@
             @endif
         </div>
 
-        <!-- Zimbra Pass Field -->
+        <!-- Solicitud Compras Pass Field -->
         <div class="form-group col-sm-6">
             {!! Form::label('pass_solicitudcompras', 'Solicitud Compras Pass:') !!}
             @if(empty($cuenta->pass_solicitudcompras))
@@ -108,4 +108,115 @@
             @endif
         </div>
     </div>
+
+    <div class="panel-body">          
+        <!-- Boleta Id Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('id_boleta', 'Boleta id: ') !!}
+            @if(empty($cuenta->id_boleta))
+                {!! Form::label('id_boleta', 'Sin Datos',['style'=>'color:red']) !!}
+            @else
+                {!! Form::label('id_boleta', $cuenta->id_boleta) !!}
+            @endif
+        </div>
+
+        <!-- Boleta Pass Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('pass_boleta', 'Boleta Pass:') !!}
+            @if(empty($cuenta->pass_boleta))
+                {!! Form::label('pass_boleta', 'Sin Datos',['style'=>'color:red']) !!}
+            @else
+                {!! Form::label('pass_boleta',$cuenta->pass_boleta) !!}
+            @endif
+        </div>
+    </div>
+
+    <div class="panel-body">          
+        <!-- Garantia Id Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('id_garantia', 'Garantia id: ') !!}
+            @if(empty($cuenta->id_garantia))
+                {!! Form::label('id_garantia', 'Sin Datos',['style'=>'color:red']) !!}
+            @else
+                {!! Form::label('id_garantia', $cuenta->id_garantia) !!}
+            @endif
+        </div>
+
+        <!-- Garantia Pass Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('pass_garantia', 'Garantia Pass:') !!}
+            @if(empty($cuenta->pass_garantia))
+                {!! Form::label('pass_garantia', 'Sin Datos',['style'=>'color:red']) !!}
+            @else
+                {!! Form::label('pass_garantia',$cuenta->pass_garantia) !!}
+            @endif
+        </div>
+    </div>
+
+    <div class="panel-body">          
+        <!-- Bodega Id Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('id_bodega', 'Bodega id: ') !!}
+            @if(empty($cuenta->id_bodega))
+                {!! Form::label('id_bodega', 'Sin Datos',['style'=>'color:red']) !!}
+            @else
+                {!! Form::label('id_bodega', $cuenta->id_bodega) !!}
+            @endif
+        </div>
+
+        <!-- Bodega Pass Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('pass_bodega', 'Bodega Pass:') !!}
+            @if(empty($cuenta->pass_bodega))
+                {!! Form::label('pass_bodega', 'Sin Datos',['style'=>'color:red']) !!}
+            @else
+                {!! Form::label('pass_bodega',$cuenta->pass_bodega) !!}
+            @endif
+        </div>
+    </div>
+
+    <div class="panel-body">          
+        <!-- Social Id Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('id_social', 'Social id: ') !!}
+            @if(empty($cuenta->id_social))
+                {!! Form::label('id_social', 'Sin Datos',['style'=>'color:red']) !!}
+            @else
+                {!! Form::label('id_social', $cuenta->id_social) !!}
+            @endif
+        </div>
+
+        <!-- Social Pass Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('pass_social', 'Social Pass:') !!}
+            @if(empty($cuenta->pass_social))
+                {!! Form::label('pass_social', 'Sin Datos',['style'=>'color:red']) !!}
+            @else
+                {!! Form::label('pass_social',$cuenta->pass_social) !!}
+            @endif
+        </div>
+    </div>
+
+    <div class="panel-body">          
+        <!-- Plan Id Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('id_plan', 'Plan id: ') !!}
+            @if(empty($cuenta->id_plan))
+                {!! Form::label('id_plan', 'Sin Datos',['style'=>'color:red']) !!}
+            @else
+                {!! Form::label('id_plan', $cuenta->id_plan) !!}
+            @endif
+        </div>
+
+        <!-- Plan Pass Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('pass_plan', 'Plan Pass:') !!}
+            @if(empty($cuenta->pass_plan))
+                {!! Form::label('pass_plan', 'Sin Datos',['style'=>'color:red']) !!}
+            @else
+                {!! Form::label('pass_plan',$cuenta->pass_plan) !!}
+            @endif
+        </div>
+    </div>
+
 </div>

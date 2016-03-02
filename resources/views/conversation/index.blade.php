@@ -38,10 +38,11 @@
                             <div class="portlet">                    
                                 <div class="portlet-body form">                   
                                     <div class="scroller scroll-users">
-                                        <!--  Listado de conversaciones activas-->                                    
-                                        {!! Form::open(['class'=>'form-horizontal'])!!}
+                                        <!--  Listado de conversaciones activas-->
+                                        <input id="search-user" class="form-control" type="text" value="">
+                                        <ol id="users-list" class="list-group" style="list-style-type: none">
                                             @foreach ($users as $user)
-                                                <a href="#" class="user-selected" data-user2_id="{{$user->id}}" data-user2_accountname="{{ $user->accountname}}">
+                                                <li><a href="#" class="user-selected" data-user2_id="{{$user->id}}" data-user2_accountname="{{ $user->accountname}}">
                                                     <div class="form-group col-md-12">
                                                         <div class="col-md-3">
                                                             <img class="img-circle crop-chat" src="{{ $user->imagen}}">
@@ -50,9 +51,9 @@
                                                             {{ $user->accountname }}
                                                         </div>
                                                     </div>
-                                                </a>
+                                                </a></li>
                                             @endforeach
-                                        {!! Form::close()!!}                                        
+                                        </ol>                                        
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +62,6 @@
                 </div>                
             </div>
             <!-- End of users list -->
-
             <!-- Begin conversation here -->
             <div class="col-md-8 well well-white">
                 <div class="portlet gren">
@@ -116,7 +116,11 @@
     $wysiwyg.trigger('change');
 </script>
 
-
+<script type="text/javascript">
+    $('#users-list').liveFilter('#search-user', 'li', {
+        filterChildSelector: 'a'
+    });
+</script>
 
 
 @endsection
@@ -128,6 +132,8 @@
     
     {!! HTML::script('js/emoticons/emojiarea/jquery.emojiarea.js')!!}
     {!! HTML::script('images/emoticons/emojis.js')!!}
+    {!! HTML::script('js/jquery-live.Filter.js')!!}
+
 
 @endpush
 

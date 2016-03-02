@@ -12,8 +12,10 @@ class UsuariosTableSeeder extends Seeder
     public function run()
     {
         DB::table('usuarios')->insert([
-        	'accountname' =>'intranet',
+        	'accountname' =>'intranetadmin',
             'rol' => 'admin',
+            'nombre' => 'Intranetadmin',
+            'apellido' => 'Local',
             'imagen' => 'images/avatar/default.png',
             'password' => bcrypt('12345'),
         ]);

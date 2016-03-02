@@ -6,6 +6,7 @@
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Correo</th>
+        <th>Rol</th>
     <th width="120px">Acciones</th>
 </thead>
     <tbody>
@@ -17,10 +18,15 @@
             <td>{!! $usuario->nombre !!}</td>
             <td>{!! $usuario->apellido !!}</td>
             @if($usuario->hasCuenta())
-            <td>{!! $usuario->Cuenta->id_zimbra !!}</td>
+                @if(!empty($usuario->Cuenta->id_zimbra))
+                    <td>{!! $usuario->Cuenta->id_zimbra !!}</td>
+                @else
+                    <td style="color:red">Sin Datos</td>
+                @endif
             @else
-            <td> </td>
+            <td style="color:red">Sin Datos</td>
             @endif
+            <td>{!! ucfirst($usuario->rol) !!}</td>
             <td>
                 <a href='#' data-toggle="modal" data-toggle="modal" data-target="#showModal{{$usuario->id}}"><i class="glyphicon glyphicon-eye-open"></i></a>
                 <a href="{{ route('usuarios.edit', [$usuario->id]) }}"><i class="glyphicon glyphicon-edit"></i></a>

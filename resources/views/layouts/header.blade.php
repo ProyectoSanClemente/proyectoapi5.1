@@ -21,7 +21,7 @@
                         <li> <a href="{{url('noticias')}}"><i class="fa fa-newspaper-o"></i><p>Noticias</p></a></li>
                     @endif
                         <li><a href="{{url('cuentas')}}"><i class="glyphicon glyphicon-hdd"></i><p>Cuentas</p></a> </li>
-                        <li><a href="{{url('emails/inbox')}}"><i class="fa fa-envelope"><span class="label" id='mails-unseen'></span></i><p>Correo</p></a></li>
+                        <li><a href="{{url('emails/inbox')}}"><i class="fa fa-envelope"><span class="label" id='mails-unseen'>X</span></i><p>Correo</p></a></li>
                         <li><a href="{{url('sistemas')}}"><i class="glyphicon glyphicon-th-large"></i><p>Sistemas</p></a></li>
                         <li><a href="{{url('chat')}}"><i class="fa fa-whatsapp"><span class="label" id='conversation-unseen'></span></i><p>Chat</p></a></li>
                 @endif

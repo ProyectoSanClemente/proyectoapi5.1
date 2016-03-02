@@ -22,10 +22,15 @@
 </div>
 
 <!-- Correo Field -->
-@if($usuario->hasCuenta())
 <div class="form-group">
     {!! Form::label('correo', 'Correo:') !!}
-    {!! $usuario->Cuenta->id_zimbra !!}
-
-</div>
+@if($usuario->hasCuenta())
+    @if(!empty($$usuario->Cuenta->id_zimbra))
+            {!! Form::label('id_zimbra', $usuario->Cuenta->id_zimbra) !!}
+    @else
+            {!! Form::label('id_zimbra', 'Sin Datos',['style'=>'color:red']) !!}
+    @endif
+@else
+    {!! Form::label('id_zimbra', 'Sin Datos',['style'=>'color:red']) !!}
 @endif
+</div>

@@ -78,9 +78,9 @@ class SistemasTableSeeder extends Seeder
             'funcion' => 'plan',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],
-            ['nombre_sistema' =>'Plan',
+            ['nombre_sistema' =>'ProcessMaker',
             'imagen_sistema' => 'images/sistemas/ProcessMaker.jpg',            
-            'controlador' => 'processmaker',
+            'controlador' => 'cuentas',
             'funcion' => 'processmaker',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],

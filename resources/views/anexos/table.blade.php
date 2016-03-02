@@ -2,17 +2,21 @@
     <thead>
         <th>Nombre Anexo</th>
         <th>Numero</th>
+        @if(Auth::user()->rol=='admin')
     <th width="50px">Acciones</th>
+    @endif
     </thead>
     <tbody>    
     @foreach($anexos as $anexo)
         <tr id="{{$anexo->id}}">
             <td>{!! $anexo->nombre!!}</td>
             <td>{!! $anexo->numero!!}</td>
+            @if(Auth::user()->rol=='admin')
             <td>
                 <a href="{!! route('anexos.edit', [$anexo->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
                 <a href="{!! route('anexos.delete', [$anexo->id]) !!}" onclick="return confirm('Estás seguro que deseas eliminar este anexo?')"><i class="glyphicon glyphicon-remove"></i></a>
             </td>
+            @endif
         </tr>
     @endforeach
     </tbody>
@@ -32,7 +36,7 @@
         });
     });
 </script>
-
+@if(Auth::user()->rol=='admin')
 <!-- Incluir  Css contextMenu-->
 {!! HTML::script('js/jQuery-contextMenu/jquery.contextMenu.js')!!}
 <!-- Jquery menu contextual -->
@@ -62,4 +66,5 @@
     });
 });
 </script>
+@endif
 @endpush

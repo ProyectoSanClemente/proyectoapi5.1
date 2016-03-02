@@ -6,7 +6,7 @@ use App\Http\Requests\UpdateAnexoRequest;
 use App\Libraries\Repositories\AnexoRepository;
 use Flash;
 use Response;
-use Auth;
+use Exception;
 
 class AnexoController extends Controller
 {
@@ -18,6 +18,7 @@ class AnexoController extends Controller
 	{
 		$this->anexoRepository = $anexoRepo;
 		$this->middleware('auth');
+		$this->middleware('admin',['except'=>['index']]);
 	}
 
 	/**
@@ -101,10 +102,6 @@ class AnexoController extends Controller
 
 			return redirect(route('anexos.index'));
 		}
-
-		//Validamos que tenga los permisos o este asignando su propia anexo
-		if($anexo->id_usuario!=Auth::id() && Auth::user()->rol!='admin')
-			throw new Exception("No posee los privilegios para editar las anexo asignadas de otros usuarios");
 
 		return view('anexos.edit')
 			->with('anexo', $anexo);

@@ -84,6 +84,12 @@ class SistemasTableSeeder extends Seeder
             'funcion' => 'processmaker',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],
+            ['nombre_sistema' =>'Glpi',
+            'imagen_sistema' => 'images/sistemas/Glpi.jpg',            
+            'controlador' => 'cuentas',
+            'funcion' => 'glpi',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ],
         ];
 
         DB::table('sistemas')->insert($sistemas);

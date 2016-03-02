@@ -31,6 +31,8 @@ class Cuenta extends Model
 		"pass_plan",
 		"id_processmaker",
 		"pass_processmaker",
+		"id_glpi",
+		"pass_glpi",
 		"id_usuario",
 
 	];

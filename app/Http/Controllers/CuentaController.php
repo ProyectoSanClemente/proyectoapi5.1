@@ -186,6 +186,7 @@ class CuentaController extends Controller
 	{
 		$this->tienecuentas();
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'glpi');
 		return view('cuentas.glpi')
 			->with('user',$cuenta->id_glpi)
 			->with('pass',$cuenta->pass_glpi);		

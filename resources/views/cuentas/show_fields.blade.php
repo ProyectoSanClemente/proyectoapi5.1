@@ -243,4 +243,26 @@
         </div>
     </div>
 
+    <div class="panel-body">          
+        <!-- Glpi Id Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('id_glpi', 'Glpi id: ') !!}
+            @if(empty($cuenta->id_glpi))
+                {!! Form::label('id_glpi', 'Sin Datos',['style'=>'color:red']) !!}
+            @else
+                {!! Form::label('id_glpi', $cuenta->id_glpi) !!}
+            @endif
+        </div>
+
+        <!-- Glpi Pass Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('pass_glpi', 'Glpi Pass:') !!}
+            @if(empty($cuenta->pass_glpi))
+                {!! Form::label('pass_glpi', 'Sin Datos',['style'=>'color:red']) !!}
+            @else
+                {!! Form::label('pass_glpi',$cuenta->pass_glpi) !!}
+            @endif
+        </div>
+    </div>
+
 </div>

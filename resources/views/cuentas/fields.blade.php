@@ -164,6 +164,20 @@
                 {!! Form::text('pass_processmaker',null, ['class' => 'form-control']) !!}
             </div>
         </div>
+
+        <div class="panel-body">          
+            <!-- Glpi Id Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('id_glpi', 'Glpi id') !!}
+                {!! Form::text('id_glpi', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <!-- Glpi Pass Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('pass_glpi', 'Glpi Pass:') !!}
+                {!! Form::text('pass_glpi',null, ['class' => 'form-control']) !!}
+            </div>
+        </div>
         
         <div class="panel-body">
             <!-- Submit Field -->

@@ -52,19 +52,19 @@ class Handler extends ExceptionHandler
         // }
         // if ($e instanceof AdldapException) {
         //     Flash::warning('No se pudo conectar con el Directorio Activo, reinicie la conexion o revise sus datos.');
-        //     return redirect(route('usuarios.index'));
+        //     return response()->view('errors.errors');
         // }
 
         // if($e instanceof AuthenticationFailedException){
         //     Flash::warning('Fallo de autentificación servidor de correos.');
-        //     return redirect(url('home'));
+        //     return redirect('home');
         // }
 
         // if($e instanceof Exception){
         //     $message=$e->getMessage();
         //     if($message=='ldap_bind(): Unable to bind to server: Invalid credentials'){
         //         Flash::error('El password ingresado no es válido');
-        //         return redirect('login');
+        //         return redirect('login')->withInput();
         //     }
         //     Flash::warning($message);
         //     return redirect(url('home'));

@@ -78,6 +78,12 @@ class SistemasTableSeeder extends Seeder
             'funcion' => 'plan',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],
+            ['nombre_sistema' =>'Plan',
+            'imagen_sistema' => 'images/sistemas/ProcessMaker.jpg',            
+            'controlador' => 'processmaker',
+            'funcion' => 'processmaker',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+            ],
         ];
 
         DB::table('sistemas')->insert($sistemas);

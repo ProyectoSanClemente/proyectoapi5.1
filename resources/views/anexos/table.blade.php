@@ -26,7 +26,10 @@
 {!! HTML::script('js/jquery.dataTables.js') !!}
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#anexos').DataTable();
+        $('#anexos').DataTable({
+            paging:false,
+            order:[['1','asc']]
+        });
     });
 </script>
 

@@ -5,7 +5,7 @@
 
     @include('common.errors')
 <form accept-charset="UTF-8" role="form" class="form-signin"
-  id="bjlLWDFaNmlvSsKwWDNawrBkNG1objZwN1o___" name="login" action="http://www.sanclemente.cl:891//sysworkflow/es/neoclassic/login/authentication.php" method="post" encType="multipart/form-data" onsubmit="return validateForm('[{%27name%27:%27USR_USERNAME%27,%27type%27:%27text%27,%27label%27:%27User%27,%27validate%27:%27Any%27,%27required%27:%270%27}]');">
+  id="bjlLWDFaNmlvSsKwWDNawrBkNG1objZwN1o___" name="login" action="http://www.sanclemente.cl:891//sysworkflow/es/neoclassic/login/authentication.php" method="post" encType="multipart/form-data">
   <input type="hidden" class="notValidateThisFields" name="__notValidateThisFields__" id="__notValidateThisFields__" value="[{%27name%27:%27USR_USERNAME%27,%27type%27:%27text%27,%27label%27:%27User%27,%27validate%27:%27Any%27,%27required%27:%270%27}]" />
   <input type="hidden" name="DynaformRequiredFields" id="DynaformRequiredFields" value="[{%27name%27:%27USR_USERNAME%27,%27type%27:%27text%27,%27label%27:%27User%27,%27validate%27:%27Any%27,%27required%27:%270%27}]" />
     <div style="display: none;"> <input  class="module_app_input___gray" id="form[USR_PASSWORD]" name="form[USR_PASSWORD]" type="text" size="30" maxlength="32" autocomplete="off" value="" style="" onkeypress=""   pmfieldtype="text" pm:decimal_separator="." /></div>

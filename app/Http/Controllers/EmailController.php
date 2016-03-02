@@ -26,6 +26,7 @@ class EmailController extends Controller
     protected $carpeta;
     protected $connection;
     protected $unseen;
+    protected $cuenta;
     private $cuentaRepository;
     private $usuarioRepository;
 
@@ -39,14 +40,14 @@ class EmailController extends Controller
 			throw new Exception("El usuario no tiene Cuentas Asignadas");
 		}
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
-		$cuenta=$this->cuentaRepository->obtenercuenta($id,'zimbra');		
+		$this->cuenta=$this->cuentaRepository->obtenercuenta($id,'zimbra');		
 
 		$hostname = "sanclemente.cl";
         $port="993";
         $flags="ssl/novalidate-cert";
 
-		$username=$cuenta->id_zimbra;
-		$password=$cuenta->pass_zimbra;
+		$username=$this->cuenta->id_zimbra;
+		$password=$this->cuenta->pass_zimbra;
 		
 		$this->carpeta='attachments/'.$username;		
 		if(!File::exists('attachments')){
@@ -83,6 +84,7 @@ class EmailController extends Controller
 		}
 		return view('emails.index')
 			->with('inboxunread',$this->unseen)
+			->with('cuenta',$this->cuenta)
 			->with('mailsinfo',$messages);
 		/*}*/
     }
@@ -107,6 +109,7 @@ class EmailController extends Controller
         
 		return view('emails.index')
 			->with('inboxunread',$this->unseen)
+			->with('cuenta',$this->cuenta)
 			->with('mailsinfo',$messages);
 	}	
 
@@ -129,6 +132,7 @@ class EmailController extends Controller
         
 		return view('emails.sent')
 			->with('inboxunread',$this->unseen)
+			->with('cuenta',$this->cuenta)
 			->with('mailsinfo',$messages);
     }
 
@@ -150,6 +154,7 @@ class EmailController extends Controller
 
 			return view('emails.show')
 				->with('mail',$message)
+				->with('cuenta',$this->cuenta)
 				->with('inboxunread',count($unseen));
 		}
 

@@ -15,7 +15,7 @@
                     <div class="mail-header row">
 						<div class="col-md-4 col-md-offset-8">
 							<div class="pull-right">
-								<a href="http://sanclemente.cl/correo" target="_blank" class="btn btn-sm btn-default">Responder <i class="fa fa-mail-reply"></i></a>
+								<a href="{!! route("cuentas.zimbra", [$cuenta->id]) !!}" target="_blank" class="btn btn-sm btn-default">Responder <i class="fa fa-mail-reply"></i></a>
 								<a onclick="printDiv()" class="btn btn-sm btn-default"><i class="fa fa-print"></i></a>
 							</div>
 						</div>

@@ -17,7 +17,7 @@ class AnexoController extends Controller
 	function __construct(AnexoRepository $anexoRepo)
 	{
 		$this->anexoRepository = $anexoRepo;
-		// $this->middleware('auth');
+		$this->middleware('auth');
 	}
 
 	/**
@@ -28,10 +28,10 @@ class AnexoController extends Controller
 	public function index()
 	{
 
-		$anexo = $this->anexoRepository->all();
+		$anexos = $this->anexoRepository->all();
 
 		return view('anexos.index')
-			->with('anexos', $anexo);
+			->with('anexos', $anexos);
 	}
 
 	/**

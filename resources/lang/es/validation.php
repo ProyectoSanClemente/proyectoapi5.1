@@ -114,7 +114,8 @@ return [
         'rut' => 'Rut',
         'nombre' => 'Nombre',
         'apellido'  => 'Apellido',
-        'old_password' => 'Contraseña actual'
+        'old_password' => 'Contraseña actual',
+        'numero' => 'Número'
         ],
 
 ];

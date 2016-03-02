@@ -37,21 +37,26 @@ class Usuario extends Model implements AuthenticatableContract,
 
 	public static $create_rules = [
 		"accountname" => "required|unique:usuarios",
-		"rut" => "required|rut_valid",
-		"nombre" => "required|alpha",
-		"apellido" => "required|alpha",
+		"rut" => "required|rut_valid|max:25",
+		"nombre" => "required|max:25",
+		"apellido" => "required|max:25",
 		'password' => 'required|min:3|confirmed',
         'password_confirmation' => 'min:3'
 	];
 
 	public static $update_rules = [	
 		"rut" => "required|rut_valid",
-		"nombre" => "required|alpha",
-		"apellido" => "required|alpha",
+		"nombre" => "required|max:25",
+		"apellido" => "required|max:25",
 		'old_password'=>'required_with:password|min:3|old_password',
 		'password' => 'required_with:old_password|min:3|confirmed',
         'password_confirmation' => 'min:3'
 	];
+
+    protected $attributes = [
+        'imagen' => 'images/avatar/default.png',
+        'rol' => 'usuario'
+    ];
 
     public function setPasswordAttribute($password)
     {   

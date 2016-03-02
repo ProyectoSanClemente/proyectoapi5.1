@@ -184,9 +184,6 @@ class UsuarioController extends Controller
 				$usuario->accountname=$user->getAccountName();
 				$usuario->nombre=$user->getFirstName();
 				$usuario->apellido=$user->getLastName();
-				$usuario->rol= 'usuario';
-				$usuario->imagen= 'images/avatar/default.png';
-				$usuario->password= '12345';		
 				$usuario->save();
 				$agregados++;
 			}

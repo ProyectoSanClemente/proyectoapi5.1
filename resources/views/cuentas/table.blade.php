@@ -25,7 +25,9 @@
         <th>Social Usuario</th>
         <th>Social Password</th>
         <th>Plan Usuario</th>
-        <th>Plan Password</th>      
+        <th>Plan Password</th>
+        <th>ProcessMaker Usuario</th>
+        <th>ProcessMaker Password</th>        
     <th width="50px">Acciones</th>
     </thead>
     <tbody>
@@ -52,6 +54,8 @@
             <td>{!! $cuenta->pass_social !!}</td>
             <td>{!! $cuenta->id_plan !!}</td>
             <td>{!! $cuenta->pass_plan !!}</td>
+            <td>{!! $cuenta->id_processmaker !!}</td>
+            <td>{!! $cuenta->pass_processmaker !!}</td>
             <td>
                 <a href="{!! route('cuentas.edit', [$cuenta->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
                 <a href="{!! route('cuentas.delete', [$cuenta->id]) !!}" onclick="return confirm('Estas seguro que deseas eliminar esta cuenta?')"><i class="glyphicon glyphicon-remove"></i></a>

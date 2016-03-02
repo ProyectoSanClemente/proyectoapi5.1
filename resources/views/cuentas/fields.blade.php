@@ -150,6 +150,20 @@
                 {!! Form::text('pass_plan',null, ['class' => 'form-control']) !!}
             </div>
         </div>
+
+        <div class="panel-body">          
+            <!-- Process Maker Id Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('id_processmaker', 'ProcessMaker id') !!}
+                {!! Form::text('id_processmaker', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <!-- Process Maker Pass Field -->
+            <div class="form-group col-sm-6 col-sm-4">
+                {!! Form::label('pass_processmaker', 'ProcessMaker Pass:') !!}
+                {!! Form::text('pass_processmaker',null, ['class' => 'form-control']) !!}
+            </div>
+        </div>
         
         <div class="panel-body">
             <!-- Submit Field -->

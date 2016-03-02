@@ -29,6 +29,8 @@ class Cuenta extends Model
 		"pass_social",
 		"id_plan",
 		"pass_plan",
+		"id_processmaker",
+		"pass_processmaker",
 		"id_usuario",
 
 	];

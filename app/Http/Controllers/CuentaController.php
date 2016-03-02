@@ -292,6 +292,16 @@ class CuentaController extends Controller
 			->with('user',$cuenta->id_plan)
 			->with('pass',$cuenta->pass_plan);
 	}
+
+		public function processmaker()
+	{
+		$this->tienecuentas();
+		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
+		$cuenta=$this->cuentaRepository->obtenercuenta($id,'processmaker');
+		return view('cuentas/reset.processmaker')
+			->with('user',$cuenta->id_processmaker)
+			->with('pass',$cuenta->pass_processmaker);
+	}
 	
 	public function tienecuentas()
 	{

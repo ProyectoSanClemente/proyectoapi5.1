@@ -11,7 +11,7 @@
         <span class="input-group-btn">
             <span class="btn btn-primary btn-file">
                 Subir Imagen&hellip; 
-                {!! Form::file('imagen',['accept'=>"image/x-png, image/gif, image/jpeg"]) !!}
+                {!! Form::file('imagen_sistema',['accept'=>"image/x-png, image/gif, image/jpeg"]) !!}
             </span>
         </span>
         <input type="text" class="form-control" readonly>

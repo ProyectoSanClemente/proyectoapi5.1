@@ -117,6 +117,10 @@ Route::group(['middleware'], function () {
     'as' => 'cuentas.plan',
     'uses' => 'CuentaController@plan']);
 
+    Route::get('cuentas/{id}/processmaker', [
+    'as' => 'cuentas.processmaker',
+    'uses' => 'CuentaController@processmaker']);
+
     Route::group(['prefix' => 'emails'], function(){
         Route::get('inbox', 'EmailController@inbox');
         Route::get('sent', 'EmailController@sent');
@@ -177,4 +181,12 @@ Route::group(['middleware'], function () {
             'uses' => 'ComentarioController@destroy'
         ]);
     });
+
+
+    Route::resource('anexos', 'AnexoController');
+
+    Route::get('anexos/{id}/delete', [
+        'as' => 'anexos.delete',
+        'uses' => 'AnexoController@destroy',
+    ]);
 });   

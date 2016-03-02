@@ -217,6 +217,30 @@
                 {!! Form::label('pass_plan',$cuenta->pass_plan) !!}
             @endif
         </div>
+
+
+    </div>
+
+    <div class="panel-body">          
+        <!-- Process Maker Id Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('id_processmaker', 'ProcessMaker id: ') !!}
+            @if(empty($cuenta->id_processmaker))
+                {!! Form::label('id_processmaker', 'Sin Datos',['style'=>'color:red']) !!}
+            @else
+                {!! Form::label('id_processmaker', $cuenta->id_processmaker) !!}
+            @endif
+        </div>
+
+        <!-- Plan Pass Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('pass_processmaker', 'ProcessMaker Pass:') !!}
+            @if(empty($cuenta->pass_processmaker))
+                {!! Form::label('pass_processmaker', 'Sin Datos',['style'=>'color:red']) !!}
+            @else
+                {!! Form::label('pass_processmaker',$cuenta->pass_processmaker) !!}
+            @endif
+        </div>
     </div>
 
 </div>

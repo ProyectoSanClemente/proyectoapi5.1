@@ -111,3 +111,21 @@ Breadcrumbs::register('contenido',function($breadcrumbs){
 	$breadcrumbs->parent('home');
 	$breadcrumbs->push('Contenido',url('contenido'));
 });
+
+// Home > Anexos
+Breadcrumbs::register('anexo',function($breadcrumbs){
+	$breadcrumbs->parent('home');
+	$breadcrumbs->push('Anexo',url('anexos'));
+});
+
+// Home > Anexos >create
+Breadcrumbs::register('anexocreate',function($breadcrumbs){
+	$breadcrumbs->parent('anexo');
+	$breadcrumbs->push('Crear',url('anexos/create'));
+});
+
+// Home > Anexos >edit
+Breadcrumbs::register('anexoedit',function($breadcrumbs){
+	$breadcrumbs->parent('anexo');
+	$breadcrumbs->push('Editar',url('anexos/edit'));
+});

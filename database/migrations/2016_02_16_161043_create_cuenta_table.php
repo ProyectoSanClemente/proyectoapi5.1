@@ -31,10 +31,12 @@ class CreateCuentaTable extends Migration
             $table->string('pass_garantia',25);
             $table->string('id_bodega',25);
             $table->string('pass_bodega',25);
-             $table->string('id_social',25);
+            $table->string('id_social',25);
             $table->string('pass_social',25);
             $table->string('id_plan',25);
             $table->string('pass_plan',25);
+            $table->string('id_processmaker',25);
+            $table->string('pass_processmaker',25);
 
             $table->integer('id_usuario')->unsigned();
             $table->foreign('id_usuario')->references('id')->on('usuarios')->onDelete('cascade');

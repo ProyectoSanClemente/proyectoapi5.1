@@ -69,7 +69,7 @@ class PostController extends AppBaseController
 			}
 			$destinationPath = 'posts/'.$input['id_usuario'].'/'; // upload path
 		    $nombre = Input::file('archivo')->getClientOriginalName(); // getting image extension
-		    Input::file('archivo')->move($destinationPath, $fileName); // uploading file to given path
+		    $input['archivo']=$destinationPath.$nombre;
 		}
 
         	$post=Post::create($input);          
@@ -129,6 +129,10 @@ class PostController extends AppBaseController
 		}
 
 		$this->postRepository->delete($id);
+		if(file_exists($post->imagen))
+			unlink($post->imagen);
+		if(file_exists($post->archivo))
+			unlink($post->archivo);
 
 		Flash::success('Post borrado satisfactoriamente.');
 

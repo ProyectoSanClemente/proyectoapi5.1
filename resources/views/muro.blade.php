@@ -19,7 +19,8 @@
         @if (!empty($posteo->imagen)) 
           {!! HTML::image($posteo->imagen)!!}
         @endif
-        @if (!empty($posteo->archivo)) 
+        @if (!empty($posteo->archivo))
+        <a href="{{URL::to($posteo->archivo)}}" target="_blank" download="{!!basename($posteo->archivo)!!}">{!!basename($posteo->archivo)!!}</a>
         @endif
         </a>
         <hr>

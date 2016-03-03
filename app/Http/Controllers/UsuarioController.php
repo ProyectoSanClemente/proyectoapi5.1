@@ -5,10 +5,10 @@ use App\Http\Requests\CreateUsuarioRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
 use Carbon\Carbon;
 use App\Models\Impresora;
+use App\Models\Departamento;
 use App\Libraries\Repositories\UsuarioRepository;
 use Flash, Input, Image, Adldap;
 use Response, File, Auth, Exception;
-use Goutte\Client;
 
 class UsuarioController extends Controller
 {
@@ -35,22 +35,7 @@ class UsuarioController extends Controller
 		// $ldapgrupos = Adldap::groups()->all();
 		// $ldapcomputers = Adldap::computers()->all();
 		// $ldapprinters = Adldap::printers()->all();
-		// $ldapremoteuser = Adldap::printers()->all();
-
-		
-		$client = new Client();
-		$crawler = $client->request('GET', 'http://10.128.2.16/tinta/printers.php?sort=printers.server&dir=asc');
-		$nodos=$crawler->filter('td');
-		$i=1;
-		foreach ($nodos as $key => $domElement) {
-			if($i==$key){
-
-				$i+=7;
-	    		print $domElement->nodeValue.'<br>';
-			}
-		}
-
-    		
+		// $ldapremoteuser = Adldap::printers()->all();    		
 		return view('usuarios.index',compact('usuarios'));
 			// ->with('ldapgrupos',$ldapgrupos)
 			// ->with('ldapusuarios',$ldapusuarios)
@@ -66,7 +51,9 @@ class UsuarioController extends Controller
 	 */
 	public function create()
 	{
-		return view('usuarios.create');
+		$departamentos=Departamento::all();
+		return view('usuarios.create')
+			->with('departamentos',$departamentos);
 	}
 
 	/**
@@ -112,13 +99,15 @@ class UsuarioController extends Controller
 			return redirect(route('usuarios.index'))
 			                    ->withInput();
 		}
-		
+				
 		//Validamos que tenga los permisos o sea su propia cuenta
 		if(Auth::user()->id!=$id && Auth::user()->rol!='admin')
 			throw new Exception("No posee los privilegios para editar otros usuarios");
 
+		$departamentos=Departamento::all();
 		return view('usuarios.edit')
-			->with('usuario', $usuario);
+			->with('usuario', $usuario)
+			->with('departamentos',$departamentos);;
 	}
 
 	/**

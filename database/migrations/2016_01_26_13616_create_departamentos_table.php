@@ -12,6 +12,7 @@ class CreateDepartamentosTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('usuarios');
         Schema::dropIfExists('departamentos');
         Schema::create('departamentos', function (Blueprint $table) {
             $table->increments('id');

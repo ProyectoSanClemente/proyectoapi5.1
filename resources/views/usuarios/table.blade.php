@@ -7,6 +7,7 @@
         <th>Apellido</th>
         <th>Correo</th>
         <th>Rol</th>
+        <th>Departamento</th>
     <th width="120px">Acciones</th>
 </thead>
     <tbody>
@@ -27,6 +28,7 @@
             <td style="color:red">Sin Datos</td>
             @endif
             <td>{!! ucfirst($usuario->rol) !!}</td>
+            <td>{!! $usuario->Departamento->nombre !!}
             <td>
                 <a href='#' data-toggle="modal" data-toggle="modal" data-target="#showModal{{$usuario->id}}"><i class="glyphicon glyphicon-eye-open"></i></a>
                 <a href="{{ route('usuarios.edit', [$usuario->id]) }}"><i class="glyphicon glyphicon-edit"></i></a>

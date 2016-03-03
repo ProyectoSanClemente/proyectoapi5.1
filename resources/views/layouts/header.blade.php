@@ -18,6 +18,7 @@
                     @if(Auth::user()->rol=='admin')   
                         <li> <a href="{{url('usuarios')}}"><i class="fa fa-users"></i><p>Usuarios</p></a> </li>
                         <li> <a href="{{url('impresoras')}}"><i class="glyphicon glyphicon-print"></i><p>Impresoras</p></a> </li>
+                        <li> <a href="{{url('departamentos')}}"><i class="glyphicon glyphicon-align-justify"></i><p>Departamentos</p></a> </li>
                         <li> <a href="{{url('noticias')}}"><i class="fa fa-newspaper-o"></i><p>Noticias</p></a></li>
                     @endif
                         <li><a href="{{url('cuentas')}}"><i class="glyphicon glyphicon-hdd"></i><p>Cuentas</p></a> </li>

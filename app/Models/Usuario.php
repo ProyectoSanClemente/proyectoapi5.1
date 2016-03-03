@@ -20,6 +20,7 @@ class Usuario extends Model implements AuthenticatableContract,
 		"apellido",
 		"rol",
 		"password",
+        "id_departamento",
 		"imagen"
 	];
 
@@ -32,7 +33,8 @@ class Usuario extends Model implements AuthenticatableContract,
         "accountname"=> "string",
 		"nombre" => "string",
 		"apellido" => "string",
-		"password" => "string"
+		"password" => "string",
+        "id_departamento" => "integer",
     ];
 
 	public static $create_rules = [
@@ -55,7 +57,8 @@ class Usuario extends Model implements AuthenticatableContract,
 
     protected $attributes = [
         'imagen' => 'images/avatar/default.png',
-        'rol' => 'usuario'
+        'rol' => 'usuario',
+        'departamento' => 'ninguno'
     ];
 
     public function setPasswordAttribute($password)
@@ -92,6 +95,11 @@ class Usuario extends Model implements AuthenticatableContract,
     public function Cuenta()
     {
         return $this->hasOne('App\Models\Cuenta','id_usuario');
+    }
+
+    public function Departamento()
+    {
+        return $this->belongsTo('App\Models\Departamento','id_departamento');
     }
 
     public function hasCuenta(){

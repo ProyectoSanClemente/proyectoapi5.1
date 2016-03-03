@@ -8,8 +8,7 @@ class Impresora extends Model
     
 	public $fillable = [
         "modelo_impresora",
-        "accountname",
-        "id_usuario"
+        "id_departamento"
 	];
 
     /**
@@ -18,12 +17,12 @@ class Impresora extends Model
      * @var array
      */
     protected $casts = [
-        "accountname" => "string",
-		"modelo_impresora" => "string"
+		"modelo_impresora" => "string",
+        "id_departamento" => "integer"
     ];
 	public static $rules = [
-        "accountname" => "required",
-		"modelo_impresora" => "required"
+		"modelo_impresora" => "required",
+        "id_departamento" => "required"
 	];
 
 }

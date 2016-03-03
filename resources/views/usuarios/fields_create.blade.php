@@ -77,6 +77,19 @@
 	                        </div>
 	                    </div>
 
+                        <!-- Departamento Select -->
+                        <div class="form-group">                           
+                            {!! Form::label('Departamento', 'Departamento:',['class'=>"col-md-4 control-label"]) !!}
+                            <div class="col-md-6">
+                                <select name="departamento" class='form-control'>
+                                    @foreach ($departamentos as $departamento)                                   
+                                        <option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
+                                   @endforeach
+                               </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Password Field -->
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             {!! Form::label('password','Contraseña',['class'=>'col-md-4 control-label'])!!}
                             <div class="col-md-6">

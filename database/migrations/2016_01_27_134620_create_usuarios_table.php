@@ -29,7 +29,9 @@ class CreateUsuariosTable extends Migration
             $table->string('imagen',100);
             $table->string('password',100);
             $table->string('remember_token',100);
-            $table->timestamps();            
+            $table->integer('id_departamento')->unsigned();
+            $table->foreign('id_departamento')->references('id')->on('departamentos');
+            $table->timestamps();         
         });
     }
 

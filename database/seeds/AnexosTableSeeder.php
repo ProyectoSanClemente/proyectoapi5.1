@@ -785,6 +785,7 @@ class AnexosTableSeeder extends Seeder
 			'created_at' => \Carbon\Carbon::now()->toDateTimeString()
 			],
     	];
+    	
         DB::table('anexos')->insert($anexos);
     }
 }

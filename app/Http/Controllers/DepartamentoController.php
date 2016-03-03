@@ -145,14 +145,14 @@ class DepartamentoController extends Controller
 
 		if(empty($departamento))
 		{
-			Flash::error('departamento no encontrado.');
+			Flash::error('Departamento no encontrado.');
 
 			return redirect(route('departamentos.index'));
 		}
 
 		$this->DepartamentoRepository->delete($id);
 
-		Flash::success('departamento borrada satisfactoriamente.');
+		Flash::success('Departamento borrado satisfactoriamente.');
 
 		return redirect(route('departamentos.index'));
 	}

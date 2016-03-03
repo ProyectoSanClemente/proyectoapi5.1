@@ -1,14 +1,14 @@
 <table id="impresoras" class="table">
     <thead>
-    <th>Usuario</th>
-			<th>Modelo Impresora</th>
+    <th>Departamento</th>
+	<th>Modelo Impresora</th>
     <th width="50px">Acciones</th>
     </thead>
     <tbody>
     @foreach($impresoras as $impresora)
         <tr id="{{$impresora->id}}">
-            <td>{!! $impresora->accountname!!}</td>
-			<td>{!! $impresora->modelo_impresora !!}</td>
+            <td>{!! $impresora->Departamento->nombre!!}</td>
+			<td>{!! $listaimpresoras[$impresora->modelo_impresora] !!}</td>
             <td>
                 <a href="{!! route('impresoras.edit', [$impresora->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
                 <a href="{!! route('impresoras.delete', [$impresora->id]) !!}" onclick="return confirm('Estas seguro que deseas eliminar esta asignacion de impresora?')"><i class="glyphicon glyphicon-remove"></i></a>

@@ -1,12 +1,18 @@
-<div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('Accountname', 'Accountname:') !!}
-	{!! Form::text('accountname',$usuario->accountname, ['class' => 'form-control','readonly' => 'readonly']) !!}
+<!-- Departamento Select -->
+<div class="form-group">                           
+    {!! Form::label('id_departamento', 'Departamento:',['class'=>"col-md-4 control-label"]) !!}
+    <div class="col-md-6">
+        {!! Form::select('id_departamento', $departamentos,null,['class'=>'form-control']) !!}
+    </div>
 </div>
-<!-- Modelo Impresora Field -->
-<div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('modelo_impresora', 'Modelo Impresora:') !!}
-	{!! Form::text('modelo_impresora', null, ['class' => 'form-control']) !!}
+
+<div class="form-group">                           
+    {!! Form::label('modelo_impresora', 'Impresoras:',['class'=>"col-md-4 control-label"]) !!}
+    <div class="col-md-6">
+        {!! Form::select('modelo_impresora', $impresoras,null,['class'=>'form-control']) !!}
+    </div>
 </div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}

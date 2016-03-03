@@ -5,8 +5,8 @@ use App\Http\Requests\CreateUsuarioRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
 use Carbon\Carbon;
 use App\Models\Impresora;
-use App\Models\Departamento;
 use App\Libraries\Repositories\UsuarioRepository;
+use App\Libraries\Repositories\DepartamentoRepository;
 use Flash, Input, Image, Adldap;
 use Response, File, Auth, Exception;
 
@@ -15,10 +15,13 @@ class UsuarioController extends Controller
 
 	/** @var  UsuarioRepository */
 	private $usuarioRepository;
+	/** @var DepartamentoRepository */
+	private $departamentoRepository;
 
-	function __construct(UsuarioRepository $usuarioRepo)
+	function __construct(UsuarioRepository $usuarioRepo,DepartamentoRepository $departamentoRepo)
 	{
 		$this->usuarioRepository = $usuarioRepo;
+		$this->departamentoRepository = $departamentoRepo;
 		$this->middleware('auth');
 		$this->middleware('admin',['except'=>['edit','update']]);		
 	}
@@ -51,7 +54,7 @@ class UsuarioController extends Controller
 	 */
 	public function create()
 	{
-		$departamentos=Departamento::all();
+		$departamentos=$this->departamentoRepository->lists('nombre', 'id');
 		return view('usuarios.create')
 			->with('departamentos',$departamentos);
 	}
@@ -104,7 +107,7 @@ class UsuarioController extends Controller
 		if(Auth::user()->id!=$id && Auth::user()->rol!='admin')
 			throw new Exception("No posee los privilegios para editar otros usuarios");
 
-		$departamentos=Departamento::all();
+		$departamentos=$this->departamentoRepository->lists('nombre', 'id');
 		return view('usuarios.edit')
 			->with('usuario', $usuario)
 			->with('departamentos',$departamentos);;

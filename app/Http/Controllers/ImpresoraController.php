@@ -187,7 +187,8 @@ class ImpresoraController extends Controller
 	{
 		$impresoras=Auth::user()->Departamento->Impresoras;
 		return view('impresoras.imprimir')
-			->with('impresoras',$impresoras);
+			->with('impresoras',$impresoras)
+			->with('listaimpresoras',$this->listaimpresoras);
 
 	}
 }

@@ -31,4 +31,9 @@ class Departamento extends Model
         return $this->hasMany('App\Models\Impresora','id_departamento');
     }
 
+     public function Usuarios()
+    {
+        return $this->hasMany('App\Models\Usuario','id_departamento');
+    }
+
 }

@@ -19,6 +19,7 @@ class PostController extends AppBaseController
 	/** @var  postRepository */
 
 	private $postRepository;
+	protected $carpeta;
 	function __construct(PostRepository $postRepo)
 	{
 		$this->postRepository = $postRepo;
@@ -52,19 +53,26 @@ class PostController extends AppBaseController
 	{
 		$input=Request::all();
 		if (!empty($input['imagen'])) {
-			$filename = 'images/comunidad/imagenes'.$input['titulo'].date("GisdY").'.jpg';
+			$this->carpeta='posts/'.$input['id_usuario'].'/';
+			if (!File::exists($this->carpeta)) {	//Crear carpeta de archivos adjuntos
+		    	File::makeDirectory($this->carpeta);
+			}
+			$filename = 'posts/'.$input['id_usuario'].'/'.$input['titulo'].date("GisdY").'.jpg';
 		    $input['imagen']=$filename;
 		    Image::make(Input::file('imagen'))->resize(640, 480)->save($filename);
 		}
 
 		if (!empty($input['archivo'])) {
-			$destinationPath = 'uploads'; // upload path
-		    $extension = Input::file('archivo')->getClientOriginalExtension(); // getting image extension
-		    $fileName = rand(11111,99999).'.'.$extension; // renameing image
+			$this->carpeta='posts/'.$input['id_usuario'].'/';
+			if (!File::exists($this->carpeta)) {	//Crear carpeta de archivos adjuntos
+		   		File::makeDirectory($this->carpeta);
+			}
+			$destinationPath = 'posts/'.$input['id_usuario'].'/'; // upload path
+		    $nombre = Input::file('archivo')->getClientOriginalName(); // getting image extension
 		    Input::file('archivo')->move($destinationPath, $fileName); // uploading file to given path
 		}
 
-        	$post=Post::create($input);           
+        	$post=Post::create($input);          
         
 		return redirect('home');
     }

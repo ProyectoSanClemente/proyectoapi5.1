@@ -14,12 +14,21 @@
       <hr>
         <p>{!!$posteo->contenido!!}</p>
         <hr>
+
+        <a class="foto" id="foto">
+        @if (!empty($posteo->imagen)) 
+          {!! HTML::image($posteo->imagen)!!}
+        @endif
+        @if (!empty($posteo->archivo)) 
+        @endif
+        </a>
+        <hr>
         <ul class="list-inline list-unstyled">
     			<li><span><i class="glyphicon glyphicon-calendar"></i> {!!$posteo->created_at->diffForHumans()!!} </span></li>
           <li>|</li>
             <span><class="text-right">Escrito por :  {!!$posteo->Usuario->nombre.' '.$posteo->Usuario->apellido!!}</span>
 
-          <li>|</li>
+          <li>|</li> 
           <a class="pull-right" id="comentar" data-post-id="{!! $posteo->id!!}" data-toggle="modal" href='#modal-comentario'><span class="btn btn-primary"><i class=" glyphicon glyphicon-comment comentar"></i> {!!$posteo->Comentarios->count()!!} Comentarios</span></a>
   		  </ul>
       </div>

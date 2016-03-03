@@ -16,7 +16,10 @@ $(document).ready(function(){
                 $('#error').show();
                 return false;
             }
-        send_post($(this));
+        //send_post($(this));
+        var input = $('#contenido').val();
+        var output = emojione.shortnameToImage(input);
+        $('#contenido').val(output);
         $('#modal-id').modal('toggle');
         $('#muro').load( " #muro" );
 	});

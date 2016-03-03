@@ -12,7 +12,9 @@ class Post extends Model
 		"id_usuario",
 		"contenido",
 		"tipo",
-		"titulo"
+		"titulo",
+		"imagen",
+		"archivo"
 	];
 
     /**

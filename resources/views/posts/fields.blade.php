@@ -15,6 +15,15 @@
 		{!! Form::textarea('contenido', null, ['class' => 'form-control contenido','id' => 'contenido','placeholder' => 'Ingrese el Contenido']) !!}
 	</div>
 
+	<div class="form-group">
+	    {!! Form::label('imagen', 'Imagen:',['class'=>'col-md-4 control-label' , 'id'=>'imagen']) !!}
+		{!! Form::file('imagen', null,['class' => 'form-control','accept'=>"image/*"]) !!}
+	</div>
+	<div class="form-group">
+	    {!! Form::label('archivo', 'Archivo:',['class'=>'col-md-4 control-label', 'id'=>'archivo']) !!}
+		{!! Form::file('archivo', null,['class' => 'form-control', 'accept'=>"file_extension|audio/*|video/*|image/*|media_type"]) !!}
+	</div>
+
 	{!!Form::hidden('tipo','comunidad',['id'=>'tipo'])!!}
 	{!!Form::hidden('id_usuario',Auth::id(),['id'=>'id_usuario'])!!}
 

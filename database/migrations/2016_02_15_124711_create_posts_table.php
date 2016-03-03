@@ -18,6 +18,8 @@ class CreatePostsTable extends Migration
             $table->text('titulo');
             $table->text('contenido');
             $table->string('tipo');
+            $table->string('imagen');
+            $table->string('archivo');
             $table->integer('id_usuario')->unsigned();
             $table->foreign('id_usuario')->references('id')->on('usuarios')->onDelete('cascade');
             $table->timestamps();

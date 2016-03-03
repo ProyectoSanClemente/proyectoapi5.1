@@ -8,7 +8,9 @@
 			</div>
 			<div class="modal-body">
 				<div class="container" style="width:100%">
-	        		@include('posts.fields')
+				    {!! Form::open(['route' => 'posts.store','files'=> true]) !!}
+		        		@include('posts.fields')
+		        	    {!! Form::close() !!}
 				</div>
 			</div>
 		</div>

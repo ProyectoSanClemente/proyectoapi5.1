@@ -10,6 +10,8 @@ use Response;
 use App\Models\Post;
 use Auth;
 use Validator, Input, Request, DB;
+use Image;
+use File;
 
 class PostController extends AppBaseController
 {
@@ -48,14 +50,23 @@ class PostController extends AppBaseController
 	 */
 	public function store(CreatePostRequest $request)
 	{
-			$input=Request::all();
-        	$post=Post::create($input);           
-        	$data=Request::all();
-        	$data['success'] = true;
-        
-        	
+		$input=Request::all();
+		if (!empty($input['imagen'])) {
+			$filename = 'images/comunidad/imagenes'.$input['titulo'].date("GisdY").'.jpg';
+		    $input['imagen']=$filename;
+		    Image::make(Input::file('imagen'))->resize(640, 480)->save($filename);
+		}
 
-        return json_encode($data);
+		if (!empty($input['archivo'])) {
+			$destinationPath = 'uploads'; // upload path
+		    $extension = Input::file('archivo')->getClientOriginalExtension(); // getting image extension
+		    $fileName = rand(11111,99999).'.'.$extension; // renameing image
+		    Input::file('archivo')->move($destinationPath, $fileName); // uploading file to given path
+		}
+
+        	$post=Post::create($input);           
+        
+		return redirect('home');
     }
 
 

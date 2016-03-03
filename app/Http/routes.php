@@ -164,7 +164,7 @@ Route::group(['middleware'], function () {
         Route::post('create','PostController@create');
         Route::post('show','PostController@show');
         Route::post('update','PostController@update');
-        Route::post('store','PostController@store');
+        Route::post('store',['as'=> 'posts.store','uses'=>'PostController@store']);
         Route::get('{id}/delete',[
             'as' => 'posts.delete',
             'uses' => 'PostController@destroy'

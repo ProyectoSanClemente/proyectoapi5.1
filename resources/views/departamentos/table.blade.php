@@ -1,12 +1,14 @@
 <table id="departamentos" class="table">
     <thead>
         <th>Nombre departamento</th>
+        <th>Usuarios</th>
     <th width="50px">Acciones</th>
     </thead>
     <tbody>    
     @foreach($departamentos as $departamento)
         <tr id="{{$departamento->id}}">
             <td>{!! $departamento->nombre!!}</td>
+            <td>{!!count($departamento->Usuarios)!!}</td>
             <td>
                 <a href="{!! route('departamentos.edit', [$departamento->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
                 <a href="{!! route('departamentos.delete', [$departamento->id]) !!}" onclick="return confirm('Estás seguro que deseas eliminar este departamento?')"><i class="glyphicon glyphicon-remove"></i></a>

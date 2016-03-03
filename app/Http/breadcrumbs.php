@@ -129,3 +129,22 @@ Breadcrumbs::register('anexoedit',function($breadcrumbs){
 	$breadcrumbs->parent('anexo');
 	$breadcrumbs->push('Editar',url('anexos/edit'));
 });
+
+
+// Home > Departamentos
+Breadcrumbs::register('departamentos',function($breadcrumbs){
+	$breadcrumbs->parent('home');
+	$breadcrumbs->push('Departamentos',url('departamentos'));
+});
+
+// Home > Anexos >create
+Breadcrumbs::register('departamentocreate',function($breadcrumbs){
+	$breadcrumbs->parent('departamentos');
+	$breadcrumbs->push('Crear',url('departamentos/create'));
+});
+
+// Home > Anexos >edit
+Breadcrumbs::register('departamentoedit',function($breadcrumbs){
+	$breadcrumbs->parent('departamentos');
+	$breadcrumbs->push('Editar',url('departamentos/edit'));
+});

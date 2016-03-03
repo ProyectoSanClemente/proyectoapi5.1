@@ -1,23 +1,23 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Requests\CreateAnexoRequest;
-use App\Http\Requests\UpdateAnexoRequest;
-use App\Libraries\Repositories\departamentoRepository;
+use App\Http\Requests\CreateDepartamentoRequest;
+use App\Http\Requests\UpdateDepartamentoRequest;
+use App\Libraries\Repositories\DepartamentoRepository;
 use Flash;
 use Response;
 
 class DepartamentoController extends Controller
 {
 
-	/** @var  departamentoRepository */
-	private $departamentoRepository;
+	/** @var  DepartamentoRepository */
+	private $DepartamentoRepository;
 
-	function __construct(departamentoRepository $departamentoRepo)
+	function __construct(DepartamentoRepository $departamentoRepo)
 	{
-		$this->departamentoRepository = $departamentoRepo;
+		$this->DepartamentoRepository = $departamentoRepo;
 		$this->middleware('auth');
-		$this->middleware('admin',['except'=>['index']]);
+		$this->middleware('admin');
 	}
 
 	/**
@@ -28,7 +28,7 @@ class DepartamentoController extends Controller
 	public function index()
 	{
 
-		$departamentos = $this->departamentoRepository->all();
+		$departamentos = $this->DepartamentoRepository->all();
 
 		return view('departamentos.index')
 			->with('departamentos', $departamentos);
@@ -47,17 +47,17 @@ class DepartamentoController extends Controller
 	/**
 	 * Store a newly created departamento in storage.
 	 *
-	 * @param CreateanexoRequest $request
+	 * @param CreateDepartamentoRequest $request
 	 *
 	 * @return Response
 	 */
-	public function store(CreateAnexoRequest $request)
+	public function store(CreateDepartamentoRequest $request)
 	{
 		$input = $request->all();
 		
-		$departamento = $this->departamentoRepository->create($input);
+		$departamento = $this->DepartamentoRepository->create($input);
 		
-		Flash::success('departamento agregada satisfactoriamente.');
+		Flash::success('Departamento agregado satisfactoriamente.');
 		
 		return redirect(route('departamentos.index'));
 	}
@@ -71,11 +71,11 @@ class DepartamentoController extends Controller
 	 */
 	public function show($id)
 	{
-		$departamento = $this->departamentoRepository->find($id);
+		$departamento = $this->DepartamentoRepository->find($id);
 
 		if(empty($departamento))
 		{
-			Flash::error('departamento no encontrado.');
+			Flash::error('Departamento no encontrado.');
 
 			return redirect(route('departamentos.index'));
 		}
@@ -93,11 +93,11 @@ class DepartamentoController extends Controller
 	public function edit($id)
 	{
 
-		$departamento = $this->departamentoRepository->find($id);
+		$departamento = $this->DepartamentoRepository->find($id);
 
 		if(empty($departamento))
 		{
-			Flash::error('departamento no encontrado.');
+			Flash::error('Departamento no encontrado.');
 
 			return redirect(route('departamentos.index'));
 		}
@@ -110,24 +110,24 @@ class DepartamentoController extends Controller
 	 * Update the specified departamento in storage.
 	 *
 	 * @param  int              $id
-	 * @param UpdateanexoRequest $request
+	 * @param UpdateDepartamentoRequest $request
 	 *
 	 * @return Response
 	 */
-	public function update($id, UpdateAnexoRequest $request)
+	public function update($id, UpdateDepartamentoRequest $request)
 	{
-		$departamento = $this->departamentoRepository->find($id);
+		$departamento = $this->DepartamentoRepository->find($id);
 
 		if(empty($departamento))
 		{
-			Flash::error('departamento no encontrado.');
+			Flash::error('Departamento no encontrado.');
 
 			return redirect(route('departamentos.index'));
 		}
 
-		$this->departamentoRepository->updateRich($request->all(), $id);
+		$this->DepartamentoRepository->updateRich($request->all(), $id);
 
-		Flash::success('departamento actualizada satisfactoriamente.');
+		Flash::success('Departamento actualizado satisfactoriamente.');
 
 		return redirect(route('departamentos.index'));
 	}
@@ -141,7 +141,7 @@ class DepartamentoController extends Controller
 	 */
 	public function destroy($id)
 	{
-		$departamento = $this->departamentoRepository->find($id);
+		$departamento = $this->DepartamentoRepository->find($id);
 
 		if(empty($departamento))
 		{
@@ -150,7 +150,7 @@ class DepartamentoController extends Controller
 			return redirect(route('departamentos.index'));
 		}
 
-		$this->departamentoRepository->delete($id);
+		$this->DepartamentoRepository->delete($id);
 
 		Flash::success('departamento borrada satisfactoriamente.');
 

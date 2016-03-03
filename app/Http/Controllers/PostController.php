@@ -69,6 +69,7 @@ class PostController extends AppBaseController
 			}
 			$destinationPath = 'posts/'.$input['id_usuario'].'/'; // upload path
 		    $nombre = Input::file('archivo')->getClientOriginalName(); // getting image extension
+		    Input::file('archivo')->move($destinationPath, $nombre);
 		    $input['archivo']=$destinationPath.$nombre;
 		}
 

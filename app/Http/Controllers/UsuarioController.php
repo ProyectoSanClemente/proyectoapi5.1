@@ -4,9 +4,11 @@ use App\Http\Requests;
 use App\Http\Requests\CreateUsuarioRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
 use Carbon\Carbon;
+use App\Models\Impresora;
 use App\Libraries\Repositories\UsuarioRepository;
 use Flash, Input, Image, Adldap;
 use Response, File, Auth, Exception;
+use Goutte\Client;
 
 class UsuarioController extends Controller
 {
@@ -34,6 +36,21 @@ class UsuarioController extends Controller
 		// $ldapcomputers = Adldap::computers()->all();
 		// $ldapprinters = Adldap::printers()->all();
 		// $ldapremoteuser = Adldap::printers()->all();
+
+		
+		$client = new Client();
+		$crawler = $client->request('GET', 'http://10.128.2.16/tinta/printers.php?sort=printers.server&dir=asc');
+		$nodos=$crawler->filter('td');
+		$i=1;
+		foreach ($nodos as $key => $domElement) {
+			if($i==$key){
+
+				$i+=7;
+	    		print $domElement->nodeValue.'<br>';
+			}
+		}
+
+    		
 		return view('usuarios.index',compact('usuarios'));
 			// ->with('ldapgrupos',$ldapgrupos)
 			// ->with('ldapusuarios',$ldapusuarios)

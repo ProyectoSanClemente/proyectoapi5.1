@@ -26,6 +26,7 @@ class EmailController extends Controller
     protected $carpeta;
     protected $connection;
     protected $unseen;
+    protected $cuenta;
     private $cuentaRepository;
     private $usuarioRepository;
 
@@ -39,14 +40,14 @@ class EmailController extends Controller
 			throw new Exception("El usuario no tiene Cuentas Asignadas");
 		}
 		$id=$this->usuarioRepository->find(Auth::user()->id)->Cuenta->id;
-		$cuenta=$this->cuentaRepository->obtenercuenta($id,'zimbra');		
+		$this->cuenta=$this->cuentaRepository->obtenercuenta($id,'zimbra');		
 
 		$hostname = "sanclemente.cl";
         $port="993";
         $flags="ssl/novalidate-cert";
 
-		$username=$cuenta->id_zimbra;
-		$password=$cuenta->pass_zimbra;
+		$username=$this->cuenta->id_zimbra;
+		$password=$this->cuenta->pass_zimbra;
 		
 		$this->carpeta='attachments/'.$username;		
 		if(!File::exists('attachments')){
@@ -83,6 +84,7 @@ class EmailController extends Controller
 		}
 		return view('emails.index')
 			->with('inboxunread',$this->unseen)
+			->with('cuenta',$this->cuenta)
 			->with('mailsinfo',$messages);
 		/*}*/
     }
@@ -107,6 +109,7 @@ class EmailController extends Controller
         
 		return view('emails.index')
 			->with('inboxunread',$this->unseen)
+			->with('cuenta',$this->cuenta)
 			->with('mailsinfo',$messages);
 	}	
 
@@ -129,6 +132,7 @@ class EmailController extends Controller
         
 		return view('emails.sent')
 			->with('inboxunread',$this->unseen)
+			->with('cuenta',$this->cuenta)
 			->with('mailsinfo',$messages);
     }
 
@@ -150,6 +154,7 @@ class EmailController extends Controller
 
 			return view('emails.show')
 				->with('mail',$message)
+				->with('cuenta',$this->cuenta)
 				->with('inboxunread',count($unseen));
 		}
 
@@ -195,9 +200,7 @@ class EmailController extends Controller
             $message->number=$value->getNumber();
             $message->subject=$value->getSubject();
             $message->from=$value->getFrom();
-            $message->size=$value->getSize();
-            $message->to=$value->getTo();
-            $message->date=$value->getDate()->format('Y-m-d H:i:s');
+            $message->date=$this->formatdate($value->getDate());
             $message->seen=$value->isSeen();
             $messages->push($message);
         }
@@ -211,9 +214,8 @@ class EmailController extends Controller
 		$message->number=$value->getNumber();
         $message->subject=$value->getSubject();
         $message->from=$value->getFrom();
-        $message->size=$value->getSize();
         $message->to=$value->getTo();
-        $message->date=$value->getDate()->format('Y-m-d H:i:s');
+        $message->date=$this->formatdate($value->getDate());
         $message->seen=$value->isSeen();
         $message->textPlain=strip_tags(nl2br($value->getBodyText()), '<br>');
         $message->Attachments=$value->getAttachments();
@@ -225,6 +227,15 @@ class EmailController extends Controller
      	return $message;
 	}
 
+	public function formatdate($date)
+	{
+		try {
+			$value=new \DateTime($date);
+			return $value->format('Y-m-d H:i:s');
+		} catch (Exception $e) {
+			return $date;
+		}
+	}
 
 	public function getunseen()
 	{	

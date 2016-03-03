@@ -16,9 +16,8 @@ class CreateImpresorasTable extends Migration
         Schema::create('impresoras', function (Blueprint $table) {
             $table->increments('id');
             $table->string('modelo_impresora');
-            $table->string('accountname',25);
-            $table->integer('id_usuario')->unsigned();
-            $table->foreign('id_usuario')->references('id')->on('usuarios')->onDelete('cascade');
+            $table->integer('id_departamento')->unsigned();
+            $table->foreign('id_departamento')->references('id')->on('departamentos')->onDelete('cascade');
             $table->timestamps();
         });
     }

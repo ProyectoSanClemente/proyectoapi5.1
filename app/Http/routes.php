@@ -182,11 +182,17 @@ Route::group(['middleware'], function () {
         ]);
     });
 
-
     Route::resource('anexos', 'AnexoController');
 
     Route::get('anexos/{id}/delete', [
         'as' => 'anexos.delete',
         'uses' => 'AnexoController@destroy',
+    ]);
+
+    Route::resource('departamentos', 'DepartamentoController');
+
+    Route::get('departamentos/{id}/delete', [
+        'as' => 'departamentos.delete',
+        'uses' => 'DepartamentoController@destroy',
     ]);
 });   

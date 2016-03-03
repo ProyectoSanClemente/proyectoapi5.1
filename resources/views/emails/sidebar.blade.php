@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <section class="panel panel-default">
             <div class="panel-heading">
-                <a href="http://sanclemente.cl/correo" target="_blank"class="btn btn-block btn-lg btn-default"> Redactar Nuevo Correo</a>
+                <a href="{!! route("cuentas.zimbra", [$cuenta->id]) !!}" target="_blank" class="btn btn-block btn-lg btn-default"> Redactar Nuevo Correo</a>
             </div>
 
             <div class="list-group">

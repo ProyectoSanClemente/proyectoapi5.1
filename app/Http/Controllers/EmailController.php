@@ -200,9 +200,7 @@ class EmailController extends Controller
             $message->number=$value->getNumber();
             $message->subject=$value->getSubject();
             $message->from=$value->getFrom();
-            $message->size=$value->getSize();
-            $message->to=$value->getTo();
-            $message->date=$value->getDate()->format('Y-m-d H:i:s');
+            $message->date=$this->formatdate($value->getDate());
             $message->seen=$value->isSeen();
             $messages->push($message);
         }
@@ -216,9 +214,8 @@ class EmailController extends Controller
 		$message->number=$value->getNumber();
         $message->subject=$value->getSubject();
         $message->from=$value->getFrom();
-        $message->size=$value->getSize();
         $message->to=$value->getTo();
-        $message->date=$value->getDate()->format('Y-m-d H:i:s');
+        $message->date=$this->formatdate($value->getDate());
         $message->seen=$value->isSeen();
         $message->textPlain=strip_tags(nl2br($value->getBodyText()), '<br>');
         $message->Attachments=$value->getAttachments();
@@ -230,6 +227,15 @@ class EmailController extends Controller
      	return $message;
 	}
 
+	public function formatdate($date)
+	{
+		try {
+			$value=new \DateTime($date);
+			return $value->format('Y-m-d H:i:s');
+		} catch (Exception $e) {
+			return $date;
+		}
+	}
 
 	public function getunseen()
 	{	

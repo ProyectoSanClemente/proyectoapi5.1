@@ -4,7 +4,6 @@
     <thead>
         <th>Remitente</th>
         <th>Asunto</th>
-        <th>Tamaño</th>
         <th>Fecha</th>
         <th>Leido</th>
         <th>Leer</th>
@@ -18,7 +17,6 @@
 		@endif
 			<td>{!! $mail->from 	 !!}</td>
 			<td>{!! $mail->subject !!}</td>
-			<td>{!! $mail->size.' bytes'!!}</td>
 			<td>{!! $mail->date !!}</td>
 			@if($mail->seen == "0")
 				<td>Sin leer</td>

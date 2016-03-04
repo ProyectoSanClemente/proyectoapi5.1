@@ -34,3 +34,10 @@
     {!! Form::label('id_zimbra', 'Sin Datos',['style'=>'color:red']) !!}
 @endif
 </div>
+
+<!-- Departamento Field -->
+<div class="form-group">
+    {!! Form::label('departamento', 'Departamento:') !!}
+    {!! $usuario->Departamento->nombre !!}
+</div>
+

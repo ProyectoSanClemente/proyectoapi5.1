@@ -5,8 +5,8 @@
                 <div class="panel-body">		<!-- Submit Field -->
 			    	@foreach($impresoras as $impresora)
 							<div style="font-weight:bold">
-						  		{!!Form::radio("modelo",$impresora->modelo_impresora,NULL)!!}
-						  		{!!$impresora->modelo_impresora !!}
+						  		{!!Form::radio("modelo",$listaimpresoras[$impresora->modelo_impresora],NULL)!!}
+						  		{!!$listaimpresoras[$impresora->modelo_impresora] !!}
 						  	</div>	
 					@endforeach
 					<hr>

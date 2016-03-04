@@ -149,6 +149,11 @@ class DepartamentoController extends Controller
 
 			return redirect(route('departamentos.index'));
 		}
+		if(count($departamento->Usuarios)>0)
+		{
+			Flash::warning('El Departamento '.$departamento->nombre.' tiene usuarios asignados');
+			return redirect(route('departamentos.index'));
+		}
 
 		$this->DepartamentoRepository->delete($id);
 

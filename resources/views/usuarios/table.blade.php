@@ -34,7 +34,6 @@
                 <a href="{{ route('usuarios.edit', [$usuario->id]) }}"><i class="glyphicon glyphicon-edit"></i></a>
                 <a href="{{ route('usuarios.delete', [$usuario->id]) }}" onclick="return confirm('Estas seguro que deseas eliminar este usuario?')"><i class="glyphicon glyphicon-trash"></i></a>
                 <a href="{{ route('cuentas.create',[$usuario->id]) }}"><i class="glyphicon glyphicon-hdd"></i></a>
-                <a href="{{ route('impresoras.create',[$usuario->id]) }}"><i class="glyphicon glyphicon-print"></i></a>
                 @include('usuarios.show_modal'){{-- Insertar codigo del Modal --}}
             </td>
         </tr>
@@ -95,13 +94,6 @@
                     url="{{ route('cuentas.create', $usuario->id) }}"
                     var url = url.replace("{{$usuario->id}}",id);
                     window.location.href = url; 
-                }
-            },
-            "impresora": {name: "Asignar Impresora", icon: "fa-print",callback: function(){
-                    var id=$(this).attr('id');
-                    url="{{ route('impresoras.create', $usuario->id) }}"
-                    var url = url.replace("{{$usuario->id}}",id);
-                    window.location.href = url;            
                 }
             },
         }

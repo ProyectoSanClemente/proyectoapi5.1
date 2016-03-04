@@ -58,7 +58,7 @@ class Usuario extends Model implements AuthenticatableContract,
     protected $attributes = [
         'imagen' => 'images/avatar/default.png',
         'rol' => 'usuario',
-        'departamento' => 'ninguno'
+        'id_departamento' => '1'
     ];
 
     public function setPasswordAttribute($password)

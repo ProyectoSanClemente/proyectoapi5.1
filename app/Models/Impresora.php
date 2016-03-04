@@ -25,4 +25,10 @@ class Impresora extends Model
         "id_departamento" => "required"
 	];
 
+    public function Departamento()
+    {
+        return $this->belongsTo('App\Models\Departamento','id_departamento');
+    }
+
+
 }

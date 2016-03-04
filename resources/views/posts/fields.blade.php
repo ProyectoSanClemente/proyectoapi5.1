@@ -15,13 +15,38 @@
 		{!! Form::textarea('contenido', null, ['class' => 'form-control contenido','id' => 'contenido','placeholder' => 'Ingrese el Contenido']) !!}
 	</div>
 
+ 	<div class="form-group"> 
+       {!! Form::label('imagen', 'Imagen:',['class'=>'col-md-4 control-label']) !!}
+		<div class="col-md-6">                            
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-primary btn-file">
+                        Subir Imagen&hellip; 
+                        {!! Form::file('imagen',['accept'=>"image/x-png, image/gif, image/jpeg"]) !!}
+                    </span>
+                </span>
+                <input type="text" class="form-control" readonly>
+            </div>							
+		</div>
+    </div>
+
+ 	<div class="form-group"> 
+       {!! Form::label('archivo', 'Archivo:',['class'=>'col-md-4 control-label', 'id'=>'archivo']) !!}
+		<div class="col-md-6">                            
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-primary btn-file">
+                        Subir Archivo&hellip; 
+                      {!! Form::file('archivo', null,['class' => 'form-control', 'accept'=>"file_extension|audio/*|video/*|image/*|media_type"]) !!}
+                    </span>
+                </span>
+                <input type="text" class="form-control" readonly>
+            </div>							
+		</div>
+    </div>
+
 	<div class="form-group">
-	    {!! Form::label('imagen', 'Imagen:',['class'=>'col-md-4 control-label' , 'id'=>'imagen']) !!}
-		{!! Form::file('imagen', null,['class' => 'form-control','accept'=>"image/*"]) !!}
-	</div>
-	<div class="form-group">
-	    {!! Form::label('archivo', 'Archivo:',['class'=>'col-md-4 control-label', 'id'=>'archivo']) !!}
-		{!! Form::file('archivo', null,['class' => 'form-control', 'accept'=>"file_extension|audio/*|video/*|image/*|media_type"]) !!}
+	    
 	</div>
 
 	{!!Form::hidden('tipo','comunidad',['id'=>'tipo'])!!}
@@ -47,8 +72,10 @@
 @push('scripts')
     {!! HTML::script('js/emoticons/emojiarea/jquery.emojiarea.js')!!}
     {!! HTML::script('images/emoticons/emojis.js')!!}
+    {!! HTML::script('js/file-input.js')!!}
 @endpush
 
 @push('styles')
-    {!! HTML::style('css/emoticons/jquery.emojiarea.css') !!}    
+    {!! HTML::style('css/emoticons/jquery.emojiarea.css') !!}
+    {!! HTML::style('css/file-input.css')!!}    
 @endpush

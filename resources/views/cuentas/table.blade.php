@@ -1,9 +1,4 @@
-<script type="text/javascript">
-.panel-body {
-   overflow: auto;
-}
-</script>
-<table id="cuentastable"  class="table" overflow:none >
+<table id="cuentastable"  class="table display nowrap" overflow:none style="scrollX: true">
     <thead> 
         <th>Usuario</th>
         <th>Zimbra </th>
@@ -55,7 +50,9 @@
 {!! HTML::script('js/jquery.dataTables.js') !!}
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#cuentastable').DataTable();
+        $('#cuentastable').DataTable({
+            "scrollX": true
+        });
     });
 </script>
 

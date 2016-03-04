@@ -37,6 +37,9 @@ class CreateCuentaTable extends Migration
             $table->string('pass_plan',25);
             $table->string('id_processmaker',25);
             $table->string('pass_processmaker',25);
+            $table->string('id_glpi',25);
+            $table->string('pass_glpi',25);
+
 
             $table->integer('id_usuario')->unsigned();
             $table->foreign('id_usuario')->references('id')->on('usuarios')->onDelete('cascade');

@@ -1,36 +1,60 @@
 <table id="cuentastable"  class="table display nowrap" overflow:none style="scrollX: true">
     <thead> 
         <th>Usuario</th>
-        <th>Zimbra </th>
-		<th>Sidam</th>
-		<th>Crecic</th>
-        <th>Nube</th>
-        <th>Solicitud Compras</th>
-        <th>Boleta</th>
-        <th>Garantia</th>
-        <th>Bodega</th>
-        <th>Social</th>
-        <th>Plan</th>
-        <th>ProcessMaker</th>  
-        <th>Glpi</th>     
+        <th>Zimbra Usuario </th>
+        <th>Zimbra Password </th>
+        <th>Sidam Usuario </th>
+        <th>Sidam Password</th>
+        <th>Crecic Usuario</th>
+        <th>Crecic Password</th>
+        <th>Nube Usuario</th>
+        <th>Nube Password</th>
+        <th>Solicitud Compras Usuario</th>
+        <th>Solicitud Compras Password</th>
+        <th>Boleta Usuario</th>
+        <th>Boleta Password</th>
+        <th>Garantia Usuario</th>
+        <th>Garantia Password</th>
+        <th>Bodega Usuario</th>
+        <th>Bodega Password</th>
+        <th>Social Usuario</th>
+        <th>Social Password</th>
+        <th>Plan Usuario</th>
+        <th>Plan Password</th>
+        <th>ProcessMaker Usuario</th>
+        <th>ProcessMaker Password</th>   
+        <th>Glpi Usuario</th>
+        <th>Glpi Password</th>         
     <th width="50px">Acciones</th>
     </thead>
     <tbody>
     @foreach($cuentas as $cuenta)
         <tr id="{{$cuenta->id}}">
-            <td>U:{!! $cuenta->usuario->accountname!!}</td>
-            <td>U:{!! $cuenta->id_zimbra !!}            <br>P:{!! $cuenta->pass_zimbra!!}</td>
-			<td>U:{!! $cuenta->id_sidam !!}             <br>P:{!! $cuenta->pass_sidam !!}</td>
-			<td>U:{!! $cuenta->id_crecic !!}            <br>P:{!! $cuenta->pass_crecic !!}</td>
-            <td>U:{!! $cuenta->id_nube !!}              <br>P:{!! $cuenta->pass_nube !!}</td>
-            <td>U:{!! $cuenta->id_solicitudcompras !!}  <br>P:{!! $cuenta->pass_solicitudcompras !!}</td>
-            <td>U:{!! $cuenta->id_boleta!!}             <br>P:{!! $cuenta->pass_boleta!!}</td>
-            <td>U:{!! $cuenta->id_garantia !!}          <br>P:{!! $cuenta->pass_garantia !!}</td>
-            <td>U:{!! $cuenta->id_bodega !!}            <br>P:{!! $cuenta->pass_bodega !!}</td>
-            <td>U:{!! $cuenta->id_social !!}            <br>P:{!! $cuenta->pass_social !!} </td>
-            <td>U:{!! $cuenta->id_plan !!}              <br>P:{!! $cuenta->pass_plan !!}</td>
-            <td>U:{!! $cuenta->id_processmaker !!}      <br>P:{!! $cuenta->pass_processmaker !!}</td>
-            <td>U:{!! $cuenta->id_glpi !!}              <br>P:{!! $cuenta->pass_glpi !!}</td>
+            <td>{!! $cuenta->usuario->accountname!!}</td>
+            <td>{!! $cuenta->id_zimbra !!}</td>
+            <td>{!! $cuenta->pass_zimbra !!}</td>
+            <td>{!! $cuenta->id_sidam !!}</td>
+            <td>{!! $cuenta->pass_sidam !!}</td>
+            <td>{!! $cuenta->id_crecic !!}</td>
+            <td>{!! $cuenta->pass_crecic !!}</td>
+            <td>{!! $cuenta->id_nube !!}</td>
+            <td>{!! $cuenta->pass_nube !!}</td>
+            <td>{!! $cuenta->id_solicitudcompras !!}</td>
+            <td>{!! $cuenta->pass_solicitudcompras !!}</td>
+            <td>{!! $cuenta->id_boleta!!}</td>
+            <td>{!! $cuenta->pass_boleta!!}</td>
+            <td>{!! $cuenta->id_garantia !!}</td>
+            <td>{!! $cuenta->pass_garantia !!}</td>
+            <td>{!! $cuenta->id_bodega !!}</td>
+            <td>{!! $cuenta->pass_bodega !!}</td>
+            <td>{!! $cuenta->id_social !!}</td>
+            <td>{!! $cuenta->pass_social !!}</td>
+            <td>{!! $cuenta->id_plan !!}</td>
+            <td>{!! $cuenta->pass_plan !!}</td>
+            <td>{!! $cuenta->id_processmaker !!}</td>
+            <td>{!! $cuenta->pass_processmaker !!}</td>
+            <td>{!! $cuenta->id_glpi !!}</td>
+            <td>{!! $cuenta->pass_glpi !!}</td>
             <td>
                 <a href="{!! route('cuentas.edit', [$cuenta->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
                 <a href="{!! route('cuentas.delete', [$cuenta->id]) !!}" onclick="return confirm('Estas seguro que deseas eliminar esta cuenta?')"><i class="glyphicon glyphicon-remove"></i></a>

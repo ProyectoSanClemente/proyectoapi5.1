@@ -1,12 +1,12 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Requests\CreateImpresoraRequest;
-use App\Http\Requests\UpdateImpresoraRequest;
-use App\Models\Usuario;
-use App\Libraries\Repositories\ImpresoraRepository;
+use App\Http\Requests\CreateImpresora_DepartamentoRequest;
+use App\Http\Requests\UpdateImpresora_DepartamentoRequest;
+use App\Libraries\Repositories\Impresora_DepartamentoRepository;
 use App\Libraries\Repositories\DepartamentoRepository;
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\Impresora;
+//use Illuminate\Database\Eloquent\Collection;
 use Flash;
 use Response;
 use Auth;
@@ -14,32 +14,18 @@ use Goutte\Client;
 
 class ImpresoraController extends Controller
 {
-
-	/** @var  ImpresoraRepository */
-	private $ImpresoraRepository;
+	/** @var  Impresora_DepartamentoRepository */
+	private $impresora_departamentoRepository;
 	/** @var  departamenteoRepository */
 	private $departamentoRepository;
-	private $listaimpresoras;  
 	
-	function __construct(ImpresoraRepository $impresoraRepo,DepartamentoRepository $departamentoRepo)
+	function __construct(Impresora_DepartamentoRepository $impresora_departamentoRepo,DepartamentoRepository $departamentoRepo)
 	{
-		$this->ImpresoraRepository = $impresoraRepo;
+		$this->impresora_departamentoRepository = $impresora_departamentoRepo;
 		$this->departamentoRepository = $departamentoRepo;
 		$this->middleware('auth');
 		$this->middleware('admin',['only' => ['edit','create','delete','show']]);
-
-		$client = new Client();
-		$crawler = $client->request('GET', 'http://10.128.2.16/tinta/printers.php?sort=printers.server&dir=asc');
-		$nodos=$crawler->filter('td');
-		$i=1;
-		$this->listaimpresoras=new Collection;
-		foreach ($nodos as $key => $domElement) {
-			if($i==$key){
-				$i+=7;
-				$imp=new \stdClass;
-	    		$this->listaimpresoras->push($domElement->nodeValue);
-			}
-		}
+		//$this->UpdateImpresorasList();
 	}
 
 	/**
@@ -49,10 +35,9 @@ class ImpresoraController extends Controller
 	 */
 	public function index()
 	{
-		$impresoras = $this->ImpresoraRepository->all();
-		return view('impresoras.index')
-			->with('impresoras', $impresoras)
-			->with('listaimpresoras', $this->listaimpresoras);;
+		$impresorasasignadas=$this->impresora_departamentoRepository->all();
+		return view('impresoras_departamento.index')
+			->with('impresorasasignadas', $impresorasasignadas);
 	}
 
 	/**
@@ -63,23 +48,24 @@ class ImpresoraController extends Controller
 	public function create()
 	{
 		$departamentos=$this->departamentoRepository->lists('nombre', 'id');
-		return view('impresoras.create')
+		$impresoras = Impresora::lists('modelo_impresora','id');
+		return view('impresoras_departamento.create')
 			->with('departamentos',$departamentos)
-			->with('impresoras',$this->listaimpresoras);
+			->with('impresoras',$impresoras);
 	}
 
 	/**
 	 * Store a newly created Impresora in storage.
 	 *
-	 * @param CreateImpresoraRequest $request
+	 * @param CreateImpresora_DepartamentoRequest $request
 	 *
 	 * @return Response
 	 */
-	public function store(CreateImpresoraRequest $request)
+	public function store(CreateImpresora_DepartamentoRequest $request)
 	{
 		$input = $request->all();
-
-		$impresora = $this->ImpresoraRepository->create($input);
+		
+		$impresora = $this->impresora_departamentoRepository->create($input);
 		
 		Flash::success('Impresora asignada satisfactoriamente.');
 		
@@ -95,16 +81,16 @@ class ImpresoraController extends Controller
 	 */
 	public function show($id)
 	{
-		$impresora = $this->ImpresoraRepository->find($id);
+		$impresora = $this->Impresora_DepartamentoRepository->find($id);
 
 		if(empty($impresora))
 		{
-			Flash::error('Impresora no encontrada.');
+			Flash::error('Asignacion de Impresora encontrada.');
 
 			return redirect(route('impresoras.index'));
 		}
 
-		return view('impresoras.show')->with('impresora', $impresora);
+		return view('impresoras_departamento.show')->with('impresora', $impresora);
 	}
 
 	/**
@@ -116,18 +102,19 @@ class ImpresoraController extends Controller
 	 */
 	public function edit($id)
 	{
-		$impresora = $this->ImpresoraRepository->find($id);
+		$impresora = $this->impresora_departamentoRepository->find($id);
 		$departamentos=$this->departamentoRepository->lists('nombre', 'id');
+		$impresoras = Impresora::lists('modelo_impresora','id');
 		if(empty($impresora))
 		{
-			Flash::error('Impresora no encontrada.');
+			Flash::error('Asignacion de Impresora no encontrada.');
 
 			return redirect(route('impresoras.index'));
 		}
 
-		return view('impresoras.edit')
+		return view('impresoras_departamento.edit')
 			->with('impresora', $impresora)
-			->with('impresoras',$this->listaimpresoras)
+			->with('impresoras',$impresoras)
 			->with('departamentos',$departamentos);
 	}
 
@@ -135,23 +122,23 @@ class ImpresoraController extends Controller
 	 * Update the specified Impresora in storage.
 	 *
 	 * @param  int              $id
-	 * @param UpdateImpresoraRequest $request
+	 * @param UpdateImpresora_DepartamentoRequest $request
 	 *
 	 * @return Response
 	 */
-	public function update($id, UpdateImpresoraRequest $request)
+	public function update($id, UpdateImpresora_DepartamentoRequest $request)
 	{
-		$impresora = $this->ImpresoraRepository->find($id);
+		$impresora = $this->impresora_departamentoRepository->find($id);
 		$input = $request->all();
 
 		if(empty($impresora))
 		{
-			Flash::error('Impresora no encontrada.');
+			Flash::error('Asignacion de Impresora no encontrada.');
 
 			return redirect(route('impresoras.index'));
 		}
 		
-		$this->ImpresoraRepository->updateRich($input, $id);
+		$this->impresora_departamentoRepository->updateRich($input, $id);
 		
 		Flash::success('Impresora actualizada satisfactoriamente.');
 		
@@ -167,28 +154,55 @@ class ImpresoraController extends Controller
 	 */
 	public function destroy($id)
 	{
-		$impresora = $this->ImpresoraRepository->find($id);
+		$asignacion = $this->impresora_departamentoRepository->find($id);
 
-		if(empty($impresora))
+		if(empty($asignacion))
 		{
-			Flash::error('Impresora no encontrada.');
+			Flash::error('Asignacion de Impresora no encontrada.');
 
 			return redirect(route('impresoras.index'));
 		}
 
-		$this->ImpresoraRepository->delete($id);
+		$this->impresora_departamentoRepository->delete($id);
 
-		Flash::success('Impresora borrada satisfactoriamente.');
+		Flash::success('Asignacion de Impresora borrada satisfactoriamente.');
 
 		return redirect(route('impresoras.index'));
 	}
 	
 	public function imprimir()
-	{
-		$impresoras=Auth::user()->Departamento->Impresoras;
-		return view('impresoras.imprimir')
-			->with('impresoras',$impresoras)
-			->with('listaimpresoras',$this->listaimpresoras);
+	{	
+		$asignaciones=Auth::user()->Departamento->Impresoras_Departamento;
+		return view('impresoras_departamento.imprimir')
+			->with('asignaciones',$asignaciones);
+
+	}
+
+	public function UpdateImpresorasList()
+	{		
+		$client = new Client();
+		$crawler = $client->request('GET', 'http://10.128.2.16/tinta/printers.php?sort=printers.server&dir=asc');
+		$nodos=$crawler->filter('td');
+		$i=1;
+		$listaimpresoras=new Collection;
+		foreach ($nodos as $key => $domElement) {
+			if($i==$key){
+				$i+=7;
+				$imp=new \stdClass;
+				$modelo_impresora=$domElement->nodeValue;
+	    		$listaimpresoras->push($modelo_impresora);
+	    		$impresora=Impresora::where('modelo_impresora',$modelo_impresora)->first();
+	    		if(empty($impresora)){
+	    			$impresora=new Impresora;
+	    			$impresora->modelo_impresora=$modelo_impresora;
+	    			$impresora->save();
+	    		}
+			}
+		}
+
+		/*foreach ($variable as $key => $value) {
+					# code...
+		}	*/	
 
 	}
 }

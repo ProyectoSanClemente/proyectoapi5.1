@@ -24,7 +24,7 @@ class Impresora extends Model
 
     public function Departamentos()
     {
-        return $this->hasMany('App\Models\Departamento','id_departamento');
+        return $this->hasMany('App\Models\Impresora_Departamento','id_departamento');
     }
 
 

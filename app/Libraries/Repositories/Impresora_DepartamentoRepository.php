@@ -1,11 +1,11 @@
 <?php namespace App\Libraries\Repositories;
 
-use App\Models\Impresor;
+use App\Models\Impresora_Departamento;
 use Bosnadev\Repositories\Eloquent\Repository;
 use Schema;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class ImpresoraRepository extends Repository
+class Impresora_DepartamentoRepository extends Repository
 {
 
     /**
@@ -14,12 +14,12 @@ class ImpresoraRepository extends Repository
     **/
     public function model()
     {
-      return 'App\Models\Impresora';
+      return 'App\Models\Impresora_Departamento';
     }
 
 	public function search($input)
     {
-        $query = Impresora::query();
+        $query = Impresora_Departamento::query();
 
         $columns = Schema::getColumnListing('impresoras');
         $attributes = array();

@@ -7,7 +7,7 @@
 
     {!! Form::open(['route' => 'impresoras.store']) !!}
 
-        @include('impresoras.fields')
+        @include('impresoras_departamento.fields')
 
     {!! Form::close() !!}
 </div>

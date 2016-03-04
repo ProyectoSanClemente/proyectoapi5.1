@@ -25,15 +25,14 @@ class Departamento extends Model
 	    "nombre" => "required",
 	];
 
-
-    public function Impresoras()
-    {
-        return $this->hasMany('App\Models\Impresora','id_departamento');
-    }
-
-     public function Usuarios()
+    public function Usuarios()
     {
         return $this->hasMany('App\Models\Usuario','id_departamento');
+    }
+
+    public function Impresoras_Departamento()
+    {
+        return $this->hasMany('App\Models\Impresora_Departamento','id_departamento');
     }
 
 }

@@ -11,10 +11,10 @@
         </div>
         <hr>
         <div class="row">
-            @if($impresoras->isEmpty())
+            @if($impresorasasignadas->isEmpty())
                 <div class="well text-center">Impresoras no encontradas.</div>
             @else
-                @include('impresoras.table')
+                @include('impresoras_departamento.table')
             @endif
         </div>
     </div>

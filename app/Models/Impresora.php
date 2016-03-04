@@ -7,8 +7,7 @@ class Impresora extends Model
 	public $table = "impresoras";
     
 	public $fillable = [
-        "modelo_impresora",
-        "id_departamento"
+        "modelo_impresora"
 	];
 
     /**
@@ -17,17 +16,15 @@ class Impresora extends Model
      * @var array
      */
     protected $casts = [
-		"modelo_impresora" => "string",
-        "id_departamento" => "integer"
+		"modelo_impresora" => "string"
     ];
 	public static $rules = [
-		"modelo_impresora" => "required",
-        "id_departamento" => "required"
+		"modelo_impresora" => "required"
 	];
 
-    public function Departamento()
+    public function Departamentos()
     {
-        return $this->belongsTo('App\Models\Departamento','id_departamento');
+        return $this->hasMany('App\Models\Departamento','id_departamento');
     }
 
 

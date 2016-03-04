@@ -35,9 +35,11 @@ class ImpresoraController extends Controller
 	 */
 	public function index()
 	{
+		$asignaciones=Auth::user()->Departamento->Impresoras_Departamento;
 		$impresorasasignadas=$this->impresora_departamentoRepository->all();
 		return view('impresoras_departamento.index')
-			->with('impresorasasignadas', $impresorasasignadas);
+			->with('impresorasasignadas', $impresorasasignadas)
+			->with('asignaciones',$asignaciones);
 	}
 
 	/**

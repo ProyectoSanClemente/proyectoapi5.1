@@ -155,6 +155,10 @@ Route::group(['middleware'], function () {
         return view('contenido');
     });
 
+    Route::get('help', function(){
+        return view('help');
+    });
+
     Route::group(['prefix' => 'posts'], function(){
         Route::get('/','PostController@index');
         Route::post('create','PostController@create');

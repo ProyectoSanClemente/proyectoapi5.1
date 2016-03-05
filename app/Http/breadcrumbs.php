@@ -148,3 +148,8 @@ Breadcrumbs::register('departamentoedit',function($breadcrumbs){
 	$breadcrumbs->parent('departamentos');
 	$breadcrumbs->push('Editar',url('departamentos/edit'));
 });
+
+// Help
+Breadcrumbs::register('help',function($breadcrumbs){
+	$breadcrumbs->push('Ayuda',url('help'));
+});

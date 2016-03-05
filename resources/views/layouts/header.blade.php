@@ -32,6 +32,7 @@
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
             <!-- Authentication Links -->
+                <li><a href="{{url('help')}}"><i class="fa fa-question"></i><p>Ayuda</p></a></li>
                 @if (Auth::guest())
                     <li> <a href="{!!  url('/login')  !!}"><i class="fa fa-btn fa-sign-in"></i><p>Inicio Sesión</p></a> </li>
 

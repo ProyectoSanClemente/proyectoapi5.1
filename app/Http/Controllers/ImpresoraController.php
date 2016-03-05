@@ -25,7 +25,6 @@ class ImpresoraController extends Controller
 		$this->departamentoRepository = $departamentoRepo;
 		$this->middleware('auth');
 		$this->middleware('admin',['only' => ['edit','create','delete','show']]);
-		//$this->UpdateImpresorasList();
 	}
 
 	/**
@@ -49,6 +48,7 @@ class ImpresoraController extends Controller
 	 */
 	public function create()
 	{
+		//$this->UpdateImpresorasList();
 		$departamentos=$this->departamentoRepository->lists('nombre', 'id');
 		$impresoras = Impresora::lists('modelo_impresora','id');
 		return view('impresoras_departamento.create')
@@ -104,6 +104,7 @@ class ImpresoraController extends Controller
 	 */
 	public function edit($id)
 	{
+		//$this->UpdateImpresorasList();
 		$impresora = $this->impresora_departamentoRepository->find($id);
 		$departamentos=$this->departamentoRepository->lists('nombre', 'id');
 		$impresoras = Impresora::lists('modelo_impresora','id');

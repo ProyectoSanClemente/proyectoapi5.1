@@ -39,7 +39,7 @@
                                 <div class="portlet-body form">                   
                                     <div class="scroller scroll-users">
                                         <!--  Listado de conversaciones activas-->
-                                        <input id="search-user" class="form-control" type="text" value="">
+                                        {!! Form::text('search-user',null,['id'=>'search-user','class'=>'form-control','style'=>'margin-bottom:20px'])!!}
                                         <ol id="users-list" class="list-group" style="list-style-type: none">
                                             @foreach ($users as $user)
                                                 <li><a href="#" class="user-selected" data-user2_id="{{$user->id}}" data-user2_accountname="{{ $user->accountname}}">

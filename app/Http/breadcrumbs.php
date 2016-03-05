@@ -149,7 +149,8 @@ Breadcrumbs::register('departamentoedit',function($breadcrumbs){
 	$breadcrumbs->push('Editar',url('departamentos/edit'));
 });
 
-// Help
+//  Home > Help
 Breadcrumbs::register('help',function($breadcrumbs){
+	$breadcrumbs->parent('home');
 	$breadcrumbs->push('Ayuda',url('help'));
 });

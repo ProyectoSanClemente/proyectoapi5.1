@@ -64,16 +64,14 @@
       
             <div class="info">
                 Para acceder a la <b>Intranet</b> debe ingresar:<br><br>
-                <b>Nombre de Usuario:</b> asdsadasdsadasad.<br><br>
-                <b>Contraseña:</b> asdasdasasdasdasdasasda.<br><br>
+                <b>Nombre de Usuario:</b><br>
+                <b>Contraseña:</b><br><br>
                 <b>"Si no acepta la clave, asegúrese de haberla escrito con mayúsculas, o en su defecto pruebe con minúsculas".</b><br><br>
                 <p><b><u>Si no puede acceder:</u></b> Rogamos enviar un correo a: <a href="mailto:admin@sanclemente.cl">admin@sanclemente.cl</a>, indicando su problemática. El inconveniente será solucionado con un margen máximo de 72 horas hábiles.</p>
             </div><br>
 
             <div class="text-right"><b>Administración Intranet</b><br>Departamento Informática<br>Ilustre Municipalidad San Clemente</div>
-</div>
-    
-        
+        </div>
     </div>
 </div>
 @endsection

@@ -6,7 +6,7 @@
         <div class="panel-body">          
             <!-- Zimbra Id Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('id_zimbra', 'Zimbra Id:') !!}
+                {!! Form::label('id_zimbra', 'Zimbra Usuario:') !!}
                 @if(empty($cuenta->id_zimbra))
                     {!! Form::label('id_solicitudcompras', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -16,7 +16,7 @@
 
             <!-- Zimbra Pass Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('pass_zimbra', 'Zimbra Pass:') !!}
+                {!! Form::label('pass_zimbra', 'Zimbra Contraseña:') !!}
                 @if(empty($cuenta->pass_zimbra))
                     {!! Form::label('pass_zimbra', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -28,7 +28,7 @@
         <div class="panel-body">
              <!-- Sidam Id Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('id_sidam', 'Sidam Id:') !!}
+                {!! Form::label('id_sidam', 'Sidam Usuario:') !!}
                 @if(empty($cuenta->id_sidam))
                     {!! Form::label('id_sidam', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -37,7 +37,7 @@
             </div>
             <!-- Sidam Pass Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('pass_sidam', 'Sidam Pass:') !!}
+                {!! Form::label('pass_sidam', 'Sidam Contraseña:') !!}
                 @if(empty($cuenta->pass_sidam))
                     {!! Form::label('pass_sidam', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -48,7 +48,7 @@
         <div class="panel-body">
             <!-- Crecic Id Field -->
             <div class="form-grouicp col-sm-6">
-                {!! Form::label('id_crecic', 'Crecic Id:') !!}
+                {!! Form::label('id_crecic', 'Crecic Usuario:') !!}
                 @if(empty($cuenta->id_crecic))
                     {!! Form::label('id_crecic', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -58,7 +58,7 @@
 
             <!-- Crecic Pass Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('pass_crecic', 'Crecic Pass:') !!}
+                {!! Form::label('pass_crecic', 'Crecic Contraseña:') !!}
                 @if(empty($cuenta->pass_crecic))
                     {!! Form::label('pass_crecic', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -69,7 +69,7 @@
         <div class="panel-body">
             <!-- Nube Id Field -->
             <div class="form-grouicp col-sm-6">
-                {!! Form::label('id_owncloud', 'Nube Id:') !!}
+                {!! Form::label('id_owncloud', 'Nube Usuario:') !!}
                 @if(empty($cuenta->id_owncloud))
                     {!! Form::label('id_owncloud', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -79,7 +79,7 @@
 
             <!-- Nube Pass Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('pass_owncloud', 'Nube Pass:') !!}
+                {!! Form::label('pass_owncloud', 'Nube Contraseña:') !!}
                 @if(empty($cuenta->pass_owncloud))
                     {!! Form::label('pass_owncloud', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -91,7 +91,7 @@
         <div class="panel-body">          
             <!-- Solicitud Compras Id Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('id_solicitudcompras', 'Solicitud Compras id: ') !!}
+                {!! Form::label('id_solicitudcompras', 'Solicitud Compras Usuario: ') !!}
                 @if(empty($cuenta->id_solicitudcompras))
                     {!! Form::label('id_solicitudcompras', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -101,7 +101,7 @@
 
             <!-- Solicitud Compras Pass Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('pass_solicitudcompras', 'Solicitud Compras Pass:') !!}
+                {!! Form::label('pass_solicitudcompras', 'Solicitud Compras Contraseña:') !!}
                 @if(empty($cuenta->pass_solicitudcompras))
                     {!! Form::label('pass_solicitudcompras', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -113,7 +113,7 @@
         <div class="panel-body">          
             <!-- Boleta Id Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('id_boleta', 'Boleta id: ') !!}
+                {!! Form::label('id_boleta', 'Boleta Usuario: ') !!}
                 @if(empty($cuenta->id_boleta))
                     {!! Form::label('id_boleta', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -123,7 +123,7 @@
 
             <!-- Boleta Pass Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('pass_boleta', 'Boleta Pass:') !!}
+                {!! Form::label('pass_boleta', 'Boleta Contraseña:') !!}
                 @if(empty($cuenta->pass_boleta))
                     {!! Form::label('pass_boleta', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -135,7 +135,7 @@
         <div class="panel-body">          
             <!-- Garantia Id Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('id_garantia', 'Garantia id: ') !!}
+                {!! Form::label('id_garantia', 'Garantia Usuario: ') !!}
                 @if(empty($cuenta->id_garantia))
                     {!! Form::label('id_garantia', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -145,7 +145,7 @@
 
             <!-- Garantia Pass Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('pass_garantia', 'Garantia Pass:') !!}
+                {!! Form::label('pass_garantia', 'Garantia Contraseña:') !!}
                 @if(empty($cuenta->pass_garantia))
                     {!! Form::label('pass_garantia', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -157,7 +157,7 @@
         <div class="panel-body">          
             <!-- Bodega Id Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('id_bodega', 'Bodega id: ') !!}
+                {!! Form::label('id_bodega', 'Bodega Usuario: ') !!}
                 @if(empty($cuenta->id_bodega))
                     {!! Form::label('id_bodega', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -167,7 +167,7 @@
 
             <!-- Bodega Pass Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('pass_bodega', 'Bodega Pass:') !!}
+                {!! Form::label('pass_bodega', 'Bodega Contraseña:') !!}
                 @if(empty($cuenta->pass_bodega))
                     {!! Form::label('pass_bodega', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -179,7 +179,7 @@
         <div class="panel-body">          
             <!-- Social Id Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('id_social', 'Social id: ') !!}
+                {!! Form::label('id_social', 'Social Usuario: ') !!}
                 @if(empty($cuenta->id_social))
                     {!! Form::label('id_social', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -189,7 +189,7 @@
 
             <!-- Social Pass Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('pass_social', 'Social Pass:') !!}
+                {!! Form::label('pass_social', 'Social Contraseña:') !!}
                 @if(empty($cuenta->pass_social))
                     {!! Form::label('pass_social', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -201,7 +201,7 @@
         <div class="panel-body">          
             <!-- Plan Id Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('id_plan', 'Plan id: ') !!}
+                {!! Form::label('id_plan', 'Plan Usuario: ') !!}
                 @if(empty($cuenta->id_plan))
                     {!! Form::label('id_plan', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -211,7 +211,7 @@
 
             <!-- Plan Pass Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('pass_plan', 'Plan Pass:') !!}
+                {!! Form::label('pass_plan', 'Plan Contraseña:') !!}
                 @if(empty($cuenta->pass_plan))
                     {!! Form::label('pass_plan', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -225,7 +225,7 @@
         <div class="panel-body">          
             <!-- Process Maker Id Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('id_processmaker', 'ProcessMaker id: ') !!}
+                {!! Form::label('id_processmaker', 'ProcessMaker Usuario: ') !!}
                 @if(empty($cuenta->id_processmaker))
                     {!! Form::label('id_processmaker', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -235,7 +235,7 @@
 
             <!-- Plan Pass Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('pass_processmaker', 'ProcessMaker Pass:') !!}
+                {!! Form::label('pass_processmaker', 'ProcessMaker Contraseña:') !!}
                 @if(empty($cuenta->pass_processmaker))
                     {!! Form::label('pass_processmaker', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -247,7 +247,7 @@
         <div class="panel-body">          
             <!-- Glpi Id Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('id_glpi', 'Glpi id: ') !!}
+                {!! Form::label('id_glpi', 'Glpi Usuario: ') !!}
                 @if(empty($cuenta->id_glpi))
                     {!! Form::label('id_glpi', 'Sin Datos',['style'=>'color:red']) !!}
                 @else
@@ -257,7 +257,7 @@
 
             <!-- Glpi Pass Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('pass_glpi', 'Glpi Pass:') !!}
+                {!! Form::label('pass_glpi', 'Glpi Contraseña:') !!}
                 @if(empty($cuenta->pass_glpi))
                     {!! Form::label('pass_glpi', 'Sin Datos',['style'=>'color:red']) !!}
                 @else

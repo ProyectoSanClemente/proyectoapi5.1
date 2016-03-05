@@ -1,9 +1,9 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Models\Impresora;
+use App\Models\Impresora_Departamento;
 
-class CreateImpresoraRequest extends Request {
+class UpdateImpresora_DepartamentoRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class CreateImpresoraRequest extends Request {
 	 */
 	public function rules()
 	{
-		return Impresora::$rules;
+		return Impresora_Departamento::$rules;
 	}
 
 }

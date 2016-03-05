@@ -6,7 +6,7 @@
     @include('common.errors')
 
     {!! Form::model($impresora, ['route' => ['impresoras.update', $impresora->id], 'method' => 'patch']) !!}
-        @include('impresoras.fields')
+        @include('impresoras_departamento.fields')
 
     {!! Form::close() !!}
 </div>

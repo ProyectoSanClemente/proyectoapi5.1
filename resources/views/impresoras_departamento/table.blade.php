@@ -1,20 +1,20 @@
 <table id="impresoras" class="table">
     <thead>
     <th>Departamento</th>
-	<th>Modelo Impresora</th>
+	<th>Modelo asignada</th>
     <th width="50px">Acciones</th>
     </thead>
     <tbody>
-    @foreach($impresoras as $impresora)
-        <tr id="{{$impresora->id}}">
-            <td>{!! $impresora->Departamento->nombre!!}</td>
-			<td>{!! $listaimpresoras[$impresora->modelo_impresora] !!}</td>
-            <td>
-                <a href="{!! route('impresoras.edit', [$impresora->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
-                <a href="{!! route('impresoras.delete', [$impresora->id]) !!}" onclick="return confirm('Estas seguro que deseas eliminar esta asignacion de impresora?')"><i class="glyphicon glyphicon-remove"></i></a>
-            </td>
-        </tr>
-    @endforeach
+        @foreach($impresorasasignadas as $asignada)
+            <tr id="{{$asignada->id}}">
+                <td>{!! $asignada->Departamento->nombre!!}</td>
+    			<td>{!! $asignada->Impresora->modelo_impresora !!}</td>
+                <td>
+                    <a href="{!! route('impresoras.edit', [$asignada->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="{!! route('impresoras.delete', [$asignada->id]) !!}" onclick="return confirm('Estas seguro que deseas eliminar esta asignacion de asignada?')"><i class="glyphicon glyphicon-remove"></i></a>
+                </td>
+            </tr>
+        @endforeach
     </tbody>
 </table>
 
@@ -41,17 +41,17 @@
         items: {
             "edit": {name: "Editar", icon: "edit",callback: function(){
                     var id=$(this).attr('id');
-                    url="{{ route('impresoras.edit', $impresora->id) }}"
-                    var url = url.replace("{{$impresora->id}}",id);
+                    url="{{ route('impresoras.edit', $asignada->id) }}"
+                    var url = url.replace("{{$asignada->id}}",id);
                     window.location.href = url;            
                 }
             },
             "delete": {name: "Eliminar", icon: "fa-trash",callback: function(){
-                    var answer=confirm('Estas seguro que deseas eliminar esta asignacion de impresora?');
+                    var answer=confirm('Estas seguro que deseas eliminar esta asignacion de asignada?');
                     if(answer){
                         var id=$(this).attr('id');
-                        url="{{ route('impresoras.delete', $impresora->id) }}"
-                        var url = url.replace("{{$impresora->id}}",id);
+                        url="{{ route('impresoras.delete', $asignada->id) }}"
+                        var url = url.replace("{{$asignada->id}}",id);
                         window.location.href = url;        
                     }
                 }

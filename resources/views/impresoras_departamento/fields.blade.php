@@ -7,9 +7,9 @@
 </div>
 
 <div class="form-group">                           
-    {!! Form::label('modelo_impresora', 'Impresoras:',['class'=>"col-md-4 control-label"]) !!}
+    {!! Form::label('id_impresora', 'Impresoras:',['class'=>"col-md-4 control-label"]) !!}
     <div class="col-md-6">
-        {!! Form::select('modelo_impresora', $impresoras,null,['class'=>'form-control']) !!}
+        {!! Form::select('id_impresora', $impresoras,null,['class'=>'form-control']) !!}
     </div>
 </div>
 

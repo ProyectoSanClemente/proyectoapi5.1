@@ -43,6 +43,7 @@
                             </div>
                         </p>
                     </div>
+                    <div align="right" style="margin-right: 20px">Publicada: {{$notice->updated_at}}</div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
-var url= 'localhost';
-var urlnotifications= 'http://'+url+'/proyectoapi5.1/public/';
+var url= '127.0.0.1';
+var urlnotifications= 'http://localhost/proyectoapi5.1/public/';
 $(document).ready(function(){
 	 GetUnseenMails();
 	 GetConversationsUseen();

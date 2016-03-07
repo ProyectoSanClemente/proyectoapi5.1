@@ -13,17 +13,18 @@
       @endif</h4>
       <hr>
         <p>{!!$posteo->contenido!!}</p>
-        <hr>
 
-        <a class="foto" id="foto">
-        @if (!empty($posteo->imagen)) 
-          {!! HTML::image($posteo->imagen)!!}
-        @endif
-        @if (!empty($posteo->archivo))
-        <a href="{{URL::to($posteo->archivo)}}" target="_blank" download="{!!basename($posteo->archivo)!!}">{!!basename($posteo->archivo)!!}</a>
-        @endif
-        </a>
-        <hr>
+        <div class="foto" id="foto">
+          @if (!empty($posteo->imagen)) 
+                  <hr>
+            {!! HTML::image($posteo->imagen)!!}
+          @endif
+          @if (!empty($posteo->archivo))
+          <hr>Archivos Adjuntos : 
+          <a href="{{URL::to($posteo->archivo)}}" target="_blank" download="{!!basename($posteo->archivo)!!}">{!!basename($posteo->archivo)!!}</a>
+          @endif
+                  <hr>
+        </div>
         <ul class="list-inline list-unstyled">
     			<li><span><i class="glyphicon glyphicon-calendar"></i> {!!$posteo->created_at->diffForHumans()!!} </span></li>
           <li>|</li>

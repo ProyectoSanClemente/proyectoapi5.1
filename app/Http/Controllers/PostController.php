@@ -59,7 +59,7 @@ class PostController extends AppBaseController
 			}
 			$filename = 'posts/'.$input['id_usuario'].'/'.$input['titulo'].date("GisdY").'.jpg';
 		    $input['imagen']=$filename;
-		    Image::make(Input::file('imagen'))->resize(640, 480)->save($filename);
+		    Image::make(Input::file('imagen'))->resize(480, 360)->save($filename);
 		}
 
 		if (!empty($input['archivo'])) {

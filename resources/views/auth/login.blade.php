@@ -14,7 +14,10 @@
                         <div class="form-group{{ $errors->has('accountname') ? ' has-error' : '' }}">
                             {!! Form::label(null,'Usuario',['class'=>'col-md-4 control-label'])!!}
                             <div class="col-md-6">
+                            <div class="input-group">                                
                                 {!! Form::input('accountname','accountname',old('accountname') ,['class'=>'form-control','id'=>'accountname'])!!}
+                                 <label class="input-group-addon glyphicon glyphicon-user"></label>
+                            </div>
                                 @if ($errors->has('accountname'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('accountname') }}</strong>
@@ -27,8 +30,10 @@
                             {!!Form::label('password','Contraseña',['class'=>'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
-                                {!! Form::input('password', 'password', null,['class'=>'form-control']) !!}
-                                
+                                <div class="input-group">
+                                    {!! Form::input('password', 'password', null,['class'=>'form-control']) !!}
+                                    <label class="input-group-addon glyphicon glyphicon-lock"></label>
+                                </div>
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -50,7 +55,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i>Entrar
+                                    <i class="fa fa-btn fa-sign-in"></i> Entrar
                                 </button>
 
                             </div>
@@ -75,3 +80,13 @@
     </div>
 </div>
 @endsection
+
+@push('styles')
+<style type="text/css">
+    .input-group-addon {
+        color: #fff;
+        background: #3276B1;
+        margin-bottom: 2px;
+    }
+</style>
+@endpush

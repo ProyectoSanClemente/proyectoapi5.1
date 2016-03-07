@@ -105,6 +105,7 @@ function show_messages(){
 }
 
 function send_message(input){
+    var url='10.128.2.59';
     var input = $('.text-message').val();
     var output = emojione.shortnameToImage(input.replace(/<[^>]*>/g, ''));
     var dataString = {

@@ -125,7 +125,7 @@ function send_message(input){
         success: function(data){
             if(data.success == true){
                 $('.text-message').val('');
-                var socket = io.connect( 'http://'+window.location.hostname+':3000');
+                var socket = io.connect(url+':3000');
                 socket.emit('new_message',{ 
                     sender: data.sender,
                     user2_accountname: data.user2_accountname,

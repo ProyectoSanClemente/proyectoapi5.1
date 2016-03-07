@@ -60,6 +60,7 @@
                             @else
                                 {!! $notice->contenido !!}
                             @endif
+                                <br><br>{!! $notice->updated_at !!}
                             @include('noticias.show')
                             <hr>                    
                         @endforeach

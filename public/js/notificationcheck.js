@@ -1,4 +1,5 @@
- var url= 'getunseen';
+var url= 'localhost';
+var urlnotifications= 'http://'+url+'/proyectoapi5.1/public/';
 $(document).ready(function(){
 	 GetUnseenMails();
 	 GetConversationsUseen();
@@ -8,7 +9,7 @@ function GetUnseenMails(){
 	$.ajax({
         type: "GET",
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url: url,
+        url: urlnotifications+'getunseen',
         dataType: "json",
         timeout: 2000,
         cache : true,
@@ -16,8 +17,6 @@ function GetUnseenMails(){
         	$('#mails-unseen').html(data);
         },
         error: function(xhr, status, error) {
-            url='../getunseen';
-            //GetUnseenMails();
         },
         
     });
@@ -32,7 +31,7 @@ function GetConversationsUseen(){
 	$.ajax({
  		type: "POST",
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url: "chat/getunseen",
+        url: urlnotifications+"chat/getunseen",
         data: dataString,
         dataType: "json",
         cache : false,

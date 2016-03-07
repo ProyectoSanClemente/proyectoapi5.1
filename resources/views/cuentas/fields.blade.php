@@ -2,7 +2,10 @@
     <div class="panel panel-default" style="height:auto">
         <div align ="center" class="panel-heading clearfix">
         <h4 class="panel-title pull-center">Cuentas de: {{$usuario->accountname}} </h4></div>        
-        <div class="panel-body">          
+        <div class="panel-body">
+            
+            {!! Form::hidden('id_usuario',$usuario->id) !!}
+            
             <!-- Zimbra Id Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('id_zimbra', 'Zimbra Usuario') !!}

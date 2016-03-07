@@ -1,5 +1,4 @@
-var socket = io.connect( 'http://'+window.location.hostname+':3000' );
-
+var socket = io.connect( 'http://'+url+':3000' );
 
 socket.on('new_message', function( data ) {
 	if($('.div_conversation').text()=='Aun no hay mensajes enviados')
@@ -29,7 +28,7 @@ socket.on('new_message', function( data ) {
 		$.ajax({
 	 		type: "POST",
 	        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-	        url: "chat/getunseen",
+	        url: urlnotifications+"/chat/getunseen",
 	        data: dataString,
 	        dataType: "json",
 	        cache : false,

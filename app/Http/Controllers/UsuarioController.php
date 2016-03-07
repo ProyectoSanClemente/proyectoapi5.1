@@ -72,7 +72,7 @@ class UsuarioController extends Controller
 		
 		if (Input::hasFile('imagen')){
 			$input['imagen'] = 'images/avatar/'.$input['accountname'].'.jpg';              
-            Image::make(Input::file('imagen'))->resize(300, 300)->save($input['imagen']);
+            Image::make(Input::file('imagen'))->save($input['imagen']);
         }
         else
         	$input['imagen']='images/avatar/default.png';
@@ -140,7 +140,7 @@ class UsuarioController extends Controller
 
 		if (Input::hasFile('imagen')){//Actualizar Imagen
 			$input['imagen'] = 'images/avatar/'.$usuario->accountname.'.jpg';         
-            Image::make(Input::file('imagen'))->resize(300, 300)->save($input['imagen']);
+            Image::make(Input::file('imagen'))->save($input['imagen']);
         }
 
         $this->usuarioRepository->updateRich($input, $id);

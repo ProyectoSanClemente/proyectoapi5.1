@@ -1,4 +1,4 @@
-var url= '127.0.0.1';
+var url= 'localhost';
 var socket  = require( './public/node_modules/socket.io' );
 var express = require('./public/node_modules/express');
 var app     = express();

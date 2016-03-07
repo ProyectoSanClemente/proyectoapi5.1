@@ -6,7 +6,7 @@ use App\Http\Requests\UpdateImpresora_DepartamentoRequest;
 use App\Libraries\Repositories\Impresora_DepartamentoRepository;
 use App\Libraries\Repositories\DepartamentoRepository;
 use App\Models\Impresora;
-//use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Collection;
 use Flash;
 use Response;
 use Auth;
@@ -48,7 +48,7 @@ class ImpresoraController extends Controller
 	 */
 	public function create()
 	{
-		//$this->UpdateImpresorasList();
+		$this->UpdateImpresorasList();
 		$departamentos=$this->departamentoRepository->lists('nombre', 'id');
 		$impresoras = Impresora::lists('modelo_impresora','id');
 		return view('impresoras_departamento.create')
@@ -104,7 +104,7 @@ class ImpresoraController extends Controller
 	 */
 	public function edit($id)
 	{
-		//$this->UpdateImpresorasList();
+		$this->UpdateImpresorasList();
 		$impresora = $this->impresora_departamentoRepository->find($id);
 		$departamentos=$this->departamentoRepository->lists('nombre', 'id');
 		$impresoras = Impresora::lists('modelo_impresora','id');

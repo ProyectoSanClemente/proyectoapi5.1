@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
         if ($e instanceof AdldapException) {
-            Flash::warning('No se pudo conectar con el Directorio Activo, reinicie la conexion o revise sus datos.');
+            Flash::error('No se pudo conectar con el Directorio Activo, reinicie la conexion o revise sus datos.');
             return response()->view('errors.errors');
         }
 
@@ -66,7 +66,7 @@ class Handler extends ExceptionHandler
                 Flash::error('El password ingresado no es válido');
                 return redirect('login')->withInput();
             }
-            Flash::warning($message);
+            Flash::error($message);
             return redirect(url('home'));
         }
         

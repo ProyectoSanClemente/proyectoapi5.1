@@ -1,6 +1,5 @@
-var url='10.128.2.59';
+var url= 'http://localhost/proyectoapi5.1/public/';
 var socket = io.connect( 'http://'+window.location.hostname+':3000' );
-
 
 socket.on('new_message', function( data ) {
 	if($('.div_conversation').text()=='Aun no hay mensajes enviados')
@@ -30,7 +29,7 @@ socket.on('new_message', function( data ) {
 		$.ajax({
 	 		type: "POST",
 	        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-	        url: "chat/getunseen",
+	        url: url+"chat/getunseen",
 	        data: dataString,
 	        dataType: "json",
 	        cache : false,

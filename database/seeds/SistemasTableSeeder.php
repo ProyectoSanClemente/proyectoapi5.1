@@ -60,18 +60,6 @@ class SistemasTableSeeder extends Seeder
             'funcion' => 'garantia',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],
-            ['nombre_sistema' =>'Bodega',
-            'imagen_sistema' => 'images/sistemas/Bodega.jpg',            
-            'controlador' => 'cuentas',
-            'funcion' => 'bodega',
-            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
-            ],
-            ['nombre_sistema' =>'Social',
-            'imagen_sistema' => 'images/sistemas/Social.jpg',            
-            'controlador' => 'cuentas',
-            'funcion' => 'social',
-            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
-            ],
             ['nombre_sistema' =>'Plan',
             'imagen_sistema' => 'images/sistemas/Plan.jpg',            
             'controlador' => 'cuentas',

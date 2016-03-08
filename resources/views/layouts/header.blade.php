@@ -15,19 +15,22 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 @if(!Auth::guest())
-                    @if(Auth::user()->rol=='admin')   
+                    @if(Auth::user()->rol=='admin') 
                         <li> <a href="{{url('usuarios')}}"><i class="fa fa-users"></i><p>Usuarios</p></a> </li>
                         <li> <a href="{{url('departamentos')}}"><i class="glyphicon glyphicon-align-justify"></i><p>Departamentos</p></a> </li>
-                        <li> <a href="{{url('noticias')}}"><i class="fa fa-newspaper-o"></i><p>Noticias</p></a></li>
+                        
                         <li> <a href="{{url('impresoras')}}"><i class="glyphicon glyphicon-print"></i><p>Impresoras</p></a> </li>
                     @endif
-                        <li><a href="{{url('cuentas')}}"><i class="glyphicon glyphicon-hdd"></i><p>Cuentas</p></a> </li>
-                        {{-- <li> <a href="{{url('impresoras')}}"><i class="glyphicon glyphicon-print"></i><p>Impresoras</p></a> </li> --}}
-                        <li> <a href="{{url('anexos')}}"><i class="fa fa-phone"></i><p>Anexos</p></a></li>
-                        <li><a href="{{url('emails/unseen')}}"><i class="fa fa-envelope"><span class="label" id='mails-unseen'><div class="glyphicon glyphicon-remove"></div></span></i><p>Correo</p></a></li>
-                        <li><a href="{{url('sistemas')}}"><i class="glyphicon glyphicon-th-large"></i><p>Sistemas</p></a></li>
-                        <li><a href="{{url('chat')}}"><i class="fa fa-whatsapp"><span class="label" id='conversation-unseen'></span></i><p>Chat</p></a></li>
-                        <li><a href="{{url('repositorios')}}"><i class="glyphicon glyphicon-file"></i><p>Repositorios</p></a></li>
+                    @if(Auth::user()->rol!='usuario')
+                        <li> <a href="{{url('noticias')}}"><i class="fa fa-newspaper-o"></i><p>Noticias</p></a></li>
+                        @endif
+                    <li><a href="{{url('cuentas')}}"><i class="glyphicon glyphicon-hdd"></i><p>Cuentas</p></a> </li>
+                    {{-- <li> <a href="{{url('impresoras')}}"><i class="glyphicon glyphicon-print"></i><p>Impresoras</p></a> </li> --}}
+                    <li> <a href="{{url('anexos')}}"><i class="fa fa-phone"></i><p>Anexos</p></a></li>
+                    <li><a href="{{url('emails/unseen')}}"><i class="fa fa-envelope"><span class="label" id='mails-unseen'><div class="glyphicon glyphicon-remove"></div></span></i><p>Correo</p></a></li>
+                    <li><a href="{{url('sistemas')}}"><i class="glyphicon glyphicon-th-large"></i><p>Sistemas</p></a></li>
+                    <li><a href="{{url('chat')}}"><i class="fa fa-whatsapp"><span class="label" id='conversation-unseen'></span></i><p>Chat</p></a></li>
+                    <li><a href="{{url('repositorios')}}"><i class="glyphicon glyphicon-file"></i><p>Repositorios</p></a></li>
                 @endif
             </ul>
 

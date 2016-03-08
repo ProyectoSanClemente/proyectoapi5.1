@@ -34,10 +34,8 @@
                         <div class="form-group{{ $errors->has('rut') ? ' has-error' : '' }}">
                             <div class="form-group">
                                 {!! Form::label('rut', 'Rut:',['class'=>"col-md-4 control-label"]) !!}
-                                <div class="col-md-6">
-                                    
+                                <div class="col-md-6">                                    
                                     {!! Form::text('rut', null, ['class' => 'form-control','Placeholder'=>'Ej:11.111.111-1  o  11111111-1']) !!}
-                                
                                  @if ($errors->has('rut'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('rut') }}</strong>

@@ -20,7 +20,7 @@ class NoticeController extends Controller
 	{
 		$this->noticeRepository = $noticeRepo;
 		$this->middleware('auth');
-		$this->middleware('admin');
+		$this->middleware('nouser');
 		setlocale (LC_TIME, "es_ES");
 	}
 

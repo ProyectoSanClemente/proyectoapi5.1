@@ -66,14 +66,23 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Departamento Select -->
-                    <div class="form-group">                           
-                        {!! Form::label('Departamento', 'Departamento:',['class'=>"col-md-4 control-label"]) !!}
-                        <div class="col-md-6">
-                            {!! Form::select('id_departamento', $departamentos,$usuario->Departamento->id,['class'=>'form-control']) !!}
+                    @if(Auth::user()->rol=='admin')
+                        <!-- Departamento Select -->
+                        <div class="form-group">                           
+                            {!! Form::label('Departamento', 'Departamento:',['class'=>"col-md-4 control-label"]) !!}
+                            <div class="col-md-6">
+                                {!! Form::select('id_departamento', $departamentos,$usuario->Departamento->id,['class'=>'form-control']) !!}
+                            </div>
                         </div>
-                    </div>
+                        
+                        <!-- Rol Select -->
+                        <div class="form-group">                           
+                            {!! Form::label('rol', 'Rol:',['class'=>"col-md-4 control-label"]) !!}
+                            <div class="col-md-6">
+                                {!!Form::select('rol', ['usuario' => 'Usuario', 'admin' => 'Administrador','publicador'=>'Publicador'],null,['class'=>'form-control']);!!}           
+                            </div>
+                        </div>
+                    @endif
 
                     <!-- Imagen Field -->
                     <div class="form-group"> 

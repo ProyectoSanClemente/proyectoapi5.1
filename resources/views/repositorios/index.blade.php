@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        {!! Breadcrumbs::render('anexo')!!}
+        {!! Breadcrumbs::render('repositorios')!!}
         @include('flash::message')
         <div class="row">
             <h1 class="pull-left">Repositorios</h1>

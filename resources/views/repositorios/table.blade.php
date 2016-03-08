@@ -1,31 +1,32 @@
-    @foreach($repositorios as $repositorio)
+@foreach($repositorios as $repositorio)   
         
-        <div class="col-sm-6">          
-                <div class="well">
+    <div class="panel-group col-sm-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a data-toggle="collapse" href="#collapse-{{$repositorio->id}}">Repositorio: {{$repositorio->nombre}}</a>
+                     <a class="btn btn-sm btn-primary glyphicon glyphicon-chevron-down pull-right" data-toggle="collapse" href="#collapse-{{$repositorio->id}}"></a>
+                </div>              
+            </div>
+            <div id="collapse-{{$repositorio->id}}" class="panel-collapse collapse">
                 @if(Auth::user()->rol=='admin')
-                   <a href="{!! route('repositorios.delete',[$repositorio->id]) !!}"  onclick="return confirm('Desea eliminar este repositorio?')"><i class="glyphicon glyphicon-remove pull-right"></i></a>                    
-                     <a href="{!! route('documentos.create',[$repositorio->id]) !!}"><i class="glyphicon glyphicon-plus pull-right"></i></a>
-                       <a href="{!! route('repositorios.edit',[$repositorio->id]) !!}"><i class="glyphicon glyphicon-edit pull-right"></i></a>
+                    <div align="right">
+                        <a href="{!! route('documentos.create',[$repositorio->id]) !!}" class="btn btn-xs btn-warning">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a>                        
+                        <a href="{!! route('repositorios.edit',[$repositorio->id]) !!}"class="btn btn-xs btn-warning">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a href="{!! route('repositorios.delete',[$repositorio->id]) !!}"onclick="return confirm('Desea eliminar este repositorio?')" class="btn btn-xs btn-warning">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </div>
                 @endif
- 
-                       <h3>Titulo: {{$repositorio->nombre}}</h3>               
-                <h5>Descrición: {{$repositorio->descripcion}}</h5><hr>
-            
-                <div class="list-group ">
-                    
-                    @foreach ($repositorio->Documentos as $documento)
-                        <a href="#" class="list-group-item">          
-                            <h4 class="list-group-item-heading">{{$documento->nombre}}
-
-                            </h4>
-                            <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                        </a>  
-                    @endforeach
-                   
-                </div>  
+                <h2>Descripción: {{$repositorio->descripcion}}</h2>             
+                @include('documentos.list-items')
+                <div aling="right" class="panel-footer">Ultima Actualización: {{$repositorio->updated_at}}
+                </div>
             </div>
         </div>
-            
-    @endforeach
-
-
+    </div>
+@endforeach   

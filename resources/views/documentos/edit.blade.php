@@ -4,10 +4,10 @@
 <div class="container">
 
     @include('common.errors')
+	{!! Breadcrumbs::render('documentoedit')!!}
+    {!! Form::model($documento, ['route' => ['documentos.update', $documento->id], 'method' => 'patch','files'=> true]) !!}
 
-    {!! Form::model($repositorio, ['route' => ['repositorios.update', $repositorio->id], 'method' => 'patch','files'=> true]) !!}
-
-        @include('repositorios.fields')
+        @include('documentos.fields')
 
     {!! Form::close() !!}
 </div>

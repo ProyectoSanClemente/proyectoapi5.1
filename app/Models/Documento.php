@@ -11,6 +11,8 @@ class Documento extends Model
 	public $fillable = [
 	    "nombre",
 		"documento",
+        "enlace",
+        "tipo",
         "id_repositorio"
 	];
 
@@ -21,18 +23,15 @@ class Documento extends Model
      */
     protected $casts = [
         "nombre" => "string",
-		"documento" => "string",
     ];
 
 	public static $rules = [
-	    "nombre" => "required",
-        "documento" => "required"
+	    "nombre" => "required"
 	];
 
-	/*public function Documentos()
+    public function Repositorio()
     {
-        return $this->hasOne('App\Models\Documento','id_tema');
+        return $this->belongsTo('App\Models\Repositorio','id_repositorio');
     }
-*/
 
 }

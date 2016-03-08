@@ -15,9 +15,11 @@ class CreateDocumentosTable extends Migration
          Schema::create('documentos', function (Blueprint $table) {
             $table->increments('id');            
             $table->text('nombre');
+            $table->string('tipo');
             $table->text('documento');
+            $table->text('enlace');
             $table->integer('id_repositorio')->unsigned();
-            $table->foreign('id_repositorio')->references('id')->on('repositorios  ')->onDelete('cascade');
+            $table->foreign('id_repositorio')->references('id')->on('repositorios')->onDelete('cascade');
             $table->timestamps();
         });
     }

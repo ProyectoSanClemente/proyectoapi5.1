@@ -137,13 +137,13 @@ Breadcrumbs::register('departamentos',function($breadcrumbs){
 	$breadcrumbs->push('Departamentos',url('departamentos'));
 });
 
-// Home > Anexos >create
+// Home > Departamento >create
 Breadcrumbs::register('departamentocreate',function($breadcrumbs){
 	$breadcrumbs->parent('departamentos');
 	$breadcrumbs->push('Crear',url('departamentos/create'));
 });
 
-// Home > Anexos >edit
+// Home > Departamento >edit
 Breadcrumbs::register('departamentoedit',function($breadcrumbs){
 	$breadcrumbs->parent('departamentos');
 	$breadcrumbs->push('Editar',url('departamentos/edit'));
@@ -154,3 +154,36 @@ Breadcrumbs::register('help',function($breadcrumbs){
 	$breadcrumbs->parent('home');
 	$breadcrumbs->push('Ayuda',url('help'));
 });
+
+
+// Home > Repositorio 
+Breadcrumbs::register('repositorios',function($breadcrumbs){
+	$breadcrumbs->parent('home');
+	$breadcrumbs->push('Repositorios',url('repositorios'));
+});
+
+// Home > Repositorio >create
+Breadcrumbs::register('repositoriocreate',function($breadcrumbs){
+	$breadcrumbs->parent('repositorios');
+	$breadcrumbs->push('Crear',url('repositorios/create'));
+});
+
+// Home > Repositorio >edit
+Breadcrumbs::register('repositorioedit',function($breadcrumbs){
+	$breadcrumbs->parent('repositorios');
+	$breadcrumbs->push('Editar',url('repositorios/edit'));
+});
+
+// Home > Documento > Añadir 
+Breadcrumbs::register('documentocreate',function($breadcrumbs){
+	$breadcrumbs->parent('repositorios');
+	$breadcrumbs->push('Agregar Documento',url('documentos/create'));
+});
+
+// Home > Documento >edit
+Breadcrumbs::register('documentoedit',function($breadcrumbs){
+	$breadcrumbs->parent('repositorios');
+	$breadcrumbs->push('Editar Documento',url('documentos/edit'));
+});
+
+

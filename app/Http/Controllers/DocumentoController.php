@@ -9,8 +9,8 @@ use App\Http\Requests\CreateDocumentoRequest;
 use App\Http\Requests\UpdateDocumentoRequest;
 use App\Libraries\Repositories\DocumentoRepository;
 use App\Libraries\Repositories\RepositorioRepository;
-use Flash;
-use Response;
+use Flash, File, Input;
+
 
 class DocumentoController extends Controller
 {
@@ -51,22 +51,26 @@ class DocumentoController extends Controller
     {
         $input = $request->all();
         
-        $anexo = $this->documentoRepository->create($input);
+        if (!empty($input['documento'])) {
+            $carpeta='documents/'.$input['id_repositorio'].'/';
+            if (!File::exists('documents')) {    //Crear carpeta de documentos adjuntos
+                File::makeDirectory('documents');
+            }
+            if (!File::exists($carpeta)) {    //Crear carpeta de documentos adjuntos
+                File::makeDirectory($carpeta);
+            }
+            $nombre = Input::file('documento')->getClientOriginalName();
+
+            Input::file('documento')->move($carpeta, $nombre);
+
+            $input['documento']=$carpeta.$nombre;
+        }
+
+        $documento = $this->documentoRepository->create($input);
         
-        Flash::success('Documento agregado satisfactoriamente.');
+        Flash::success('Documento agregado satisfactoriamente al Repositorio.');
         
         return redirect(route('repositorios.index'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -77,17 +81,19 @@ class DocumentoController extends Controller
      */
     public function edit($id)
     {
-        $Documento = $this->documentoRepository->find($id);
+        $documento = $this->documentoRepository->find($id);
 
-        if(empty($Documento))
+        if(empty($documento))
         {
             Flash::error('Documento no encontrada.');
 
             return redirect(route('documentos.index'));
         }
+        $repositorio=$documento->Repositorio;
 
         return view('documentos.edit')
-            ->with('Documento', $Documento);
+            ->with('documento', $documento)
+            ->with('repositorio',$repositorio);
     }
 
     /**
@@ -99,20 +105,39 @@ class DocumentoController extends Controller
      */
     public function update(UpdateDocumentoRequest $request, $id)
     {
-        $Documento = $this->documentoRepository->find($id);
+        $documento = $this->documentoRepository->find($id);
 
-        if(empty($Documento))
+        if(empty($documento))
         {
-            Flash::error('Documento no encontrada.');
+            Flash::error('Documento no encontrado.');
 
-            return redirect(route('documentos.index'));
+            return redirect(route('repositorios.index'));
+        }
+        $input=$request->all();
+
+        if (!empty($input['documento'])) {
+            $carpeta='documents/'.$input['id_repositorio'].'/';
+            if (!File::exists('documents')) {    //Crear carpeta de documentos adjuntos
+                File::makeDirectory('documents');
+            }
+            if (!File::exists($carpeta))    //Crear carpeta de documentos adjuntos
+                File::makeDirectory($carpeta);
+
+            if(File::exists($documento->documento))//Se borra el Archivo antiguo si existia
+                File::delete($documento->documento);
+
+            $nombre = Input::file('documento')->getClientOriginalName();
+
+            Input::file('documento')->move($carpeta, $nombre);
+
+            $input['documento']=$carpeta.$nombre;
         }
 
-        $this->documentoRepository->updateRich($request->all(), $id);
+        $this->documentoRepository->updateRich($input, $id);
 
         Flash::success('Documento actualizado satisfactoriamente.');
 
-        return redirect(route('documentos.index'));
+        return redirect(route('repositorios.index'));
     }
 
     /**
@@ -123,9 +148,9 @@ class DocumentoController extends Controller
      */
     public function destroy($id)
     {
-        $Documento = $this->documentoRepository->find($id);
+        $documento = $this->documentoRepository->find($id);
 
-        if(empty($Documento))
+        if(empty($documento))
         {
             Flash::error('Documento no encontrado.');
 
@@ -133,9 +158,10 @@ class DocumentoController extends Controller
         }
 
         $this->documentoRepository->delete($id);
+        File::delete($documento->documento);
 
         Flash::success('Documento borrado satisfactoriamente.');
 
-        return redirect(route('documentos.index'));
+        return redirect(route('repositorios.index'));
     }
 }

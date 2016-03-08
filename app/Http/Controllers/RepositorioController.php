@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\CreateRepositorioRequest;
 use App\Http\Requests\UpdateRepositorioRequest;
 use App\Libraries\Repositories\RepositorioRepository;
-use Flash;
+use Flash,File;
 use Response;
 
 class RepositorioController extends Controller
@@ -23,6 +23,7 @@ class RepositorioController extends Controller
         $this->middleware('auth');
         $this->middleware('admin',['except'=>['index']]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -138,6 +139,8 @@ class RepositorioController extends Controller
 
         $this->repositorioRepository->delete($id);
 
+        File::cleanDirectory('documents/'.$id);
+        
         Flash::success('Repositorio borrado satisfactoriamente.');
 
         return redirect(route('repositorios.index'));

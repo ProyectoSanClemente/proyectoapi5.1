@@ -2,9 +2,8 @@
 
 @section('content')
 <div class="container">
-	{!! Breadcrumbs::render('anexocreate')!!}
     @include('common.errors')
-
+	{!! Breadcrumbs::render('documentocreate')!!}
     {!! Form::open(['route' => 'documentos.store','files'=> true]) !!}
 
         @include('documentos.fields')

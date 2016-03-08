@@ -155,50 +155,6 @@
         </div>
 
         <div class="panel-body">          
-            <!-- Bodega Id Field -->
-            <div class="form-group col-sm-6">
-                {!! Form::label('id_bodega', 'Bodega Usuario: ') !!}
-                @if(empty($cuenta->id_bodega))
-                    {!! Form::label('id_bodega', 'Sin Datos',['style'=>'color:red']) !!}
-                @else
-                    {!! Form::label('id_bodega', $cuenta->id_bodega) !!}
-                @endif
-            </div>
-
-            <!-- Bodega Pass Field -->
-            <div class="form-group col-sm-6">
-                {!! Form::label('pass_bodega', 'Bodega Contraseña:') !!}
-                @if(empty($cuenta->pass_bodega))
-                    {!! Form::label('pass_bodega', 'Sin Datos',['style'=>'color:red']) !!}
-                @else
-                    {!! Form::label('pass_bodega',$cuenta->pass_bodega) !!}
-                @endif
-            </div>
-        </div>
-
-        <div class="panel-body">          
-            <!-- Social Id Field -->
-            <div class="form-group col-sm-6">
-                {!! Form::label('id_social', 'Social Usuario: ') !!}
-                @if(empty($cuenta->id_social))
-                    {!! Form::label('id_social', 'Sin Datos',['style'=>'color:red']) !!}
-                @else
-                    {!! Form::label('id_social', $cuenta->id_social) !!}
-                @endif
-            </div>
-
-            <!-- Social Pass Field -->
-            <div class="form-group col-sm-6">
-                {!! Form::label('pass_social', 'Social Contraseña:') !!}
-                @if(empty($cuenta->pass_social))
-                    {!! Form::label('pass_social', 'Sin Datos',['style'=>'color:red']) !!}
-                @else
-                    {!! Form::label('pass_social',$cuenta->pass_social) !!}
-                @endif
-            </div>
-        </div>
-
-        <div class="panel-body">          
             <!-- Plan Id Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('id_plan', 'Plan Usuario: ') !!}
@@ -233,7 +189,7 @@
                 @endif
             </div>
 
-            <!-- Plan Pass Field -->
+            <!-- ProcessMaker Pass Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('pass_processmaker', 'ProcessMaker Contraseña:') !!}
                 @if(empty($cuenta->pass_processmaker))

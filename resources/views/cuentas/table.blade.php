@@ -15,10 +15,6 @@
         <th>Boleta Password</th>
         <th>Garantia Usuario</th>
         <th>Garantia Password</th>
-        <th>Bodega Usuario</th>
-        <th>Bodega Password</th>
-        <th>Social Usuario</th>
-        <th>Social Password</th>
         <th>Plan Usuario</th>
         <th>Plan Password</th>
         <th>ProcessMaker Usuario</th>
@@ -45,10 +41,6 @@
             <td>{!! $cuenta->pass_boleta!!}</td>
             <td>{!! $cuenta->id_garantia !!}</td>
             <td>{!! $cuenta->pass_garantia !!}</td>
-            <td>{!! $cuenta->id_bodega !!}</td>
-            <td>{!! $cuenta->pass_bodega !!}</td>
-            <td>{!! $cuenta->id_social !!}</td>
-            <td>{!! $cuenta->pass_social !!}</td>
             <td>{!! $cuenta->id_plan !!}</td>
             <td>{!! $cuenta->pass_plan !!}</td>
             <td>{!! $cuenta->id_processmaker !!}</td>

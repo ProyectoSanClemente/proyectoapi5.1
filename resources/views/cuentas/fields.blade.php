@@ -98,35 +98,7 @@
                 {!! Form::label('pass_garantia', 'Garantia Contraseña') !!}
                 {!! Form::text('pass_garantia',null, ['class' => 'form-control']) !!}
             </div>
-        </div>                
-
-        <div class="panel-body">          
-            <!-- Bodega Id Field -->
-            <div class="form-group col-sm-6">
-                {!! Form::label('id_bodega', 'Bodega Usuario') !!}
-                {!! Form::text('id_bodega', null, ['class' => 'form-control']) !!}
-            </div>
-
-            <!-- Bodega Pass Field -->
-            <div class="form-group col-sm-6">
-                {!! Form::label('pass_bodega', 'Bodega Contraseña') !!}
-                {!! Form::text('pass_bodega',null, ['class' => 'form-control']) !!}
-            </div>
-        </div>        
-
-        <div class="panel-body">          
-            <!-- Social Id Field -->
-            <div class="form-group col-sm-6">
-                {!! Form::label('id_social', 'Social Usuario') !!}
-                {!! Form::text('id_social', null, ['class' => 'form-control']) !!}
-            </div>
-
-            <!-- Social Pass Field -->
-            <div class="form-group col-sm-6">
-                {!! Form::label('pass_social', 'Social Contraseña') !!}
-                {!! Form::text('pass_social',null, ['class' => 'form-control']) !!}
-            </div>
-        </div>        
+        </div>                       
 
         <div class="panel-body">          
             <!-- Plan Id Field -->

@@ -27,6 +27,7 @@
                         <li><a href="{{url('emails/unseen')}}"><i class="fa fa-envelope"><span class="label" id='mails-unseen'><div class="glyphicon glyphicon-remove"></div></span></i><p>Correo</p></a></li>
                         <li><a href="{{url('sistemas')}}"><i class="glyphicon glyphicon-th-large"></i><p>Sistemas</p></a></li>
                         <li><a href="{{url('chat')}}"><i class="fa fa-whatsapp"><span class="label" id='conversation-unseen'></span></i><p>Chat</p></a></li>
+                        <li><a href="{{url('repositorios')}}"><i class="glyphicon glyphicon-file"></i><p>Repositorios</p></a></li>
                 @endif
             </ul>
 

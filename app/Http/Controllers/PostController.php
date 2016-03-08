@@ -4,14 +4,12 @@ use App\Http\Requests;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Libraries\Repositories\PostRepository;
-use Flash;
 use Mitul\Controller\AppBaseController as AppBaseController;
 use Response;
 use App\Models\Post;
-use Auth;
+use Carbon\Carbon;
+use Auth, Flash, File, Image;
 use Validator, Input, Request, DB;
-use Image;
-use File;
 
 class PostController extends AppBaseController
 {
@@ -101,17 +99,6 @@ class PostController extends AppBaseController
 	}
 
 	/**
-	 * Show the form for editing the specified post.
-	 *
-	 * @param  int $id
-	 *
-	 * @return Response
-	 */
-
-
-
-
-	/**
 	 * Remove the specified post from storage.
 	 *
 	 * @param  int $id
@@ -128,6 +115,16 @@ class PostController extends AppBaseController
 
 			return redirect(url('home'));
 		}
+
+		$created = new Carbon($post->created_at);
+		$transcurrido=$created->diffInMinutes();
+		if(Auth::user()->rol!='admin' && $transcurrido < 120)
+		{
+			Flash::warning('Deben pasar 2 horas para poder eliminar el Post han pasado '.$transcurrido.' minutos desde la creación');
+
+			return redirect(url('home'));
+		}
+
 
 		$this->postRepository->delete($id);
 		if(file_exists($post->imagen))

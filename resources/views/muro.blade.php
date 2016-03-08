@@ -8,7 +8,7 @@
   		</a>
         <div class="media-body">
         <h4 class="media-heading">{!! $posteo->titulo !!}
-      @if(Auth::id()==$posteo->id_usuario)
+      @if(Auth::id()==$posteo->id_usuario || Auth::user()->rol=='admin')
       <a href="{!! route('posts.delete', [$posteo->id]) !!}" onclick="return confirm('Estas seguro que deseas eliminar este mensaje?')"><i class="glyphicon glyphicon-remove pull-right"></i></a>
       @endif</h4>
       <hr>

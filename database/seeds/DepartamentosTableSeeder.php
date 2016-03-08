@@ -27,7 +27,7 @@ class DepartamentosTableSeeder extends Seeder
             ['nombre' =>'Archivo e Inventarios',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],                        
-            ['Asesor Jurídico' =>'nombre',
+            ['nombre' =>'Asesor Jurídico',
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ],                     
             ['nombre' =>'Aseo y Ornato',

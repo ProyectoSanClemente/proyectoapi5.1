@@ -195,4 +195,22 @@ Route::group(['middleware'], function () {
         'as' => 'departamentos.delete',
         'uses' => 'DepartamentoController@destroy',
     ]);
+
+    Route::resource('repositorios', 'RepositorioController');
+
+    Route::get('repositorios/{id}/delete', [
+        'as' => 'repositorios.delete',
+        'uses' => 'RepositorioController@destroy',
+    ]);
+
+    Route::resource('documentos', 'DocumentoController');
+
+    Route::get('documentos/{id}/create', [
+         'as' => 'documentos.create',
+         'uses' => 'DocumentoController@create']);
+
+    Route::get('documentos/{id}/delete', [
+        'as' => 'documentos.delete',
+        'uses' => 'DocumentoController@destroy',
+    ]);
 });   
